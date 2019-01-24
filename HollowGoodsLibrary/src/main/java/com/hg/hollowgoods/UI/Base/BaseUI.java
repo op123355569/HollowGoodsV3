@@ -40,6 +40,7 @@ import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.arlib.floatingsearchview.util.Util;
 import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.Constants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnFloatingSearchMenuItemClickListener;
@@ -260,7 +261,7 @@ public class BaseUI {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == ExampleUpdateAPPUtils.REQUEST_CODE_INSTALL && resultCode == Activity.RESULT_OK) {
+        if (requestCode == Constants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == Activity.RESULT_OK) {
             ExampleUpdateAPPUtils.onInstallRequestActivityResult(requestCode, resultCode);
         }
     }

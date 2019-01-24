@@ -24,19 +24,30 @@ public class MVPExamModel implements MVPExamContract.Model {
     }
 
     @Override
+    public boolean isViewAttached() {
+        return mView != null;
+    }
+
+    @Override
     public void login(String username, String password) {
 
-        mView.showProgressDialog();
+        if (isViewAttached()) {
+            mView.showProgressDialog();
+        }
 
         new Handler().postDelayed(() -> {
 
-            mView.hideProgressDialog();
+            if (isViewAttached()) {
+                mView.hideProgressDialog();
+            }
 
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
-            mView.onSuccess(user);
 
+            if (isViewAttached()) {
+                mView.onSuccess(user);
+            }
         }, 3 * 1000l);
     }
 

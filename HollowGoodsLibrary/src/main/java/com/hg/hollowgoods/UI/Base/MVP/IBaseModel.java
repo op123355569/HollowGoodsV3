@@ -26,4 +26,8 @@ public interface IBaseModel {
 
     }
 
+    default boolean isViewAttached() {
+        return false;
+    }
+
 }

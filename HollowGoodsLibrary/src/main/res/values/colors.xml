@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#4191F5</color>
+    <color name="colorPrimaryDark">@color/colorPrimary</color>
+    <color name="colorAccent">#00A0E9</color>
+    <color name="btn_main_p">#4191F5</color>
+
+    <!-- 主色调 -->
+    <color name="main_body_color">#FAFAFA</color>
+
+    <!-- 淡灰 -->
+    <color name="grey">#CDCDCD</color>
+    <!-- 深灰 -->
+    <color name="grey2">#666666</color>
+    <!-- 标题文字默认颜色 -->
+    <color name="title_word_default_color">#FFFFFF</color>
+    <!-- 搜索历史字体颜色 -->
+    <color name="search_history_text">#323232</color>
+
+    <!--  -->
+    <color name="pressed">#88000000</color>
+    <color name="normal">#00000000</color>
+    <color name="green">#00FF00</color>
+
+    <color name="teal">#00561F</color>
+    <color name="blue">#0000FF</color>
+    <color name="brown">#6A3906</color>
+
+    <color name="ripple_color">#88D8D8DB</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_half">#CCFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="black_half">#55000000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="txt_color_dark">#323232</color>
+    <color name="txt_color_normal">#646464</color>
+    <color name="txt_color_light">#909090</color>
+
+    <color name="color_wrong">@color/google_red</color>
+    <color name="color_right">@color/google_green</color>
+    <color name="color_wrong_p">#BF362E</color>
+    <color name="color_right_p">#297C3E</color>
+
+    <color name="photo_manager_background">#1A1A1A</color>
+
+    <color name="solid_one">#4abc96</color>
+    <color name="solid_two">#357180</color>
+    <color name="solid_three">#ffce00</color>
+
+    <color name="google_red">#EA4335</color>
+    <color name="google_yellow">#FBBC05</color>
+    <color name="google_blue">#4285F4</color>
+    <color name="google_green">#34A853</color>
+
+    <color name="line">#EEEEEE</color>
+
+    <color name="login_bg_parent_color">#A0000000</color>
+    <color name="login_bg_color">#A0EA4335</color>
+    <color name="register_bg_color">#A04285F4</color>
+
+</resources>

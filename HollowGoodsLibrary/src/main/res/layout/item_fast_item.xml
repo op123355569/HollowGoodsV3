@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/marginTop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="4dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/tv_sortNumber"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="SN"
+            android:textColor="@color/txt_color_dark"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/iv_leftIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="4dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_android_green_24dp" />
+
+        <TextView
+            android:id="@+id/tv_notEmptyFlag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="*"
+            android:textColor="@color/color_wrong" />
+
+        <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="4dp"
+            android:text="Label"
+            android:textColor="@color/txt_color_dark"
+            android:textSize="14sp" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5">
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="16dp"
+                android:text="Content"
+                android:textColor="@color/txt_color_normal"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/iv_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="8dp"
+                android:padding="10dp"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/iv_minus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/box_number_picker_left"
+            android:padding="10dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_remove_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/box_number_picker_middle"
+            android:gravity="center"
+            android:text="N"
+            android:textColor="@color/txt_color_dark"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_plus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/box_number_picker_right"
+            android:padding="10dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_add_black_24dp" />
+
+        <FrameLayout
+            android:id="@+id/fl_count"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:id="@+id/iv_imgPre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_fast_image_pre" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_rightIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_rightIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_android_green_24dp" />
+
+            <Switch
+                android:id="@+id/switch_rightIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="false" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+package com.hg.hollowgoods.Adapter.FastAdapter.Constant;
+
+import com.hg.hollowgoods.R;
+
+import java.util.HashMap;
+
+/**
+ * 变量翻译集合项
+ * 支持String[]、Map、List
+ * Created by HG on 2018-06-13.
+ */
+public class ParamItem {
+
+//    public static final String[] SEX = {
+//            "女",
+//            "男"
+//    };
+
+    public static final Integer[] SEX = {
+            R.drawable.ic_female,
+            R.drawable.ic_male,
+    };
+
+    public static final HashMap<Boolean, String> MARRY = new HashMap<Boolean, String>() {
+        {
+            put(true, "已婚");
+            put(false, "未婚");
+        }
+    };
+
+}

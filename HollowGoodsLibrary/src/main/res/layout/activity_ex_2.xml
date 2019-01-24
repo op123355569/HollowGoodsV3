@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_body_color"
+    android:orientation="vertical">
+
+    <com.hg.hollowgoods.Widget.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center" />
+
+    <ProgressBar
+        android:id="@+id/pb_downloadProgress"
+        style="@style/mProgress_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <ImageView
+        android:id="@+id/iv_headImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/app_name" />
+
+    <GridView
+        android:id="@+id/gv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3" />
+
+</LinearLayout>

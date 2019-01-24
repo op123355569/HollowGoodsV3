@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="OverflowButtonStyle.White">
+
+    <item
+        android:id="@+id/action_1"
+        android:icon="@drawable/ic_ip_white_24dp"
+        android:orderInCategory="10"
+        android:title="@string/ip_config"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_2"
+        android:icon="@drawable/ic_test_white_24dp"
+        android:orderInCategory="20"
+        android:title="@string/test"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_3"
+        android:icon="@drawable/ic_feedback"
+        android:orderInCategory="30"
+        android:title="@string/feedback"
+        app:showAsAction="always" />
+
+</menu>

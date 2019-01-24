@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_body_color"
+    android:orientation="vertical">
+
+    <com.hg.hollowgoods.Widget.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/iv_testImg"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
+
+    <GridView
+        android:id="@+id/gv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:verticalSpacing="10dp" />
+
+
+</LinearLayout>

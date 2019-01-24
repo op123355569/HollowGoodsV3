@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <com.hg.hollowgoods.Widget.RulerWheelView
+        android:id="@+id/year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@android:color/white"
+        app:lwvHighlightColor="@color/colorAccent"
+        app:lwvIntervalFactor="1.3"
+        app:lwvMarkTextSize="12sp" />
+
+    <com.hg.hollowgoods.Widget.RulerWheelView
+        android:id="@+id/month"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@android:color/white"
+        app:lwvHighlightColor="@color/colorAccent"
+        app:lwvIntervalFactor="1.3"
+        app:lwvMarkTextSize="12sp" />
+
+    <com.hg.hollowgoods.Widget.RulerWheelView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@android:color/white"
+        app:lwvHighlightColor="@color/colorAccent"
+        app:lwvIntervalFactor="1.3"
+        app:lwvMarkTextSize="12sp" />
+
+    <com.hg.hollowgoods.Widget.RulerWheelView
+        android:id="@+id/hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@android:color/white"
+        app:lwvHighlightColor="@color/colorAccent"
+        app:lwvIntervalFactor="1.3"
+        app:lwvMarkTextSize="12sp" />
+
+    <com.hg.hollowgoods.Widget.RulerWheelView
+        android:id="@+id/minute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@android:color/white"
+        app:lwvHighlightColor="@color/colorAccent"
+        app:lwvIntervalFactor="1.3"
+        app:lwvMarkTextSize="12sp" />
+
+</LinearLayout>

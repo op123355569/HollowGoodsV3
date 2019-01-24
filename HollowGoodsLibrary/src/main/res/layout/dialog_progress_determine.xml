@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_wait"
+        android:textColor="@color/txt_color_dark"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp">
+
+        <com.hg.hollowgoods.Widget.RingProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:max="100"
+            app:ringColor="@color/colorPrimary"
+            app:ringPadding="1dp"
+            app:ringProgressColor="@color/colorPrimaryDark"
+            app:ringWidth="1dp"
+            app:style="FILL"
+            app:textColor="@color/txt_color_normal"
+            app:textIsShow="true"
+            app:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/iv_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</LinearLayout>

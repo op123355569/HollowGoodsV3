@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hg.hollowgoods">
+
+    <!-- **** 本APP相关权限 **** -->
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" /><!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!-- 在SDCard中写入文件权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!-- 在SDCard中读取文件权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /><!-- 上网权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /><!-- BugView所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" /><!-- 获取最近任务权限 -->
+    <uses-permission android:name="android.permission.NFC" /><!-- NFC -->
+    <uses-permission android:name="android.permission.VIBRATE" /><!-- 震动 -->
+    <uses-permission android:name="android.permission.CAMERA" /><!-- 相机 -->
+
+    <!-- **** 二维码扫描 **** -->
+    <uses-permission android:name="android.permission.VIBRATE" /><!-- 许可振动 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" /><!-- 打开闪光灯 -->
+    <uses-permission android:name="android.permission.CAMERA" /><!-- 许可使用照相机 -->
+    <uses-feature android:name="android.hardware.camera" /><!-- 许可调用相机硬件 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /><!-- 许可调用相机自动对焦 -->
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" /><!-- 适应所有屏幕 -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator">
+
+        <activity android:name=".UI.Activity.Index.IndexActivity" /><!-- 启动界面 -->
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" /><!-- 谷歌服务 -->
+
+        <!-- **** 示例相关 **** -->
+        <activity android:name=".UI.Activity.Example.ExampleActivity" /><!-- 示例总界面 -->
+        <activity android:name=".UI.Activity.Example.Ex1Activity" /><!-- 示例1(Snackbar和PopupWindow)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex2Activity" /><!-- 示例2(XUtils3.0示例)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex3Activity" /><!-- 示例3(Fragment使用ToolBar)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex4Activity" /><!-- 示例4(Activity使用ToolBar)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex5Activity" /><!-- 示例5(BottomNavigationBar)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex6Activity" /><!-- 示例6(Glide库加载图片)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex7Activity" /><!-- 示例7(输入框自动显示删除按钮)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex8Activity" /><!-- 示例8(共同元素界面跳转)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex9Activity" /><!-- 示例9(对话框示例)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex10Activity" /><!-- 示例10(加载数据ListView)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex11Activity" /><!-- 示例11(字母索引)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex12Activity" /><!-- 示例12(RecyclerView)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex13Activity" /><!-- 示例13(探探索引)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex13_1Activity" /><!-- 示例13-1(探探)界面1 -->
+        <activity android:name=".UI.Activity.Example.Ex13_2Activity" /><!-- 示例13-2(探探)界面2 -->
+        <activity android:name=".UI.Activity.Example.Ex14Activity" /><!-- 示例14(搜索框)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex15Activity" /><!-- 示例15(圆形进度)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex16Activity" /><!-- 示例16(RecyclerView拖动)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex17Activity" /><!-- 示例17(ViewPager)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex18Activity" /><!-- 示例18(裁剪图片)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex19Activity" /><!-- 示例19(侧边菜单)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex20Activity" /><!-- 示例20(数据缓存清理)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex21_1Activity" /><!-- 示例21_1(引导界面)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex21_2Activity" /><!-- 示例21_2(引导界面)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex21_3Activity" /><!-- 示例21_3(引导界面)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex22Activity" /><!-- 示例22(万能阴影控件)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex24Activity" /><!-- 示例24(SVG动画控件)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex25Activity" /><!-- 示例25(新吐司)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex26Activity" /><!-- 示例26(跑马灯文字)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex27Activity" /><!-- 示例27(多样化文字)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex28_1Activity" /><!-- 示例28(快速适配器)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex28_2Activity" /><!-- 示例28(快速适配器)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex29Activity" /><!-- 示例29(悬浮展开菜单)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex30Activity" /><!-- 示例30(动画按钮)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex32Activity" /><!-- 示例32(列表侧滑菜单)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex33.Ex33Activity" /><!-- 示例33(照片墙)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex33.shop.ShopActivity" />
+        <activity android:name=".UI.Activity.Example.Ex33.weather.WeatherActivity" />
+        <activity android:name=".UI.Activity.Example.Ex33.gallery.GalleryActivity" />
+        <activity android:name=".UI.Activity.Example.Ex34Activity" /><!-- 示例34(波纹验证输入框)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex35.Ex35Activity" /><!-- 示例35(TabBar1)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex35.HorizontalCoordinatorNtbActivity" />
+        <activity android:name=".UI.Activity.Example.Ex35.HorizontalNtbActivity" />
+        <activity android:name=".UI.Activity.Example.Ex35.SamplesNtbActivity" />
+        <activity android:name=".UI.Activity.Example.Ex35.TopHorizontalNtbActivity" />
+        <activity android:name=".UI.Activity.Example.Ex35.VerticalNtbActivity" />
+        <activity android:name=".UI.Activity.Example.Ex36.UI.Ex36Activity" /><!-- 示例36(TabBar2)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex36.UI.CommonTabActivity" />
+        <activity android:name=".UI.Activity.Example.Ex36.UI.SegmentTabActivity" />
+        <activity android:name=".UI.Activity.Example.Ex36.UI.SlidingTabActivity" />
+        <activity android:name=".UI.Activity.Example.Ex37Activity" /><!-- 示例37(自动动画)界面 -->
+        <activity android:name=".UI.Activity.Test.TestActivity" /><!-- 测试界面 -->
+        <activity android:name=".UI.MVP.Activity.Example.MVPExamActivity" /><!-- MVP示例界面 -->
+
+        <!-- **** BugView相关 **** -->
+        <service android:name=".Widget.BugView.FloatBugViewService" /><!-- BugView服务 -->
+        <activity android:name=".Widget.BugView.BugWatchActivity" /><!-- BugView查看界面 -->
+        <activity android:name=".Widget.BugView.BugCatchActivity" /> <!-- BugView捕捉界面 -->
+        <!-- **** 图片处理 **** -->
+        <activity android:name="com.yalantis.ucrop.UCropActivity" /><!-- 裁剪图片界面 -->
+        <!-- 图片选择界面 -->
+        <activity
+            android:name=".Util.PhotoPicter.Activity.BGAPhotoPickerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/BGAPPTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <!-- 图片选择预览界面 -->
+        <activity
+            android:name=".Util.PhotoPicter.Activity.BGAPhotoPickerPreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/BGAPPTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <!-- 图片预览界面 -->
+        <activity
+            android:name=".Util.PhotoPicter.Activity.BGAPhotoPreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/BGAPPTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <provider
+            android:name=".Util.PhotoPicter.Util.BGAPhotoFileProvider"
+            android:authorities="${applicationId}.bga_photo_picker.file_provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/bga_photo_picker_file_paths" />
+        </provider>
+        <activity android:name=".UI.Activity.Plugin.PlayImageActivity" /><!-- 图片查看界面 -->
+        <activity android:name=".UI.Activity.Plugin.ImagePreActivity" /><!-- 图片预览界面 -->
+
+        <!-- **** 视频播放 **** -->
+        <activity
+            android:name=".UI.Activity.Plugin.PlayVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop" /><!-- 视频播放界面 -->
+        <activity android:name=".UI.Activity.Plugin.FileSelectorActivity" /><!-- 文件选择器界面 -->
+        <activity android:name=".UI.Activity.Plugin.FileReadActivity" /><!-- 文件查看界面 -->
+
+        <!-- **** 二维码扫描 **** -->
+        <activity android:name=".UI.Activity.Plugin.QRCodeScannerActivity" /><!-- ZXing -->
+
+        <!-- **** 反馈中心 **** -->
+        <activity android:name=".UI.Activity.Main.FeedbackActivity" /><!-- 反馈中心 -->
+
+        <!-- **** 网络状态变化监听 **** -->
+        <receiver android:name=".Service.NetworkReceiver">
+            <intent-filter>
+                <action
+                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+        </receiver><!-- 网络监听广播 -->
+
+        <!-- **** 时间服务 **** -->
+        <service android:name=".Service.Time.TimeService" /><!-- 计时服务 -->
+
+        <!-- **** 本APP **** -->
+        <activity android:name=".UI.Activity.Main.HollowGoodsActivity" /><!-- 主界面 -->
+        <activity android:name=".UI.Activity.Login.LoginActivity" /><!-- 登录注册界面 -->
+    </application>
+
+</manifest>

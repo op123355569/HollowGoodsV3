@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RotateBar">
+        <attr name="ratingCenterTitle" format="string" />
+        <attr name="centerTitleSize" format="dimension" />
+        <attr name="ratingMax" format="integer" />
+        <attr name="ratingUnratedColor" format="color" />
+        <attr name="ratingRatedColor" format="color" />
+        <attr name="ratingTitleColor" format="color" />
+        <attr name="ratingOutlineColor" format="color" />
+        <attr name="ratingDefaultColor" format="color" />
+        <attr name="ratingTitleVisible" format="boolean" />
+        <attr name="ratingCenterColor" format="color" />
+    </declare-styleable>
+</resources>

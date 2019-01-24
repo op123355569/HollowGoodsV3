@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_1"
+        android:icon="@drawable/ic_clear_all_white_24dp"
+        android:title="@string/clear_message" />
+
+    <item
+        android:id="@+id/action_2"
+        android:icon="@drawable/ic_feedback"
+        android:title="@string/clear_message" />
+
+    <item
+        android:id="@+id/action_3"
+        android:icon="@drawable/ic_android_white_24dp"
+        android:title="@string/clear_message" />
+
+    <item
+        android:id="@+id/action_4"
+        android:icon="@drawable/ic_adb_white_24dp"
+        android:title="@string/clear_message" />
+
+</menu>

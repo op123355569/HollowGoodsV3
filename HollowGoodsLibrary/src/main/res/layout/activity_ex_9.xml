@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_body_color"
+    android:orientation="vertical">
+
+    <com.hg.hollowgoods.Widget.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#CFCFCF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="标题 内容 按钮"
+                    android:textColor="#323232" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#CFCFCF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="多选"
+                    android:textColor="#323232" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#CFCFCF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="单选"
+                    android:textColor="#323232" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#CFCFCF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="输入"
+                    android:textColor="#323232" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#CFCFCF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="单选2"
+                    android:textColor="#323232" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#CFCFCF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="进度"
+                    android:textColor="#323232" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#CFCFCF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="进度2"
+                    android:textColor="#323232" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

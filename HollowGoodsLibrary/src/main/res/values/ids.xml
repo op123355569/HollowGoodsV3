@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="view_content" type="id" />
+    <item name="view_common_no_data" type="id" />
+    <item name="view_common_load_data_center" type="id" />
+    <item name="view_common_load_data_bottom" type="id" />
+    <item name="floating_search_view" type="id" />
+
+    <item name="commonTitleView" type="id" />
+    <item name="commonTitleCenterText" type="id" />
+    <item name="commonTitleRightText" type="id" />
+
+    <item name="submit" type="id" />
+
+</resources>

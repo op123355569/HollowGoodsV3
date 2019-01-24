@@ -1,0 +1,119 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_body_color"
+    android:orientation="vertical">
+
+    <com.hg.hollowgoods.Widget.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/view_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 主体内容在此填写 -->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <EditText
+                        android:id="@+id/et_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="用户名"
+                        android:textColor="@color/txt_color_normal"
+                        android:textColorHint="@color/txt_color_light"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="密码"
+                        android:textColor="@color/txt_color_normal"
+                        android:textColorHint="@color/txt_color_light"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="32dp"
+                        android:background="@drawable/button_main_color"
+                        android:text="登录"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="48dp"
+                        android:background="@color/txt_color_normal"
+                        android:hint="(显示屏)"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"
+            app:floatingSearch_leftActionMode="showSearch"
+            app:floatingSearch_menu="@menu/menu"
+            app:floatingSearch_searchBarMarginLeft="16dp"
+            app:floatingSearch_searchBarMarginRight="16dp"
+            app:floatingSearch_searchBarMarginTop="16dp"
+            app:floatingSearch_searchHint="@string/search"
+            app:floatingSearch_showSearchKey="true"
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_viewTextColor="#323232" />
+
+        <include
+            android:id="@+id/view_common_no_data"
+            layout="@layout/common_no_data"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_center"
+            layout="@layout/common_load_data_center"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_bottom"
+            layout="@layout/common_load_data_bottom"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

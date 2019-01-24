@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_body_color"
+    android:orientation="vertical">
+
+    <com.hg.hollowgoods.Widget.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/view_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 主体内容在此填写 -->
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="10" />
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-light"
+                android:text="Item name"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="4dp" />
+
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Item price"
+                android:textColor="@color/shopAccent"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <com.yarolegovich.discretescrollview.DiscreteScrollView
+                android:id="@+id/item_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/item_btn_comment"
+                    style="@style/ClickableImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_android_green_24dp"
+                    android:tint="@color/shopSecondary" />
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/item_btn_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_android_white_24dp"
+                    android:tint="@android:color/white"
+                    app:rippleColor="@color/shopFabRipple"
+                    app:useCompatPadding="true" />
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/item_btn_rate"
+                    style="@style/ClickableImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_android_black_24dp"
+                    android:tint="@color/shopSecondary" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="20" />
+
+        </LinearLayout>
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"
+            app:floatingSearch_leftActionMode="showSearch"
+            app:floatingSearch_menu="@menu/menu"
+            app:floatingSearch_searchBarMarginLeft="16dp"
+            app:floatingSearch_searchBarMarginRight="16dp"
+            app:floatingSearch_searchBarMarginTop="16dp"
+            app:floatingSearch_searchHint="@string/search"
+            app:floatingSearch_showSearchKey="true"
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_viewTextColor="#323232" />
+
+        <include
+            android:id="@+id/view_common_no_data"
+            layout="@layout/common_no_data"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_center"
+            layout="@layout/common_load_data_center"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_bottom"
+            layout="@layout/common_load_data_bottom"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

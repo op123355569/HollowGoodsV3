@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bug_view_menu_switch_layout"
+    android:layout_width="62dp"
+    android:layout_height="62dp"
+    android:alpha="0.5"
+    android:background="@drawable/ic_bug_view_switch">
+
+</FrameLayout>

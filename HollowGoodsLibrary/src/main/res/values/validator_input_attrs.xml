@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ValidatorInput">
+        <attr name="input_textColor" format="color" />
+        <attr name="input_textColorHint" format="color" />
+        <attr name="input_textSize" format="dimension" />
+        <attr name="input_lineFocusColor" format="color" />
+        <attr name="input_lineFocusNoColor" format="color" />
+        <attr name="input_lineRightColor" format="color" />
+        <attr name="input_lineWrongColor" format="color" />
+    </declare-styleable>
+
+</resources>

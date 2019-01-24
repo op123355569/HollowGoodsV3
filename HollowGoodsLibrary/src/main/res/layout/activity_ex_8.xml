@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_body_color"
+    android:orientation="vertical">
+
+    <com.hg.hollowgoods.Widget.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/iv_img_shared"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:transitionName="@string/app_name"
+                app:srcCompat="@drawable/ic_ex_8" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

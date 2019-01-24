@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--视频加载缓存进度的颜色-->
+    <color name="timeBar_buffered_color">#CCFFFFFF</color>
+    <!--已经播放过视频的颜色-->
+    <color name="timeBar_played_color">@color/colorAccent</color>
+    <!--没有加载过进度的颜色-->
+    <color name="timeBar_unplayed_color">#33FFFFFF</color>
+    <!--视频进度圆点的颜色-->
+    <color name="timeBar_scrubber_color">@color/colorAccent</color>
+
+</resources>

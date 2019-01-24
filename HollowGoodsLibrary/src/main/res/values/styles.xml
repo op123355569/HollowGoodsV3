@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="HGBaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="spbStyle">@style/GNowProgressBar</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle.White</item>
+    </style>
+
+    <!-- 水平进度条 -->
+    <style name="mProgress_horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/barbgimg</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:maxHeight">20dp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="GNowProgressBar" parent="SmoothProgressBar" />
+
+    <style name="SearchView">
+        <item name="floatingSearch_backgroundColor">@color/colorAccent</item>
+        <item name="floatingSearch_viewTextColor">@color/colorAccent</item>
+        <item name="floatingSearch_hintTextColor">@color/colorAccent</item>
+        <item name="floatingSearch_dividerColor">@color/colorAccent</item>
+        <item name="floatingSearch_clearBtnColor">@color/colorAccent</item>
+        <item name="floatingSearch_leftActionColor">@color/colorAccent</item>
+        <item name="floatingSearch_menuItemIconColor">@color/colorAccent</item>
+        <item name="floatingSearch_suggestionRightIconColor">@color/colorAccent</item>
+        <item name="floatingSearch_actionMenuOverflowColor">@color/colorAccent</item>
+    </style>
+
+    <style name="OverflowButtonStyle.White" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu_overflow_white_24dp</item>
+    </style>
+
+</resources>

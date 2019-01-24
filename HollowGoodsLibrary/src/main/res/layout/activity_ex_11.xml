@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_body_color"
+    android:orientation="vertical">
+
+    <com.hg.hollowgoods.Widget.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/view_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 主体内容在此填写 -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.hg.hollowgoods.Widget.SlideView
+                    android:id="@+id/slideView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_flag"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_slide_view_flag"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/view_common_no_data"
+            layout="@layout/common_no_data"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_center"
+            layout="@layout/common_load_data_center"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_bottom"
+            layout="@layout/common_load_data_bottom"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

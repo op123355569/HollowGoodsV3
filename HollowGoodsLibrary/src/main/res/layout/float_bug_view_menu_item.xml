@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bug_view_menu_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.5">
+
+    <View
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/scan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55000000"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_bug_view"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_watch"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="查看"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_catch"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="捕捉"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</FrameLayout>

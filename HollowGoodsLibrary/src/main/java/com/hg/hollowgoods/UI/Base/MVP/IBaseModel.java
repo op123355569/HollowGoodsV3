@@ -22,4 +22,8 @@ package com.hg.hollowgoods.UI.Base.MVP;
  */
 public interface IBaseModel {
 
+    default void detachView() {
+
+    }
+
 }

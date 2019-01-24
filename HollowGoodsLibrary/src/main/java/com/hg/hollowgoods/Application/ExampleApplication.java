@@ -14,10 +14,6 @@ import com.hg.hollowgoods.Util.LogUtils;
  */
 public class ExampleApplication extends BaseApplication {
 
-    protected ExampleApplication() {
-
-    }
-
     @Override
     public Application initAppContext() {
         return this;

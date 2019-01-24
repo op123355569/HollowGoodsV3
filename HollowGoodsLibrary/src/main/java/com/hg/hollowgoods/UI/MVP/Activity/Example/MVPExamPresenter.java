@@ -8,9 +8,7 @@ import com.hg.hollowgoods.UI.Base.MVP.BasePresenter;
  * @author: 马禛
  * @date: 2019年01月16日
  */
-public class MVPExamPresenter extends BasePresenter<MVPExamContract.View> implements MVPExamContract.Presenter {
-
-    private MVPExamContract.Model mModel;
+public class MVPExamPresenter extends BasePresenter<MVPExamContract.View, MVPExamContract.Model> implements MVPExamContract.Presenter {
 
     @Override
     public void afterAttachView() {

@@ -19,6 +19,11 @@ public class MVPExamModel implements MVPExamContract.Model {
     }
 
     @Override
+    public void detachView() {
+        this.mView = null;
+    }
+
+    @Override
     public void login(String username, String password) {
 
         mView.showProgressDialog();

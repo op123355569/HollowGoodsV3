@@ -6,9 +6,10 @@ package com.hg.hollowgoods.UI.Base.MVP;
  * @author: 马禛
  * @date: 2019年01月17日
  */
-public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
+public class BasePresenter<V extends IBaseView, P extends IBaseModel> implements IBasePresenter<V> {
 
     protected V mView;
+    protected P mModel;
 
     /**
      * 绑定View
@@ -26,6 +27,7 @@ public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
      */
     @Override
     public void detachView() {
+        this.mModel.detachView();
         this.mView = null;
     }
 

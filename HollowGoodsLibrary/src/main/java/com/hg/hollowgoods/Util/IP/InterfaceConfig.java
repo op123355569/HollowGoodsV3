@@ -64,20 +64,20 @@ public class InterfaceConfig {
     /**
      * 广域网项目名
      */
-    private static String PROJECT_NAME_WAN = "";
+    public static String PROJECT_NAME_WAN = "";
     /**
      * 局域网项目名
      */
-    private static String PROJECT_NAME_LAN = "/LY";
+    public static String PROJECT_NAME_LAN = "/LY";
 
     /**
      * 域名webservice
      */
-    private static String REALM_NAME_WEB_SERVICE = "/webservice";
+    public static String REALM_NAME_WEB_SERVICE = "/webservice";
     /**
      * 域名http
      */
-    private static String REALM_NAME_HTTP = "/";
+    public static String REALM_NAME_HTTP = "/";
     /**
      * 是否是局域网
      */

@@ -4,8 +4,6 @@ import android.app.Application;
 
 import com.hg.hollowgoods.Bean.User;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
-import com.hg.hollowgoods.Util.IP.IPConfig;
-import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 import com.hg.hollowgoods.Util.LogUtils;
 
 /**
@@ -22,9 +20,9 @@ public class ExampleApplication extends BaseApplication {
     @Override
     public void initAppData() {
         HGSystemConfig.init(this);
-        InterfaceConfig.initIP(this,
-                new IPConfig("218.93.5.74", "4500")
-        );
+//        InterfaceConfig.initIP(this,
+//                new IPConfig("218.93.5.74", "4500")
+//        );
         LogUtils.init(this);
         BaseApplication baseApplication = create();
         baseApplication.setCrashHandlerUsername("HollowGoods");

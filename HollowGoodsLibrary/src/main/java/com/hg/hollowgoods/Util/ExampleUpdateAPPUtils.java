@@ -69,7 +69,7 @@ public class ExampleUpdateAPPUtils {
 
     private static void doCheck() {
 
-        RequestParams params = new RequestParams(InterfaceConfig.getRequestHeadHttp() + HGInterfaceApi.UPDATE_APP);
+        RequestParams params = new RequestParams(InterfaceConfig.getNowIPConfig().getRequestUrl(HGInterfaceApi.UPDATE_APP));
         params.addParameter("nowVersion", Build.VERSION.SDK_INT);
 
         XUtils xUtils = new XUtils();
@@ -80,7 +80,7 @@ public class ExampleUpdateAPPUtils {
                 ResponseInfo requestInfo = new Gson().fromJson(result, ResponseInfo.class);
 
                 if ((TextUtils.equals(requestInfo.getStatus(), "true"))) {
-                    URL = InterfaceConfig.getRequestHeadHttp() + requestInfo.getUrl();
+                    URL = InterfaceConfig.getNowIPConfig().getRequestUrl(requestInfo.getUrl());
 
                     StringBuilder tip = new StringBuilder();
                     tip.append("V");

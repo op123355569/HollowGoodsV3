@@ -23,6 +23,11 @@ import java.util.List;
 
 public class SoapUtils {
 
+    /**
+     * 命名空间
+     */
+    public static final String NAME_SPACE = "http://webservice.company.com/";
+
     private Activity activity = null;
     private RequestListener requestListener = null;
     private String res = "";
@@ -61,7 +66,7 @@ public class SoapUtils {
             @Override
             public void run() {
 
-                SoapObject soapObject = new SoapObject(InterfaceConfig.NAME_SPACE, methodName);
+                SoapObject soapObject = new SoapObject(NAME_SPACE, methodName);
                 res = "";
                 boolean isSuccess = false;
 
@@ -75,7 +80,7 @@ public class SoapUtils {
                 envelope.bodyOut = soapObject;
                 envelope.dotNet = false;
                 envelope.setOutputSoapObject(soapObject);
-                HttpTransportSE transport = new HttpTransportSE(InterfaceConfig.getRequestHeadWebService() + "/" + serviceName);
+                HttpTransportSE transport = new HttpTransportSE(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName);
 
                 try {
                     transport.call(null, envelope);
@@ -98,7 +103,7 @@ public class SoapUtils {
                     res = e.getMessage();
                 }
 
-                LogUtils.Log(InterfaceConfig.getRequestHeadWebService() + "/" + serviceName + "/" + methodName, SoapUtils.class);
+                LogUtils.Log(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName + "/" + methodName, SoapUtils.class);
                 LogUtils.LogRequest(res);
 
                 if (isSuccess) {
@@ -126,70 +131,67 @@ public class SoapUtils {
 
     public void request(final String head, final String serviceName, final String methodName, final List<SoapParam> params) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
 
-                SoapObject soapObject = new SoapObject(InterfaceConfig.NAME_SPACE, methodName);
-                res = "";
-                boolean isSuccess = false;
+            SoapObject soapObject = new SoapObject(NAME_SPACE, methodName);
+            res = "";
+            boolean isSuccess;
 
-                if (params != null) {
-                    for (int i = 0; i < params.size(); i++) {
-                        soapObject.addProperty(params.get(i).getKey(), params.get(i).getValue());
-                    }
+            if (params != null) {
+                for (int i = 0; i < params.size(); i++) {
+                    soapObject.addProperty(params.get(i).getKey(), params.get(i).getValue());
                 }
+            }
 
-                SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-                envelope.bodyOut = soapObject;
-                envelope.dotNet = false;
-                envelope.setOutputSoapObject(soapObject);
-                HttpTransportSE transport = new HttpTransportSE(head + "/" + serviceName);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = soapObject;
+            envelope.dotNet = false;
+            envelope.setOutputSoapObject(soapObject);
+            HttpTransportSE transport = new HttpTransportSE(head + "/" + serviceName);
 
-                try {
-                    transport.call(null, envelope);
-                    if (envelope.getResponse() != null) {
-                        SoapObject result = (SoapObject) envelope.bodyIn;
-                        res = result.getProperty(0).toString();
-                        // 请求成功
-                        isSuccess = true;
-                    } else {
-                        isSuccess = false;
-                        res = "";
-                    }
-                } catch (IOException e) {
-                    // 请求失败，无返回
-                    isSuccess = false;
-                    res = e.getMessage();
-                } catch (XmlPullParserException e) {
-                    // 请求失败，无返回
-                    isSuccess = false;
-                    res = e.getMessage();
-                }
-
-                LogUtils.Log(InterfaceConfig.getRequestHeadWebService() + "/" + serviceName + "/" + methodName, SoapUtils.class);
-                LogUtils.LogRequest(res);
-
-                if (isSuccess) {
-                    requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, ResponseInfo.class));
+            try {
+                transport.call(null, envelope);
+                if (envelope.getResponse() != null) {
+                    SoapObject result = (SoapObject) envelope.bodyIn;
+                    res = result.getProperty(0).toString();
+                    // 请求成功
+                    isSuccess = true;
                 } else {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            requestListener.onRequestFail(methodName, res);
-                        }
-                    });
+                    isSuccess = false;
+                    res = "";
                 }
+            } catch (IOException e) {
+                // 请求失败，无返回
+                isSuccess = false;
+                res = e.getMessage();
+            } catch (XmlPullParserException e) {
+                // 请求失败，无返回
+                isSuccess = false;
+                res = e.getMessage();
+            }
 
-                // 请求完成
+            LogUtils.Log(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName + "/" + methodName, SoapUtils.class);
+            LogUtils.LogRequest(res);
+
+            if (isSuccess) {
+                requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, ResponseInfo.class));
+            } else {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        requestListener.onRequestFinish();
+                        requestListener.onRequestFail(methodName, res);
                     }
                 });
-
             }
+
+            // 请求完成
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    requestListener.onRequestFinish();
+                }
+            });
+
         }).start();
     }
 

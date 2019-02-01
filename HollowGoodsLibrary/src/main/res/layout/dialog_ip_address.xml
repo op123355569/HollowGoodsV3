@@ -16,6 +16,24 @@
             android:layout_height="wrap_content">
 
             <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_protocol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Protocol"
+                android:paddingRight="35dp"
+                android:textSize="14sp"
+                app:met_baseColor="@android:color/black"
+                app:met_floatingLabel="highlight"
+                app:met_singleLineEllipsis="true"
+                app:met_underlineColor="#121212" />
+
+        </com.hg.hollowgoods.Widget.AutoShowDeleteLayout>
+
+        <com.hg.hollowgoods.Widget.AutoShowDeleteLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/et_ip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +56,7 @@
                 android:id="@+id/et_port"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="端口"
+                android:hint="Port"
                 android:paddingRight="35dp"
                 android:textSize="14sp"
                 app:met_baseColor="@android:color/black"
@@ -48,45 +66,70 @@
 
         </com.hg.hollowgoods.Widget.AutoShowDeleteLayout>
 
-        <FrameLayout
+        <com.hg.hollowgoods.Widget.AutoShowDeleteLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-            <RadioGroup
-                android:id="@+id/rg_netType"
-                android:layout_width="wrap_content"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_projectName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
+                android:hint="Project Name"
+                android:paddingRight="35dp"
+                android:textSize="14sp"
+                app:met_baseColor="@android:color/black"
+                app:met_floatingLabel="highlight"
+                app:met_singleLineEllipsis="true"
+                app:met_underlineColor="#121212" />
 
-                <RadioButton
-                    android:id="@+id/rb_wan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/wan" />
+        </com.hg.hollowgoods.Widget.AutoShowDeleteLayout>
 
-                <RadioButton
-                    android:id="@+id/rb_lan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="@string/lan" />
+        <com.hg.hollowgoods.Widget.AutoShowDeleteLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-            </RadioGroup>
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_realmName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Realm Name"
+                android:paddingRight="35dp"
+                android:textSize="14sp"
+                app:met_baseColor="@android:color/black"
+                app:met_floatingLabel="highlight"
+                app:met_singleLineEllipsis="true"
+                app:met_underlineColor="#121212" />
+
+        </com.hg.hollowgoods.Widget.AutoShowDeleteLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_pre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:textColor="@color/txt_color_dark"
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv_ip_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:paddingBottom="16dp"
-                android:paddingLeft="16dp"
                 android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="历史配置"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp" />
 
-        </FrameLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

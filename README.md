@@ -71,7 +71,7 @@ static def releaseTime() {
 /**** 拷贝S 4/4 ****/
 // 对应拷入根目录的Gradle文件中
 buildscript {
-    ext.kotlin_version = '1.3.11'
+    ext.kotlin_version = '1.3.20'
 
     repositories {
         ...

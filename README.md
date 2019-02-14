@@ -49,14 +49,11 @@ android {
     }
     // 打包APK重命名
     applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                def version = "V${versionName}"
-                def apkName = project.name
-                def fileName = "${apkName}-${version}-${variant.buildType.name}-${releaseTime()}.apk"
-                outputFileName = fileName
-            }
+        variant.outputs.all {
+            def version = "V${versionName}"
+            def apkName = project.name
+            def fileName = "${apkName}-${version}-${variant.buildType.name}-${releaseTime()}.apk"
+            outputFileName = fileName
         }
     }
     /**** 拷贝E 2/4 ****/

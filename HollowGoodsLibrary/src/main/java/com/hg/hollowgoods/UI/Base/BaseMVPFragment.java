@@ -27,17 +27,19 @@ public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFrag
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mPresenter = createPresenter();
-        mPresenter.attachView(this);
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onDestroy() {
-        if (mPresenter.isViewAttached()) {
+        if (mPresenter != null && mPresenter.isViewAttached()) {
             mPresenter.detachView();
             this.mPresenter = null;
         }
         super.onDestroy();
     }
-    
+
 }

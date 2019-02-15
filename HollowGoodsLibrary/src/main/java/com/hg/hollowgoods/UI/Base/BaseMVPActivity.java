@@ -24,13 +24,15 @@ public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mPresenter = createPresenter();
-        mPresenter.attachView(this);
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
-        if (mPresenter.isViewAttached()) {
+        if (mPresenter != null && mPresenter.isViewAttached()) {
             mPresenter.detachView();
             this.mPresenter = null;
         }

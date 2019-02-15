@@ -49,14 +49,11 @@ android {
     }
     // 打包APK重命名
     applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                def version = "V${versionName}"
-                def apkName = project.name
-                def fileName = "${apkName}-${version}-${variant.buildType.name}-${releaseTime()}.apk"
-                outputFileName = fileName
-            }
+        variant.outputs.all {
+            def version = "V${versionName}"
+            def apkName = project.name
+            def fileName = "${apkName}-${version}-${variant.buildType.name}-${releaseTime()}.apk"
+            outputFileName = fileName
         }
     }
     /**** 拷贝E 2/4 ****/
@@ -71,7 +68,7 @@ static def releaseTime() {
 /**** 拷贝S 4/4 ****/
 // 对应拷入根目录的Gradle文件中
 buildscript {
-    ext.kotlin_version = '1.3.11'
+    ext.kotlin_version = '1.3.20'
 
     repositories {
         ...

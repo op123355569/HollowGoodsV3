@@ -91,3 +91,16 @@ allprojects {
 
 /**** 拷贝E 4/4 ****/
 ```
+
+## 3.修改Style文件
+```
+<style name="AppTheme" parent="HGBaseAppTheme">
+	<!-- Customize your theme here. -->
+	<item name="colorPrimary">@color/colorPrimary</item>
+	<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+	<item name="colorAccent">@color/colorAccent</item>
+</style>
+```
+
+## 4.重写Application
+继承BaseApplication

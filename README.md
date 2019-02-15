@@ -103,4 +103,4 @@ allprojects {
 ```
 
 ## 4.重写Application
-继承BaseApplication
+继承BaseApplication，参照ExampleApplication。

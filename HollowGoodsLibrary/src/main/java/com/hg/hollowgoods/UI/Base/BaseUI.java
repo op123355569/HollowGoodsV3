@@ -1654,6 +1654,10 @@ public class BaseUI {
         return intent;
     }
 
+    public View getContentView() {
+        return contentView;
+    }
+
     /**** 不暴露的方法 ****/
     /**
      * 初始化公共标题

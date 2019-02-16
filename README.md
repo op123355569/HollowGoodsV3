@@ -104,3 +104,33 @@ allprojects {
 
 ## 4.重写Application
 继承BaseApplication，参照ExampleApplication。
+
+## 5.添加权限
+```
+<!-- **** 本APP相关权限 **** -->
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" /><!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!-- 在SDCard中写入文件权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!-- 在SDCard中读取文件权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /><!-- 上网权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /><!-- BugView所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" /><!-- 获取最近任务权限 -->
+    <uses-permission android:name="android.permission.NFC" /><!-- NFC -->
+    <uses-permission android:name="android.permission.VIBRATE" /><!-- 震动 -->
+    <uses-permission android:name="android.permission.CAMERA" /><!-- 相机 -->
+
+    <!-- **** 二维码扫描 **** -->
+    <uses-permission android:name="android.permission.VIBRATE" /><!-- 许可振动 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" /><!-- 打开闪光灯 -->
+    <uses-permission android:name="android.permission.CAMERA" /><!-- 许可使用照相机 -->
+    <uses-feature android:name="android.hardware.camera" /><!-- 许可调用相机硬件 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /><!-- 许可调用相机自动对焦 -->
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" /><!-- 适应所有屏幕 -->
+```

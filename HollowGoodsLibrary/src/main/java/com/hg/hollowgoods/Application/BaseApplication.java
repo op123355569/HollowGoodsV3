@@ -9,7 +9,6 @@ import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Exception.CrashHandler;
 import com.hg.hollowgoods.Service.Time.TimeService;
 import com.hg.hollowgoods.Service.Time.TimeThread;
-import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.XUtils.XUtils;
 import com.tencent.smtt.sdk.QbSdk;
 
@@ -119,7 +118,6 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         initAppData();
         TimeService.start(instance);
         initFileView();
-        t.init(instance);
 
         super.onCreate();
     }

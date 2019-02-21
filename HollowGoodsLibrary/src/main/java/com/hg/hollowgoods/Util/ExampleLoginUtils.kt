@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Util
 
 import com.hg.hollowgoods.Application.ExampleApplication
 import com.hg.hollowgoods.Bean.User
-import com.hg.hollowgoods.DB.UserDBHelper
+import com.hg.hollowgoods.DB.ExampleUserDBHelper
 
 /**
  * 示例登录工具类
@@ -19,13 +19,13 @@ object ExampleLoginUtils {
     @JvmStatic
     fun initUser() {
         val application: ExampleApplication = ExampleApplication.create()
-        application.user = UserDBHelper().find()
+        application.user = ExampleUserDBHelper().find()
     }
 
     @JvmStatic
     fun updateUser(user: User) {
         val application: ExampleApplication = ExampleApplication.create()
-        UserDBHelper().update(user)
+        ExampleUserDBHelper().update(user)
         application.user = user
     }
 
@@ -44,7 +44,7 @@ object ExampleLoginUtils {
     fun destroyUser() {
         val application: ExampleApplication = ExampleApplication.create()
         application.user = null
-        UserDBHelper().delete()
+        ExampleUserDBHelper().delete()
     }
 
 }

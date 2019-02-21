@@ -8,7 +8,7 @@ import org.xutils.ex.DbException
  * 本地数据库帮助类-用户
  * Created by HG on 2018-03-21.
  */
-class UserDBHelper {
+class ExampleUserDBHelper {
 
     fun find(): User? {
 

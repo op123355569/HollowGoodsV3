@@ -48,14 +48,18 @@ public class InterfaceConfig {
     }
 
     private static boolean isExist(IPConfig ipConfig) {
+        return getIPConfigPosition(ipConfig) != -1;
+    }
+
+    private static int getIPConfigPosition(IPConfig ipConfig) {
 
         for (int i = 0; i < IP.size(); i++) {
             if (IPConfig.equals(ipConfig, IP.get(i))) {
-                return true;
+                return i;
             }
         }
 
-        return false;
+        return -1;
     }
 
     /**
@@ -89,6 +93,7 @@ public class InterfaceConfig {
         for (IPConfig t : IP) {
             if (t.isChecked()) {
                 ipConfig = t;
+                break;
             }
         }
 
@@ -118,7 +123,15 @@ public class InterfaceConfig {
         builder.setTitle("IP地址配置").setView(R.layout.dialog_ip_address).setNegativeButton(R.string.cancel, (dialog, which) -> {
 
         }).setPositiveButton(R.string.sure, (dialog, which) -> {
+
             addIP(ipConfig);
+
+            int position = getIPConfigPosition(ipConfig);
+            for (IPConfig t : IP) {
+                t.setChecked(false);
+            }
+            IP.get(position).setChecked(true);
+
             saveIP();
             baseActivity.baseUI.showLongSnackbar("当前地址："
                     + ipConfig.getRequestUrl()

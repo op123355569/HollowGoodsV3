@@ -3,6 +3,7 @@ package com.hg.hollowgoods.UI.Activity.Example;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -49,6 +50,7 @@ public class Ex38Activity extends BaseActivity {
         result = findViewById(R.id.rv_result);
         result.setHasFixedSize(true);
         result.setItemAnimator(new LandingAnimator());
+        result.setLayoutManager(new LinearLayoutManager(baseUI.getBaseContext()));
 
         adapter = new Ex38Adapter(baseUI.getBaseContext(), R.layout.item_ex_38, data);
         result.setAdapter(new ScaleInAnimationAdapter(adapter));

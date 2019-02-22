@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.widget.DatePicker;
 
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 
 import java.util.Calendar;
@@ -31,7 +31,7 @@ public class HGDateDialog extends HGDialog {
         this.onDialogDismissListener = onDialogDismissListener;
 
         Calendar c = Calendar.getInstance();
-        if (timeInMillis != Constants.DEFAULT_DATE) {
+        if (timeInMillis != HGConstants.DEFAULT_DATE) {
             c.setTimeInMillis(timeInMillis);
         }
         this.year = c.get(Calendar.YEAR);
@@ -53,10 +53,10 @@ public class HGDateDialog extends HGDialog {
                     c.set(HGDateDialog.this.year, HGDateDialog.this.month, HGDateDialog.this.date);
 
                     Bundle data = new Bundle();
-                    data.putInt(Constants.VALUE_KEY_YEAR, HGDateDialog.this.year);
-                    data.putInt(Constants.VALUE_KEY_MONTH, HGDateDialog.this.month + 1);
-                    data.putInt(Constants.VALUE_KEY_DATE, HGDateDialog.this.date);
-                    data.putLong(Constants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
+                    data.putInt(HGConstants.VALUE_KEY_YEAR, HGDateDialog.this.year);
+                    data.putInt(HGConstants.VALUE_KEY_MONTH, HGDateDialog.this.month + 1);
+                    data.putInt(HGConstants.VALUE_KEY_DATE, HGDateDialog.this.date);
+                    data.putLong(HGConstants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
                     onDialogClickListener.onDialogClick(HGDateDialog.this.code, true, data);
                 }
             }

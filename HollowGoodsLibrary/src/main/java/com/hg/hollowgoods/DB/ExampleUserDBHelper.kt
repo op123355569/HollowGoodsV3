@@ -1,6 +1,6 @@
 package com.hg.hollowgoods.DB
 
-import com.hg.hollowgoods.Bean.User
+import com.hg.hollowgoods.Bean.HGUser
 import com.hg.hollowgoods.Util.XUtils.XDBUtils
 import org.xutils.ex.DbException
 
@@ -10,12 +10,12 @@ import org.xutils.ex.DbException
  */
 class ExampleUserDBHelper {
 
-    fun find(): User? {
+    fun find(): HGUser? {
 
-        var result: User? = null
+        var result: HGUser? = null
 
         try {
-            result = XDBUtils.getDbManager().findFirst(User::class.java)
+            result = XDBUtils.getDbManager().findFirst(HGUser::class.java)
         } catch (e: DbException) {
 
         }
@@ -26,18 +26,18 @@ class ExampleUserDBHelper {
     fun delete() {
 
         try {
-            XDBUtils.getDbManager().delete(User::class.java)
+            XDBUtils.getDbManager().delete(HGUser::class.java)
         } catch (e: DbException) {
 
         }
     }
 
-    fun update(user: User) {
+    fun update(user: HGUser) {
         delete()
         save(user)
     }
 
-    private fun save(user: User) {
+    private fun save(user: HGUser) {
 
         try {
             XDBUtils.getDbManager().save(user)

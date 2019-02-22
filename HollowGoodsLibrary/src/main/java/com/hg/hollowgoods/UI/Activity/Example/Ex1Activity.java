@@ -9,7 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -46,7 +46,7 @@ public class Ex1Activity extends BaseActivity implements PopupWinHelper.PopupWin
         img = findViewById(R.id.iv_img);
         wave = findViewById(R.id.view_wave);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex1);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex1);
 
         helper = new PopupWinHelper(this, this);
         helper.init(

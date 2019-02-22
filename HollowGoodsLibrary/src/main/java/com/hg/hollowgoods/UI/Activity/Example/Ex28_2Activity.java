@@ -19,7 +19,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.FastAdapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.Example.Ex28;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Plugin.ImagePreActivity;
@@ -139,7 +139,7 @@ public class Ex28_2Activity extends BaseActivity {
             @Override
             public void onSubmitClick(View view, int id) {
                 if (adapter.checkNotEmptyItem(parentData)) {
-                    baseUI.baseDialog.showTipDialog("测试", new Gson().toJson(parentData), Constants.DEFAULT_CODE);
+                    baseUI.baseDialog.showTipDialog("测试", new Gson().toJson(parentData), HGConstants.DEFAULT_CODE);
                     LogUtils.Log(new Gson().toJson(parentData));
                 }
             }
@@ -156,7 +156,7 @@ public class Ex28_2Activity extends BaseActivity {
                 clickSortNumber = sortNumber;
 
                 baseUI.startMyActivity(ImagePreActivity.class,
-                        new String[]{Constants.PARAM_KEY_1},
+                        new String[]{HGConstants.PARAM_KEY_1},
                         new Object[]{parentData.getMedia().get(sortNumber)}
                 );
             }
@@ -205,26 +205,26 @@ public class Ex28_2Activity extends BaseActivity {
                 switch (code) {
                     case 1:
                         // 姓名
-                        value = data.getString(Constants.PARAM_KEY_1, "");
+                        value = data.getString(HGConstants.PARAM_KEY_1, "");
                         parentData.setName(value);
                         break;
                     case 2:
                         // 年龄
-                        value = data.getString(Constants.PARAM_KEY_1, "");
+                        value = data.getString(HGConstants.PARAM_KEY_1, "");
                         if (TextUtils.isEmpty(value)) {
                             value = "0";
                         }
                         parentData.setAge(Integer.valueOf(value));
                         break;
                     case 3:
-                        position = data.getInt(Constants.PARAM_KEY_1, -1);
+                        position = data.getInt(HGConstants.PARAM_KEY_1, -1);
                         if (position != -1) {
                             parentData.setSex(position);
                         }
                         break;
                     case 4:
                         // 爱好
-                        value = data.getString(Constants.PARAM_KEY_1, "");
+                        value = data.getString(HGConstants.PARAM_KEY_1, "");
                         parentData.setHobby(value);
                         break;
                 }
@@ -249,7 +249,7 @@ public class Ex28_2Activity extends BaseActivity {
 
         switch (item.getEventAction()) {
             case RemoveImage:
-                parentData.getMedia().get(clickSortNumber).remove(item.getData().getInt(Constants.PARAM_KEY_1, 0));
+                parentData.getMedia().get(clickSortNumber).remove(item.getData().getInt(HGConstants.PARAM_KEY_1, 0));
                 adapter.refreshFastItem(parentData, clickPosition);
                 break;
         }
@@ -269,11 +269,11 @@ public class Ex28_2Activity extends BaseActivity {
         switch (sortNumber) {
             case 1:
                 // 姓名
-                baseUI.baseDialog.showInputDialog("请输入姓名", parentData.getName(), Constants.INPUT_TYPE_DEFAULT, sortNumber, Constants.INPUT_SIZE_DEFAULT, Constants.INPUT_SIZE_DEFAULT);
+                baseUI.baseDialog.showInputDialog("请输入姓名", parentData.getName(), HGConstants.INPUT_TYPE_DEFAULT, sortNumber, HGConstants.INPUT_SIZE_DEFAULT, HGConstants.INPUT_SIZE_DEFAULT);
                 break;
             case 2:
                 // 年龄
-                baseUI.baseDialog.showInputDialog("请输入年龄", parentData.getAge() + "", Constants.INPUT_TYPE_NUMBER, sortNumber, Constants.INPUT_SIZE_DEFAULT, Constants.INPUT_SIZE_DEFAULT);
+                baseUI.baseDialog.showInputDialog("请输入年龄", parentData.getAge() + "", HGConstants.INPUT_TYPE_NUMBER, sortNumber, HGConstants.INPUT_SIZE_DEFAULT, HGConstants.INPUT_SIZE_DEFAULT);
                 break;
             case 3:
                 // 性别
@@ -281,7 +281,7 @@ public class Ex28_2Activity extends BaseActivity {
                 break;
             case 4:
                 // 爱好
-                baseUI.baseDialog.showInputDialog("请输入爱好", parentData.getHobby(), Constants.INPUT_TYPE_DEFAULT, sortNumber, Constants.INPUT_SIZE_DEFAULT, Constants.INPUT_SIZE_DEFAULT);
+                baseUI.baseDialog.showInputDialog("请输入爱好", parentData.getHobby(), HGConstants.INPUT_TYPE_DEFAULT, sortNumber, HGConstants.INPUT_SIZE_DEFAULT, HGConstants.INPUT_SIZE_DEFAULT);
                 break;
             case 5:
                 // 生活照

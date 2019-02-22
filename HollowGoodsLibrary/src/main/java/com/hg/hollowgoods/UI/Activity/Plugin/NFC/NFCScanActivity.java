@@ -17,7 +17,7 @@ import android.text.TextUtils;
 
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.EventAction;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -138,7 +138,7 @@ public abstract class NFCScanActivity extends BaseActivity {
             beforeScanTime = System.currentTimeMillis();
 
             Event event = new Event(EventAction.NFCScanResult);
-            event.getData().putString(Constants.PARAM_KEY_1, result);
+            event.getData().putString(HGConstants.PARAM_KEY_1, result);
             EventBus.getDefault().post(event);
         }
     }

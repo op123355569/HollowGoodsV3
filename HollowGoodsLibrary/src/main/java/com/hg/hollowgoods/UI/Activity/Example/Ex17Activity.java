@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hg.hollowgoods.Adapter.ViewPagerAdapter.FragmentViewPagerAdapter;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Fragment.Example.Ex17ChildFragment;
@@ -45,7 +45,7 @@ public class Ex17Activity extends BaseActivity {
 
         viewPager = findViewById(R.id.viewPager);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex17);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex17);
 
         Ex17ChildFragment fragment;
         for (int i = 0; i < viewCount; i++) {

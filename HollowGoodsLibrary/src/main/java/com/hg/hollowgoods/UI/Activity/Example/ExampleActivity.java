@@ -71,6 +71,7 @@ public class ExampleActivity extends BaseActivity {
         data.add(new Example(getString(R.string.title_activity_ex35), Ex35Activity.class, R.drawable.ic_ex_35));// ex35
         data.add(new Example(getString(R.string.title_activity_ex36), Ex36Activity.class, R.drawable.ic_ex_35));// ex36
         data.add(new Example(getString(R.string.title_activity_ex37), Ex37Activity.class, R.drawable.ic_ex_24));// ex37
+        data.add(new Example(getString(R.string.title_activity_ex38), Ex38Activity.class, R.drawable.ic_ex_10));// ex37
     }
 
     @Override

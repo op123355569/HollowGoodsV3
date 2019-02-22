@@ -11,7 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.hg.hollowgoods.Adapter.Dialog.SingleChoiceDialogAdapter;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 
@@ -57,7 +57,7 @@ public class HGSingleChoiceDialog extends HGDialog {
                     public void onClick(DialogInterface dialog, int which) {
                         if (onDialogClickListener != null) {
                             Bundle data = new Bundle();
-                            data.putInt(Constants.PARAM_KEY_1, HGSingleChoiceDialog.this.checkedPosition);
+                            data.putInt(HGConstants.PARAM_KEY_1, HGSingleChoiceDialog.this.checkedPosition);
                             onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, true, data);
                         }
                     }

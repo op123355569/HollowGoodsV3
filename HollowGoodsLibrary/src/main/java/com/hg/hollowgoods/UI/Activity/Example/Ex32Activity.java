@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Adapter.Example.Ex32.Ex32Adapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
@@ -74,13 +74,13 @@ public class Ex32Activity extends BaseActivity {
         for (int i = 0; i < 120; i++) {
             switch (i % 3) {
                 case 0:
-                    data.add(new CommonBean(Constants.LIST_ITEM_TYPE_LEFT_MENU));
+                    data.add(new CommonBean(HGConstants.LIST_ITEM_TYPE_LEFT_MENU));
                     break;
                 case 1:
-                    data.add(new CommonBean(Constants.LIST_ITEM_TYPE_RIGHT_MENU));
+                    data.add(new CommonBean(HGConstants.LIST_ITEM_TYPE_RIGHT_MENU));
                     break;
                 case 2:
-                    data.add(new CommonBean(Constants.LIST_ITEM_TYPE_LEFT_AND_RIGHT_MENU));
+                    data.add(new CommonBean(HGConstants.LIST_ITEM_TYPE_LEFT_AND_RIGHT_MENU));
                     break;
             }
         }

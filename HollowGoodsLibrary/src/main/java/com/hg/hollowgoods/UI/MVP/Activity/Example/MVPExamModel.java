@@ -2,7 +2,7 @@ package com.hg.hollowgoods.UI.MVP.Activity.Example;
 
 import android.os.Handler;
 
-import com.hg.hollowgoods.Bean.User;
+import com.hg.hollowgoods.Bean.HGUser;
 
 /**
  * @ClassName:数据层
@@ -41,7 +41,7 @@ public class MVPExamModel implements MVPExamContract.Model {
                 mView.hideProgressDialog();
             }
 
-            User user = new User();
+            HGUser user = new HGUser();
             user.setUsername(username);
             user.setPassword(password);
 

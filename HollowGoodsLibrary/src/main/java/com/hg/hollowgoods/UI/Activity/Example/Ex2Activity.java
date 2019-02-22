@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hg.hollowgoods.Adapter.Example.Ex2Adapter;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnAdapterViewItemClickListener;
@@ -56,7 +56,7 @@ public class Ex2Activity extends BaseActivity {
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex2);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex2);
 
         head = findViewById(R.id.iv_headImg);
         imgs = findViewById(R.id.gv_result);
@@ -98,8 +98,8 @@ public class Ex2Activity extends BaseActivity {
 
         XUtils xUtils = new XUtils();
         String headUrl = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507874689650&di=e70be488a0c65b36090d7a9d6c51a052&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201509%2F02%2F20150902104405_PRM4E.jpeg";
-        LoadImageOptions options = new LoadImageOptions(head, headUrl, CommonResource.NO_IMAGE_HEAD,
-                CommonResource.NO_IMAGE_HEAD, 80, 80, 0, true, ScaleType.CENTER_CROP);
+        LoadImageOptions options = new LoadImageOptions(head, headUrl, HGCommonResource.NO_IMAGE_HEAD,
+                HGCommonResource.NO_IMAGE_HEAD, 80, 80, 0, true, ScaleType.CENTER_CROP);
         xUtils.loadImageByUrl(options);
     }
 

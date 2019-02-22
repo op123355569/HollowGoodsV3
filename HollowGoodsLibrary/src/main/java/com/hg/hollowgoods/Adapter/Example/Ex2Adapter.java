@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
 import com.hg.hollowgoods.Util.XUtils.XUtils;
@@ -66,8 +66,8 @@ public class Ex2Adapter extends BaseAdapter {
         LoadImageOptions options = new LoadImageOptions(
                 viewHolder.img,
                 url.get(position),
-                CommonResource.IMAGE_LOADING,
-                CommonResource.IMAGE_LOAD_ERROR,
+                HGCommonResource.IMAGE_LOADING,
+                HGCommonResource.IMAGE_LOAD_ERROR,
                 120,
                 120,
                 0,

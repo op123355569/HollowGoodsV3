@@ -7,7 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.hg.hollowgoods.Application.BaseApplication;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.StringUtils;
 import com.hg.hollowgoods.Widget.RulerWheelView;
@@ -68,7 +68,7 @@ public class HGDateTimeDialog extends HGDialog {
         this.onDialogDismissListener = onDialogDismissListener;
 
         Calendar c = Calendar.getInstance();
-        if (timeInMillis != Constants.DEFAULT_DATE) {
+        if (timeInMillis != HGConstants.DEFAULT_DATE) {
             c.setTimeInMillis(timeInMillis);
         } else {
             BaseApplication baseApplication = BaseApplication.create();
@@ -101,12 +101,12 @@ public class HGDateTimeDialog extends HGDialog {
                     );
 
                     Bundle data = new Bundle();
-                    data.putInt(Constants.VALUE_KEY_YEAR, HGDateTimeDialog.this.year);
-                    data.putInt(Constants.VALUE_KEY_MONTH, HGDateTimeDialog.this.month + 1);
-                    data.putInt(Constants.VALUE_KEY_DATE, HGDateTimeDialog.this.date);
-                    data.putInt(Constants.VALUE_KEY_HOUR, HGDateTimeDialog.this.hour);
-                    data.putInt(Constants.VALUE_KEY_MINUTE, HGDateTimeDialog.this.minute);
-                    data.putLong(Constants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
+                    data.putInt(HGConstants.VALUE_KEY_YEAR, HGDateTimeDialog.this.year);
+                    data.putInt(HGConstants.VALUE_KEY_MONTH, HGDateTimeDialog.this.month + 1);
+                    data.putInt(HGConstants.VALUE_KEY_DATE, HGDateTimeDialog.this.date);
+                    data.putInt(HGConstants.VALUE_KEY_HOUR, HGDateTimeDialog.this.hour);
+                    data.putInt(HGConstants.VALUE_KEY_MINUTE, HGDateTimeDialog.this.minute);
+                    data.putLong(HGConstants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
                     onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, true, data);
                 }
             }

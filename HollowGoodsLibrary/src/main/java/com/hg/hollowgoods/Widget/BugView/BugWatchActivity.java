@@ -10,7 +10,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Application.BaseApplication;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -59,7 +59,7 @@ public class BugWatchActivity extends BaseActivity implements OnDialogClickListe
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_bug_watch);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_bug_watch);
 
         mWatchResult = findViewById(R.id.lv_result);
         mWatchExport = findViewById(R.id.btn_export);

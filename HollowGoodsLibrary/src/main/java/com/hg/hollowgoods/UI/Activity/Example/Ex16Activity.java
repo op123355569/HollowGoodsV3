@@ -11,7 +11,7 @@ import android.view.View;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Helper.SimpleItemTouchHelperCallback;
 import com.hg.hollowgoods.Adapter.Example.Ex16Adapter;
 import com.hg.hollowgoods.Bean.Example.Ex16;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
@@ -47,7 +47,7 @@ public class Ex16Activity extends BaseActivity {
 
         result = findViewById(R.id.rv_result);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex16);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex16);
 
         result.setLayoutManager(new LinearLayoutManager(this));
         result.setHasFixedSize(true);

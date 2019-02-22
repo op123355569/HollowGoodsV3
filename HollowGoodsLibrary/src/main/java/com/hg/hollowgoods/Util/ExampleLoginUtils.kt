@@ -1,7 +1,7 @@
 package com.hg.hollowgoods.Util
 
 import com.hg.hollowgoods.Application.ExampleApplication
-import com.hg.hollowgoods.Bean.User
+import com.hg.hollowgoods.Bean.HGUser
 import com.hg.hollowgoods.DB.ExampleUserDBHelper
 
 /**
@@ -23,21 +23,21 @@ object ExampleLoginUtils {
     }
 
     @JvmStatic
-    fun updateUser(user: User) {
+    fun updateUser(user: HGUser) {
         val application: ExampleApplication = ExampleApplication.create()
         ExampleUserDBHelper().update(user)
         application.user = user
     }
 
     @JvmStatic
-    fun getUser(): User? {
+    fun getUser(): HGUser? {
 
         val application: ExampleApplication = ExampleApplication.create()
 
         return if (application.user != null)
             application.user
         else
-            User()
+            HGUser()
     }
 
     @JvmStatic

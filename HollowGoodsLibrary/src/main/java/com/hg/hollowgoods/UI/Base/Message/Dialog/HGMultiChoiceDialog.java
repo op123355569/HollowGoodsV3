@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hg.hollowgoods.Adapter.Dialog.MultiChoiceDialogAdapter;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
@@ -66,7 +66,7 @@ public class HGMultiChoiceDialog extends HGDialog {
                     public void onClick(DialogInterface dialog, int which) {
                         if (onDialogClickListener != null) {
                             Bundle data = new Bundle();
-                            data.putSerializable(Constants.PARAM_KEY_1, HGMultiChoiceDialog.this.checkedPositions);
+                            data.putSerializable(HGConstants.PARAM_KEY_1, HGMultiChoiceDialog.this.checkedPositions);
                             onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, true, data);
                         }
                     }

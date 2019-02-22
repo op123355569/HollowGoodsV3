@@ -39,8 +39,8 @@ import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.arlib.floatingsearchview.util.Util;
 import com.hg.hollowgoods.Application.BaseApplication;
-import com.hg.hollowgoods.Constant.CommonResource;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnFloatingSearchMenuItemClickListener;
@@ -261,7 +261,7 @@ public class BaseUI {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == Activity.RESULT_OK) {
+        if (requestCode == HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == Activity.RESULT_OK) {
             ExampleUpdateAPPUtils.onInstallRequestActivityResult(requestCode, resultCode);
         }
     }
@@ -423,7 +423,7 @@ public class BaseUI {
      * @param titleText 中间标题文字
      */
     public void setCommonTitleStyleAutoBackground(Object titleText) {
-        setCommonTitleStyle(null, titleText, CommonResource.TITLE_BAR_RESOURCE, -1);
+        setCommonTitleStyle(null, titleText, HGCommonResource.TITLE_BAR_RESOURCE, -1);
     }
 
     /**
@@ -434,7 +434,7 @@ public class BaseUI {
      * @param titleText 中间标题文字
      */
     public void setCommonTitleStyleAutoBackground(Object leftIcon, Object titleText) {
-        setCommonTitleStyle(leftIcon, titleText, CommonResource.TITLE_BAR_RESOURCE, -1);
+        setCommonTitleStyle(leftIcon, titleText, HGCommonResource.TITLE_BAR_RESOURCE, -1);
     }
 
     /**
@@ -457,7 +457,7 @@ public class BaseUI {
      * @param menuRes   右侧菜单资源
      */
     public void setCommonTitleStyleAutoBackground(Object leftIcon, Object titleText, @MenuRes int menuRes) {
-        setCommonTitleStyle(leftIcon, titleText, CommonResource.TITLE_BAR_RESOURCE, menuRes);
+        setCommonTitleStyle(leftIcon, titleText, HGCommonResource.TITLE_BAR_RESOURCE, menuRes);
     }
 
     /**

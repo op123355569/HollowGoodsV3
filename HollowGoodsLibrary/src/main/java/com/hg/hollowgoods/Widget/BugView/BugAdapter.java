@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 import com.hg.hollowgoods.Util.Glide.GlideUtils;
@@ -74,8 +74,8 @@ public class BugAdapter extends BaseAdapter {
         }
 
         RequestOptions options = new RequestOptions()
-                .placeholder(CommonResource.IMAGE_LOADING)
-                .error(CommonResource.IMAGE_LOAD_ERROR);
+                .placeholder(HGCommonResource.IMAGE_LOADING)
+                .error(HGCommonResource.IMAGE_LOAD_ERROR);
         GlideOptions glideOptions = new GlideOptions(new File(mData.get(position).getImgPath()), mViewHolder.img, GlideOptions.NORMAL_FADE_IN, options);
         glideOptions.setThumbnail(0.1f);
         GlideUtils.loadImg(mContext, glideOptions);

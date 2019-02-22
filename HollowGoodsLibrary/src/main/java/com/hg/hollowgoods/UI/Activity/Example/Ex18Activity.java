@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -42,7 +42,7 @@ public class Ex18Activity extends BaseActivity {
 
         img = findViewById(R.id.iv_img);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex18);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex18);
 
         systemAppUtils = new SystemAppUtils();
 
@@ -75,8 +75,8 @@ public class Ex18Activity extends BaseActivity {
                     systemAppUtils.onActivityResultForCropImage(this);
 
                     RequestOptions requestOptions = new RequestOptions()
-                            .placeholder(CommonResource.IMAGE_LOADING)
-                            .error(CommonResource.IMAGE_LOAD_ERROR)
+                            .placeholder(HGCommonResource.IMAGE_LOADING)
+                            .error(HGCommonResource.IMAGE_LOAD_ERROR)
                             .centerCrop();
                     GlideOptions glideOptions = new GlideOptions(systemAppUtils.getCropImagePath(), img, 500, requestOptions);
                     glideOptions.setThumbnail(0.1f);

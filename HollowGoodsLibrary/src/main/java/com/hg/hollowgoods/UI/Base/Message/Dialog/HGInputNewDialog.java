@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.ViewUtils;
@@ -80,7 +80,7 @@ public class HGInputNewDialog extends HGDialog {
         }
 
         // 输入类型
-        if (configInput.getInputType() != Constants.INPUT_TYPE_DEFAULT) {
+        if (configInput.getInputType() != HGConstants.INPUT_TYPE_DEFAULT) {
             inputView.getInputView().setInputType(configInput.getInputType());
         }
 
@@ -108,7 +108,7 @@ public class HGInputNewDialog extends HGDialog {
 
         if (onDialogClickListener != null) {
             Bundle data = new Bundle();
-            data.putString(Constants.PARAM_KEY_1, this.inputView.getText().toString());
+            data.putString(HGConstants.PARAM_KEY_1, this.inputView.getText().toString());
             onDialogClickListener.onDialogClick(code, true, data);
         }
 

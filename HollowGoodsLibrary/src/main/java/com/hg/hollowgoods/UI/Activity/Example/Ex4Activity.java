@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 
@@ -33,7 +33,7 @@ public class Ex4Activity extends BaseActivity {
 
         toolbar = findViewById(R.id.toolbar);
 
-        baseUI.setActionBar(CommonResource.TITLE_BAR_RESOURCE);
+        baseUI.setActionBar(HGCommonResource.TITLE_BAR_RESOURCE);
 
         // App Logo
 //        toolbar.setLogo(R.mipmap.ic_launcher);
@@ -43,7 +43,7 @@ public class Ex4Activity extends BaseActivity {
 //        toolbar.setSubtitle(R.string.title_level_2);
         //Navigation Icon
         toolbar.setNavigationIcon(R.mipmap.ic_launcher);
-        toolbar.setBackgroundResource(CommonResource.TITLE_BAR_RESOURCE);
+        toolbar.setBackgroundResource(HGCommonResource.TITLE_BAR_RESOURCE);
 
         setSupportActionBar(toolbar);
 

@@ -1,6 +1,6 @@
 package com.hg.hollowgoods.UI.MVP.Activity.Example;
 
-import com.hg.hollowgoods.Bean.User;
+import com.hg.hollowgoods.Bean.HGUser;
 import com.hg.hollowgoods.UI.Base.MVP.IBaseModel;
 import com.hg.hollowgoods.UI.Base.MVP.IBaseView;
 
@@ -21,7 +21,7 @@ public class MVPExamContract {
 
         void hideProgressDialog();
 
-        void onSuccess(User user);
+        void onSuccess(HGUser user);
     }
 
     public interface Presenter {

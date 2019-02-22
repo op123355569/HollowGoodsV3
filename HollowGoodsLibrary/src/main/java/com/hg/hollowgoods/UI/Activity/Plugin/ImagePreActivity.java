@@ -13,7 +13,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
 import com.hg.hollowgoods.Adapter.Plugin.MediaAdapter;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.EventAction;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
@@ -53,7 +53,7 @@ public class ImagePreActivity extends BaseActivity {
 
         result = findViewById(R.id.rv_result);
 
-        data = (ArrayList<Media>) getIntent().getSerializableExtra(Constants.PARAM_KEY_1);
+        data = (ArrayList<Media>) getIntent().getSerializableExtra(HGConstants.PARAM_KEY_1);
         if (data == null) {
             data = new ArrayList<>();
         }
@@ -115,7 +115,7 @@ public class ImagePreActivity extends BaseActivity {
 
     private void backData() {
         Event event = new Event(EventAction.RemoveImage);
-        event.getData().putInt(Constants.PARAM_KEY_1, clickPosition);
+        event.getData().putInt(HGConstants.PARAM_KEY_1, clickPosition);
         EventBus.getDefault().post(event);
     }
 

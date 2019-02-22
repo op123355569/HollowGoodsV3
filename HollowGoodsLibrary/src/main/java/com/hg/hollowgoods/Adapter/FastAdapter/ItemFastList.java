@@ -19,7 +19,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListImgUrl;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListTitle;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
@@ -101,8 +101,8 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
         } else {
             if (data.isPicture) {
                 RequestOptions requestOptions = new RequestOptions()
-                        .placeholder(CommonResource.IMAGE_LOADING)
-                        .error(CommonResource.IMAGE_LOAD_ERROR)
+                        .placeholder(HGCommonResource.IMAGE_LOADING)
+                        .error(HGCommonResource.IMAGE_LOAD_ERROR)
                         .centerCrop();
                 GlideOptions glideOptions = new GlideOptions(data.imgUrl, null, GlideOptions.NORMAL_FADE_IN, requestOptions);
                 viewHolder.setImageByUrl(R.id.iv_img, glideOptions);
@@ -115,8 +115,8 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
             viewHolder.setImageResource(R.id.iv_flag, R.color.transparent);
         } else {
             RequestOptions requestOptions = new RequestOptions()
-                    .placeholder(CommonResource.IMAGE_LOADING)
-                    .error(CommonResource.IMAGE_LOAD_ERROR)
+                    .placeholder(HGCommonResource.IMAGE_LOADING)
+                    .error(HGCommonResource.IMAGE_LOAD_ERROR)
                     .centerCrop();
             GlideOptions glideOptions = new GlideOptions(data.flag, null, GlideOptions.NO_FADE_IN, requestOptions);
             viewHolder.setImageByUrl(R.id.iv_flag, glideOptions);

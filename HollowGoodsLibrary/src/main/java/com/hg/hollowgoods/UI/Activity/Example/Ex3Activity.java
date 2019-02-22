@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Fragment.Example.Ex3ChildFragment;
@@ -30,7 +30,7 @@ public class Ex3Activity extends BaseActivity {
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        baseUI.setActionBar(CommonResource.TITLE_BAR_RESOURCE);
+        baseUI.setActionBar(HGCommonResource.TITLE_BAR_RESOURCE);
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

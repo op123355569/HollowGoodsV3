@@ -7,7 +7,7 @@ import android.view.View
 import com.bumptech.glide.request.RequestOptions
 import com.hg.hollowgoods.Adapter.BaseAdapterView.CommonAdapter
 import com.hg.hollowgoods.Adapter.BaseAdapterView.ViewHolder
-import com.hg.hollowgoods.Constant.CommonResource
+import com.hg.hollowgoods.Constant.HGCommonResource
 import com.hg.hollowgoods.R
 import com.hg.hollowgoods.Util.Glide.GlideLoadImgListener
 import com.hg.hollowgoods.Util.Glide.GlideOptions
@@ -22,8 +22,8 @@ class Ex6Adapter(context: Context, layoutId: Int, datas: List<String>) : CommonA
 
         val options = RequestOptions()
                 .centerCrop()
-                .placeholder(CommonResource.IMAGE_LOADING)
-                .error(CommonResource.IMAGE_LOAD_ERROR)
+                .placeholder(HGCommonResource.IMAGE_LOADING)
+                .error(HGCommonResource.IMAGE_LOAD_ERROR)
         val glideOptions = GlideOptions(item, null, GlideOptions.NORMAL_FADE_IN, options)
         glideOptions.thumbnail = 0.3f
 

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.hg.hollowgoods.Adapter.Example.Ex6Adapter;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnAdapterViewItemClickListener;
@@ -89,13 +89,13 @@ public class Ex6Activity extends BaseActivity {
         testImg = findViewById(R.id.iv_testImg);
         imgs = findViewById(R.id.gv_result);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex6);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex6);
 
         String url = "http://img31.mtime.cn/CMS/Gallery/2013/05/21/104932.72048947_900.jpg";
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(CommonResource.IMAGE_LOADING)
-                .error(CommonResource.IMAGE_LOAD_ERROR)
+                .placeholder(HGCommonResource.IMAGE_LOADING)
+                .error(HGCommonResource.IMAGE_LOAD_ERROR)
                 .transform(new GlideCircleTransform());
         GlideOptions glideOptions = new GlideOptions(url, testImg, GlideOptions.NORMAL_FADE_IN, options);
 

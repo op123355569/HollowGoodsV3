@@ -12,8 +12,8 @@ import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.arlib.floatingsearchview.util.Util;
 import com.hg.hollowgoods.Bean.Example.Ex14;
-import com.hg.hollowgoods.Constant.CommonResource;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
@@ -57,7 +57,7 @@ public class Ex14Activity extends BaseActivity {
 
         mSearchView = findViewById(R.id.floating_search_view);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex14);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex14);
 
         return null;
     }
@@ -152,14 +152,14 @@ public class Ex14Activity extends BaseActivity {
                 lastKey = ex14.getBody();
 
                 // 更新结果列表
-                baseUI.baseDialog.showProgressDialog(null, "搜索中……", true, true, Constants.DEFAULT_CODE);
+                baseUI.baseDialog.showProgressDialog(null, "搜索中……", true, true, HGConstants.DEFAULT_CODE);
 
                 Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
 
-                        runOnUiThread(() -> baseUI.baseDialog.closeDialog(Constants.DEFAULT_CODE));
+                        runOnUiThread(() -> baseUI.baseDialog.closeDialog(HGConstants.DEFAULT_CODE));
                     }
                 }, 2 * 1000);
             }
@@ -172,14 +172,14 @@ public class Ex14Activity extends BaseActivity {
                     lastKey = query;
 
                     // 更新结果列表
-                    baseUI.baseDialog.showProgressDialog(null, "搜索中……", true, true, Constants.DEFAULT_CODE);
+                    baseUI.baseDialog.showProgressDialog(null, "搜索中……", true, true, HGConstants.DEFAULT_CODE);
 
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
 
-                            runOnUiThread(() -> baseUI.baseDialog.closeDialog(Constants.DEFAULT_CODE));
+                            runOnUiThread(() -> baseUI.baseDialog.closeDialog(HGConstants.DEFAULT_CODE));
                         }
                     }, 2 * 1000);
                 }

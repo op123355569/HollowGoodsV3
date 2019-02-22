@@ -7,7 +7,7 @@ import java.io.Serializable
  * 用户
  * Created by HG on 2018-03-22.
  */
-class User : Serializable {
+class HGUser : Serializable {
 
     /**
      * UserId

@@ -17,8 +17,8 @@ import com.hg.hollowgoods.Adapter.Example.Ex12.Ex12Adapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Bean.Example.Ex12;
 import com.hg.hollowgoods.Bean.ResponseInfo;
-import com.hg.hollowgoods.Constant.CommonResource;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGInterfaceApi;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -64,7 +64,7 @@ public class Ex12Activity extends BaseActivity implements SwipeRefreshLayout.OnR
         result = findViewById(R.id.rv_result);
         refreshLayout = findViewById(R.id.swipeRefreshLayout);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex12);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex12);
 
         refreshLayout.setColorSchemeColors(HGSystemConfig.REFRESH_COLORS);
         baseUI.initSearchView((CardView) result.getParent(), true);
@@ -72,7 +72,7 @@ public class Ex12Activity extends BaseActivity implements SwipeRefreshLayout.OnR
         result.setLayoutManager(new LinearLayoutManager(this));
         result.setHasFixedSize(true);
         result.setItemAnimator(new DefaultItemAnimator());
-        HeaderItemDecoration.Builder builder = new HeaderItemDecoration.Builder(Constants.LIST_ITEM_TYPE_HEADER);
+        HeaderItemDecoration.Builder builder = new HeaderItemDecoration.Builder(HGConstants.LIST_ITEM_TYPE_HEADER);
         result.addItemDecoration(builder.create());
 
         data = new ArrayList<>();
@@ -119,12 +119,12 @@ public class Ex12Activity extends BaseActivity implements SwipeRefreshLayout.OnR
 
             if (isFirst || isRefresh) {
                 data.clear();
-                data.add(new CommonBean(Constants.LIST_ITEM_TYPE_HEADER));
+                data.add(new CommonBean(HGConstants.LIST_ITEM_TYPE_HEADER));
             }
 
             int i = 0;
             for (Ex12 t : temp) {
-                t.setItemType(i % 2 == 0 ? Constants.LIST_ITEM_TYPE_1 : Constants.LIST_ITEM_TYPE_2);
+                t.setItemType(i % 2 == 0 ? HGConstants.LIST_ITEM_TYPE_1 : HGConstants.LIST_ITEM_TYPE_2);
                 data.add(t);
                 i++;
             }

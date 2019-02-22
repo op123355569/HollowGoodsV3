@@ -8,7 +8,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.CommonAdapter;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
@@ -32,7 +32,7 @@ public class MediaAdapter extends CommonAdapter<Media> {
 
         if (item.getFile() == null && TextUtils.isEmpty(item.getUrl())) {
             viewHolder.setText(R.id.tv_name, R.string.load_error);
-            viewHolder.setImageResource(R.id.iv_img, CommonResource.IMAGE_LOAD_ERROR);
+            viewHolder.setImageResource(R.id.iv_img, HGCommonResource.IMAGE_LOAD_ERROR);
         } else {
             String name;
             String url;
@@ -45,8 +45,8 @@ public class MediaAdapter extends CommonAdapter<Media> {
             }
 
             RequestOptions requestOptions = new RequestOptions()
-                    .placeholder(CommonResource.IMAGE_LOADING)
-                    .error(CommonResource.IMAGE_LOAD_ERROR)
+                    .placeholder(HGCommonResource.IMAGE_LOADING)
+                    .error(HGCommonResource.IMAGE_LOAD_ERROR)
                     .centerCrop();
             GlideOptions glideOptions = new GlideOptions(url, null, GlideOptions.NORMAL_FADE_IN, requestOptions);
 

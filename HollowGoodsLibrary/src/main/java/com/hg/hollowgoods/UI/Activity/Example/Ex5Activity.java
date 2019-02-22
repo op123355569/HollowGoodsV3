@@ -11,7 +11,7 @@ import android.view.View;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.TextBadgeItem;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Fragment.Example.Ex5ChildFragment;
@@ -51,7 +51,7 @@ public class Ex5Activity extends BaseActivity implements BottomNavigationBar.OnT
 
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex5, R.menu.menu_activity_ex_5);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex5, R.menu.menu_activity_ex_5);
 
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);

@@ -5,7 +5,7 @@ import android.content.Context;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.CommonAdapter;
 import com.hg.hollowgoods.Bean.Example.Example;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class ExampleAdapter extends CommonAdapter<Example> {
     protected void convert(ViewHolder viewHolder, Example item, int position) {
 
         if (item.getIconRes() == -1) {
-            viewHolder.setImageResource(R.id.iv_icon, CommonResource.IMAGE_LOADING);
+            viewHolder.setImageResource(R.id.iv_icon, HGCommonResource.IMAGE_LOADING);
         } else {
             viewHolder.setImageResource(R.id.iv_icon, item.getIconRes());
         }

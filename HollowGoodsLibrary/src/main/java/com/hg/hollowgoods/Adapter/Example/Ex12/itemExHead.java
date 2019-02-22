@@ -3,7 +3,7 @@ package com.hg.hollowgoods.Adapter.Example.Ex12;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ItemViewDelegate;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 
 /**
@@ -19,7 +19,7 @@ public class itemExHead implements ItemViewDelegate<CommonBean> {
 
     @Override
     public boolean isForViewType(CommonBean item, int position) {
-        return item.getItemType() == Constants.LIST_ITEM_TYPE_HEADER;
+        return item.getItemType() == HGConstants.LIST_ITEM_TYPE_HEADER;
     }
 
     @Override

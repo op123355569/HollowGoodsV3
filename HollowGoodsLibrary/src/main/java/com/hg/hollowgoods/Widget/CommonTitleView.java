@@ -17,7 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.DensityUtils;
 
@@ -63,7 +63,7 @@ public class CommonTitleView extends AppBarLayout {
         this.addView(mToolbar);
 
         getToolbar().setTitle("");
-        getToolbar().setBackgroundResource(CommonResource.TITLE_BAR_RESOURCE);
+        getToolbar().setBackgroundResource(HGCommonResource.TITLE_BAR_RESOURCE);
 
         Toolbar.LayoutParams lp = new Toolbar.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.CENTER;

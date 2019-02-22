@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -38,7 +38,7 @@ public class Ex9Activity extends BaseActivity {
 
         list = findViewById(R.id.ll_list);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex9);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex9);
 
         return null;
     }

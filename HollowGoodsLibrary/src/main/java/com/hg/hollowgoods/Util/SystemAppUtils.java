@@ -16,7 +16,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Plugin.FileReadActivity;
@@ -527,12 +527,12 @@ public class SystemAppUtils {
         Intent intent = new Intent(context, FileSelectorActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        intent.putExtra(Constants.PARAM_KEY_1, maxCount);
+        intent.putExtra(HGConstants.PARAM_KEY_1, maxCount);
         if (!TextUtils.isEmpty(fileFilter)) {
-            intent.putExtra(Constants.PARAM_KEY_2, fileFilter);
+            intent.putExtra(HGConstants.PARAM_KEY_2, fileFilter);
         }
         if (checkedFiles != null) {
-            intent.putExtra(Constants.PARAM_KEY_3, checkedFiles);
+            intent.putExtra(HGConstants.PARAM_KEY_3, checkedFiles);
         }
 
         context.startActivity(intent);
@@ -543,8 +543,8 @@ public class SystemAppUtils {
         Intent intent = new Intent(context, FileReadActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        intent.putExtra(Constants.PARAM_KEY_1, filepath);
-        intent.putExtra(Constants.PARAM_KEY_2, title);
+        intent.putExtra(HGConstants.PARAM_KEY_1, filepath);
+        intent.putExtra(HGConstants.PARAM_KEY_2, title);
         context.startActivity(intent);
     }
 

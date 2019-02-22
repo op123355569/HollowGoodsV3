@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.hg.hollowgoods.Bean.User;
+import com.hg.hollowgoods.Bean.HGUser;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseMVPActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -75,7 +75,7 @@ public class MVPExamActivity extends BaseMVPActivity<MVPExamPresenter> implement
     }
 
     @Override
-    public void onSuccess(User user) {
+    public void onSuccess(HGUser user) {
 
         t.showShortToast("登录成功");
 

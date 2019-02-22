@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.BaseFragment;
@@ -39,7 +39,7 @@ public class Ex3ChildFragment extends BaseFragment {
 //        toolbar.setSubtitle(R.string.title_level_2);
         //Navigation Icon
         toolbar.setNavigationIcon(R.mipmap.ic_launcher);
-        toolbar.setBackgroundResource(CommonResource.TITLE_BAR_RESOURCE);
+        toolbar.setBackgroundResource(HGCommonResource.TITLE_BAR_RESOURCE);
 
         setHasOptionsMenu(true);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);

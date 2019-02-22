@@ -1,6 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.Validator;
 
 /**
@@ -15,7 +15,7 @@ public class ConfigInput {
     private Object hint = "";
     private Object text = "";
     private int maxLines = 1;
-    private int inputType = Constants.INPUT_TYPE_DEFAULT;
+    private int inputType = HGConstants.INPUT_TYPE_DEFAULT;
     private Validator[] validator;
 
     /**** Set ****/

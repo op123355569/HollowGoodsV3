@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Bean.ResponseInfo;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGInterfaceApi;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -47,7 +47,7 @@ public class ExampleUpdateAPPUtils {
         baseActivity = activity;
 
         if (isAbout) {
-            baseActivity.baseUI.baseDialog.showProgressDialog(R.string.update_app, Constants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
+            baseActivity.baseUI.baseDialog.showProgressDialog(R.string.update_app, HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
         } else {
             BaseApplication baseApplication = BaseApplication.create();
 
@@ -120,7 +120,7 @@ public class ExampleUpdateAPPUtils {
             @Override
             public void onGetFinish() {
                 if (isAbout) {
-                    baseActivity.baseUI.baseDialog.closeDialog(Constants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
+                    baseActivity.baseUI.baseDialog.closeDialog(HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
                 }
             }
 
@@ -146,7 +146,7 @@ public class ExampleUpdateAPPUtils {
 
     private static void doDownloadAPK() {
 
-        baseActivity.baseUI.baseDialog.showProgressDialog(null, R.string.downloading, true, false, Constants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
+        baseActivity.baseUI.baseDialog.showProgressDialog(null, R.string.downloading, true, false, HGConstants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
 
         String path = HGSystemConfig.getDownloadFilePath();
         String name = System.currentTimeMillis() + ".apk";
@@ -157,12 +157,12 @@ public class ExampleUpdateAPPUtils {
         xUtils.setDownloadListener(new DownloadListener() {
             @Override
             public void onDownloadSuccess(File file) {
-                baseActivity.baseUI.baseDialog.setProgress(100, Constants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
+                baseActivity.baseUI.baseDialog.setProgress(100, HGConstants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
                 apkFile = file;
                 if (new SystemAppUtils().canInstallAPK(baseActivity)) {
                     new SystemAppUtils().installAPK(baseActivity, apkFile);
                 } else {
-                    new SystemAppUtils().requestInstallPermission(baseActivity, Constants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL);
+                    new SystemAppUtils().requestInstallPermission(baseActivity, HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL);
                 }
             }
 
@@ -173,12 +173,12 @@ public class ExampleUpdateAPPUtils {
 
             @Override
             public void onDownloadLoading(long total, long current) {
-                baseActivity.baseUI.baseDialog.setProgress((int) (current * 100 / total), Constants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
+                baseActivity.baseUI.baseDialog.setProgress((int) (current * 100 / total), HGConstants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
             }
 
             @Override
             public void onDownloadFinish() {
-                baseActivity.baseUI.baseDialog.closeDialog(Constants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
+                baseActivity.baseUI.baseDialog.closeDialog(HGConstants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
             }
 
             @Override
@@ -190,7 +190,7 @@ public class ExampleUpdateAPPUtils {
     }
 
     public static void onInstallRequestActivityResult(int requestCode, int resultCode) {
-        if (requestCode == Constants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == baseActivity.RESULT_OK) {
+        if (requestCode == HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == baseActivity.RESULT_OK) {
             new SystemAppUtils().installAPK(baseActivity, apkFile);
         }
     }

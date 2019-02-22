@@ -2,7 +2,7 @@ package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
 
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -285,7 +285,7 @@ public class BaseDialog {
      */
     @Deprecated
     public void showInputDialog(Object value, int code) {
-        showInputDialog(null, value, Constants.INPUT_TYPE_DEFAULT, code, Constants.INPUT_SIZE_DEFAULT, Constants.INPUT_SIZE_DEFAULT);
+        showInputDialog(null, value, HGConstants.INPUT_TYPE_DEFAULT, code, HGConstants.INPUT_SIZE_DEFAULT, HGConstants.INPUT_SIZE_DEFAULT);
     }
 
     /**
@@ -448,7 +448,7 @@ public class BaseDialog {
      */
     @Deprecated
     public void showDateDialog(int code) {
-        showDateDialog(Constants.DEFAULT_DATE, code);
+        showDateDialog(HGConstants.DEFAULT_DATE, code);
     }
 
     /**
@@ -508,7 +508,7 @@ public class BaseDialog {
      */
     @Deprecated
     public void showTimeDialog(int code) {
-        showTimeDialog(Constants.DEFAULT_TIME, code);
+        showTimeDialog(HGConstants.DEFAULT_TIME, code);
     }
 
     /**

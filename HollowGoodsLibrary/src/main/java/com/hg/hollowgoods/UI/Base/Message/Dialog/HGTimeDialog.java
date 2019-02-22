@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.widget.TimePicker;
 
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 
 import java.util.Calendar;
@@ -31,7 +31,7 @@ public class HGTimeDialog extends HGDialog {
         this.onDialogDismissListener = onDialogDismissListener;
 
         Calendar c = Calendar.getInstance();
-        if (timeInMillis != Constants.DEFAULT_TIME) {
+        if (timeInMillis != HGConstants.DEFAULT_TIME) {
             c.setTimeInMillis(timeInMillis);
         }
         this.hour = c.get(Calendar.HOUR_OF_DAY);
@@ -52,9 +52,9 @@ public class HGTimeDialog extends HGDialog {
                     c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), HGTimeDialog.this.hour, HGTimeDialog.this.minute);
 
                     Bundle data = new Bundle();
-                    data.putInt(Constants.VALUE_KEY_HOUR, HGTimeDialog.this.hour);
-                    data.putInt(Constants.VALUE_KEY_MINUTE, HGTimeDialog.this.minute);
-                    data.putLong(Constants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
+                    data.putInt(HGConstants.VALUE_KEY_HOUR, HGTimeDialog.this.hour);
+                    data.putInt(HGConstants.VALUE_KEY_MINUTE, HGTimeDialog.this.minute);
+                    data.putLong(HGConstants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
                     onDialogClickListener.onDialogClick(HGTimeDialog.this.code, true, data);
                 }
             }

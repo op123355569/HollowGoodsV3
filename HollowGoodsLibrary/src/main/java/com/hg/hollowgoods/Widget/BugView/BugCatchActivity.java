@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Application.BaseApplication;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -62,15 +62,15 @@ public class BugCatchActivity extends BaseActivity {
     public Object initView(View view, Bundle savedInstanceState) {
 
         mImgName = getIntent().getStringExtra("data");
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_bug_catch);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_bug_catch);
 
         mCatchDialogImg = findViewById(R.id.iv_img);
         mCatchDialogModuleName = findViewById(R.id.sp_module_name);
         mCatchDialogInput = findViewById(R.id.et_input);
 
         RequestOptions options = new RequestOptions()
-                .placeholder(CommonResource.IMAGE_LOADING)
-                .error(CommonResource.IMAGE_LOAD_ERROR);
+                .placeholder(HGCommonResource.IMAGE_LOADING)
+                .error(HGCommonResource.IMAGE_LOAD_ERROR);
         GlideOptions glideOptions = new GlideOptions(new File(IMG_PATH + mImgName), mCatchDialogImg, GlideOptions.NORMAL_FADE_IN, options);
         glideOptions.setThumbnail(0.1f);
         GlideUtils.loadImg(this, glideOptions);

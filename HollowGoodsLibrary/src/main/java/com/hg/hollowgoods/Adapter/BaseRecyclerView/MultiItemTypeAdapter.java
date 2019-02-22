@@ -13,7 +13,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Helper.ItemTouchHelperAdapter;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Helper.OnStartDragListener;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Util.FullSpanUtil;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 
 import java.util.Collections;
 import java.util.List;
@@ -152,14 +152,14 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        FullSpanUtil.onAttachedToRecyclerView(recyclerView, this, Constants.LIST_ITEM_TYPE_HEADER);
+        FullSpanUtil.onAttachedToRecyclerView(recyclerView, this, HGConstants.LIST_ITEM_TYPE_HEADER);
     }
 
     @Override
     public void onViewAttachedToWindow(ViewHolder holder) {
 
         super.onViewAttachedToWindow(holder);
-        FullSpanUtil.onViewAttachedToWindow(holder, this, Constants.LIST_ITEM_TYPE_HEADER);
+        FullSpanUtil.onViewAttachedToWindow(holder, this, HGConstants.LIST_ITEM_TYPE_HEADER);
     }
 
     public void refreshData(List<T> datas) {

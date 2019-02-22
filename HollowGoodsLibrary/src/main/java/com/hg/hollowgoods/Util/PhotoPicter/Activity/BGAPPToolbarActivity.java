@@ -24,7 +24,7 @@ import android.support.v7.widget.ViewStubCompat;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 
 /**
@@ -70,7 +70,7 @@ public abstract class BGAPPToolbarActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mToolbar.setNavigationIcon(CommonResource.BACK_ICON);
+        mToolbar.setNavigationIcon(HGCommonResource.BACK_ICON);
 
         ViewStubCompat viewStub = findViewById(R.id.viewStub);
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) viewStub.getLayoutParams();
@@ -87,7 +87,7 @@ public abstract class BGAPPToolbarActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mToolbar.setNavigationIcon(CommonResource.BACK_ICON);
+        mToolbar.setNavigationIcon(HGCommonResource.BACK_ICON);
 
         ViewStubCompat viewStub = findViewById(R.id.viewStub);
         viewStub.setLayoutResource(layoutResID);

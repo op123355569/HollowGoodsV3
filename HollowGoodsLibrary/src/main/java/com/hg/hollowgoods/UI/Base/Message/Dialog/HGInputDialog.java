@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.ViewUtils;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -59,11 +59,11 @@ public class HGInputDialog extends HGDialog {
         this.cancelView = this.dialog.findViewById(R.id.tv_cancel);
         this.sureView = this.dialog.findViewById(R.id.tv_sure);
 
-        if (minSize != Constants.INPUT_SIZE_DEFAULT) {
+        if (minSize != HGConstants.INPUT_SIZE_DEFAULT) {
             this.inputView.setMinCharacters(minSize);
         }
 
-        if (maxSize != Constants.INPUT_SIZE_DEFAULT) {
+        if (maxSize != HGConstants.INPUT_SIZE_DEFAULT) {
             this.inputView.setMaxCharacters(maxSize);
         }
 
@@ -81,9 +81,9 @@ public class HGInputDialog extends HGDialog {
                 int size = inputView.getText().toString().length();
                 String inputTip;
 
-                if (HGInputDialog.this.minSize == Constants.INPUT_SIZE_DEFAULT && HGInputDialog.this.maxSize == Constants.INPUT_SIZE_DEFAULT) {
+                if (HGInputDialog.this.minSize == HGConstants.INPUT_SIZE_DEFAULT && HGInputDialog.this.maxSize == HGConstants.INPUT_SIZE_DEFAULT) {
                     backInputData(HGInputDialog.this.code);
-                } else if (HGInputDialog.this.minSize == Constants.INPUT_SIZE_DEFAULT && HGInputDialog.this.maxSize > 0) {
+                } else if (HGInputDialog.this.minSize == HGConstants.INPUT_SIZE_DEFAULT && HGInputDialog.this.maxSize > 0) {
                     if (size <= HGInputDialog.this.maxSize) {
                         backInputData(HGInputDialog.this.code);
                     } else {
@@ -93,7 +93,7 @@ public class HGInputDialog extends HGDialog {
                         );
                         Toast.makeText(HGInputDialog.this.context, inputTip, Toast.LENGTH_SHORT).show();
                     }
-                } else if (HGInputDialog.this.minSize > 0 && HGInputDialog.this.maxSize == Constants.INPUT_SIZE_DEFAULT) {
+                } else if (HGInputDialog.this.minSize > 0 && HGInputDialog.this.maxSize == HGConstants.INPUT_SIZE_DEFAULT) {
                     if (size >= HGInputDialog.this.minSize) {
                         backInputData(HGInputDialog.this.code);
                     } else {
@@ -136,7 +136,7 @@ public class HGInputDialog extends HGDialog {
             ViewUtils.setEditTextCursorLocation(this.inputView);
         }
 
-        if (inputType != Constants.INPUT_TYPE_DEFAULT) {
+        if (inputType != HGConstants.INPUT_TYPE_DEFAULT) {
             this.inputView.setInputType(this.inputType);
         }
     }
@@ -145,7 +145,7 @@ public class HGInputDialog extends HGDialog {
 
         if (onDialogClickListener != null) {
             Bundle data = new Bundle();
-            data.putString(Constants.PARAM_KEY_1, this.inputView.getText().toString());
+            data.putString(HGConstants.PARAM_KEY_1, this.inputView.getText().toString());
             onDialogClickListener.onDialogClick(code, true, data);
         }
 

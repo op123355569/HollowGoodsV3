@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Widget.SlideView;
@@ -37,7 +37,7 @@ public class Ex11Activity extends BaseActivity {
         slideView = findViewById(R.id.slideView);
         flag = findViewById(R.id.tv_flag);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex11);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex11);
 
         return null;
     }

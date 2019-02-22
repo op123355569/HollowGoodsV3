@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.MultiItemTypeAdapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ public class Ex32Adapter extends MultiItemTypeAdapter<CommonBean> {
 
     public Ex32Adapter(Context context, List<CommonBean> datas) {
         super(context, datas);
-        addItemViewDelegate(Constants.LIST_ITEM_TYPE_LEFT_MENU, new ItemEx32Left());
-        addItemViewDelegate(Constants.LIST_ITEM_TYPE_RIGHT_MENU, new ItemEx32Right());
-        addItemViewDelegate(Constants.LIST_ITEM_TYPE_LEFT_AND_RIGHT_MENU, new ItemEx32LeftAndRight());
+        addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_LEFT_MENU, new ItemEx32Left());
+        addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_RIGHT_MENU, new ItemEx32Right());
+        addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_LEFT_AND_RIGHT_MENU, new ItemEx32LeftAndRight());
     }
 
 }

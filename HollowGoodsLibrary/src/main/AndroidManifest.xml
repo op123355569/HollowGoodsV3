@@ -97,6 +97,7 @@
         <activity android:name=".UI.Activity.Example.Ex36.UI.SegmentTabActivity" />
         <activity android:name=".UI.Activity.Example.Ex36.UI.SlidingTabActivity" />
         <activity android:name=".UI.Activity.Example.Ex37Activity" /><!-- 示例37(自动动画)界面 -->
+        <activity android:name=".UI.Activity.Example.Ex38Activity" /><!-- 示例38(列表菜单特效)界面 -->
         <activity android:name=".UI.Activity.Test.TestActivity" /><!-- 测试界面 -->
         <activity android:name=".UI.MVP.Activity.Example.MVPExamActivity" /><!-- MVP示例界面 -->
 

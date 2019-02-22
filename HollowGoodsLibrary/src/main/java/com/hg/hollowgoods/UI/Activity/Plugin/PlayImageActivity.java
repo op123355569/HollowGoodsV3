@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.hg.hollowgoods.Constant.CommonResource;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
@@ -40,8 +40,8 @@ public class PlayImageActivity extends BaseActivity {
 
         img = findViewById(R.id.iv_img);
 
-        url = getIntent().getStringExtra(Constants.PARAM_KEY_1);
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.watch_picture);
+        url = getIntent().getStringExtra(HGConstants.PARAM_KEY_1);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.watch_picture);
 
 //        RequestOptions options = new RequestOptions()
 //                .centerCrop()
@@ -52,7 +52,7 @@ public class PlayImageActivity extends BaseActivity {
 //        GlideUtils.loadImg(this, glideOptions);
 
         XUtils xUtils = new XUtils();
-        LoadImageOptions loadImageOptions = new LoadImageOptions(img, url, CommonResource.IMAGE_LOADING, CommonResource.IMAGE_LOAD_ERROR, 0, 0, 0, false, ImageView.ScaleType.FIT_CENTER);
+        LoadImageOptions loadImageOptions = new LoadImageOptions(img, url, HGCommonResource.IMAGE_LOADING, HGCommonResource.IMAGE_LOAD_ERROR, 0, 0, 0, false, ImageView.ScaleType.FIT_CENTER);
         xUtils.loadImageByUrl(loadImageOptions);
 
         return null;

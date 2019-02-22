@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Application;
 
 import android.app.Application;
 
-import com.hg.hollowgoods.Bean.User;
+import com.hg.hollowgoods.Bean.HGUser;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Util.LogUtils;
 
@@ -31,15 +31,15 @@ public class ExampleApplication extends BaseApplication {
     /**
      * 用户登录信息
      */
-    private User user = null;
+    private HGUser user = null;
 
     // **** Get&Set ****//
 
-    public User getUser() {
+    public HGUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(HGUser user) {
         this.user = user;
     }
 

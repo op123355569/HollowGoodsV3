@@ -5,7 +5,7 @@ import android.view.View;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ItemViewDelegate;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
@@ -23,7 +23,7 @@ public class ItemEx32LeftAndRight implements ItemViewDelegate<CommonBean> {
 
     @Override
     public boolean isForViewType(CommonBean item, int position) {
-        return item.getItemType() == Constants.LIST_ITEM_TYPE_LEFT_AND_RIGHT_MENU;
+        return item.getItemType() == HGConstants.LIST_ITEM_TYPE_LEFT_AND_RIGHT_MENU;
     }
 
     @Override

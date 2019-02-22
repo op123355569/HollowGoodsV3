@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Adapter.Main.FeedbackAdapter;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Exception.ExceptionLog;
 import com.hg.hollowgoods.R;
@@ -108,7 +108,7 @@ public class FeedbackActivity extends BaseActivity {
 
     public void uploadException(final int position) {
 
-        baseUI.baseDialog.showProgressDialog(R.string.reporting, Constants.DEFAULT_CODE);
+        baseUI.baseDialog.showProgressDialog(R.string.reporting, HGConstants.DEFAULT_CODE);
 
 //        val params = RequestParams(InterfaceConfig.getRequestHeadHttp() + InterfaceApi.REPORTED)
 //        params.addParameter("", Gson().toJson(data[position]))
@@ -142,7 +142,7 @@ public class FeedbackActivity extends BaseActivity {
             @Override
             public void run() {
 
-                baseUI.baseDialog.closeDialog(Constants.DEFAULT_CODE);
+                baseUI.baseDialog.closeDialog(HGConstants.DEFAULT_CODE);
 
                 data.get(position).setUploadStatus(true);
                 adapter.refreshData(data, position);

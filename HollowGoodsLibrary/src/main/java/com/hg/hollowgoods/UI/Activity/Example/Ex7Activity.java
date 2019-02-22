@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Widget.AutoShowDeleteLayout;
@@ -34,7 +34,7 @@ public class Ex7Activity extends BaseActivity {
 
         deleteLayout = findViewById(R.id.deleteLayout);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex7);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex7);
 
         deleteLayout.setDeleteButtonColorRes(R.color.colorAccent);
 

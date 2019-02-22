@@ -16,7 +16,7 @@ import com.hg.hollowgoods.Adapter.Plugin.FileLabelAdapter;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.EventAction;
 import com.hg.hollowgoods.Bean.Plugin.FileSelectorLabel;
-import com.hg.hollowgoods.Constant.Constants;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
@@ -79,9 +79,9 @@ public class FileSelectorActivity extends BaseActivity {
         files = findViewById(R.id.rv_files);
         progressBar = findViewById(R.id.progressBar);
 
-        maxSelectorCount = getIntent().getIntExtra(Constants.PARAM_KEY_1, 1);
-        tempFileFilter = getIntent().getStringExtra(Constants.PARAM_KEY_2);
-        selectedFiles = (HashMap<String, File>) getIntent().getSerializableExtra(Constants.PARAM_KEY_3);
+        maxSelectorCount = getIntent().getIntExtra(HGConstants.PARAM_KEY_1, 1);
+        tempFileFilter = getIntent().getStringExtra(HGConstants.PARAM_KEY_2);
+        selectedFiles = (HashMap<String, File>) getIntent().getSerializableExtra(HGConstants.PARAM_KEY_3);
 
         if (maxSelectorCount != 1) {
             if (selectedFiles == null) {
@@ -291,9 +291,9 @@ public class FileSelectorActivity extends BaseActivity {
     private void backData() {
         Event event = new Event(EventAction.FileSelector);
         if (maxSelectorCount == 1) {
-            event.getData().putSerializable(Constants.PARAM_KEY_1, fileData.get(clickPosition));
+            event.getData().putSerializable(HGConstants.PARAM_KEY_1, fileData.get(clickPosition));
         } else {
-            event.getData().putSerializable(Constants.PARAM_KEY_1, selectedFiles);
+            event.getData().putSerializable(HGConstants.PARAM_KEY_1, selectedFiles);
         }
         EventBus.getDefault().post(event);
         finishMyActivity();

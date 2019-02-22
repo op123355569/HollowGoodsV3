@@ -6,7 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -55,7 +55,7 @@ public class Ex20Activity extends BaseActivity {
         clear = findViewById(R.id.btn_clear);
         rotateBar = findViewById(R.id.rotateBar);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex20);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex20);
 
         bar1 = new RotateBarBasic(0, "缓存");
         bar2 = new RotateBarBasic(0, "缓存");

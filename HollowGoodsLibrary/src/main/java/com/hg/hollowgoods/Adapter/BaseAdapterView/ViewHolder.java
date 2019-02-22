@@ -18,7 +18,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 import com.haozhang.lib.SlantedTextView;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.UI.Base.Click.OnAdapterViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
@@ -285,7 +285,7 @@ public class ViewHolder {
 
         if (TextUtils.isEmpty(options.getLoadByUrl())) {
             if (options.getRequestOptions() == null) {
-                iv.setImageResource(CommonResource.IMAGE_LOAD_ERROR);
+                iv.setImageResource(HGCommonResource.IMAGE_LOAD_ERROR);
             } else {
                 if (options.getRequestOptions().getErrorPlaceholder() != null) {
                     iv.setImageDrawable(options.getRequestOptions().getErrorPlaceholder());
@@ -313,11 +313,11 @@ public class ViewHolder {
         ImageView view = getView(viewId);
 
         if (TextUtils.isEmpty(url)) {
-            view.setImageResource(CommonResource.NO_IMAGE_HEAD);
+            view.setImageResource(HGCommonResource.NO_IMAGE_HEAD);
         } else {
             XUtils xUtils = new XUtils();
-            LoadImageOptions options = new LoadImageOptions(view, url, CommonResource.NO_IMAGE_HEAD,
-                    CommonResource.NO_IMAGE_HEAD, 50, 50, 0, false, ScaleType.CENTER_CROP);
+            LoadImageOptions options = new LoadImageOptions(view, url, HGCommonResource.NO_IMAGE_HEAD,
+                    HGCommonResource.NO_IMAGE_HEAD, 50, 50, 0, false, ScaleType.CENTER_CROP);
             xUtils.loadImageByUrl(options);
         }
 
@@ -336,11 +336,11 @@ public class ViewHolder {
         ImageView view = getView(viewId);
 
         if (TextUtils.isEmpty(url)) {
-            view.setImageResource(CommonResource.NO_IMAGE_HEAD);
+            view.setImageResource(HGCommonResource.NO_IMAGE_HEAD);
         } else {
             XUtils xUtils = new XUtils();
-            LoadImageOptions options = new LoadImageOptions(view, url, CommonResource.NO_IMAGE_HEAD,
-                    CommonResource.NO_IMAGE_HEAD, 50, 50, 0, true, ScaleType.CENTER_CROP);
+            LoadImageOptions options = new LoadImageOptions(view, url, HGCommonResource.NO_IMAGE_HEAD,
+                    HGCommonResource.NO_IMAGE_HEAD, 50, 50, 0, true, ScaleType.CENTER_CROP);
             xUtils.loadImageByUrl(options);
         }
 

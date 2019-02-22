@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hg.hollowgoods.Adapter.Example.Ex10Adapter;
-import com.hg.hollowgoods.Constant.CommonResource;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnAdapterViewItemClickListener;
@@ -65,7 +65,7 @@ public class Ex10Activity extends BaseActivity implements AbsListView.OnScrollLi
 
         result = findViewById(R.id.lv_result);
 
-        baseUI.setCommonTitleStyleAutoBackground(CommonResource.BACK_ICON, R.string.title_activity_ex10);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex10);
 
         baseUI.setDataMode(baseUI.DATA_MODE_LOAD_DATA_CENTER);
 

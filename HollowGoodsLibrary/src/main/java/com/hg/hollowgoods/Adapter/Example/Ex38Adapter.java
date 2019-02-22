@@ -8,6 +8,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.CommonAdapter;
 import com.hg.hollowgoods.Bean.Example.Ex38;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
+import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Widget.AnimMenuLayout.AnimMenuLayout;
 
 import java.util.List;
@@ -44,6 +45,20 @@ public class Ex38Adapter extends CommonAdapter<Ex38> {
                 animMenuLayout.closeMenu(true);
                 mDatas.get(position).setOpen(false);
                 refreshData(mDatas, position);
+            }
+        });
+
+        viewHolder.setOnClickListener(R.id.ll_item1, new OnViewClickListener(false) {
+            @Override
+            public void onViewClick(View view, int id) {
+                t.info("测试1");
+            }
+        });
+
+        viewHolder.setOnClickListener(R.id.ll_item2, new OnViewClickListener(false) {
+            @Override
+            public void onViewClick(View view, int id) {
+                t.info("测试2");
             }
         });
     }

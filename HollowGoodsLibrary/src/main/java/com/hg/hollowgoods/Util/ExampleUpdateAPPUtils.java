@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.hg.hollowgoods.Application.BaseApplication;
-import com.hg.hollowgoods.Bean.ResponseInfo;
+import com.hg.hollowgoods.Bean.HGResponseInfo;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGInterfaceApi;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
@@ -77,7 +77,7 @@ public class ExampleUpdateAPPUtils {
             @Override
             public void onGetSuccess(String result) {
 
-                ResponseInfo requestInfo = new Gson().fromJson(result, ResponseInfo.class);
+                HGResponseInfo requestInfo = new Gson().fromJson(result, HGResponseInfo.class);
 
                 if ((TextUtils.equals(requestInfo.getStatus(), "true"))) {
                     URL = InterfaceConfig.getNowIPConfig().getRequestUrl(requestInfo.getUrl());

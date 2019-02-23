@@ -10,6 +10,8 @@ public interface IBaseApplication {
 
     Application initAppContext();
 
-    void initAppData();
+    void initAppDataBeforeDB();
+
+    void initAppDataAfterDB();
 
 }

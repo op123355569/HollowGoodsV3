@@ -3,7 +3,7 @@ package com.hg.hollowgoods.Util.Soap;
 import android.app.Activity;
 
 import com.google.gson.Gson;
-import com.hg.hollowgoods.Bean.ResponseInfo;
+import com.hg.hollowgoods.Bean.HGResponseInfo;
 import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 import com.hg.hollowgoods.Util.LogUtils;
 
@@ -44,7 +44,7 @@ public class SoapUtils {
          * @param methodName
          * @param result
          */
-        void onRequestSuccess(String methodName, ResponseInfo result);
+        void onRequestSuccess(String methodName, HGResponseInfo result);
 
         /**
          * 请求失败（主线程）
@@ -107,7 +107,7 @@ public class SoapUtils {
                 LogUtils.LogRequest(res);
 
                 if (isSuccess) {
-                    requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, ResponseInfo.class));
+                    requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, HGResponseInfo.class));
                 } else {
                     activity.runOnUiThread(new Runnable() {
                         @Override
@@ -174,7 +174,7 @@ public class SoapUtils {
             LogUtils.LogRequest(res);
 
             if (isSuccess) {
-                requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, ResponseInfo.class));
+                requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, HGResponseInfo.class));
             } else {
                 activity.runOnUiThread(new Runnable() {
                     @Override

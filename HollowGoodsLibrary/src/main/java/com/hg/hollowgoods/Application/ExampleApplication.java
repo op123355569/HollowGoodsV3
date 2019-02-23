@@ -18,8 +18,12 @@ public class ExampleApplication extends BaseApplication {
     }
 
     @Override
-    public void initAppData() {
+    public void initAppDataBeforeDB() {
         HGSystemConfig.init(this);
+    }
+
+    @Override
+    public void initAppDataAfterDB() {
 //        InterfaceConfig.initIP(this,
 //                new IPConfig("218.93.5.74", "4500")
 //        );

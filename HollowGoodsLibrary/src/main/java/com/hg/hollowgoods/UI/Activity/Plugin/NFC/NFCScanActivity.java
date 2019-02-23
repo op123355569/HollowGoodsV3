@@ -16,7 +16,7 @@ import android.os.Vibrator;
 import android.text.TextUtils;
 
 import com.hg.hollowgoods.Bean.EventBus.Event;
-import com.hg.hollowgoods.Bean.EventBus.EventAction;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -137,7 +137,7 @@ public abstract class NFCScanActivity extends BaseActivity {
         if (System.currentTimeMillis() - beforeScanTime >= HGSystemConfig.NFC_TWICE_SCAN_TIME) {
             beforeScanTime = System.currentTimeMillis();
 
-            Event event = new Event(EventAction.NFCScanResult);
+            Event event = new Event(HGEventActionCode.NFC_SCAN_RESULT);
             event.getData().putString(HGConstants.PARAM_KEY_1, result);
             EventBus.getDefault().post(event);
         }

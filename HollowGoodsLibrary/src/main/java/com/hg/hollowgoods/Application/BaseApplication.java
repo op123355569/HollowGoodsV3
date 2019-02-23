@@ -66,7 +66,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     /**
      * 每个Activity都必须加入的list
      *
-     * @param activity
+     * @param activity Activity
      */
     public void addActivity(Activity activity) {
         if (!activityAllList.contains(activity)) {
@@ -77,7 +77,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     /**
      * 退出
      *
-     * @param activity
+     * @param activity Activity
      */
     public void exit(Activity activity) {
         activityAllList.remove(activity);
@@ -86,7 +86,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     /**
      * 退出
      *
-     * @param activity
+     * @param activity Activity
      */
     public void exitWithFinish(Activity activity) {
         activityAllList.remove(activity);
@@ -111,11 +111,10 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     public void onCreate() {
 
         instance = initAppContext();
-        BaseApplication baseApplication = create();
-        baseApplication.setAppContext(instance);
         initCrashHandler();
+        initAppDataBeforeDB();
         initXUtils();
-        initAppData();
+        initAppDataAfterDB();
         TimeService.start(instance);
         initFileView();
 
@@ -126,16 +125,14 @@ public abstract class BaseApplication extends Application implements IBaseApplic
      * 初始化文件查看控件
      */
     private void initFileView() {
-        BaseApplication baseApplication = create();
-        QbSdk.initX5Environment(baseApplication.getAppContext(), null);
+        QbSdk.initX5Environment(create(), null);
     }
 
     /**
      * 初始化XUtils
      */
     private void initXUtils() {
-        BaseApplication baseApplication = create();
-        XUtils.init(baseApplication.getAppContext());
+        XUtils.init(create());
     }
 
     /**
@@ -143,15 +140,14 @@ public abstract class BaseApplication extends Application implements IBaseApplic
      */
     private void initCrashHandler() {
         if (!HGSystemConfig.IS_DEBUG_MODEL) {
-            BaseApplication baseApplication = create();
-            CrashHandler.getInstance().init(baseApplication.getAppContext());
+            CrashHandler.getInstance().init(create());
         }
     }
 
     /**
      * 设置上报Bug的用户名
      *
-     * @param username
+     * @param username 用户名
      */
     public void setCrashHandlerUsername(String username) {
         if (!HGSystemConfig.IS_DEBUG_MODEL) {
@@ -162,21 +158,12 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     /**
      * 防止6K方法爆炸
      *
-     * @param base
+     * @param base 上下文
      */
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        BaseApplication baseApplication = create();
-        MultiDex.install(baseApplication.getAppContext());
-    }
-
-    public Application getAppContext() {
-        return appContext;
-    }
-
-    public void setAppContext(Application appContext) {
-        this.appContext = appContext;
+        MultiDex.install(create());
     }
 
     public boolean isAutoCheckUpdateApp() {

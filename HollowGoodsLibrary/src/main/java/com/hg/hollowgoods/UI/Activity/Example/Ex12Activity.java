@@ -16,7 +16,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.CallBack.OnRcvScrollListener;
 import com.hg.hollowgoods.Adapter.Example.Ex12.Ex12Adapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Bean.Example.Ex12;
-import com.hg.hollowgoods.Bean.ResponseInfo;
+import com.hg.hollowgoods.Bean.HGResponseInfo;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGInterfaceApi;
@@ -107,7 +107,7 @@ public class Ex12Activity extends BaseActivity implements SwipeRefreshLayout.OnR
     }
 
     @Override
-    public void onRequestSuccess(String methodName, ResponseInfo result) {
+    public void onRequestSuccess(String methodName, HGResponseInfo result) {
 
         ArrayList<Ex12> temp = new Gson().fromJson(result.getData(), new TypeToken<ArrayList<Ex12>>() {
         }.getType());

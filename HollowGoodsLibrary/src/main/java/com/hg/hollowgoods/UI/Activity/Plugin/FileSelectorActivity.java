@@ -14,7 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Adapter.Plugin.FileAdapter;
 import com.hg.hollowgoods.Adapter.Plugin.FileLabelAdapter;
 import com.hg.hollowgoods.Bean.EventBus.Event;
-import com.hg.hollowgoods.Bean.EventBus.EventAction;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Bean.Plugin.FileSelectorLabel;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
@@ -289,7 +289,7 @@ public class FileSelectorActivity extends BaseActivity {
     }
 
     private void backData() {
-        Event event = new Event(EventAction.FileSelector);
+        Event event = new Event(HGEventActionCode.FILE_SELECTOR);
         if (maxSelectorCount == 1) {
             event.getData().putSerializable(HGConstants.PARAM_KEY_1, fileData.get(clickPosition));
         } else {

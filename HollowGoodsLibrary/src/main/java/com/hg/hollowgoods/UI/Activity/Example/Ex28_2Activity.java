@@ -18,6 +18,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Constant.ParamItem;
 import com.hg.hollowgoods.Adapter.FastAdapter.FastAdapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Bean.EventBus.Event;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Bean.Example.Ex28;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
@@ -247,8 +248,8 @@ public class Ex28_2Activity extends BaseActivity {
     @Override
     public void onEventUI(Event item) {
 
-        switch (item.getEventAction()) {
-            case RemoveImage:
+        switch (item.getEventActionCode()) {
+            case HGEventActionCode.REMOVE_IMAGE:
                 parentData.getMedia().get(clickSortNumber).remove(item.getData().getInt(HGConstants.PARAM_KEY_1, 0));
                 adapter.refreshFastItem(parentData, clickPosition);
                 break;

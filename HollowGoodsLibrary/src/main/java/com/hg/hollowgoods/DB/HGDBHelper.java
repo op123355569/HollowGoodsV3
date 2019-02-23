@@ -1,5 +1,6 @@
 package com.hg.hollowgoods.DB;
 
+import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.XUtils.XDBUtils;
 
 import org.xutils.ex.DbException;
@@ -13,7 +14,9 @@ public class HGDBHelper {
         try {
             return XDBUtils.getDbManager().findFirst(clazz);
         } catch (DbException e) {
-
+            if (e != null) {
+                LogUtils.Log(e.getMessage(), HGDBHelper.class);
+            }
         }
 
         return null;
@@ -24,7 +27,9 @@ public class HGDBHelper {
         try {
             return XDBUtils.getDbManager().findAll(clazz);
         } catch (DbException e) {
-
+            if (e != null) {
+                LogUtils.Log(e.getMessage(), HGDBHelper.class);
+            }
         }
 
         return null;
@@ -34,7 +39,9 @@ public class HGDBHelper {
         try {
             XDBUtils.getDbManager().delete(obj);
         } catch (DbException e) {
-
+            if (e != null) {
+                LogUtils.Log(e.getMessage(), HGDBHelper.class);
+            }
         }
     }
 
@@ -42,7 +49,9 @@ public class HGDBHelper {
         try {
             XDBUtils.getDbManager().delete(clazz);
         } catch (DbException e) {
-
+            if (e != null) {
+                LogUtils.Log(e.getMessage(), HGDBHelper.class);
+            }
         }
     }
 
@@ -50,7 +59,9 @@ public class HGDBHelper {
         try {
             XDBUtils.getDbManager().save(obj);
         } catch (DbException e) {
-
+            if (e != null) {
+                LogUtils.Log(e.getMessage(), HGDBHelper.class);
+            }
         }
     }
 

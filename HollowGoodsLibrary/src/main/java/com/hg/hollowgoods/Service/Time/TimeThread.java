@@ -3,11 +3,12 @@ package com.hg.hollowgoods.Service.Time;
 import android.content.Context;
 
 import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Constant.HGSystemConfig;
 
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年11月07日
  */
 public class TimeThread extends Thread {
@@ -39,7 +40,7 @@ public class TimeThread extends Thread {
             }
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(HGSystemConfig.CHECK_SERVER_TIME);
             } catch (InterruptedException e) {
 
             }

@@ -115,7 +115,9 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         initAppDataBeforeDB();
         initXUtils();
         initAppDataAfterDB();
-        TimeService.start(instance);
+        if (HGSystemConfig.IS_NEED_CHECK_SERVER_TIME) {
+            TimeService.start(instance);
+        }
         initFileView();
 
         super.onCreate();

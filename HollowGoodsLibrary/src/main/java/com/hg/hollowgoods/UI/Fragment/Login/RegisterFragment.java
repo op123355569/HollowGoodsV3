@@ -10,7 +10,7 @@ import com.hg.hollowgoods.UI.Base.BaseFragment;
 /**
  * @ClassName:注册碎片
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年12月29日
  */
 public class RegisterFragment extends BaseFragment {

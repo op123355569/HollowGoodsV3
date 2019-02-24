@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年01月16日
  */
 public class NullUtils {

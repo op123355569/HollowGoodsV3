@@ -13,7 +13,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 /**
  * @ClassName:登录碎片
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年12月29日
  */
 public class LoginFragment extends BaseFragment {

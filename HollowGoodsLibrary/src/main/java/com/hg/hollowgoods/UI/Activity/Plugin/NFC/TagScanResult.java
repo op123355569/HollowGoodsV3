@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @ClassName:标签扫描结果封装类
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年12月11日
  */
 public class TagScanResult implements Serializable {

@@ -5,7 +5,7 @@ import com.hg.hollowgoods.UI.Base.MVP.BasePresenter;
 /**
  * @ClassName:管理层
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年01月16日
  */
 public class MVPExamPresenter extends BasePresenter<MVPExamContract.View, MVPExamContract.Model> implements MVPExamContract.Presenter {

@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * @ClassName:基快速适配器Item
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年10月22日
  */
 public class BaseFastItem {

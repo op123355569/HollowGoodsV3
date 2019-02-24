@@ -18,7 +18,7 @@ import com.nineoldandroids.animation.AnimatorListenerAdapter;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年02月20日
  */
 public class AnimMenuLayout extends FrameLayout {

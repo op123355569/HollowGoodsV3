@@ -14,4 +14,8 @@ public interface IBaseApplication {
 
     void initAppDataAfterDB();
 
+    default boolean checkServerTime() {
+        return false;
+    }
+
 }

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年09月28日
  */
 public class FileAdapter extends CommonAdapter<File> {

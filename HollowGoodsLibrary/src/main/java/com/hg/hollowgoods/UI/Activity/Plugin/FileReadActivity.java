@@ -25,7 +25,7 @@ import java.io.File;
 /**
  * @ClassName:文件查看界面
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年10月09日
  */
 public class FileReadActivity extends BaseActivity {

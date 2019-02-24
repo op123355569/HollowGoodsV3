@@ -5,7 +5,7 @@ import android.view.View;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年12月19日
  */
 public interface OnCommonTitleClickListener {

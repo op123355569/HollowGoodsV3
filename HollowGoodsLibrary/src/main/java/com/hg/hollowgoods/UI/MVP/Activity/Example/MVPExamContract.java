@@ -7,7 +7,7 @@ import com.hg.hollowgoods.UI.Base.MVP.IBaseView;
 /**
  * @ClassName:协议层
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年01月16日
  */
 public class MVPExamContract {

@@ -19,7 +19,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 /**
  * @ClassName:登录/注册界面
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年12月29日
  */
 public class LoginActivity extends BaseActivity {

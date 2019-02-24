@@ -3,7 +3,7 @@ package com.hg.hollowgoods.UI.Base.MVP;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年01月17日
  */
 public class BasePresenter<V extends IBaseView, P extends IBaseModel> implements IBasePresenter<V> {

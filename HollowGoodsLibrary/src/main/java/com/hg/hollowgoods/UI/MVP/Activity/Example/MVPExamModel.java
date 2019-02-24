@@ -7,7 +7,7 @@ import com.hg.hollowgoods.Bean.HGUser;
 /**
  * @ClassName:数据层
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年01月17日
  */
 public class MVPExamModel implements MVPExamContract.Model {

@@ -32,7 +32,7 @@ import java.util.ArrayList;
 /**
  * @ClassName:验证输入控件
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年08月15日
  */
 public class ValidatorInputView extends LinearLayout {

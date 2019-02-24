@@ -36,7 +36,7 @@ import java.util.HashMap;
 /**
  * @ClassName:文件选择器
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年09月28日
  */
 public class FileSelectorActivity extends BaseActivity {

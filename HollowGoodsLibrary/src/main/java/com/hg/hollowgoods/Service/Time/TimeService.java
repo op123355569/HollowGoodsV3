@@ -21,10 +21,12 @@ import java.util.ArrayList;
 /**
  * @ClassName:时间服务
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年11月07日
  */
 public class TimeService extends Service {
+
+    private BaseApplication baseApplication;
 
     @Nullable
     @Override
@@ -34,7 +36,7 @@ public class TimeService extends Service {
 
     @Override
     public void onCreate() {
-        BaseApplication baseApplication = BaseApplication.create();
+        baseApplication = BaseApplication.create();
         if (baseApplication.getTimeThread() == null) {
             baseApplication.setTimeThread(new TimeThread(getApplicationContext()));
             baseApplication.getTimeThread().start();
@@ -52,54 +54,53 @@ public class TimeService extends Service {
      * 校验服务器时间
      */
     public void checkServerTime() {
+        if (!baseApplication.checkServerTime()) {
+            RequestParams params = new RequestParams("http://api.m.taobao.com/rest/api3.do");
+            params.addParameter("api", "mtop.common.getTimestamp");
 
-        RequestParams params = new RequestParams("http://api.m.taobao.com/rest/api3.do");
-        params.addParameter("api", "mtop.common.getTimestamp");
+            XUtils xUtils = new XUtils();
+            xUtils.setGetHttpDataListener(new GetHttpDataListener() {
+                @Override
+                public void onGetSuccess(String result) {
 
-        XUtils xUtils = new XUtils();
-        xUtils.setGetHttpDataListener(new GetHttpDataListener() {
-            @Override
-            public void onGetSuccess(String result) {
+                    Time time = new Gson().fromJson(result, Time.class);
 
-                Time time = new Gson().fromJson(result, Time.class);
-                BaseApplication baseApplication = BaseApplication.create();
+                    if (time != null
+                            && time.data != null
+                            && !TextUtils.isEmpty(time.data.t)
+                    ) {
+                        baseApplication.setNowTime(Long.valueOf(time.data.t));
+                    } else {
+                        if (baseApplication.getNowTime() == 0l) {
+                            baseApplication.setNowTime(System.currentTimeMillis());
+                        }
+                    }
+                }
 
-                if (time != null
-                        && time.data != null
-                        && !TextUtils.isEmpty(time.data.t)
-                ) {
-                    baseApplication.setNowTime(Long.valueOf(time.data.t));
-                } else {
+                @Override
+                public void onGetError(Throwable ex) {
                     if (baseApplication.getNowTime() == 0l) {
                         baseApplication.setNowTime(System.currentTimeMillis());
                     }
                 }
-            }
 
-            @Override
-            public void onGetError(Throwable ex) {
-                BaseApplication baseApplication = BaseApplication.create();
-                if (baseApplication.getNowTime() == 0l) {
-                    baseApplication.setNowTime(System.currentTimeMillis());
+                @Override
+                public void onGetLoading(long total, long current) {
+
                 }
-            }
 
-            @Override
-            public void onGetLoading(long total, long current) {
+                @Override
+                public void onGetFinish() {
 
-            }
+                }
 
-            @Override
-            public void onGetFinish() {
+                @Override
+                public void onGetCancel(Callback.CancelledException cex) {
 
-            }
-
-            @Override
-            public void onGetCancel(Callback.CancelledException cex) {
-
-            }
-        });
-        xUtils.getHttpData(HttpMethod.GET, params);
+                }
+            });
+            xUtils.getHttpData(HttpMethod.GET, params);
+        }
     }
 
     private class Time {

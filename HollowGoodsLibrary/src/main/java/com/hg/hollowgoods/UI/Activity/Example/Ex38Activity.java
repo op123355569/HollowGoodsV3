@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * @ClassName:列表菜单特效示例
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年2月22日
  */
 public class Ex38Activity extends BaseActivity {

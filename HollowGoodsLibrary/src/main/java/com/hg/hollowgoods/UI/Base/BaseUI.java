@@ -69,7 +69,7 @@ import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年12月18日
  */
 public class BaseUI {

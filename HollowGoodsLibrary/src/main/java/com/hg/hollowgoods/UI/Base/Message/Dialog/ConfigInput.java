@@ -6,7 +6,7 @@ import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.Validator;
 /**
  * @ClassName:输入配置
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年08月10日
  */
 public class ConfigInput {

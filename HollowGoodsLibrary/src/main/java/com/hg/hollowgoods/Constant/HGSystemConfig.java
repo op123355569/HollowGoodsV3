@@ -14,7 +14,7 @@ import kotlin.jvm.JvmStatic;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2019年01月22日
  */
 public class HGSystemConfig {
@@ -223,5 +223,15 @@ public class HGSystemConfig {
      * NFC两次扫描的间隔时间
      */
     public static long NFC_TWICE_SCAN_TIME = 2 * 1000L;
+
+    /**
+     * 是否需要校对后台系统时间
+     */
+    public static boolean IS_NEED_CHECK_SERVER_TIME = true;
+
+    /**
+     * 校对后台系统时间间隔
+     */
+    public static long CHECK_SERVER_TIME = 30 * 1000L;
 
 }

@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * @ClassName:
  * @Description:
- * @author: 马禛
+ * @author: HollowGoods
  * @date: 2018年09月28日
  */
 public class FileSelectorLabel {

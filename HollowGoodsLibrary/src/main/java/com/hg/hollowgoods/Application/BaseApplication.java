@@ -208,6 +208,10 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         this.countFlag = countFlag;
     }
 
+    public void setTestSystemTime(int testSystemTime) {
+        this.testSystemTime = testSystemTime;
+    }
+
     public int getTestSystemTime() {
         return testSystemTime;
     }

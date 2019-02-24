@@ -229,9 +229,4 @@ public class HGSystemConfig {
      */
     public static boolean IS_NEED_CHECK_SERVER_TIME = true;
 
-    /**
-     * 校对后台系统时间间隔
-     */
-    public static long CHECK_SERVER_TIME = 30 * 1000L;
-
 }

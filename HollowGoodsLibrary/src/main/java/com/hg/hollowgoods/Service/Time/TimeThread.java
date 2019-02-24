@@ -3,7 +3,6 @@ package com.hg.hollowgoods.Service.Time;
 import android.content.Context;
 
 import com.hg.hollowgoods.Application.BaseApplication;
-import com.hg.hollowgoods.Constant.HGSystemConfig;
 
 /**
  * @ClassName:
@@ -27,12 +26,8 @@ public class TimeThread extends Thread {
 
             if (baseApplication.getNowTime() != 0l) {
                 baseApplication.setNowTime(baseApplication.getNowTime() + 1000l);
-//                long dif = MyApplication.create().getNowTime() - System.currentTimeMillis();
-//                LogUtils.Log(StringUtils.getDateTimeString(MyApplication.create().getNowTime(), StringUtils.DateFormatMode.LINE_YMDHMSS)
-//                        + "  相差：" + (Math.abs(dif) / 1000) + "s"
-//                );
-
                 baseApplication.setCountFlag(baseApplication.getCountFlag() + 1);
+                
                 if (baseApplication.getCountFlag() == baseApplication.getTestSystemTime()) {
                     TimeService.start(context);
                     baseApplication.setCountFlag(0);
@@ -40,7 +35,7 @@ public class TimeThread extends Thread {
             }
 
             try {
-                Thread.sleep(HGSystemConfig.CHECK_SERVER_TIME);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
 
             }

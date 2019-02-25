@@ -95,7 +95,7 @@ public class Ex39Activity extends BaseActivity {
         loading.setOnClickListener(new OnViewClickListener(false) {
             @Override
             public void onViewClick(View view, int id) {
-                new Handler().postDelayed(() -> loading.doResult(false), 3000);
+                new Handler().postDelayed(() -> loading.doResult(false), 5000);
             }
         });
 

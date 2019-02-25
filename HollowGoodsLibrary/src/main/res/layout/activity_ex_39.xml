@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_body_color"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <com.hg.hollowgoods.Widget.CommonTitleView
@@ -25,8 +25,8 @@
 
             <com.hg.hollowgoods.Widget.ArrowDownloadButton
                 android:id="@+id/adb_download"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp" />
 

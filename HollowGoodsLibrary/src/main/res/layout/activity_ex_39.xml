@@ -30,7 +30,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp" />
 
-            <com.unstoppable.submitbuttonview.SubmitButton
+            <com.hg.hollowgoods.Widget.SubmitButton
                 android:id="@+id/sb_loading"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
@@ -39,7 +39,7 @@
                 app:buttonText="Submit"
                 app:buttonTextSize="25sp" />
 
-            <com.unstoppable.submitbuttonview.SubmitButton
+            <com.hg.hollowgoods.Widget.SubmitButton
                 android:id="@+id/sb_progress"
                 android:layout_width="200dp"
                 android:layout_height="50dp"

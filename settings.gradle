@@ -1,1 +1,1 @@
-include ':HollowGoodsLibrary'
+include ':HollowGoodsLibrary', ':Sample'

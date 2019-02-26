@@ -72,6 +72,7 @@ public class Ex39Activity extends BaseActivity {
                     }
 
                     if (nowProgress == 100) {
+                        nowProgress = 0;
                         break;
                     }
                 }

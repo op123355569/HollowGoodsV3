@@ -3,6 +3,7 @@ package com.hg.hollowgoods.Widget.BugView;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
@@ -59,7 +60,11 @@ public class FloatBugViewWindowManager {
 
             if (menuSwitchParams == null) {
                 menuSwitchParams = new LayoutParams();
-                menuSwitchParams.type = LayoutParams.TYPE_PHONE;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    menuSwitchParams.type = LayoutParams.TYPE_APPLICATION_OVERLAY;
+                } else {
+                    menuSwitchParams.type = LayoutParams.TYPE_PHONE;
+                }
                 menuSwitchParams.format = PixelFormat.RGBA_8888;
                 menuSwitchParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL
                         | LayoutParams.FLAG_NOT_FOCUSABLE;

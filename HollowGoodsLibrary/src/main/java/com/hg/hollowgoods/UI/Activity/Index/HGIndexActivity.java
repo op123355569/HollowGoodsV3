@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
-import com.hg.hollowgoods.UI.Activity.Login.LoginActivity;
+import com.hg.hollowgoods.UI.Activity.Login.HGLoginActivity;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.LogUtils;
@@ -17,7 +17,7 @@ import com.jaredrummler.android.widget.AnimatedSvgView;
  * 启动界面
  * Created by HG on 2018-06-07.
  */
-public class IndexActivity extends BaseActivity {
+public class HGIndexActivity extends BaseActivity {
 
     private AnimatedSvgView animatedSvgView;
     private View gotoNext;
@@ -31,7 +31,7 @@ public class IndexActivity extends BaseActivity {
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_index;
+        return R.layout.activity_hg_index;
     }
 
     @Nullable
@@ -94,7 +94,7 @@ public class IndexActivity extends BaseActivity {
             canGotoNext = false;
 
             if (baseUI.requestIOPermission()) {
-                baseUI.startMyActivityRipple(LoginActivity.class, gotoNext, HGSystemConfig.ACTIVITY_CHANGE_RES, this);
+                baseUI.startMyActivityRipple(HGLoginActivity.class, gotoNext, HGSystemConfig.ACTIVITY_CHANGE_RES, this);
             } else {
                 canGotoNext = true;
             }

@@ -13,11 +13,11 @@ import com.hg.hollowgoods.UI.Base.BaseFragment;
  * @author: HollowGoods
  * @date: 2018年12月29日
  */
-public class RegisterFragment extends BaseFragment {
+public class HGRegisterFragment extends BaseFragment {
 
     @Override
     public int bindLayout() {
-        return R.layout.fragment_register;
+        return R.layout.fragment_hg_register;
     }
 
     @Nullable

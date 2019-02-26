@@ -38,7 +38,7 @@
         android:supportsRtl="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator">
 
-        <activity android:name=".UI.Activity.Index.IndexActivity" /><!-- 启动界面 -->
+        <activity android:name=".UI.Activity.Index.HGIndexActivity" /><!-- 启动界面 -->
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -172,7 +172,7 @@
 
         <!-- **** 本APP **** -->
         <activity android:name=".UI.Activity.Main.HollowGoodsActivity" /><!-- 主界面 -->
-        <activity android:name=".UI.Activity.Login.LoginActivity" /><!-- 登录注册界面 -->
+        <activity android:name=".UI.Activity.Login.HGLoginActivity" /><!-- 登录注册界面 -->
     </application>
 
 </manifest>

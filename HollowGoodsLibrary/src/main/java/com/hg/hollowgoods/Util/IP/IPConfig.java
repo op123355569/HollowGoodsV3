@@ -86,8 +86,12 @@ public class IPConfig implements Serializable {
     public String getRequestHead() {
 
         StringBuilder url = new StringBuilder();
-        url.append(protocol);
-        url.append(ip);
+        if (!TextUtils.isEmpty(protocol)) {
+            url.append(protocol);
+        }
+        if (!TextUtils.isEmpty(ip)) {
+            url.append(ip);
+        }
         if (!TextUtils.isEmpty(port)) {
             url.append(":");
             url.append(port);

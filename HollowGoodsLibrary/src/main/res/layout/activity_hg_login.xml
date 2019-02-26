@@ -61,7 +61,7 @@
                             android:visibility="gone" />
 
                         <fragment
-                            android:name="com.hg.hollowgoods.UI.Fragment.Login.LoginFragment"
+                            android:name="com.hg.hollowgoods.UI.Fragment.Login.HGLoginFragment"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center" />
@@ -92,7 +92,7 @@
                             android:visibility="visible" />
 
                         <fragment
-                            android:name="com.hg.hollowgoods.UI.Fragment.Login.RegisterFragment"
+                            android:name="com.hg.hollowgoods.UI.Fragment.Login.HGRegisterFragment"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center" />

@@ -16,13 +16,13 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
  * @author: HollowGoods
  * @date: 2018年12月29日
  */
-public class LoginFragment extends BaseFragment {
+public class HGLoginFragment extends BaseFragment {
 
     private Button login;
 
     @Override
     public int bindLayout() {
-        return R.layout.fragment_login;
+        return R.layout.fragment_hg_login;
     }
 
     @Nullable

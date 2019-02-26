@@ -22,7 +22,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
  * @author: HollowGoods
  * @date: 2018年12月29日
  */
-public class LoginActivity extends BaseActivity {
+public class HGLoginActivity extends BaseActivity {
 
     private TextView registerInvoker;
     private LinearLayout registerLayout;
@@ -38,7 +38,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_login;
+        return R.layout.activity_hg_login;
     }
 
     @Nullable

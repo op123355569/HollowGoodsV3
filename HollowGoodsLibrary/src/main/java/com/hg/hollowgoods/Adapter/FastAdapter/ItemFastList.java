@@ -107,7 +107,7 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                 GlideOptions glideOptions = new GlideOptions(data.imgUrl, null, GlideOptions.NORMAL_FADE_IN, requestOptions);
                 viewHolder.setImageByUrl(R.id.iv_img, glideOptions);
             } else {
-                viewHolder.setImageResource(R.id.iv_flag, Integer.valueOf(data.imgUrl.toString()));
+                viewHolder.setImageResource(R.id.iv_img, Integer.valueOf(data.imgUrl.toString()));
             }
         }
 

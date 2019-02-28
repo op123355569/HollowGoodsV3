@@ -68,6 +68,10 @@ public class StringUtils {
          * yyyy.MM.dd
          */
         POINT_YMD("yyyy.MM.dd"),
+        /**
+         * yyyy.MM
+         */
+        POINT_YM("yyyy.MM"),
 
         /**
          * yyyy-MM-dd HH:mm:ss:SSS
@@ -89,6 +93,10 @@ public class StringUtils {
          * yyyy-MM-dd
          */
         LINE_YMD("yyyy-MM-dd"),
+        /**
+         * yyyy-MM
+         */
+        LINE_YM("yyyy-MM"),
 
         /**
          * yyyy年MM月dd日 HH:mm:ss:SSS
@@ -111,6 +119,15 @@ public class StringUtils {
          */
         Chinese_YMD("yyyy年MM月dd日"),
         /**
+         * yyyy年MM月
+         */
+        Chinese_YM("yyyy年MM月"),
+
+        /**
+         * yyyy
+         */
+        Time_Y("yyyy"),
+        /**
          * HH:mm:ss:SSS
          */
         Time_HMSS("HH:mm:ss:SSS"),
@@ -125,7 +142,8 @@ public class StringUtils {
         /**
          * HH
          */
-        Time_H("HH"),;
+        Time_H("HH"),
+        ;
 
         private String format;
 

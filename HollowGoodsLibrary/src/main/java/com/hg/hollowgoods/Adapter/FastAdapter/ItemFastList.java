@@ -23,6 +23,7 @@ import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
+import com.hg.hollowgoods.Util.StringUtils;
 
 import java.lang.reflect.Field;
 
@@ -86,15 +87,35 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
         viewHolder.setTextColorRes(R.id.tv_content4, data.isShowLabel4 ? R.color.txt_color_light : R.color.txt_color_normal);
 
         // 填充字段
-        viewHolder.setText(R.id.tv_title, data.title);
+        if (data.isDateTitle) {
+            viewHolder.setText(R.id.tv_title, StringUtils.getDateTimeString(data.title, data.dateFormatModeTitle));
+        } else {
+            viewHolder.setText(R.id.tv_title, data.title);
+        }
         viewHolder.setText(R.id.tv_label1, data.label1);
-        viewHolder.setText(R.id.tv_content1, data.content1);
+        if (data.isDate1) {
+            viewHolder.setText(R.id.tv_content1, StringUtils.getDateTimeString(data.content1, data.dateFormatMode1));
+        } else {
+            viewHolder.setText(R.id.tv_content1, data.content1);
+        }
         viewHolder.setText(R.id.tv_label2, data.label2);
-        viewHolder.setText(R.id.tv_content2, data.content2);
+        if (data.isDate2) {
+            viewHolder.setText(R.id.tv_content2, StringUtils.getDateTimeString(data.content2, data.dateFormatMode2));
+        } else {
+            viewHolder.setText(R.id.tv_content2, data.content2);
+        }
         viewHolder.setText(R.id.tv_label3, data.label3);
-        viewHolder.setText(R.id.tv_content3, data.content3);
+        if (data.isDate3) {
+            viewHolder.setText(R.id.tv_content3, StringUtils.getDateTimeString(data.content3, data.dateFormatMode3));
+        } else {
+            viewHolder.setText(R.id.tv_content3, data.content3);
+        }
         viewHolder.setText(R.id.tv_label4, data.label4);
-        viewHolder.setText(R.id.tv_content4, data.content4);
+        if (data.isDate4) {
+            viewHolder.setText(R.id.tv_content4, StringUtils.getDateTimeString(data.content4, data.dateFormatMode4));
+        } else {
+            viewHolder.setText(R.id.tv_content4, data.content4);
+        }
 
         if (data.imgUrl == null || TextUtils.isEmpty(data.imgUrl + "")) {
             viewHolder.setImageResource(R.id.iv_img, R.color.transparent);
@@ -197,6 +218,8 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                     String itemsName = annotation.itemsName();
 
                     result.title = getRealValueByField(item, t.getName(), itemsName);
+                    result.isDateTitle = annotation.isDate();
+                    result.dateFormatModeTitle = annotation.dateFormatMode();
                 }
 
                 if (t.isAnnotationPresent(FastListContent1.class)) {
@@ -212,6 +235,8 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                     // 内容1
                     result.isShowContent1 = true;
                     result.content1 = getRealValueByField(item, t.getName(), itemsName);
+                    result.isDate1 = annotation.isDate();
+                    result.dateFormatMode1 = annotation.dateFormatMode();
                 }
 
                 if (t.isAnnotationPresent(FastListContent2.class)) {
@@ -227,6 +252,8 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                     // 内容2
                     result.isShowContent2 = true;
                     result.content2 = getRealValueByField(item, t.getName(), itemsName);
+                    result.isDate2 = annotation.isDate();
+                    result.dateFormatMode2 = annotation.dateFormatMode();
                 }
 
                 if (t.isAnnotationPresent(FastListContent3.class)) {
@@ -242,6 +269,8 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                     // 内容3
                     result.isShowContent3 = true;
                     result.content3 = getRealValueByField(item, t.getName(), itemsName);
+                    result.isDate3 = annotation.isDate();
+                    result.dateFormatMode3 = annotation.dateFormatMode();
                 }
 
                 if (t.isAnnotationPresent(FastListContent4.class)) {
@@ -257,6 +286,8 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                     // 内容4
                     result.isShowContent4 = true;
                     result.content4 = getRealValueByField(item, t.getName(), itemsName);
+                    result.isDate4 = annotation.isDate();
+                    result.dateFormatMode4 = annotation.dateFormatMode();
                 }
 
                 if (t.isAnnotationPresent(FastListEdit.class)) {
@@ -341,6 +372,17 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
         private boolean isShowFlag;
         private Object flag;
 
+        public boolean isDateTitle;
+        public StringUtils.DateFormatMode dateFormatModeTitle;
+        public boolean isDate1;
+        public StringUtils.DateFormatMode dateFormatMode1;
+        public boolean isDate2;
+        public StringUtils.DateFormatMode dateFormatMode2;
+        public boolean isDate3;
+        public StringUtils.DateFormatMode dateFormatMode3;
+        public boolean isDate4;
+        public StringUtils.DateFormatMode dateFormatMode4;
+
         public FastListData() {
             this.numberBgColorRes = -1;
             this.isShowTitle = false;
@@ -361,6 +403,18 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
             this.deleteRes = -1;
             this.isShowFlag = false;
             this.flag = null;
+
+            this.isDateTitle = false;
+            this.dateFormatModeTitle = StringUtils.DateFormatMode.LINE_YMDHMS;
+            this.isDate1 = false;
+            this.dateFormatMode1 = StringUtils.DateFormatMode.LINE_YMDHMS;
+            this.isDate2 = false;
+            this.dateFormatMode2 = StringUtils.DateFormatMode.LINE_YMDHMS;
+            this.isDate3 = false;
+            this.dateFormatMode3 = StringUtils.DateFormatMode.LINE_YMDHMS;
+            this.isDate4 = false;
+            this.dateFormatMode4 = StringUtils.DateFormatMode.LINE_YMDHMS;
+
         }
     }
 

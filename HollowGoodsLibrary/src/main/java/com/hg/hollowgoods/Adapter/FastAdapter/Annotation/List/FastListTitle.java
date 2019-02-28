@@ -1,5 +1,7 @@
 package com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List;
 
+import com.hg.hollowgoods.Util.StringUtils;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -24,5 +26,19 @@ public @interface FastListTitle {
      * @return
      */
     String itemsName() default "";
+
+    /**
+     * 是否是日期
+     *
+     * @return
+     */
+    boolean isDate() default false;
+
+    /**
+     * 日期格式化
+     *
+     * @return
+     */
+    StringUtils.DateFormatMode dateFormatMode() default StringUtils.DateFormatMode.LINE_YMDHMS;
 
 }

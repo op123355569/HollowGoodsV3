@@ -37,6 +37,7 @@ public class FastItemData extends CommonBean {
     public boolean isShowSwitchButton;
     public boolean isDate;
     public StringUtils.DateFormatMode dateFormatMode;
+    public String contentHint;
 
     public FastItemData() {
         super(FastAdapter.ITEM_TYPE_ITEM);
@@ -51,9 +52,10 @@ public class FastItemData extends CommonBean {
         this.numberPickerDif = null;
         this.numberPickerType = null;
         this.numberPickerPointCount = 0;
-        isShowSwitchButton = false;
-        isDate = false;
+        this.isShowSwitchButton = false;
+        this.isDate = false;
         setOnlyRead(true);
+        this.contentHint = "";
     }
 
 

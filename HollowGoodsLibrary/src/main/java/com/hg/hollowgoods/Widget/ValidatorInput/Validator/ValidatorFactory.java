@@ -3,8 +3,8 @@ package com.hg.hollowgoods.Widget.ValidatorInput.Validator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Patterns;
 
+import com.hg.hollowgoods.Util.PhoneUtils;
 import com.hg.hollowgoods.Util.RegexUtils;
 import com.hg.hollowgoods.Util.StringUtils;
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.RegexpValidator;
@@ -84,7 +84,7 @@ public class ValidatorFactory {
         return new Validator(type, error, item) {
             @Override
             public boolean isValid(@NonNull CharSequence text) {
-                Boolean isNumber = Patterns.PHONE.matcher(text).matches();
+                Boolean isNumber = PhoneUtils.isPhoneNumber(text + "");
                 if (!isNumber) {
                     return false;
                 }

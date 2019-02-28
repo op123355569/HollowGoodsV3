@@ -95,6 +95,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             // 内容
             viewHolder.setVisible(R.id.tv_content, data.isNeedContent);
             viewHolder.setVisible(R.id.iv_content, data.isNeedContent);
+            viewHolder.setTextHint(R.id.tv_content, data.contentHint);
             Object content = "";
             if (!data.isNeedContent || data.fastItemMode == FastItemMode.File || (data.isShowNumberPicker && !data.isOnlyRead())) {
                 content = "";
@@ -415,6 +416,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         int numberPickerPointCount;
         boolean isDate;
         StringUtils.DateFormatMode dateFormatMode;
+        String contentHint;
 
         annotation = t.getAnnotation(FastItem.class);
 
@@ -430,6 +432,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         visible = annotation.visible();
         isDate = annotation.isDate();
         dateFormatMode = annotation.dateFormatMode();
+        contentHint = annotation.contentHint();
 
         //  右侧图标
         readability = bean.getOnlyReadItem(t.getName());
@@ -474,6 +477,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         if (isDate) {
             data.dateFormatMode = dateFormatMode;
         }
+        data.contentHint = contentHint;
 
         if (t.isAnnotationPresent(FastItemFileMaxCount.class)) {
             FastItemFileMaxCount annotation2 = t.getAnnotation(FastItemFileMaxCount.class);

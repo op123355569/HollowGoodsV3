@@ -44,6 +44,13 @@ public @interface FastItem {
     boolean isNeedContent() default true;
 
     /**
+     * 内容默认值
+     *
+     * @return
+     */
+    String contentHint() default "";
+
+    /**
      * 排序号 必填
      * 同时也是点击事件的区分码
      *

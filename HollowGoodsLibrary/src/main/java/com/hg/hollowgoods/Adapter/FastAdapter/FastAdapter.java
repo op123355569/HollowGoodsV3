@@ -17,6 +17,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastItemData;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
+import com.hg.hollowgoods.Adapter.FastAdapter.Constant.ParamItem;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
@@ -51,17 +52,27 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
     private ItemFastList itemFastList;
     private ItemFastItem itemFastItem;
     private OnFastClick onFastClick;
+    private Class<?> itemsNameClass;
 
     public FastAdapter(Context context, List<CommonBean> datas, boolean openList, boolean openItem) {
+        this(context, datas, openList, openItem, ParamItem.class);
+    }
+
+    public FastAdapter(Context context, List<CommonBean> datas, boolean openList, boolean openItem, Class<?> itemsNameClass) {
+
         super(context, datas);
+
         this.context = context;
+        this.itemsNameClass = itemsNameClass;
 
         if (openList) {
             addItemViewDelegate(ITEM_TYPE_LIST, itemFastList = new ItemFastList(context));
+            itemFastList.setItemsNameClass(itemsNameClass);
         }
 
         if (openItem) {
             addItemViewDelegate(ITEM_TYPE_ITEM, itemFastItem = new ItemFastItem(context));
+            itemFastItem.setItemsNameClass(itemsNameClass);
         }
 
         setOnItemClickListener(new OnRecyclerViewItemClickListener(false) {

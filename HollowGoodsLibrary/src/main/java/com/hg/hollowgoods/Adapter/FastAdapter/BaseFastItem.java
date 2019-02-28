@@ -2,7 +2,6 @@ package com.hg.hollowgoods.Adapter.FastAdapter;
 
 import android.text.TextUtils;
 
-import com.hg.hollowgoods.Adapter.FastAdapter.Constant.ParamItem;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.RegexUtils;
@@ -18,6 +17,12 @@ import java.util.Map;
  * @date: 2018年10月22日
  */
 public class BaseFastItem {
+
+    private Class<?> itemsNameClass;
+
+    public void setItemsNameClass(Class<?> itemsNameClass) {
+        this.itemsNameClass = itemsNameClass;
+    }
 
     /**
      * 反射获取String类型的值
@@ -68,7 +73,7 @@ public class BaseFastItem {
     public Object getContentItems(String name) {
 
         try {
-            return ParamItem.class.getDeclaredField(name).get(null);
+            return itemsNameClass.getDeclaredField(name).get(null);
         } catch (IllegalAccessException e) {
 
         } catch (NoSuchFieldException e) {

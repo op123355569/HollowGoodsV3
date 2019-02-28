@@ -29,7 +29,12 @@ public class Event {
      * @param eventActionCode 意图
      */
     public Event(int eventActionCode) {
+
         this.eventActionCode = eventActionCode;
+
+        if (data == null) {
+            this.data = new Bundle();
+        }
     }
 
     /**

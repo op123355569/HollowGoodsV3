@@ -6,8 +6,6 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- */
 public class MultiChoicesCircleButtonBehavior extends CoordinatorLayout.Behavior<MultiChoicesCircleButton> {
 
     public MultiChoicesCircleButtonBehavior() {
@@ -19,15 +17,13 @@ public class MultiChoicesCircleButtonBehavior extends CoordinatorLayout.Behavior
     }
 
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, MultiChoicesCircleButton child,
-                                       View directTargetChild, View target, int nestedScrollAxes, int type) {
+    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, MultiChoicesCircleButton child, View directTargetChild, View target, int nestedScrollAxes, int type) {
         return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
     @Override
-    public void onNestedScroll(CoordinatorLayout coordinatorLayout, MultiChoicesCircleButton child,
-                               View target, int dxConsumed, int dyConsumed,
-                               int dxUnconsumed, int dyUnconsumed, int type) {
+    public void onNestedScroll(CoordinatorLayout coordinatorLayout, MultiChoicesCircleButton child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
+
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
 
         if (dyConsumed > 0 || dyUnconsumed > 0) {

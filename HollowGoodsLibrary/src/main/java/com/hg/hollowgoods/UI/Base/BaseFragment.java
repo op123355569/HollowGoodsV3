@@ -120,7 +120,6 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
      */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
         baseUI.onCreateOptionsMenu(menu, inflater);
     }
 

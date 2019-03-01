@@ -41,4 +41,11 @@ public @interface FastListTitle {
      */
     StringUtils.DateFormatMode dateFormatMode() default StringUtils.DateFormatMode.LINE_YMDHMS;
 
+    /**
+     * 字体颜色资源变量名
+     *
+     * @return
+     */
+    String textColorResName() default "";
+
 }

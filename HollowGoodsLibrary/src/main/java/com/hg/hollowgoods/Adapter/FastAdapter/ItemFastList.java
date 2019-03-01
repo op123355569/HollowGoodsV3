@@ -23,9 +23,11 @@ import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
+import com.hg.hollowgoods.Util.RegexUtils;
 import com.hg.hollowgoods.Util.StringUtils;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 
 /**
  * 快速适配器布局——列表布局
@@ -81,6 +83,18 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
         viewHolder.setVisible(R.id.iv_flag, data.isShowFlag);
 
         // 设置字体颜色
+        if (TextUtils.isEmpty(data.textColorResName)) {
+            viewHolder.setTextColorRes(R.id.tv_title, R.color.txt_color_dark);
+        } else {
+            Object textColorRes = getObjValue(item, data.textColorResName);
+            if (textColorRes == null) {
+                viewHolder.setTextColorRes(R.id.tv_title, R.color.txt_color_dark);
+            } else if (RegexUtils.isWholeNumber(textColorRes.toString())) {
+                viewHolder.setTextColorRes(R.id.tv_title, new BigDecimal(textColorRes.toString()).intValue());
+            } else {
+                viewHolder.setTextColorRes(R.id.tv_title, R.color.txt_color_dark);
+            }
+        }
         viewHolder.setTextColorRes(R.id.tv_content1, data.isShowLabel1 ? R.color.txt_color_light : R.color.txt_color_normal);
         viewHolder.setTextColorRes(R.id.tv_content2, data.isShowLabel2 ? R.color.txt_color_light : R.color.txt_color_normal);
         viewHolder.setTextColorRes(R.id.tv_content3, data.isShowLabel3 ? R.color.txt_color_light : R.color.txt_color_normal);
@@ -220,6 +234,7 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                     result.title = getRealValueByField(item, t.getName(), itemsName);
                     result.isDateTitle = annotation.isDate();
                     result.dateFormatModeTitle = annotation.dateFormatMode();
+                    result.textColorResName = annotation.textColorResName();
                 }
 
                 if (t.isAnnotationPresent(FastListContent1.class)) {
@@ -372,18 +387,20 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
         private boolean isShowFlag;
         private Object flag;
 
-        public boolean isDateTitle;
-        public StringUtils.DateFormatMode dateFormatModeTitle;
-        public boolean isDate1;
-        public StringUtils.DateFormatMode dateFormatMode1;
-        public boolean isDate2;
-        public StringUtils.DateFormatMode dateFormatMode2;
-        public boolean isDate3;
-        public StringUtils.DateFormatMode dateFormatMode3;
-        public boolean isDate4;
-        public StringUtils.DateFormatMode dateFormatMode4;
+        private boolean isDateTitle;
+        private StringUtils.DateFormatMode dateFormatModeTitle;
+        private boolean isDate1;
+        private StringUtils.DateFormatMode dateFormatMode1;
+        private boolean isDate2;
+        private StringUtils.DateFormatMode dateFormatMode2;
+        private boolean isDate3;
+        private StringUtils.DateFormatMode dateFormatMode3;
+        private boolean isDate4;
+        private StringUtils.DateFormatMode dateFormatMode4;
 
-        public FastListData() {
+        private String textColorResName;
+
+        FastListData() {
             this.numberBgColorRes = -1;
             this.isShowTitle = false;
             this.isShowLabel1 = false;
@@ -415,6 +432,7 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
             this.isDate4 = false;
             this.dateFormatMode4 = StringUtils.DateFormatMode.LINE_YMDHMS;
 
+            this.textColorResName = "";
         }
     }
 

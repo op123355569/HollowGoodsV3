@@ -96,7 +96,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             viewHolder.setVisible(R.id.tv_content, data.isNeedContent);
             viewHolder.setVisible(R.id.iv_content, data.isNeedContent);
             viewHolder.setTextHint(R.id.tv_content, data.contentHint);
-            Object content = "";
+            Object content;
             if (!data.isNeedContent || data.fastItemMode == FastItemMode.File || (data.isShowNumberPicker && !data.isOnlyRead())) {
                 content = "";
             } else {

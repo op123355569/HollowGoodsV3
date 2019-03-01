@@ -18,6 +18,8 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
+import com.hg.hollowgoods.UI.Base.Message.Toast.t;
+import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.SystemAppUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,6 +31,8 @@ import java.util.ArrayList;
  * Created by HG on 2018-06-15.
  */
 public class ImagePreActivity extends BaseActivity {
+
+    private final int DIALOG_CODE_REMOVE_IMAGE = 3366;
 
     private RecyclerView result;
 
@@ -67,8 +71,7 @@ public class ImagePreActivity extends BaseActivity {
         adapter = new MediaAdapter(this, R.layout.item_fast_image, data, new OnViewClickListener(false) {
             @Override
             public void onViewClick(View view, int position) {
-                clickPosition = position;
-                baseUI.baseDialog.showAlertDialog(R.string.tips_best, R.string.is_sure_delete_image, 3366);
+                tipRemoveImage(position);
             }
         });
         result.setAdapter(adapter);
@@ -83,7 +86,7 @@ public class ImagePreActivity extends BaseActivity {
 
             if (result) {
                 switch (code) {
-                    case 3366:
+                    case DIALOG_CODE_REMOVE_IMAGE:
                         data.remove(clickPosition);
                         adapter.removeDatas(data, clickPosition, 1);
                         backData();
@@ -93,26 +96,71 @@ public class ImagePreActivity extends BaseActivity {
         });
 
         adapter.setOnItemClickListener(new OnRecyclerViewItemClickListener(false) {
+
             @Override
             public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
 
-                ArrayList<String> urls = new ArrayList<>();
-
-                for (Media t : data) {
-                    if (t.getFile() != null) {
-                        urls.add(t.getFile().getAbsolutePath());
-                    } else if (!TextUtils.isEmpty(t.getUrl())) {
-                        urls.add(t.getUrl());
-                    } else {
-                        urls.add("");
-                    }
+                String name;
+                String url;
+                if (data.get(position).getFile() == null) {
+                    name = data.get(position).getOldName();
+                    url = data.get(position).getUrl();
+                } else {
+                    name = data.get(position).getFile().getName();
+                    url = data.get(position).getFile().getAbsolutePath();
                 }
 
-                systemAppUtils.previewPhotos(baseUI.getBaseContext(), urls, position);
+                if (FileUtils.isImageFile(url)) {
+                    ArrayList<String> urls = new ArrayList<>();
+                    int imageCount = 0;
+                    int imagePosition = 0;
+
+                    for (Media t : data) {
+                        if (t.getFile() == null) {
+                            url = t.getUrl();
+                        } else {
+                            url = t.getFile().getAbsolutePath();
+                        }
+
+                        if (FileUtils.isImageFile(url)) {
+                            if (t.getFile() != null) {
+                                urls.add(t.getFile().getAbsolutePath());
+                            } else if (!TextUtils.isEmpty(t.getUrl())) {
+                                urls.add(t.getUrl());
+                            } else {
+                                urls.add("");
+                            }
+
+                            if (t == data.get(position)) {
+                                imagePosition = imageCount;
+                            }
+
+                            imageCount++;
+                        }
+                    }
+
+                    systemAppUtils.previewPhotos(baseUI.getBaseContext(), urls, imagePosition);
+                } else if (FileUtils.isOfficeFile(url)) {
+                    systemAppUtils.readFile(baseUI.getBaseContext(), url, name);
+                } else {
+                    t.error(R.string.not_support_file_type);
+                }
+            }
+
+            @Override
+            public void onRecyclerViewItemLongClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+                tipRemoveImage(position);
             }
         });
     }
 
+    private void tipRemoveImage(int position) {
+        if (data.get(position).isCanRemove()) {
+            clickPosition = position;
+            baseUI.baseDialog.showAlertDialog(R.string.tips_best, R.string.is_sure_delete_image, DIALOG_CODE_REMOVE_IMAGE);
+        }
+    }
+    
     private void backData() {
         Event event = new Event(HGEventActionCode.REMOVE_IMAGE);
         event.getData().putInt(HGConstants.PARAM_KEY_1, clickPosition);

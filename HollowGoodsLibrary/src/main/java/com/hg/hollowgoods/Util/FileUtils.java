@@ -390,8 +390,29 @@ public class FileUtils {
         if (sdCardExist) {
             sdDir = Environment.getExternalStorageDirectory().getAbsolutePath();// 获取跟目录
         }
-        
+
         return sdDir;
+    }
+
+    public static boolean isImageFile(String file) {
+        String str = file.toLowerCase();
+        return str.endsWith(".png")
+                || str.endsWith(".jpg")
+                || str.endsWith(".jpeg")
+                || str.endsWith(".gif")
+                || str.endsWith(".bmp");
+    }
+
+    public static boolean isOfficeFile(String file) {
+        String str = file.toLowerCase();
+        return str.endsWith(".doc")
+                || str.endsWith(".docx")
+                || str.endsWith(".xls")
+                || str.endsWith(".xlsx")
+                || str.endsWith(".pdf")
+                || str.endsWith(".txt")
+                || str.endsWith(".ppt")
+                || str.endsWith(".pptx");
     }
 
 }

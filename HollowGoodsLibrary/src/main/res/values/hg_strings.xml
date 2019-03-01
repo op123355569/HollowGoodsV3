@@ -90,6 +90,7 @@
     <string name="please_setup_explorer_first">请先安装浏览器</string>
     <string name="main_dir">主目录</string>
     <string name="nfc_disabled">NFC开关尚未开启，是否开启NFC功能？</string>
+    <string name="not_support_file_type">不支持的文件类型</string>
 
     <string name="developer">Hollow Goods</string>
     <string name="email">op123355569@163.com</string>

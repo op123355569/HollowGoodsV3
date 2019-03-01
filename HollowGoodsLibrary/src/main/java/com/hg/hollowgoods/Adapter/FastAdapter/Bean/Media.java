@@ -12,6 +12,7 @@ public class Media implements Serializable {
     private String oldName;
     private String url;
     private File file;
+    private boolean canRemove = true;
 
     public String getOldName() {
         return oldName;
@@ -45,4 +46,11 @@ public class Media implements Serializable {
         this.file = file;
     }
 
+    public boolean isCanRemove() {
+        return canRemove;
+    }
+
+    public void setCanRemove(boolean canRemove) {
+        this.canRemove = canRemove;
+    }
 }

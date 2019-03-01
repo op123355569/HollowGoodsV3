@@ -11,8 +11,11 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
+import com.hg.hollowgoods.Util.FileSelectorUtils;
+import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -21,14 +24,17 @@ import java.util.List;
 public class MediaAdapter extends CommonAdapter<Media> {
 
     private OnViewClickListener onViewClickListener;
+    private FileSelectorUtils fileSelectorUtils;
 
     public MediaAdapter(Context context, int layoutId, List<Media> datas, OnViewClickListener onViewClickListener) {
         super(context, layoutId, datas);
         this.onViewClickListener = onViewClickListener;
+        fileSelectorUtils = new FileSelectorUtils();
     }
 
     @Override
     protected void convert(ViewHolder viewHolder, Media item, final int position) {
+
 
         if (item.getFile() == null && TextUtils.isEmpty(item.getUrl())) {
             viewHolder.setText(R.id.tv_name, R.string.load_error);
@@ -44,16 +50,24 @@ public class MediaAdapter extends CommonAdapter<Media> {
                 url = item.getFile().getAbsolutePath();
             }
 
-            RequestOptions requestOptions = new RequestOptions()
-                    .placeholder(HGCommonResource.IMAGE_LOADING)
-                    .error(HGCommonResource.IMAGE_LOAD_ERROR)
-                    .centerCrop();
-            GlideOptions glideOptions = new GlideOptions(url, null, GlideOptions.NORMAL_FADE_IN, requestOptions);
-
             viewHolder.setText(R.id.tv_name, name);
-            viewHolder.setImageByUrl(R.id.iv_img, glideOptions);
+
+            if (FileUtils.isImageFile(url)) {
+                RequestOptions requestOptions = new RequestOptions()
+                        .placeholder(HGCommonResource.IMAGE_LOADING)
+                        .error(HGCommonResource.IMAGE_LOAD_ERROR)
+                        .centerCrop();
+                GlideOptions glideOptions = new GlideOptions(url, null, GlideOptions.NORMAL_FADE_IN, requestOptions);
+
+                viewHolder.setImageByUrl(R.id.iv_img, glideOptions);
+            } else if (FileUtils.isOfficeFile(url)) {
+                viewHolder.setImageResource(R.id.iv_img, fileSelectorUtils.getFileIcon(new File(url)));
+            } else {
+                viewHolder.setImageResource(R.id.iv_img, R.drawable.ic_file_ex_other);
+            }
         }
 
+        viewHolder.setVisible(R.id.iv_delete, item.isCanRemove());
         viewHolder.setOnClickListener(R.id.iv_delete, new OnViewClickListener(false) {
             @Override
             public void onViewClick(View view, int id) {

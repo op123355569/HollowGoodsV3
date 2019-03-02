@@ -128,6 +128,10 @@ public class StringUtils {
          */
         Time_Y("yyyy"),
         /**
+         * MM
+         */
+        Time_M("MM"),
+        /**
          * HH:mm:ss:SSS
          */
         Time_HMSS("HH:mm:ss:SSS"),

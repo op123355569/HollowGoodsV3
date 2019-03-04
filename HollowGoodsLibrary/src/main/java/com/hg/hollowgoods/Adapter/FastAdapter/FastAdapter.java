@@ -334,7 +334,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
         systemAppUtils.takePhoto(activity, REQUEST_CODE_TAKE_PHOTO, 50, false);
     }
 
-    public void openAlubm(Activity activity, int clickPosition, int clickSortNumber) {
+    public void openAlbum(Activity activity, int clickPosition, int clickSortNumber) {
         this.clickPosition = clickPosition;
         this.clickSortNumber = clickSortNumber;
         systemAppUtils.openAlbum(activity, REQUEST_CODE_OPEN_ALBUM);

@@ -134,7 +134,7 @@ public class Ex28_2Activity extends BaseActivity {
                 clickPosition = position;
                 clickSortNumber = sortNumber;
 
-                adapter.openAlbum(baseUI.getBaseContext(), position, sortNumber);
+                adapter.openAlbum(baseUI.getBaseContext(), parentData, HGSystemConfig.HG_PHOTO_MAX_COUNT, position, sortNumber);
             }
 
             @Override

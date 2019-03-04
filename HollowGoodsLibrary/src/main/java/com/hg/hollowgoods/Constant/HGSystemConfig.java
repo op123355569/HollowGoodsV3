@@ -229,4 +229,9 @@ public class HGSystemConfig {
      */
     public static boolean IS_NEED_CHECK_SERVER_TIME = true;
 
+    /**
+     * 图片最大张数
+     */
+    public static final int HG_PHOTO_MAX_COUNT = 9;
+
 }

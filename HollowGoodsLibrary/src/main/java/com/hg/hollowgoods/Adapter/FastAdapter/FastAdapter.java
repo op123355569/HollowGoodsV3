@@ -24,6 +24,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.DensityUtils;
+import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.PopupWinHelper;
 import com.hg.hollowgoods.Util.SystemAppUtils;
 import com.nineoldandroids.animation.Animator;
@@ -47,12 +48,12 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
 
     public static final int REQUEST_CODE_TAKE_PHOTO = 10;
     public static final int REQUEST_CODE_OPEN_ALBUM = 11;
+    public static final int REQUEST_CODE_OPEN_ALBUM_2 = 12;
 
     private Context context;
     private ItemFastList itemFastList;
     private ItemFastItem itemFastItem;
     private OnFastClick onFastClick;
-    private Class<?> itemsNameClass;
 
     public FastAdapter(Context context, List<CommonBean> datas, boolean openList, boolean openItem) {
         this(context, datas, openList, openItem, ParamItem.class);
@@ -61,9 +62,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
     public FastAdapter(Context context, List<CommonBean> datas, boolean openList, boolean openItem, Class<?> itemsNameClass) {
 
         super(context, datas);
-
         this.context = context;
-        this.itemsNameClass = itemsNameClass;
 
         if (openList) {
             addItemViewDelegate(ITEM_TYPE_LIST, itemFastList = new ItemFastList(context));
@@ -210,12 +209,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             addDatas(mDatas, index == -1 ? mDatas.size() - 1 : index, 1);
             addItem.remove(0);
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    addFastItem();
-                }
-            }, 300);
+            new Handler().postDelayed(() -> addFastItem(), 300);
         }
     }
 
@@ -254,12 +248,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
 
             removeItem.remove(0);
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    removeFastItem();
-                }
-            }, 300);
+            new Handler().postDelayed(() -> removeFastItem(), 300);
         }
     }
 
@@ -349,41 +338,93 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
         systemAppUtils.takePhoto(activity, REQUEST_CODE_TAKE_PHOTO, 50, false);
     }
 
-    public void openAlbum(Activity activity, int clickPosition, int clickSortNumber) {
+    public void openAlubm(Activity activity, int clickPosition, int clickSortNumber) {
         this.clickPosition = clickPosition;
         this.clickSortNumber = clickSortNumber;
         systemAppUtils.openAlbum(activity, REQUEST_CODE_OPEN_ALBUM);
     }
 
+    public void openAlbum(Activity activity, CommonBean bean, int maxCount, int clickPosition, int clickSortNumber) {
+
+        this.clickPosition = clickPosition;
+        this.clickSortNumber = clickSortNumber;
+
+        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+        ArrayList<String> photos = new ArrayList<>();
+        if (medias != null) {
+            for (Media t : medias) {
+                if (t.getFile() != null && FileUtils.isImageFile(t.getFile().getAbsolutePath())) {
+                    photos.add(t.getFile().getAbsolutePath());
+                }
+            }
+        }
+        systemAppUtils.checkPhotos(activity, REQUEST_CODE_OPEN_ALBUM_2, maxCount, photos);
+    }
+
     public void onActivityResultForImage(Activity activity, CommonBean bean, int requestCode, int resultCode, Intent backData) {
 
         if (resultCode == activity.RESULT_OK) {
-            Media media = null;
-
             switch (requestCode) {
                 case REQUEST_CODE_OPEN_ALBUM:
                     if (systemAppUtils.onActivityResultForOpenAlbum(context, backData)) {
-                        media = new Media();
+                        Media media = new Media();
                         media.setFile(new File(systemAppUtils.getAlbumPhotoPath()));
+
+                        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+                        if (medias == null) {
+                            medias = new ArrayList<>();
+                        }
+                        medias.add(media);
+
+                        bean.getMedia().put(clickSortNumber, medias);
+                        refreshFastItem(bean, clickPosition);
+                    }
+                    break;
+                case REQUEST_CODE_OPEN_ALBUM_2:
+                    ArrayList<String> photos = systemAppUtils.onActivityResultForCheckPhotos(backData);
+
+                    if (photos != null) {
+                        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+                        if (medias == null) {
+                            medias = new ArrayList<>();
+                        }
+
+                        for (int i = 0; i < medias.size(); ) {
+                            if (medias.get(i).getFile() != null && FileUtils.isImageFile(medias.get(i).getFile().getAbsolutePath())) {
+                                medias.remove(i);
+                            } else {
+                                i++;
+                            }
+                        }
+
+                        Media media;
+
+                        for (String t : photos) {
+                            media = new Media();
+                            media.setFile(new File(t));
+
+                            medias.add(media);
+                        }
+
+                        bean.getMedia().put(clickSortNumber, medias);
+                        refreshFastItem(bean, clickPosition);
                     }
                     break;
                 case REQUEST_CODE_TAKE_PHOTO:
                     if (systemAppUtils.onActivityResultForTakePhoto(activity)) {
-                        media = new Media();
+                        Media media = new Media();
                         media.setFile(systemAppUtils.getCameraPhotoFile());
+
+                        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+                        if (medias == null) {
+                            medias = new ArrayList<>();
+                        }
+                        medias.add(media);
+
+                        bean.getMedia().put(clickSortNumber, medias);
+                        refreshFastItem(bean, clickPosition);
                     }
                     break;
-            }
-
-            if (media != null) {
-                ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
-                if (medias == null) {
-                    medias = new ArrayList<>();
-                }
-                medias.add(media);
-
-                bean.getMedia().put(clickSortNumber, medias);
-                refreshFastItem(bean, clickPosition);
             }
         }
     }

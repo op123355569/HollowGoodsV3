@@ -16,6 +16,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListImgUrl;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListTitle;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
+import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.StringUtils;
 
@@ -47,7 +48,7 @@ public class Ex28 extends CommonBean {
     private String hobby;
 
     @FastItem(sortNumber = 5, label = "生活照", mode = FastItemMode.File, marginTop = 10)
-    @FastItemFileMaxCount(maxCount = 2)
+    @FastItemFileMaxCount(maxCount = HGSystemConfig.HG_PHOTO_MAX_COUNT)
     private String photo;
 
     @FastItem(sortNumber = 6, label = "是否已婚", marginTop = 10, itemsName = "MARRY")

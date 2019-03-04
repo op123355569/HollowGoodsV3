@@ -87,7 +87,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
     /**
      * 设置点击监听
      *
-     * @param onFastClick
+     * @param onFastClick onFastClick
      */
     public void setOnFastClick(OnFastClick onFastClick) {
 
@@ -143,12 +143,9 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
      * 刷新所有详情项
      */
     public void refreshFastItem(CommonBean bean) {
-
         if (itemFastItem != null) {
             ArrayList<FastItemData> temp = getDetailItemData(bean);
-            ArrayList<CommonBean> data = new ArrayList<>();
-            data.addAll(temp);
-
+            ArrayList<CommonBean> data = new ArrayList<>(temp);
             refreshData(data);
         }
     }
@@ -156,11 +153,10 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
     /**
      * 刷新单项
      *
-     * @param bean
-     * @param position
+     * @param bean     bean
+     * @param position position
      */
     public void refreshFastItem(CommonBean bean, int position) {
-
         if (itemFastItem != null) {
             FastItemData temp = mDatas.get(position).getData();
             FastItemData newData = itemFastItem.getDetailItemData(bean, temp.sortNumber);
@@ -209,7 +205,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             addDatas(mDatas, index == -1 ? mDatas.size() - 1 : index, 1);
             addItem.remove(0);
 
-            new Handler().postDelayed(() -> addFastItem(), 300);
+            new Handler().postDelayed(this::addFastItem, 300);
         }
     }
 
@@ -248,7 +244,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
 
             removeItem.remove(0);
 
-            new Handler().postDelayed(() -> removeFastItem(), 300);
+            new Handler().postDelayed(this::removeFastItem, 300);
         }
     }
 
@@ -363,7 +359,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
 
     public void onActivityResultForImage(Activity activity, CommonBean bean, int requestCode, int resultCode, Intent backData) {
 
-        if (resultCode == activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CODE_OPEN_ALBUM:
                     if (systemAppUtils.onActivityResultForOpenAlbum(context, backData)) {
@@ -434,7 +430,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
     /**
      * 初始化提交按钮
      *
-     * @param topView
+     * @param topView topView
      */
     public void initSubmitButton(View topView, RecyclerView recyclerView) {
 
@@ -448,7 +444,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(
                     DensityUtils.dp2px(topView.getContext(), 50f),
                     DensityUtils.dp2px(topView.getContext(), 50f),
-                    Gravity.RIGHT | Gravity.BOTTOM
+                    Gravity.END | Gravity.BOTTOM
             );
             flp.rightMargin = DensityUtils.dp2px(topView.getContext(), 16f);
             flp.bottomMargin = DensityUtils.dp2px(topView.getContext(), 16f);
@@ -477,12 +473,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
                         case RecyclerView.SCROLL_STATE_SETTLING:
                             break;
                         case RecyclerView.SCROLL_STATE_IDLE:
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    hideSubmitButton();
-                                }
-                            }, 3 * 1000);
+                            new Handler().postDelayed(() -> hideSubmitButton(), 3 * 1000);
                             break;
                     }
 
@@ -496,12 +487,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
                 }
             });
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    hideSubmitButton();
-                }
-            }, 3 * 1000);
+            new Handler().postDelayed(this::hideSubmitButton, 3 * 1000);
         }
     }
 

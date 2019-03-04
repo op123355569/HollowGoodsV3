@@ -22,7 +22,7 @@ open class CommonBean(itemType: Int) : Serializable {
     /**
      * 项目意图
      */
-    var itemAction: ItemAction? = null
+    var itemActionCode: Int? = -1
     /**
      * 其他数据
      */

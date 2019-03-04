@@ -69,17 +69,18 @@ public class InterfaceConfig {
 
         List<IPConfig> result = new IPDBHelper().findAll();
 
+        if (result != null) {
+            for (IPConfig t : result) {
+                addIP(t);
+            }
+        }
+
         if (defaultIPs != null) {
             for (IPConfig t : defaultIPs) {
                 addIP(t);
             }
         }
 
-        if (result != null) {
-            for (IPConfig t : result) {
-                addIP(t);
-            }
-        }
     }
 
     public static IPConfig getNowIPConfig() {

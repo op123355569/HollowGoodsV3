@@ -8,15 +8,15 @@ import com.bumptech.glide.request.RequestOptions;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ItemViewDelegate;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListAutoNumber;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent1;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent2;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent3;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent4;
+import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListDelete;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListEdit;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListFlag;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListImgUrl;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListTitle;
+import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastList.FastListContentData;
+import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastList.FastListData;
+import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastList.FastListTitleData;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Constant.HGCommonResource;
@@ -58,35 +58,35 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
         FastListData data = getData(item);
 
         // 设置可见性
-        viewHolder.setVisible2(R.id.tv_title, data.isShowTitle);
+        viewHolder.setVisible2(R.id.tv_title, data.titleData.isShowTitle);
         viewHolder.setVisible(R.id.iv_edit, data.isShowEdit);
         viewHolder.setVisible(R.id.iv_delete, data.isShowDelete);
         viewHolder.setVisible(R.id.number, data.isAutoNumber);
 
-        viewHolder.setVisible(R.id.tv_label1, data.isShowLabel1);
-        viewHolder.setVisible(R.id.tv_content1, data.isShowContent1);
-        viewHolder.setVisible(R.id.ll_item1, data.isShowLabel1 || data.isShowContent1);
+        viewHolder.setVisible(R.id.tv_label1, data.contentData1.isShowLabel);
+        viewHolder.setVisible(R.id.tv_content1, data.contentData1.isShowContent);
+        viewHolder.setVisible(R.id.ll_item1, data.contentData1.isShowLabel || data.contentData1.isShowContent);
 
-        viewHolder.setVisible(R.id.tv_label2, data.isShowLabel2);
-        viewHolder.setVisible(R.id.tv_content2, data.isShowContent2);
-        viewHolder.setVisible(R.id.ll_item2, data.isShowLabel2 || data.isShowContent2);
+        viewHolder.setVisible(R.id.tv_label2, data.contentData2.isShowLabel);
+        viewHolder.setVisible(R.id.tv_content2, data.contentData2.isShowContent);
+        viewHolder.setVisible(R.id.ll_item2, data.contentData2.isShowLabel || data.contentData2.isShowContent);
 
-        viewHolder.setVisible(R.id.tv_label3, data.isShowLabel3);
-        viewHolder.setVisible(R.id.tv_content3, data.isShowContent3);
-        viewHolder.setVisible(R.id.ll_item3, data.isShowLabel3 || data.isShowContent3);
+        viewHolder.setVisible(R.id.tv_label3, data.contentData3.isShowLabel);
+        viewHolder.setVisible(R.id.tv_content3, data.contentData3.isShowContent);
+        viewHolder.setVisible(R.id.ll_item3, data.contentData3.isShowLabel || data.contentData3.isShowContent);
 
-        viewHolder.setVisible(R.id.tv_label4, data.isShowLabel4);
-        viewHolder.setVisible(R.id.tv_content4, data.isShowContent4);
-        viewHolder.setVisible(R.id.ll_item4, data.isShowLabel4 || data.isShowContent4);
+        viewHolder.setVisible(R.id.tv_label4, data.contentData4.isShowLabel);
+        viewHolder.setVisible(R.id.tv_content4, data.contentData4.isShowContent);
+        viewHolder.setVisible(R.id.ll_item4, data.contentData4.isShowLabel || data.contentData4.isShowContent);
 
         viewHolder.setVisible(R.id.iv_img, data.isShowImg);
         viewHolder.setVisible(R.id.iv_flag, data.isShowFlag);
 
-        // 设置字体颜色
-        if (TextUtils.isEmpty(data.textColorResName)) {
+        // 设置标题字体颜色
+        if (TextUtils.isEmpty(data.titleData.textColorResName)) {
             viewHolder.setTextColorRes(R.id.tv_title, R.color.txt_color_dark);
         } else {
-            Object textColorRes = getObjValue(item, data.textColorResName);
+            Object textColorRes = getObjValue(item, data.titleData.textColorResName);
             if (textColorRes == null) {
                 viewHolder.setTextColorRes(R.id.tv_title, R.color.txt_color_dark);
             } else if (RegexUtils.isWholeNumber(textColorRes.toString())) {
@@ -95,42 +95,20 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
                 viewHolder.setTextColorRes(R.id.tv_title, R.color.txt_color_dark);
             }
         }
-        viewHolder.setTextColorRes(R.id.tv_content1, data.isShowLabel1 ? R.color.txt_color_light : R.color.txt_color_normal);
-        viewHolder.setTextColorRes(R.id.tv_content2, data.isShowLabel2 ? R.color.txt_color_light : R.color.txt_color_normal);
-        viewHolder.setTextColorRes(R.id.tv_content3, data.isShowLabel3 ? R.color.txt_color_light : R.color.txt_color_normal);
-        viewHolder.setTextColorRes(R.id.tv_content4, data.isShowLabel4 ? R.color.txt_color_light : R.color.txt_color_normal);
-
-        // 填充字段
-        if (data.isDateTitle) {
-            viewHolder.setText(R.id.tv_title, StringUtils.getDateTimeString(data.title, data.dateFormatModeTitle));
+        // 填充标题字段
+        if (data.titleData.isDateTitle) {
+            viewHolder.setText(R.id.tv_title, StringUtils.getDateTimeString(data.titleData.title, data.titleData.dateFormatModeTitle));
         } else {
-            viewHolder.setText(R.id.tv_title, data.title);
-        }
-        viewHolder.setText(R.id.tv_label1, data.label1);
-        if (data.isDate1) {
-            viewHolder.setText(R.id.tv_content1, StringUtils.getDateTimeString(data.content1, data.dateFormatMode1));
-        } else {
-            viewHolder.setText(R.id.tv_content1, data.content1);
-        }
-        viewHolder.setText(R.id.tv_label2, data.label2);
-        if (data.isDate2) {
-            viewHolder.setText(R.id.tv_content2, StringUtils.getDateTimeString(data.content2, data.dateFormatMode2));
-        } else {
-            viewHolder.setText(R.id.tv_content2, data.content2);
-        }
-        viewHolder.setText(R.id.tv_label3, data.label3);
-        if (data.isDate3) {
-            viewHolder.setText(R.id.tv_content3, StringUtils.getDateTimeString(data.content3, data.dateFormatMode3));
-        } else {
-            viewHolder.setText(R.id.tv_content3, data.content3);
-        }
-        viewHolder.setText(R.id.tv_label4, data.label4);
-        if (data.isDate4) {
-            viewHolder.setText(R.id.tv_content4, StringUtils.getDateTimeString(data.content4, data.dateFormatMode4));
-        } else {
-            viewHolder.setText(R.id.tv_content4, data.content4);
+            viewHolder.setText(R.id.tv_title, data.titleData.title);
         }
 
+        // 填充内容1-4
+        setContent(viewHolder, item, data.contentData1, R.id.tv_label1, R.id.tv_content1);
+        setContent(viewHolder, item, data.contentData2, R.id.tv_label2, R.id.tv_content2);
+        setContent(viewHolder, item, data.contentData3, R.id.tv_label3, R.id.tv_content3);
+        setContent(viewHolder, item, data.contentData4, R.id.tv_label4, R.id.tv_content4);
+
+        // 背景图片
         if (data.imgUrl == null || TextUtils.isEmpty(data.imgUrl + "")) {
             viewHolder.setImageResource(R.id.iv_img, R.color.transparent);
         } else {
@@ -146,6 +124,7 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
             }
         }
 
+        // Flag
         if (data.flag == null || TextUtils.isEmpty(data.flag + "")) {
             viewHolder.setImageResource(R.id.iv_flag, R.color.transparent);
         } else {
@@ -157,18 +136,21 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
             viewHolder.setImageByUrl(R.id.iv_flag, glideOptions);
         }
 
+        // 序号背景颜色
         if (data.numberBgColorRes == -1) {
             viewHolder.setSlanted(R.id.number, R.color.color_wrong, "" + (position + 1));
         } else {
             viewHolder.setSlanted(R.id.number, data.numberBgColorRes, "" + (position + 1));
         }
 
+        // 编辑按钮
         if (data.editRes == -1) {
             viewHolder.setImageResource(R.id.iv_edit, R.drawable.ic_fast_edit);
         } else {
             viewHolder.setImageResource(R.id.iv_edit, data.editRes);
         }
 
+        // 删除按钮
         if (data.deleteRes == -1) {
             viewHolder.setImageResource(R.id.iv_delete, R.drawable.ic_fast_delete);
         } else {
@@ -198,17 +180,41 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
     /**
      * 设置点击监听
      *
-     * @param onFastClick
+     * @param onFastClick onFastClick
      */
     public void setOnFastClick(OnFastClick onFastClick) {
         this.onFastClick = onFastClick;
     }
 
+
+    private void setContent(ViewHolder viewHolder, CommonBean item, FastListContentData contentData, int labelViewId, int contentViewId) {
+
+        if (TextUtils.isEmpty(contentData.textColorResName)) {
+            viewHolder.setTextColorRes(contentViewId, contentData.isShowLabel ? R.color.txt_color_light : R.color.txt_color_normal);
+        } else {
+            Object textColorRes = getObjValue(item, contentData.textColorResName);
+            if (textColorRes == null) {
+                viewHolder.setTextColorRes(contentViewId, contentData.isShowLabel ? R.color.txt_color_light : R.color.txt_color_normal);
+            } else if (RegexUtils.isWholeNumber(textColorRes.toString())) {
+                viewHolder.setTextColorRes(contentViewId, new BigDecimal(textColorRes.toString()).intValue());
+            } else {
+                viewHolder.setTextColorRes(contentViewId, contentData.isShowLabel ? R.color.txt_color_light : R.color.txt_color_normal);
+            }
+        }
+
+        viewHolder.setText(labelViewId, contentData.label);
+        if (contentData.isDate) {
+            viewHolder.setText(contentViewId, StringUtils.getDateTimeString(contentData.content, contentData.dateFormatMode));
+        } else {
+            viewHolder.setText(contentViewId, contentData.content);
+        }
+    }
+
     /**
      * 根据注解，封装数据
      *
-     * @param item
-     * @return
+     * @param item item
+     * @return FastListData
      */
     private FastListData getData(CommonBean item) {
 
@@ -219,90 +225,61 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
             // 自动显示序号
             result.isAutoNumber = true;
             FastListAutoNumber annotation = item.getClass().getAnnotation(FastListAutoNumber.class);
-            int backgroundColorRes = annotation.backgroundColorRes();
-            result.numberBgColorRes = backgroundColorRes;
+            result.numberBgColorRes = annotation.backgroundColorRes();
         }
 
         if (allField != null) {
             for (Field t : allField) {
                 if (t.isAnnotationPresent(FastListTitle.class)) {
                     // 标题
-                    result.isShowTitle = true;
+                    if (result.titleData == null) {
+                        result.titleData = new FastListTitleData();
+                    }
+
+                    result.titleData.isShowTitle = true;
                     FastListTitle annotation = t.getAnnotation(FastListTitle.class);
                     String itemsName = annotation.itemsName();
 
-                    result.title = getRealValueByField(item, t.getName(), itemsName);
-                    result.isDateTitle = annotation.isDate();
-                    result.dateFormatModeTitle = annotation.dateFormatMode();
-                    result.textColorResName = annotation.textColorResName();
+                    result.titleData.title = getRealValueByField(item, t.getName(), itemsName);
+                    result.titleData.isDateTitle = annotation.isDate();
+                    result.titleData.dateFormatModeTitle = annotation.dateFormatMode();
+                    result.titleData.textColorResName = annotation.textColorResName();
                 }
 
-                if (t.isAnnotationPresent(FastListContent1.class)) {
-                    // 标签1
-                    FastListContent1 annotation = t.getAnnotation(FastListContent1.class);
+                if (t.isAnnotationPresent(FastListContent.class)) {
+                    // 内容
+                    FastListContent annotation = t.getAnnotation(FastListContent.class);
+                    FastListContentData content;
+
+                    switch (annotation.number()) {
+                        case 1:
+                            content = result.contentData1;
+                            break;
+                        case 2:
+                            content = result.contentData2;
+                            break;
+                        case 3:
+                            content = result.contentData3;
+                            break;
+                        case 4:
+                            content = result.contentData4;
+                            break;
+                        default:
+                            continue;
+                    }
+
                     String label = annotation.label();
                     String itemsName = annotation.itemsName();
                     if (!TextUtils.isEmpty(label)) {
-                        result.isShowLabel1 = true;
-                        result.label1 = label;
+                        content.isShowLabel = true;
+                        content.label = label;
                     }
 
-                    // 内容1
-                    result.isShowContent1 = true;
-                    result.content1 = getRealValueByField(item, t.getName(), itemsName);
-                    result.isDate1 = annotation.isDate();
-                    result.dateFormatMode1 = annotation.dateFormatMode();
-                }
-
-                if (t.isAnnotationPresent(FastListContent2.class)) {
-                    // 标签2
-                    FastListContent2 annotation = t.getAnnotation(FastListContent2.class);
-                    String label = annotation.label();
-                    String itemsName = annotation.itemsName();
-                    if (!TextUtils.isEmpty(label)) {
-                        result.isShowLabel2 = true;
-                        result.label2 = label;
-                    }
-
-                    // 内容2
-                    result.isShowContent2 = true;
-                    result.content2 = getRealValueByField(item, t.getName(), itemsName);
-                    result.isDate2 = annotation.isDate();
-                    result.dateFormatMode2 = annotation.dateFormatMode();
-                }
-
-                if (t.isAnnotationPresent(FastListContent3.class)) {
-                    // 标签3
-                    FastListContent3 annotation = t.getAnnotation(FastListContent3.class);
-                    String label = annotation.label();
-                    String itemsName = annotation.itemsName();
-                    if (!TextUtils.isEmpty(label)) {
-                        result.isShowLabel3 = true;
-                        result.label3 = label;
-                    }
-
-                    // 内容3
-                    result.isShowContent3 = true;
-                    result.content3 = getRealValueByField(item, t.getName(), itemsName);
-                    result.isDate3 = annotation.isDate();
-                    result.dateFormatMode3 = annotation.dateFormatMode();
-                }
-
-                if (t.isAnnotationPresent(FastListContent4.class)) {
-                    // 标签4
-                    FastListContent4 annotation = t.getAnnotation(FastListContent4.class);
-                    String label = annotation.label();
-                    String itemsName = annotation.itemsName();
-                    if (!TextUtils.isEmpty(label)) {
-                        result.isShowLabel4 = true;
-                        result.label4 = label;
-                    }
-
-                    // 内容4
-                    result.isShowContent4 = true;
-                    result.content4 = getRealValueByField(item, t.getName(), itemsName);
-                    result.isDate4 = annotation.isDate();
-                    result.dateFormatMode4 = annotation.dateFormatMode();
+                    content.isShowContent = true;
+                    content.content = getRealValueByField(item, t.getName(), itemsName);
+                    content.isDate = annotation.isDate();
+                    content.dateFormatMode = annotation.dateFormatMode();
+                    content.textColorResName = annotation.textColorResName();
                 }
 
                 if (t.isAnnotationPresent(FastListEdit.class)) {
@@ -341,100 +318,5 @@ public class ItemFastList extends BaseFastItem implements ItemViewDelegate<Commo
 
         return result;
     }
-
-    /**
-     * 封装数据
-     */
-    private class FastListData {
-
-        private int numberBgColorRes;
-
-        private String title;
-        private boolean isShowTitle;
-
-        private String label1;
-        private boolean isShowLabel1;
-        private String content1;
-        private boolean isShowContent1;
-
-        private String label2;
-        private boolean isShowLabel2;
-        private String content2;
-        private boolean isShowContent2;
-
-        private String label3;
-        private boolean isShowLabel3;
-        private String content3;
-        private boolean isShowContent3;
-
-        private String label4;
-        private boolean isShowLabel4;
-        private String content4;
-        private boolean isShowContent4;
-
-        private Object imgUrl;
-        private boolean isShowImg;
-        private boolean isPicture;
-
-        private boolean isAutoNumber;
-
-        private boolean isShowEdit;
-        private int editRes;
-
-        private boolean isShowDelete;
-        private int deleteRes;
-
-        private boolean isShowFlag;
-        private Object flag;
-
-        private boolean isDateTitle;
-        private StringUtils.DateFormatMode dateFormatModeTitle;
-        private boolean isDate1;
-        private StringUtils.DateFormatMode dateFormatMode1;
-        private boolean isDate2;
-        private StringUtils.DateFormatMode dateFormatMode2;
-        private boolean isDate3;
-        private StringUtils.DateFormatMode dateFormatMode3;
-        private boolean isDate4;
-        private StringUtils.DateFormatMode dateFormatMode4;
-
-        private String textColorResName;
-
-        FastListData() {
-            this.numberBgColorRes = -1;
-            this.isShowTitle = false;
-            this.isShowLabel1 = false;
-            this.isShowContent1 = false;
-            this.isShowLabel2 = false;
-            this.isShowContent2 = false;
-            this.isShowLabel3 = false;
-            this.isShowContent3 = false;
-            this.isShowLabel4 = false;
-            this.isShowContent4 = false;
-            this.isShowImg = false;
-            this.isPicture = true;
-            this.isShowEdit = false;
-            this.isShowDelete = false;
-            this.isAutoNumber = false;
-            this.editRes = -1;
-            this.deleteRes = -1;
-            this.isShowFlag = false;
-            this.flag = null;
-
-            this.isDateTitle = false;
-            this.dateFormatModeTitle = StringUtils.DateFormatMode.LINE_YMDHMS;
-            this.isDate1 = false;
-            this.dateFormatMode1 = StringUtils.DateFormatMode.LINE_YMDHMS;
-            this.isDate2 = false;
-            this.dateFormatMode2 = StringUtils.DateFormatMode.LINE_YMDHMS;
-            this.isDate3 = false;
-            this.dateFormatMode3 = StringUtils.DateFormatMode.LINE_YMDHMS;
-            this.isDate4 = false;
-            this.dateFormatMode4 = StringUtils.DateFormatMode.LINE_YMDHMS;
-
-            this.textColorResName = "";
-        }
-    }
-
 
 }

@@ -39,6 +39,9 @@ public class FastItemData extends CommonBean {
     public StringUtils.DateFormatMode dateFormatMode;
     public String contentHint;
 
+    public String textColorResName;
+    public Object textColorRes;
+
     public FastItemData() {
         super(FastAdapter.ITEM_TYPE_ITEM);
         this.isShowLeftIconRes = false;
@@ -56,6 +59,8 @@ public class FastItemData extends CommonBean {
         this.isDate = false;
         setOnlyRead(true);
         this.contentHint = "";
+        this.textColorResName = "";
+        this.textColorRes = null;
     }
 
 

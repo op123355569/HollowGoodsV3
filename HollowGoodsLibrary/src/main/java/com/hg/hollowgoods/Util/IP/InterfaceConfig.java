@@ -24,6 +24,13 @@ import java.util.List;
 
 public class InterfaceConfig {
 
+    public static boolean IS_SHOW_PROTOCOL = true;
+    public static boolean IS_SHOW_IP = true;
+    public static boolean IS_SHOW_PORT = true;
+    public static boolean IS_SHOW_PROJECT_NAME = true;
+    public static boolean IS_SHOW_REALM_NAME = true;
+    public static boolean IS_SHOW_HISTORY = true;
+
     /**
      * IP配置集合
      */
@@ -150,6 +157,19 @@ public class InterfaceConfig {
         pre = ipDialog.findViewById(R.id.tv_pre);
         ipHistory = ipDialog.findViewById(R.id.tv_ip_history);
 
+        View protocolView = ipDialog.findViewById(R.id.asdl_protocol);
+        View ipView = ipDialog.findViewById(R.id.asdl_ip);
+        View portView = ipDialog.findViewById(R.id.asdl_port);
+        View projectNameView = ipDialog.findViewById(R.id.asdl_projectName);
+        View realmNameView = ipDialog.findViewById(R.id.asdl_realmName);
+
+        protocolView.setVisibility(IS_SHOW_PROTOCOL ? View.VISIBLE : View.GONE);
+        ipView.setVisibility(IS_SHOW_IP ? View.VISIBLE : View.GONE);
+        portView.setVisibility(IS_SHOW_PORT ? View.VISIBLE : View.GONE);
+        projectNameView.setVisibility(IS_SHOW_PROJECT_NAME ? View.VISIBLE : View.GONE);
+        realmNameView.setVisibility(IS_SHOW_REALM_NAME ? View.VISIBLE : View.GONE);
+        ipHistory.setVisibility(IS_SHOW_HISTORY ? View.VISIBLE : View.GONE);
+
         refreshIPDialog();
 
         protocol.addTextChangedListener(new TextWatcherAdapter() {
@@ -209,7 +229,18 @@ public class InterfaceConfig {
         port.setText(ipConfig.getPort());
         projectName.setText(ipConfig.getProjectName());
         realmName.setText(ipConfig.getRealmName());
-        pre.setText(ipConfig.getRequestUrl());
+
+        if (IS_SHOW_PROTOCOL
+                && IS_SHOW_IP
+                && IS_SHOW_PORT
+                && IS_SHOW_PROJECT_NAME
+                && IS_SHOW_REALM_NAME
+        ) {
+            pre.setText(ipConfig.getRequestUrl());
+        } else {
+            pre.setText(ipConfig.getRequestHead());
+        }
+
     }
 
     private final int DIALOG_CODE = -1000;

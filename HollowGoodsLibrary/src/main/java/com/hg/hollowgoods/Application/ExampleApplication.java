@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.hg.hollowgoods.Bean.HGUser;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
+import com.hg.hollowgoods.Util.IP.IPConfig;
+import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 import com.hg.hollowgoods.Util.LogUtils;
 
 /**
@@ -24,9 +26,18 @@ public class ExampleApplication extends BaseApplication {
 
     @Override
     public void initAppDataAfterDB() {
-//        InterfaceConfig.initIP(this,
-//                new IPConfig("218.93.5.74", "4500")
-//        );
+
+        InterfaceConfig.IS_SHOW_PROTOCOL = true;
+        InterfaceConfig.IS_SHOW_IP = true;
+        InterfaceConfig.IS_SHOW_PORT = true;
+        InterfaceConfig.IS_SHOW_PROJECT_NAME = true;
+        InterfaceConfig.IS_SHOW_REALM_NAME = true;
+        InterfaceConfig.IS_SHOW_HISTORY = true;
+
+        InterfaceConfig.initIP(new IPConfig()
+                .setIp("218.93.5.74")
+                .setPort("4500")
+        );
         LogUtils.init(this);
         BaseApplication baseApplication = create();
         baseApplication.setCrashHandlerUsername("HollowGoods");

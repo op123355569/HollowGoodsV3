@@ -64,6 +64,7 @@ public class Ex28_1Activity extends BaseActivity {
             item.setName("张三" + (i + 1));
             item.setAge(i + 20);
             item.setSex(i % 2);
+            item.sexTextColorRes = item.getSex() == 0 ? R.color.google_red : R.color.google_blue;
             item.setHobby("打灰机");
             item.setNeedButton(i % 2 == 0);
             item.setUrl("http://img1.imgtn.bdimg.com/it/u=3180728821,3067358428&fm=27&gp=0.jpg");

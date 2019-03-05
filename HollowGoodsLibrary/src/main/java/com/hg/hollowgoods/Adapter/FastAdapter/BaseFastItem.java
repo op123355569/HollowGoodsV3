@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public class BaseFastItem {
 
+    public final String CONTENT_ICON_HEAD = "*#HG#*";
     private Class<?> itemsNameClass;
 
     public void setItemsNameClass(Class<?> itemsNameClass) {
@@ -83,7 +84,7 @@ public class BaseFastItem {
         return null;
     }
 
-    public String getRealValue(CommonBean item, Object value, String itemsName) {
+    public String getRealValue(Object value, String itemsName) {
 
         if (!TextUtils.isEmpty(itemsName)) {
             Object objItems = getContentItems(itemsName);
@@ -98,6 +99,19 @@ public class BaseFastItem {
 
                         if (index < items.length && index >= 0) {
                             value = items[index];
+                        } else {
+                            value = "";
+                        }
+                    } else {
+                        value = "";
+                    }
+                } else if (objItems instanceof Integer[]) {
+                    if (RegexUtils.isWholeNumber(value.toString())) {
+                        int index = Integer.valueOf(value.toString());
+                        Integer[] items = (Integer[]) objItems;
+
+                        if (index < items.length && index >= 0) {
+                            value = CONTENT_ICON_HEAD + items[index];
                         } else {
                             value = "";
                         }
@@ -135,7 +149,7 @@ public class BaseFastItem {
 
     public String getRealValueByField(CommonBean item, String fieldName, String itemsName) {
         Object value = getObjValue(item, fieldName);
-        return getRealValue(item, value, itemsName);
+        return getRealValue(value, itemsName);
     }
 
 }

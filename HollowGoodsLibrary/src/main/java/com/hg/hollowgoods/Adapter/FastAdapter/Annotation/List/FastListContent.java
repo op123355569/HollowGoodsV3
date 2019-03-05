@@ -9,14 +9,21 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 快速适配器列表内容4
+ * 快速适配器列表内容1
  * 适用于变量
  * Created by HG on 2018-06-13.
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface FastListContent4 {
+public @interface FastListContent {
+
+    /**
+     * 序号1-4
+     *
+     * @return
+     */
+    int number() default 1;
 
     /**
      * 标签
@@ -47,5 +54,12 @@ public @interface FastListContent4 {
      * @return
      */
     StringUtils.DateFormatMode dateFormatMode() default StringUtils.DateFormatMode.LINE_YMDHMS;
+
+    /**
+     * 字体颜色资源变量名
+     *
+     * @return
+     */
+    String textColorResName() default "";
 
 }

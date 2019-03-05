@@ -11,10 +11,10 @@ import java.util.HashMap;
  */
 public class ParamItem {
 
-//    public static final String[] SEX = {
-//            "女",
-//            "男"
-//    };
+    public static final String[] SEX_STR = {
+            "女",
+            "男"
+    };
 
     public static final Integer[] SEX = {
             R.drawable.ic_female,

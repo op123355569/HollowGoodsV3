@@ -26,6 +26,7 @@ import com.hg.hollowgoods.Util.RegexUtils;
 import com.hg.hollowgoods.Util.StringUtils;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,8 +35,6 @@ import java.util.HashMap;
  * Created by HG on 2018-06-14.
  */
 public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<CommonBean> {
-
-    private final String CONTENT_ICON_HEAD = "*#HG#*";
 
     private Context context;
     private OnFastClick onFastClick = null;
@@ -100,7 +99,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             if (!data.isNeedContent || data.fastItemMode == FastItemMode.File || (data.isShowNumberPicker && !data.isOnlyRead())) {
                 content = "";
             } else {
-                content = getRealValue(item, data.content, data.itemsName);
+                content = getRealValue(data.content, data.itemsName);
             }
 
             if (data.isNeedContent) {
@@ -125,6 +124,19 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                     viewHolder.setText(R.id.tv_content, content.toString());
                 }
                 viewHolder.setImageResource(R.id.iv_content, R.color.transparent);
+            }
+
+            // 设置内容字体颜色
+            if (TextUtils.isEmpty(data.textColorResName)) {
+                viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
+            } else {
+                if (data.textColorRes == null) {
+                    viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
+                } else if (RegexUtils.isWholeNumber(data.textColorRes.toString())) {
+                    viewHolder.setTextColorRes(R.id.tv_content, new BigDecimal(data.textColorRes.toString()).intValue());
+                } else {
+                    viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
+                }
             }
 
             // 设置必填项标签的字体颜色
@@ -185,7 +197,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                 } else {
                     RequestOptions requestOptions = new RequestOptions()
                             .circleCrop();
-                    String url = "";
+                    String url;
                     if (m.getFile() == null) {
                         url = m.getUrl();
                     } else {
@@ -417,6 +429,8 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         boolean isDate;
         StringUtils.DateFormatMode dateFormatMode;
         String contentHint;
+        String textColorResName;
+        Object textColorRes;
 
         annotation = t.getAnnotation(FastItem.class);
 
@@ -433,6 +447,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         isDate = annotation.isDate();
         dateFormatMode = annotation.dateFormatMode();
         contentHint = annotation.contentHint();
+        textColorResName = annotation.textColorResName();
 
         //  右侧图标
         readability = bean.getOnlyReadItem(t.getName());
@@ -478,6 +493,9 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             data.dateFormatMode = dateFormatMode;
         }
         data.contentHint = contentHint;
+        data.textColorResName = textColorResName;
+        textColorRes = getObjValue(bean, data.textColorResName);
+        data.textColorRes = textColorRes;
 
         if (t.isAnnotationPresent(FastItemFileMaxCount.class)) {
             FastItemFileMaxCount annotation2 = t.getAnnotation(FastItemFileMaxCount.class);

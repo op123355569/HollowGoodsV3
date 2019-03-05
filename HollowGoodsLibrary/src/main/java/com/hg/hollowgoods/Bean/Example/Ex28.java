@@ -5,10 +5,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemFileMaxCou
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemNumberPicker;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemSwitch;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListAutoNumber;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent1;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent2;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent3;
-import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent4;
+import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListContent;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListDelete;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListEdit;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.List.FastListFlag;
@@ -30,20 +27,20 @@ public class Ex28 extends CommonBean {
     @FastListTitle
     private String title;
 
-    @FastListContent1(label = "姓名")
+    @FastListContent(number = 1, label = "姓名")
     @FastItem(sortNumber = 1, label = "姓名", isNotEmpty = true, mode = FastItemMode.Input)
     private String name;
 
-    @FastListContent2(label = "年龄")
+    @FastListContent(number = 2, label = "年龄")
     @FastItem(sortNumber = 2, label = "年龄")
     @FastItemNumberPicker(min = "0", max = "10", dif = "1", type = Integer.class)
     private int age;
 
-    @FastListContent3(label = "性别", itemsName = "SEX")
+    @FastListContent(number = 3, label = "性别", itemsName = "SEX_STR", textColorResName = "sexTextColorRes")
     @FastItem(sortNumber = 3, label = "性别", itemsName = "SEX", visible = "isShowSex", mode = FastItemMode.Choose)
     private int sex;
 
-    @FastListContent4(label = "爱好")
+    @FastListContent(number = 4, label = "爱好")
     @FastItem(sortNumber = 4, label = "爱好", visible = "isShowHobby")
     private String hobby;
 
@@ -51,7 +48,7 @@ public class Ex28 extends CommonBean {
     @FastItemFileMaxCount(maxCount = HGSystemConfig.HG_PHOTO_MAX_COUNT)
     private String photo;
 
-    @FastItem(sortNumber = 6, label = "是否已婚", marginTop = 10, itemsName = "MARRY")
+    @FastItem(sortNumber = 6, label = "是否已婚", marginTop = 10, itemsName = "MARRY", textColorResName = "sexTextColorRes")
     @FastItemSwitch
     private boolean isMarry;
 
@@ -70,6 +67,8 @@ public class Ex28 extends CommonBean {
 
     private boolean isShowSex = true;
     private boolean isShowHobby = true;
+
+    public int sexTextColorRes = R.color.google_blue;
 
     public Ex28(int itemType) {
         super(itemType);

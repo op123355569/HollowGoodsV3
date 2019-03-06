@@ -16,6 +16,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -204,6 +205,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                         url = m.getFile().getAbsolutePath();
                     }
                     GlideOptions glideOptions = new GlideOptions(url, null, GlideOptions.NO_FADE_IN, requestOptions);
+                    glideOptions.setLoadType(HGConstants.IMG_LOAD_TYPE_FAST_ADAPTER_ITEM_SMALL);
                     viewHolder.setImageByUrl(R.id.iv_imgPre, glideOptions);
                 }
             }

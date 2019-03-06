@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Adapter.Example.ExampleAdapter;
 import com.hg.hollowgoods.Bean.Example.Example;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Example.Ex33.Ex33Activity;
@@ -90,7 +91,7 @@ public class ExampleActivity extends BaseActivity {
 
         result = findViewById(R.id.rv_result);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_example);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_example);
 
         initExampleData();
 

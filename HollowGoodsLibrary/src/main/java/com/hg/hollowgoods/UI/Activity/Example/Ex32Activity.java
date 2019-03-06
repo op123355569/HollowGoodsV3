@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Adapter.Example.Ex32.Ex32Adapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -44,7 +45,7 @@ public class Ex32Activity extends BaseActivity {
 
         result = findViewById(R.id.rv_result);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_ex32);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex32);
 
         result.setHasFixedSize(true);
         result.setItemAnimator(new DefaultItemAnimator());

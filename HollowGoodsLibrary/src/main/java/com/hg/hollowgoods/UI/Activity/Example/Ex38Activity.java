@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Adapter.Example.Ex38Adapter;
 import com.hg.hollowgoods.Bean.Example.Ex38;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
@@ -44,7 +45,7 @@ public class Ex38Activity extends BaseActivity {
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_ex37);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex37);
         baseUI.setCommonRightTitleText("添加");
 
         result = findViewById(R.id.rv_result);

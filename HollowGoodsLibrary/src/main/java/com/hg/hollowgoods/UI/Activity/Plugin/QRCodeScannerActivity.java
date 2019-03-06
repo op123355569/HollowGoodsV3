@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -81,7 +82,7 @@ public class QRCodeScannerActivity extends BaseActivity {
         light = findViewById(R.id.light);
         scanLine = findViewById(R.id.capture_scan_line);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_ex23);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex23);
 
         // 扫描动画初始化
         initScannerAnimation();

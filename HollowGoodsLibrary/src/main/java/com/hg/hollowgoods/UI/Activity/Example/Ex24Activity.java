@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.hg.hollowgoods.Bean.ModelSVG;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -48,7 +49,7 @@ public class Ex24Activity extends BaseActivity {
         count = findViewById(R.id.tv_count);
         time = findViewById(R.id.tv_time);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_ex24);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex24);
 
         char[] countChars = {
                 0,

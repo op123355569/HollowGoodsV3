@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Widget.RunTextView.View.RunTextView;
@@ -44,7 +45,7 @@ public class Ex26Activity extends BaseActivity {
         runTextView2 = findViewById(R.id.runTextView2);
         runTextView3 = findViewById(R.id.runTextView3);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_ex26);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex26);
 
         initRunTextView2();
         initRunTextView3();

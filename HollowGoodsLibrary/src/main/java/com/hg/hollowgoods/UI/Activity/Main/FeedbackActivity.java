@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Adapter.Main.FeedbackAdapter;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Exception.ExceptionLog;
@@ -51,7 +52,7 @@ public class FeedbackActivity extends BaseActivity {
         refreshLayout = findViewById(R.id.swipeRefreshLayout);
         result = findViewById(R.id.result);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_feed_back);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_feed_back);
 
         refreshLayout.setColorSchemeColors(HGSystemConfig.REFRESH_COLORS);
 

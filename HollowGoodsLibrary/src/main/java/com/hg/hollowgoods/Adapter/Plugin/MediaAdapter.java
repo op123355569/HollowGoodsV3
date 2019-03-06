@@ -9,6 +9,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.CommonAdapter;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
 import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.FileSelectorUtils;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.util.List;
 
 /**
+ * 多媒体预览适配器
  * Created by HG on 2018-06-15.
  */
 public class MediaAdapter extends CommonAdapter<Media> {
@@ -58,6 +60,7 @@ public class MediaAdapter extends CommonAdapter<Media> {
                         .error(HGCommonResource.IMAGE_LOAD_ERROR)
                         .centerCrop();
                 GlideOptions glideOptions = new GlideOptions(url, null, GlideOptions.NORMAL_FADE_IN, requestOptions);
+                glideOptions.setLoadType(HGConstants.IMG_LOAD_TYPE_IMAGE_PRE_ACTIVITY_SMALL);
 
                 viewHolder.setImageByUrl(R.id.iv_img, glideOptions);
             } else if (FileUtils.isOfficeFile(url)) {

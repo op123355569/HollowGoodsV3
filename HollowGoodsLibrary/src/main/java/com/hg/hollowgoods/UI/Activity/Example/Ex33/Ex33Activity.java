@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Example.Ex33.gallery.GalleryActivity;
 import com.hg.hollowgoods.UI.Activity.Example.Ex33.shop.ShopActivity;
@@ -40,7 +41,7 @@ public class Ex33Activity extends BaseActivity {
         ex2 = findViewById(R.id.btn_2);
         ex3 = findViewById(R.id.btn_3);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_ex33);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex33);
 
         return null;
     }

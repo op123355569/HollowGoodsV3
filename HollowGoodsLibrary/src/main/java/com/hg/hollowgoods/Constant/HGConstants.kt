@@ -188,4 +188,15 @@ object HGConstants {
     @JvmField
     val UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE = -9998
 
+    /**
+     * 图片加载类型——快速适配器列表类型小图
+     */
+    @JvmField
+    val IMG_LOAD_TYPE_FAST_ADAPTER_ITEM_SMALL = -1000
+    /**
+     * 图片加载类型——图片预览插件小图
+     */
+    @JvmField
+    val IMG_LOAD_TYPE_IMAGE_PRE_ACTIVITY_SMALL = -1001
+
 }

@@ -13,6 +13,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
 import com.hg.hollowgoods.Adapter.Plugin.MediaAdapter;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -27,7 +28,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 
 /**
- * 图片预览界面
+ * 多媒体预览界面
  * Created by HG on 2018-06-15.
  */
 public class ImagePreActivity extends BaseActivity {
@@ -62,7 +63,7 @@ public class ImagePreActivity extends BaseActivity {
             data = new ArrayList<>();
         }
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_image_pre);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_image_pre);
 
         result.setHasFixedSize(true);
         result.setItemAnimator(new DefaultItemAnimator());
@@ -160,7 +161,7 @@ public class ImagePreActivity extends BaseActivity {
             baseUI.baseDialog.showAlertDialog(R.string.tips_best, R.string.is_sure_delete_image, DIALOG_CODE_REMOVE_IMAGE);
         }
     }
-    
+
     private void backData() {
         Event event = new Event(HGEventActionCode.REMOVE_IMAGE);
         event.getData().putInt(HGConstants.PARAM_KEY_1, clickPosition);

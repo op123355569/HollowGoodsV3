@@ -69,15 +69,12 @@ public class Ex10Activity extends BaseActivity implements AbsListView.OnScrollLi
 
         baseUI.setDataMode(baseUI.DATA_MODE_LOAD_DATA_CENTER);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
 
-                baseUI.setDataMode(baseUI.DATA_MODE_HAS_DATA);
+            baseUI.setDataMode(baseUI.DATA_MODE_HAS_DATA);
 
-                adapter = new Ex10Adapter(Ex10Activity.this, R.layout.item_ex_10, data);
-                result.setAdapter(adapter);
-            }
+            adapter = new Ex10Adapter(Ex10Activity.this, R.layout.item_ex_10, data);
+            result.setAdapter(adapter);
         }, 5 * 1000);
 
         return null;

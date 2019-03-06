@@ -20,6 +20,7 @@ import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Bean.Example.Ex28;
+import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -66,7 +67,7 @@ public class Ex28_2Activity extends BaseActivity {
         result = findViewById(R.id.rv_result);
         multiChoicesCircleButton = findViewById(R.id.multiChoicesCircleButton);
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_arrow_back_white_24dp, R.string.title_activity_ex28);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex28);
 
         refreshLayout.setColorSchemeColors(HGSystemConfig.REFRESH_COLORS);
 

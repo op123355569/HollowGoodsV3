@@ -8,21 +8,21 @@ public class FastListData {
     public FastListContentData contentData3 = new FastListContentData();
     public FastListContentData contentData4 = new FastListContentData();
 
-    public int numberBgColorRes;
+    public int numberBgColorRes = -1;
 
-    public Object imgUrl;
-    public boolean isShowImg;
-    public boolean isPicture;
+    public Object imgUrl = null;
+    public boolean isShowImg = false;
+    public boolean isPicture = true;
 
-    public boolean isAutoNumber;
+    public boolean isAutoNumber = false;
 
-    public boolean isShowEdit;
-    public int editRes;
+    public boolean isShowEdit = false;
+    public int editRes = -1;
 
-    public boolean isShowDelete;
-    public int deleteRes;
+    public boolean isShowDelete = false;
+    public int deleteRes = -1;
 
-    public boolean isShowFlag;
-    public Object flag;
+    public boolean isShowFlag = false;
+    public Object flag = null;
 
 }

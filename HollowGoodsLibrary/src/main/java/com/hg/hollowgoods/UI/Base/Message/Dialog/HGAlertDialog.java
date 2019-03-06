@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
@@ -31,29 +30,18 @@ public class HGAlertDialog extends HGDialog {
         this.yesButtonTxt = getValue(yesButtonTxt, context.getString(R.string.sure));
 
         this.dialog = new AlertDialog.Builder(context)
-                .setPositiveButton(this.yesButtonTxt, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (onDialogClickListener != null) {
-                            onDialogClickListener.onDialogClick(HGAlertDialog.this.code, true, null);
-                        }
+                .setPositiveButton(this.yesButtonTxt, (dialog, which) -> {
+                    if (onDialogClickListener != null) {
+                        onDialogClickListener.onDialogClick(HGAlertDialog.this.code, true, null);
                     }
                 })
-                .setNegativeButton(this.noButtonTxt, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (onDialogClickListener != null) {
-                            onDialogClickListener.onDialogClick(HGAlertDialog.this.code, false, null);
-                        }
+                .setNegativeButton(this.noButtonTxt, (dialog, which) -> {
+                    if (onDialogClickListener != null) {
+                        onDialogClickListener.onDialogClick(HGAlertDialog.this.code, false, null);
                     }
                 })
                 .create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGAlertDialog.this.onDialogDismissListener.onDialogDismiss(HGAlertDialog.this);
-            }
-        });
+        this.dialog.setOnDismissListener(dialog -> HGAlertDialog.this.onDialogDismissListener.onDialogDismiss(HGAlertDialog.this));
 
         if (!TextUtils.isEmpty(this.title)) {
             this.dialog.setTitle(this.title);

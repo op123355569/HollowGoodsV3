@@ -22,12 +22,13 @@ import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Bean.Example.Ex28;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
-import com.hg.hollowgoods.UI.Activity.Plugin.ImagePreActivity;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.LogUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils;
 import com.hg.hollowgoods.Widget.MultiChoicesCircleButton.MultiChoicesCircleButton;
 
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class Ex28_2Activity extends BaseActivity {
         parentData.setHobby("打灰机");
         parentData.setNeedButton(true);
         parentData.setUrl("http://img1.imgtn.bdimg.com/it/u=3180728821,3067358428&fm=27&gp=0.jpg");
-        parentData.setBirthday(1500000000000l);
+        parentData.setBirthday(1500000000000L);
 
         FastAdapter.setAllItemOnlyRead(parentData, false);
 
@@ -157,10 +158,7 @@ public class Ex28_2Activity extends BaseActivity {
                 clickPosition = position;
                 clickSortNumber = sortNumber;
 
-                baseUI.startMyActivity(ImagePreActivity.class,
-                        new String[]{HGConstants.PARAM_KEY_1},
-                        new Object[]{parentData.getMedia().get(sortNumber)}
-                );
+                new SystemAppUtils().imagePre(baseUI.getBaseContext(), parentData.getMedia().get(sortNumber));
             }
 
             @Override
@@ -207,26 +205,27 @@ public class Ex28_2Activity extends BaseActivity {
                 switch (code) {
                     case 1:
                         // 姓名
-                        value = data.getString(HGConstants.PARAM_KEY_1, "");
+                        value = data.getString(HGParamKey.InputValue.getValue(), "");
                         parentData.setName(value);
                         break;
                     case 2:
                         // 年龄
-                        value = data.getString(HGConstants.PARAM_KEY_1, "");
+                        value = data.getString(HGParamKey.InputValue.getValue(), "");
                         if (TextUtils.isEmpty(value)) {
                             value = "0";
                         }
                         parentData.setAge(Integer.valueOf(value));
                         break;
                     case 3:
-                        position = data.getInt(HGConstants.PARAM_KEY_1, -1);
+                        // 性别
+                        position = data.getInt(HGParamKey.Position.getValue(), -1);
                         if (position != -1) {
                             parentData.setSex(position);
                         }
                         break;
                     case 4:
                         // 爱好
-                        value = data.getString(HGConstants.PARAM_KEY_1, "");
+                        value = data.getString(HGParamKey.InputValue.getValue(), "");
                         parentData.setHobby(value);
                         break;
                 }
@@ -251,7 +250,7 @@ public class Ex28_2Activity extends BaseActivity {
 
         switch (item.getEventActionCode()) {
             case HGEventActionCode.REMOVE_IMAGE:
-                parentData.getMedia().get(clickSortNumber).remove(item.getData().getInt(HGConstants.PARAM_KEY_1, 0));
+                parentData.getMedia().get(clickSortNumber).remove(item.getData().getInt(HGParamKey.Position.getValue(), 0));
                 adapter.refreshFastItem(parentData, clickPosition);
                 break;
         }

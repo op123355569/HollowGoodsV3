@@ -10,16 +10,23 @@ public interface IBaseFragment {
     /**
      * 绑定布局界面
      *
-     * @return
+     * @return int
      */
     @LayoutRes
     int bindLayout();
 
     /**
+     * 初始化意图传递的数据
+     */
+    default void initIntentData() {
+
+    }
+
+    /**
      * 初始化界面
      *
-     * @param view
-     * @param savedInstanceState
+     * @param view               view
+     * @param savedInstanceState savedInstanceState
      * @return 如需绑定EventBus则返回该类，否则返回null
      */
     @Nullable

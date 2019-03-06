@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
-import com.hg.hollowgoods.Adapter.Main.FeedbackAdapter;
+import com.hg.hollowgoods.Adapter.Main.HGFeedbackAdapter;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
@@ -27,12 +27,12 @@ import java.util.ArrayList;
  * 反馈中心界面
  * Created by HG on 2018-06-07.
  */
-public class FeedbackActivity extends BaseActivity {
+public class HGFeedbackActivity extends BaseActivity {
 
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView result;
 
-    private FeedbackAdapter adapter;
+    private HGFeedbackAdapter adapter;
     private ArrayList<ExceptionLog> data = new ArrayList<>();
 
     @Override
@@ -42,7 +42,7 @@ public class FeedbackActivity extends BaseActivity {
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_feedback;
+        return R.layout.activity_hg_feedback;
     }
 
     @Nullable
@@ -60,7 +60,7 @@ public class FeedbackActivity extends BaseActivity {
         result.setItemAnimator(new DefaultItemAnimator());
         result.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new FeedbackAdapter(this, R.layout.item_feedback, data);
+        adapter = new HGFeedbackAdapter(this, R.layout.item_hg_feedback, data);
         result.setAdapter(adapter);
 
         getData();

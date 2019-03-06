@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,7 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.hg.hollowgoods.Adapter.Dialog.SingleChoiceDialogAdapter;
-import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 
@@ -45,30 +44,19 @@ public class HGSingleChoiceDialog extends HGDialog {
         this.dialog = new AlertDialog
                 .Builder(context)
                 .setView(R.layout.dialog_single_choice)
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (onDialogClickListener != null) {
-                            onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, false, null);
-                        }
+                .setNegativeButton(R.string.cancel, (dialog, which) -> {
+                    if (onDialogClickListener != null) {
+                        onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, false, null);
                     }
-                }).setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (onDialogClickListener != null) {
-                            Bundle data = new Bundle();
-                            data.putInt(HGConstants.PARAM_KEY_1, HGSingleChoiceDialog.this.checkedPosition);
-                            onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, true, data);
-                        }
+                }).setPositiveButton(R.string.sure, (dialog, which) -> {
+                    if (onDialogClickListener != null) {
+                        Bundle data = new Bundle();
+                        data.putInt(HGParamKey.Position.getValue(), HGSingleChoiceDialog.this.checkedPosition);
+                        onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, true, data);
                     }
                 })
                 .create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGSingleChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGSingleChoiceDialog.this);
-            }
-        });
+        this.dialog.setOnDismissListener(dialog -> HGSingleChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGSingleChoiceDialog.this));
 
         if (!TextUtils.isEmpty(this.title)) {
             this.dialog.setTitle(this.title);

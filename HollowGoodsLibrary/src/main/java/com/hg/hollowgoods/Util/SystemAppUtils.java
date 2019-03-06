@@ -16,11 +16,13 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Plugin.FileReadActivity;
 import com.hg.hollowgoods.UI.Activity.Plugin.FileSelectorActivity;
+import com.hg.hollowgoods.UI.Activity.Plugin.ImagePreActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPickerActivity;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPreviewActivity;
@@ -44,9 +46,9 @@ public class SystemAppUtils {
     /**
      * 获取文件的URI
      *
-     * @param context
-     * @param filepath
-     * @return
+     * @param context  context
+     * @param filepath filepath
+     * @return Uri
      */
     public Uri getFileUri(Context context, String filepath) {
         return getFileUri(context, new File(filepath));
@@ -55,9 +57,9 @@ public class SystemAppUtils {
     /**
      * 获取文件的URI
      *
-     * @param context
-     * @param file
-     * @return
+     * @param context context
+     * @param file    file
+     * @return Uri
      */
     public Uri getFileUri(Context context, File file) {
 
@@ -80,7 +82,7 @@ public class SystemAppUtils {
     /**
      * 获取照片名称
      *
-     * @return
+     * @return String
      */
     public String getCameraPhotoName() {
         return cameraPhotoName;
@@ -89,7 +91,7 @@ public class SystemAppUtils {
     /**
      * 获取照片文件
      *
-     * @return
+     * @return File
      */
     public File getCameraPhotoFile() {
         return cameraPhotoFile;
@@ -98,7 +100,7 @@ public class SystemAppUtils {
     /**
      * 获取照片压缩质量
      *
-     * @return
+     * @return int
      */
     public int getCameraPhotoQuality() {
         return cameraPhotoQuality;
@@ -107,8 +109,8 @@ public class SystemAppUtils {
     /**
      * 调用系统相机拍摄照片
      *
-     * @param activity
-     * @param requestCode
+     * @param activity    activity
+     * @param requestCode requestCode
      * @param quality     压缩质量 0-100
      * @param isFront     是否默认打开前置摄像头
      */
@@ -141,8 +143,8 @@ public class SystemAppUtils {
     /**
      * 调用系统相机拍摄照片返回处理
      *
-     * @param activity
-     * @return
+     * @param activity activity
+     * @return boolean
      */
     public boolean onActivityResultForTakePhoto(Activity activity) {
 
@@ -206,8 +208,8 @@ public class SystemAppUtils {
     /**
      * 打开相册
      *
-     * @param activity
-     * @param requestCode
+     * @param activity    activity
+     * @param requestCode requestCode
      */
     public void openAlbum(Activity activity, int requestCode) {
 
@@ -220,9 +222,9 @@ public class SystemAppUtils {
     /**
      * 打开相册返回处理
      *
-     * @param context
-     * @param data
-     * @return
+     * @param context context
+     * @param data    data
+     * @return boolean
      */
     public boolean onActivityResultForOpenAlbum(Context context, Intent data) {
 
@@ -239,9 +241,9 @@ public class SystemAppUtils {
     /**
      * 从Uri中解析物理路径
      *
-     * @param context
-     * @param uri
-     * @return
+     * @param context context
+     * @param uri     uri
+     * @return String
      */
     public String getRealFilePath(Context context, Uri uri) {
 
@@ -357,8 +359,8 @@ public class SystemAppUtils {
     /**
      * 刷新图库
      *
-     * @param context
-     * @param path
+     * @param context context
+     * @param path    path
      */
     private void refreshGallery(Context context, String path) {
         if (!TextUtils.isEmpty(path)) {
@@ -383,9 +385,9 @@ public class SystemAppUtils {
     /**
      * 调用系统相机拍摄视频
      *
-     * @param activity
-     * @param requestCode
-     * @param quality
+     * @param activity    activity
+     * @param requestCode requestCode
+     * @param quality     质量0f-1f
      */
     public void takeVideo(Activity activity, int requestCode, float quality) {
 
@@ -399,10 +401,7 @@ public class SystemAppUtils {
         videoName = System.currentTimeMillis() + ".mp4";
         videoFile = new File(videoSavePath + videoName);
 
-        File file = new File(videoSavePath);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
+        FileUtils.checkFileExist(videoSavePath);
 
         // 启动视频,并保存到临时文件
         Intent mIntent = new Intent();
@@ -416,7 +415,7 @@ public class SystemAppUtils {
     /**
      * 调用系统相机拍摄视频返回处理
      *
-     * @return
+     * @return boolean
      */
     public boolean onActivityResultForTakeVideo() {
 
@@ -430,8 +429,8 @@ public class SystemAppUtils {
     /**
      * 选择多张照片
      *
-     * @param activity
-     * @param requestCode
+     * @param activity       activity
+     * @param requestCode    requestCode
      * @param maxCount       最多选择的照片张数
      * @param selectedPhotos 已选择的照片
      */
@@ -450,8 +449,8 @@ public class SystemAppUtils {
     /**
      * 选择多张照片返回处理
      *
-     * @param data
-     * @return
+     * @param data data
+     * @return ArrayList<String>
      */
     public ArrayList<String> onActivityResultForCheckPhotos(Intent data) {
         return BGAPhotoPickerActivity.getSelectedPhotos(data);
@@ -460,7 +459,7 @@ public class SystemAppUtils {
     /**
      * 图片预览
      *
-     * @param context
+     * @param context  context
      * @param photos   需要预览的图片的集合
      * @param position 预览图片的索引当前
      */
@@ -484,8 +483,8 @@ public class SystemAppUtils {
     /**
      * 图片预览
      *
-     * @param context
-     * @param photo
+     * @param context context
+     * @param photo   photo
      */
     public void previewPhotos(Context context, final String photo) {
         previewPhotos(context, new ArrayList<String>() {
@@ -498,7 +497,8 @@ public class SystemAppUtils {
     /**
      * 打开系统浏览器
      *
-     * @param url
+     * @param context context
+     * @param url     url
      */
     public void openExplorer(Context context, String url) {
 
@@ -516,43 +516,81 @@ public class SystemAppUtils {
     /**
      * 文件选择器
      *
-     * @param context
+     * @param context      context
      * @param maxCount     选择个数上限
      * @param fileFilter   过滤格式，如只要jpg和png格式，传 .jpg,.png
-     * @param checkedFiles 已选文件
-     * @return 在onEvnetUI中返回，单文件是返回 File，多文件返回 HashMap<String, File>
+     * @param checkedFiles 已选文件</br>
+     *                     返回 在onEventUI中返回，单文件是返回 File，多文件返回 HashMap<String, File>
      */
     public void checkFiles(Context context, int maxCount, String fileFilter, HashMap<String, File> checkedFiles) {
 
         Intent intent = new Intent(context, FileSelectorActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        intent.putExtra(HGConstants.PARAM_KEY_1, maxCount);
+        intent.putExtra(HGParamKey.MaxCount.getValue(), maxCount);
         if (!TextUtils.isEmpty(fileFilter)) {
-            intent.putExtra(HGConstants.PARAM_KEY_2, fileFilter);
+            intent.putExtra(HGParamKey.FileFilter.getValue(), fileFilter);
         }
         if (checkedFiles != null) {
-            intent.putExtra(HGConstants.PARAM_KEY_3, checkedFiles);
+            intent.putExtra(HGParamKey.SelectedFile.getValue(), checkedFiles);
         }
 
         context.startActivity(intent);
     }
 
+    /**
+     * 读取Office文件
+     *
+     * @param context  context
+     * @param filepath filepath
+     * @param title    title
+     */
     public void readFile(Context context, String filepath, String title) {
 
         Intent intent = new Intent(context, FileReadActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        intent.putExtra(HGConstants.PARAM_KEY_1, filepath);
-        intent.putExtra(HGConstants.PARAM_KEY_2, title);
+        intent.putExtra(HGParamKey.URL.getValue(), filepath);
+        intent.putExtra(HGParamKey.Title.getValue(), title);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 文件预览 支持 图片+Office文件
+     *
+     * @param context context
+     * @param img     img
+     */
+    public void imagePre(Context context, ArrayList<Media> img) {
+        imagePre(context, img, null);
+    }
+
+    /**
+     * 文件预览 支持 图片+Office文件
+     *
+     * @param context context
+     * @param img     img
+     * @param title   title
+     */
+    public void imagePre(Context context, ArrayList<Media> img, String title) {
+
+        Intent intent = new Intent(context, ImagePreActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (img != null) {
+            intent.putExtra(HGParamKey.ListData.getValue(), img);
+        }
+        if (!TextUtils.isEmpty(title)) {
+            intent.putExtra(HGParamKey.Title.getValue(), title);
+        }
         context.startActivity(intent);
     }
 
     /**
      * 安装APK文件
      *
-     * @param context
-     * @param filePath
+     * @param context  context
+     * @param filePath filePath
      */
     public void installAPK(Context context, String filePath) {
 
@@ -566,8 +604,8 @@ public class SystemAppUtils {
     /**
      * 安装APK文件
      *
-     * @param context
-     * @param file
+     * @param context context
+     * @param file    file
      */
     public void installAPK(Context context, File file) {
         installAPK(context, file.getAbsolutePath());
@@ -576,8 +614,8 @@ public class SystemAppUtils {
     /**
      * 是否可以安装APK文件
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return boolean
      */
     public boolean canInstallAPK(Context context) {
 

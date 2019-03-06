@@ -5,7 +5,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.CommonAdapter
 import com.hg.hollowgoods.Exception.ExceptionLog
 import com.hg.hollowgoods.R
-import com.hg.hollowgoods.UI.Activity.Main.FeedbackActivity
+import com.hg.hollowgoods.UI.Activity.Main.HGFeedbackActivity
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener
 import com.hg.hollowgoods.Util.StringUtils
 
@@ -13,9 +13,9 @@ import com.hg.hollowgoods.Util.StringUtils
  * 反馈中心适配器
  * Created by HG on 2018-04-26.
  */
-class FeedbackAdapter(context: FeedbackActivity?, layoutId: Int, datas: List<ExceptionLog>?) : CommonAdapter<ExceptionLog>(context, layoutId, datas) {
+class HGFeedbackAdapter(context: HGFeedbackActivity?, layoutId: Int, datas: List<ExceptionLog>?) : CommonAdapter<ExceptionLog>(context, layoutId, datas) {
 
-    private var activity: FeedbackActivity?
+    private var activity: HGFeedbackActivity?
 
     init {
         activity = context;

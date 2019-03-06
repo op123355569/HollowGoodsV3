@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.widget.TimePicker;
 
 import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 
 import java.util.Calendar;
@@ -44,27 +45,19 @@ public class HGTimeDialog extends HGDialog {
                     onDialogClickListener.onDialogClick(HGTimeDialog.this.code, false, null);
                 }
             }
-        }).setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (onDialogClickListener != null) {
-                    Calendar c = Calendar.getInstance();
-                    c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), HGTimeDialog.this.hour, HGTimeDialog.this.minute);
+        }).setPositiveButton(R.string.sure, (dialog, which) -> {
+            if (onDialogClickListener != null) {
+                Calendar c1 = Calendar.getInstance();
+                c1.set(c1.get(Calendar.YEAR), c1.get(Calendar.MONTH), c1.get(Calendar.DATE), HGTimeDialog.this.hour, HGTimeDialog.this.minute);
 
-                    Bundle data = new Bundle();
-                    data.putInt(HGConstants.VALUE_KEY_HOUR, HGTimeDialog.this.hour);
-                    data.putInt(HGConstants.VALUE_KEY_MINUTE, HGTimeDialog.this.minute);
-                    data.putLong(HGConstants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
-                    onDialogClickListener.onDialogClick(HGTimeDialog.this.code, true, data);
-                }
+                Bundle data = new Bundle();
+                data.putInt(HGParamKey.DateHour.getValue(), HGTimeDialog.this.hour);
+                data.putInt(HGParamKey.DateMinute.getValue(), HGTimeDialog.this.minute);
+                data.putLong(HGParamKey.DateTimeInMillis.getValue(), c1.getTimeInMillis());
+                onDialogClickListener.onDialogClick(HGTimeDialog.this.code, true, data);
             }
         }).create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGTimeDialog.this.onDialogDismissListener.onDialogDismiss(HGTimeDialog.this);
-            }
-        });
+        this.dialog.setOnDismissListener(dialog -> HGTimeDialog.this.onDialogDismissListener.onDialogDismiss(HGTimeDialog.this));
 
         this.dialog.show();
 
@@ -73,12 +66,9 @@ public class HGTimeDialog extends HGDialog {
         timePicker.setCurrentHour(hour);
         timePicker.setCurrentMinute(minute);
 
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view, int mHour, int mMinute) {
-                HGTimeDialog.this.hour = mHour;
-                HGTimeDialog.this.minute = mMinute;
-            }
+        timePicker.setOnTimeChangedListener((view, mHour, mMinute) -> {
+            HGTimeDialog.this.hour = mHour;
+            HGTimeDialog.this.minute = mMinute;
         });
     }
 }

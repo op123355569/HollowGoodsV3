@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hg.hollowgoods.Constant.HGCommonResource;
-import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
@@ -40,7 +40,7 @@ public class PlayImageActivity extends BaseActivity {
 
         img = findViewById(R.id.iv_img);
 
-        url = getIntent().getStringExtra(HGConstants.PARAM_KEY_1);
+        url = getIntent().getStringExtra(HGParamKey.URL.getValue());
         baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.watch_picture);
 
 //        RequestOptions options = new RequestOptions()

@@ -219,16 +219,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGTipDialog dialog = new HGTipDialog(context, title, tip, cancelable, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGTipDialog dialog = new HGTipDialog(context, title, tip, cancelable, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -300,16 +297,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGInputNewDialog dialog = new HGInputNewDialog(context, configInput, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGInputNewDialog dialog = new HGInputNewDialog(context, configInput, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -401,16 +395,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGDateDialog dialog = new HGDateDialog(context, timeInMillis, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGDateDialog dialog = new HGDateDialog(context, timeInMillis, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -448,7 +439,7 @@ public class BaseDialog {
      */
     @Deprecated
     public void showDateDialog(int code) {
-        showDateDialog(HGConstants.DEFAULT_DATE, code);
+        showDateDialog(HGConstants.DEFAULT_TIME, code);
     }
 
     /**
@@ -464,16 +455,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGTimeDialog dialog = new HGTimeDialog(context, timeInMillis, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGTimeDialog dialog = new HGTimeDialog(context, timeInMillis, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);

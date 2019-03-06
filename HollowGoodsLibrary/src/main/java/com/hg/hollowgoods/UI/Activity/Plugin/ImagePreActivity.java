@@ -14,7 +14,7 @@ import com.hg.hollowgoods.Adapter.Plugin.MediaAdapter;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Constant.HGCommonResource;
-import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
@@ -35,12 +35,11 @@ public class ImagePreActivity extends BaseActivity {
 
     private final int DIALOG_CODE_REMOVE_IMAGE = 3366;
 
-    private RecyclerView result;
-
     private ArrayList<Media> data;
     private MediaAdapter adapter;
     private SystemAppUtils systemAppUtils = new SystemAppUtils();
     private int clickPosition;
+    private String title;
 
     @Override
     public Activity addToExitGroup() {
@@ -56,15 +55,19 @@ public class ImagePreActivity extends BaseActivity {
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        result = findViewById(R.id.rv_result);
+        title = getIntent().getStringExtra(HGParamKey.Title.getValue());
+        if (TextUtils.isEmpty(title)) {
+            title = getString(R.string.title_activity_image_pre);
+        }
 
-        data = (ArrayList<Media>) getIntent().getSerializableExtra(HGConstants.PARAM_KEY_1);
+        data = (ArrayList<Media>) getIntent().getSerializableExtra(HGParamKey.ListData.getValue());
         if (data == null) {
             data = new ArrayList<>();
         }
 
-        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_image_pre);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, title);
 
+        RecyclerView result = findViewById(R.id.rv_result);
         result.setHasFixedSize(true);
         result.setItemAnimator(new DefaultItemAnimator());
         result.setLayoutManager(new GridLayoutManager(this, 3));
@@ -164,7 +167,7 @@ public class ImagePreActivity extends BaseActivity {
 
     private void backData() {
         Event event = new Event(HGEventActionCode.REMOVE_IMAGE);
-        event.getData().putInt(HGConstants.PARAM_KEY_1, clickPosition);
+        event.getData().putInt(HGParamKey.Position.getValue(), clickPosition);
         EventBus.getDefault().post(event);
     }
 

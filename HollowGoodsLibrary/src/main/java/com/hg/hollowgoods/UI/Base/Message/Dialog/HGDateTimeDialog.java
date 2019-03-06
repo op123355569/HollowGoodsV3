@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.StringUtils;
 import com.hg.hollowgoods.Widget.RulerWheelView;
@@ -68,7 +69,7 @@ public class HGDateTimeDialog extends HGDialog {
         this.onDialogDismissListener = onDialogDismissListener;
 
         Calendar c = Calendar.getInstance();
-        if (timeInMillis != HGConstants.DEFAULT_DATE) {
+        if (timeInMillis != HGConstants.DEFAULT_TIME) {
             c.setTimeInMillis(timeInMillis);
         } else {
             BaseApplication baseApplication = BaseApplication.create();
@@ -87,28 +88,25 @@ public class HGDateTimeDialog extends HGDialog {
                     onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, false, null);
                 }
             }
-        }).setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (onDialogClickListener != null) {
-                    Calendar c = Calendar.getInstance();
-                    c.set(
-                            HGDateTimeDialog.this.year,
-                            HGDateTimeDialog.this.month,
-                            HGDateTimeDialog.this.date,
-                            HGDateTimeDialog.this.hour,
-                            HGDateTimeDialog.this.minute
-                    );
+        }).setPositiveButton(R.string.sure, (dialog, which) -> {
+            if (onDialogClickListener != null) {
+                Calendar c1 = Calendar.getInstance();
+                c1.set(
+                        HGDateTimeDialog.this.year,
+                        HGDateTimeDialog.this.month,
+                        HGDateTimeDialog.this.date,
+                        HGDateTimeDialog.this.hour,
+                        HGDateTimeDialog.this.minute
+                );
 
-                    Bundle data = new Bundle();
-                    data.putInt(HGConstants.VALUE_KEY_YEAR, HGDateTimeDialog.this.year);
-                    data.putInt(HGConstants.VALUE_KEY_MONTH, HGDateTimeDialog.this.month + 1);
-                    data.putInt(HGConstants.VALUE_KEY_DATE, HGDateTimeDialog.this.date);
-                    data.putInt(HGConstants.VALUE_KEY_HOUR, HGDateTimeDialog.this.hour);
-                    data.putInt(HGConstants.VALUE_KEY_MINUTE, HGDateTimeDialog.this.minute);
-                    data.putLong(HGConstants.VALUE_KEY_TIMESTAMPS, c.getTimeInMillis());
-                    onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, true, data);
-                }
+                Bundle data = new Bundle();
+                data.putInt(HGParamKey.DateYear.getValue(), HGDateTimeDialog.this.year);
+                data.putInt(HGParamKey.DateMonth.getValue(), HGDateTimeDialog.this.month + 1);
+                data.putInt(HGParamKey.DateDay.getValue(), HGDateTimeDialog.this.date);
+                data.putInt(HGParamKey.DateHour.getValue(), HGDateTimeDialog.this.hour);
+                data.putInt(HGParamKey.DateMinute.getValue(), HGDateTimeDialog.this.minute);
+                data.putLong(HGParamKey.DateTimeInMillis.getValue(), c1.getTimeInMillis());
+                onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, true, data);
             }
         }).create();
         this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

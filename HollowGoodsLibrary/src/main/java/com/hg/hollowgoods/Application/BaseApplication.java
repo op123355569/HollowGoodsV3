@@ -13,7 +13,6 @@ import com.hg.hollowgoods.Util.XUtils.XUtils;
 import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 基Application
@@ -103,7 +102,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         activityAllList.clear();
     }
 
-    public List<Activity> getAllActivity() {
+    public ArrayList<Activity> getAllActivity() {
         return activityAllList;
     }
 

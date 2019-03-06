@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
@@ -267,7 +267,7 @@ public class InterfaceConfig {
             if (result) {
                 switch (code) {
                     case DIALOG_CODE:
-                        int position = data.getInt(HGConstants.PARAM_KEY_1, -1);
+                        int position = data.getInt(HGParamKey.Position.getValue(), -1);
                         if (position != -1) {
                             for (IPConfig t : IP) {
                                 t.setChecked(false);

@@ -99,7 +99,7 @@
         <activity android:name=".UI.Activity.Example.Ex37Activity" /><!-- 示例37(自动动画)界面 -->
         <activity android:name=".UI.Activity.Example.Ex38Activity" /><!-- 示例38(列表菜单特效)界面 -->
         <activity android:name=".UI.Activity.Example.Ex39Activity" /><!-- 示例39(动画按钮)界面 -->
-        <activity android:name=".UI.Activity.Test.TestActivity" /><!-- 测试界面 -->
+        <activity android:name=".UI.Activity.Test.HGTestActivity" /><!-- 测试界面 -->
         <activity android:name=".UI.MVP.Activity.Example.MVPExamActivity" /><!-- MVP示例界面 -->
 
         <!-- **** BugView相关 **** -->
@@ -154,7 +154,7 @@
         <activity android:name=".UI.Activity.Plugin.QRCodeScannerActivity" /><!-- ZXing -->
 
         <!-- **** 反馈中心 **** -->
-        <activity android:name=".UI.Activity.Main.FeedbackActivity" /><!-- 反馈中心 -->
+        <activity android:name=".UI.Activity.Main.HGFeedbackActivity" /><!-- 反馈中心 -->
 
         <!-- **** 网络状态变化监听 **** -->
         <receiver android:name=".Service.NetworkReceiver">

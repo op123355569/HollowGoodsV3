@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.hg.hollowgoods.Constant.HGCommonResource;
-import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -54,8 +54,8 @@ public class FileReadActivity extends BaseActivity {
 
         fileView = findViewById(R.id.fileView);
 
-        url = getIntent().getStringExtra(HGConstants.PARAM_KEY_1);
-        String title = getIntent().getStringExtra(HGConstants.PARAM_KEY_2);
+        url = getIntent().getStringExtra(HGParamKey.URL.getValue());
+        String title = getIntent().getStringExtra(HGParamKey.Title.getValue());
 
         baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, title);
 

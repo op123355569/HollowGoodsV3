@@ -8,7 +8,7 @@ import android.view.View;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Example.ExampleActivity;
-import com.hg.hollowgoods.UI.Activity.Test.TestActivity;
+import com.hg.hollowgoods.UI.Activity.Test.HGTestActivity;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 
@@ -52,9 +52,9 @@ public class HollowGoodsActivity extends BaseActivity {
         if (id == R.id.action_1) {
             new InterfaceConfig().showIPDialog(this);
         } else if (id == R.id.action_2) {
-            baseUI.startMyActivityRipple(TestActivity.class, view, HGSystemConfig.ACTIVITY_CHANGE_RES, null);
+            baseUI.startMyActivityRipple(HGTestActivity.class, view, HGSystemConfig.ACTIVITY_CHANGE_RES, null);
         } else if (id == R.id.action_3) {
-            baseUI.startMyActivity(FeedbackActivity.class);
+            baseUI.startMyActivity(HGFeedbackActivity.class);
         }
     }
 

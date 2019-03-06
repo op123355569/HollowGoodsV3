@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.hg.hollowgoods.Bean.Test.HGTest;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -17,20 +19,17 @@ import java.util.ArrayList;
  * 测试界面
  * Created by HG
  */
-public class TestActivity extends BaseActivity {
+public class HGTestActivity extends BaseActivity {
+
+    private final int baseId = 1;
 
     private LinearLayout menu;
 
-    private final int baseId = 1;
-    private ArrayList<Test> tests = new ArrayList<>();
-
-    private void initTestData() {
-//        tests.add(Test test);
-    }
+    private ArrayList<HGTest> tests;
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_test;
+        return R.layout.activity_hg_test;
     }
 
     @Override
@@ -39,11 +38,17 @@ public class TestActivity extends BaseActivity {
     }
 
     @Override
+    public void initIntentData() {
+        tests = (ArrayList<HGTest>) getIntent().getSerializableExtra(HGParamKey.ListData.getValue());
+        if (tests == null) {
+            tests = new ArrayList<>();
+        }
+    }
+
+    @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
         menu = findViewById(R.id.menu);
-
-        initTestData();
 
         return null;
     }
@@ -70,7 +75,7 @@ public class TestActivity extends BaseActivity {
                     int position = id;
                     position = position - 1;
 
-                    Test t = tests.get(position);
+                    HGTest t = tests.get(position);
 
                     if (t.getKeys() == null) {
                         baseUI.startMyActivityRipple(t.getJumpClass(), v, HGSystemConfig.ACTIVITY_CHANGE_RES, null);
@@ -80,59 +85,6 @@ public class TestActivity extends BaseActivity {
                 }
             });
             menu.addView(btn);
-        }
-    }
-
-    private class Test {
-        private String btnName;
-        private Class<?> jumpClass;
-        private String[] keys;
-        private Object[] values;
-
-        public Test(String btnName, Class<?> jumpClass, String[] keys, Object[] values) {
-            this.btnName = btnName;
-            this.jumpClass = jumpClass;
-            this.keys = keys;
-            this.values = values;
-        }
-
-        public Test(String btnName, Class<?> jumpClass) {
-            this.btnName = btnName;
-            this.jumpClass = jumpClass;
-            this.keys = null;
-            this.values = null;
-        }
-
-        public String getBtnName() {
-            return btnName;
-        }
-
-        public void setBtnName(String btnName) {
-            this.btnName = btnName;
-        }
-
-        public Class<?> getJumpClass() {
-            return jumpClass;
-        }
-
-        public void setJumpClass(Class<?> jumpClass) {
-            this.jumpClass = jumpClass;
-        }
-
-        public String[] getKeys() {
-            return keys;
-        }
-
-        public void setKeys(String[] keys) {
-            this.keys = keys;
-        }
-
-        public Object[] getValues() {
-            return values;
-        }
-
-        public void setValues(Object[] values) {
-            this.values = values;
         }
     }
 

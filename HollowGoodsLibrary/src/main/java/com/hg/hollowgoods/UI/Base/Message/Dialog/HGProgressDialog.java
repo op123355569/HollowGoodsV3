@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -42,12 +41,7 @@ public class HGProgressDialog extends HGDialog {
         this.dialog = new AlertDialog.Builder(context)
                 .setView(isIndefinite ? R.layout.dialog_progress_indefinite : R.layout.dialog_progress_determine)
                 .create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGProgressDialog.this.onDialogDismissListener.onDialogDismiss(HGProgressDialog.this);
-            }
-        });
+        this.dialog.setOnDismissListener(dialog -> HGProgressDialog.this.onDialogDismissListener.onDialogDismiss(HGProgressDialog.this));
 
         if (isIndefinite) {
             if (!TextUtils.isEmpty(this.title)) {

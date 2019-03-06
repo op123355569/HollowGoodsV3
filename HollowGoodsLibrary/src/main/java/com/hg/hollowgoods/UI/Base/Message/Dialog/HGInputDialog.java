@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.ViewUtils;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -145,7 +146,7 @@ public class HGInputDialog extends HGDialog {
 
         if (onDialogClickListener != null) {
             Bundle data = new Bundle();
-            data.putString(HGConstants.PARAM_KEY_1, this.inputView.getText().toString());
+            data.putString(HGParamKey.InputValue.getValue(), this.inputView.getText().toString());
             onDialogClickListener.onDialogClick(code, true, data);
         }
 

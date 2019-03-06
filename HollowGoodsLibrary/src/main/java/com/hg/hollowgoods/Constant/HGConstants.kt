@@ -54,30 +54,6 @@ object HGConstants {
     @JvmField
     val LIST_ITEM_TYPE_HEADER = 9999
 
-    /**** 通用键值1 ****/
-    @JvmField
-    val PARAM_KEY_1 = "param.key.1"
-    /**** 通用键值2 ****/
-    @JvmField
-    val PARAM_KEY_2 = "param.key.2"
-    /**** 通用键值3 ****/
-    @JvmField
-    val PARAM_KEY_3 = "param.key.3"
-    /**** 通用键值4 ****/
-    @JvmField
-    val PARAM_KEY_4 = "param.key.4"
-    /**** 通用键值5 ****/
-    @JvmField
-    val PARAM_KEY_5 = "param.key.5"
-    /**** 通用键值6 ****/
-    @JvmField
-    val PARAM_KEY_6 = "param.key.6"
-    /**** 通用键值7 ****/
-    @JvmField
-    val PARAM_KEY_7 = "param.key.7"
-    /**** 通用键值8 ****/
-    @JvmField
-    val PARAM_KEY_8 = "param.key.8"
 
     /**** 基本对话框相关 ****/
     /**
@@ -118,59 +94,19 @@ object HGConstants {
     @JvmField
     val INPUT_SIZE_DEFAULT = -1
 
-    /**** 时间对话框相关 ****/
+    /**** 日期、时间对话框相关 ****/
     /**
      * 默认时间
      */
     @JvmField
     val DEFAULT_TIME = -1L
-    /**
-     * 返回值的键——小时
-     */
-    @JvmField
-    val VALUE_KEY_HOUR = "value.key.hour"
-    /**
-     * 返回值的键——分钟
-     */
-    @JvmField
-    val VALUE_KEY_MINUTE = "value.key.minute"
-
-    /**** 日期对话框相关 ****/
-    /**
-     * 默认年月日
-     */
-    @JvmField
-    val DEFAULT_DATE = -1L
-
-    /**
-     * 返回值的键——年
-     */
-    @JvmField
-    val VALUE_KEY_YEAR = "value.key.year"
-    /**
-     * 返回值的键——月
-     */
-    @JvmField
-    val VALUE_KEY_MONTH = "value.key.month"
-    /**
-     * 返回值的键——日
-     */
-    @JvmField
-    val VALUE_KEY_DATE = "value.key.date"
-
-    /**** 日期、时间对话框通用 ****/
-    /**
-     * 返回值的键——时间戳
-     */
-    @JvmField
-    val VALUE_KEY_TIMESTAMPS = "value.key.timestamps"
 
     /**** 多选对话框 ****/
     /**
      * 多选选对话框——无选择上限
      */
     @JvmField
-    val MULTI_CHOICE_NO_MAX = -1
+    var MULTI_CHOICE_NO_MAX = -1
 
     /**
      * APP版本更新工具类——请求安装未知应用权限

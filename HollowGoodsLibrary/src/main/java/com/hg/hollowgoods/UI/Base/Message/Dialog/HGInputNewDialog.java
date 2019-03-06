@@ -2,13 +2,13 @@ package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.ViewUtils;
@@ -97,7 +97,7 @@ public class HGInputNewDialog extends HGDialog {
             boolean result = inputView.isInputRight();
 
             if (result) {
-                new Handler().postDelayed(() -> backInputData(), 300);
+                backInputData();
             } else {
                 t.error(R.string.input_content_error);
             }
@@ -108,7 +108,7 @@ public class HGInputNewDialog extends HGDialog {
 
         if (onDialogClickListener != null) {
             Bundle data = new Bundle();
-            data.putString(HGConstants.PARAM_KEY_1, this.inputView.getText().toString());
+            data.putString(HGParamKey.InputValue.getValue(), this.inputView.getText().toString());
             onDialogClickListener.onDialogClick(code, true, data);
         }
 

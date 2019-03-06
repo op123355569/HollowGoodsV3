@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import com.hg.hollowgoods.R;
@@ -26,19 +25,11 @@ public class HGWarningDialog extends HGDialog {
         this.yesButtonTxt = getValue(yesButtonTxt, context.getString(R.string.sure));
 
         this.dialog = new AlertDialog.Builder(context)
-                .setPositiveButton(this.yesButtonTxt, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                .setPositiveButton(this.yesButtonTxt, (dialog, which) -> {
 
-                    }
                 })
                 .create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGWarningDialog.this.onDialogDismissListener.onDialogDismiss(HGWarningDialog.this);
-            }
-        });
+        this.dialog.setOnDismissListener(dialog -> HGWarningDialog.this.onDialogDismissListener.onDialogDismiss(HGWarningDialog.this));
 
         this.dialog.setMessage(this.tip);
         this.dialog.setCancelable(cancelable);

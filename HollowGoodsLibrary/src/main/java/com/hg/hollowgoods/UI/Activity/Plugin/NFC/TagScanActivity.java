@@ -15,7 +15,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
-import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
@@ -301,7 +301,7 @@ public abstract class TagScanActivity extends BaseActivity {
     private void backData(TagScanResult result) {
 
         Event event = new Event(HGEventActionCode.TAG_SCAN_RESULT);
-        event.getData().putSerializable(HGConstants.PARAM_KEY_1, result);
+        event.getData().putSerializable(HGParamKey.ObjData.getValue(), result);
 
         EventBus.getDefault().post(event);
     }

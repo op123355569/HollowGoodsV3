@@ -5,9 +5,9 @@ import com.hg.hollowgoods.Util.StringUtils;
 public class FastListContentData {
 
     public String label;
-    public boolean isShowLabel = true;
+    public boolean isShowLabel = false;
     public String content;
-    public boolean isShowContent = true;
+    public boolean isShowContent = false;
 
     public boolean isDate;
     public StringUtils.DateFormatMode dateFormatMode;

@@ -347,14 +347,18 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
 
         ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
         ArrayList<String> photos = new ArrayList<>();
+        int passCount = 0;
+
         if (medias != null) {
             for (Media t : medias) {
                 if (t.getFile() != null && FileUtils.isImageFile(t.getFile().getAbsolutePath())) {
                     photos.add(t.getFile().getAbsolutePath());
+                } else {
+                    passCount++;
                 }
             }
         }
-        systemAppUtils.checkPhotos(activity, REQUEST_CODE_OPEN_ALBUM_2, maxCount, photos);
+        systemAppUtils.checkPhotos(activity, REQUEST_CODE_OPEN_ALBUM_2, maxCount - passCount, photos);
     }
 
     public void onActivityResultForImage(Activity activity, CommonBean bean, int requestCode, int resultCode, Intent backData) {

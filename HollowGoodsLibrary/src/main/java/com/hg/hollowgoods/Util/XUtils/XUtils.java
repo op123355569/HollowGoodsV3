@@ -14,6 +14,7 @@ import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.APPUtils;
 import com.hg.hollowgoods.Util.EncryptUtils;
+import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.LogUtils;
 
 import org.xutils.common.Callback;
@@ -57,12 +58,16 @@ public class XUtils {
     private final String DEFAULT_UPLOAD_FILE_KEY = "file";
     private static Context context;
 
+    private Callback.Cancelable getHttpCancelable = null;
+    private Callback.Cancelable downloadCancelable = null;
+    private Callback.Cancelable uploadCancelable = null;
+
     /*************************************** 暴露的方法 ***************************************/
 
     /**
      * 初始化
      *
-     * @param application
+     * @param application application
      */
     public static void init(Application application) {
 
@@ -147,9 +152,20 @@ public class XUtils {
                 getHttpDataListener.onGetError(new Throwable(context.getString(R.string.no_set_url)));
             }
         } else {
+            cancelGetHttpData();
             // TODO 设置连接超时时间
             params.setConnectTimeout(HGSystemConfig.TIME_OUT);
-            x.http().request(httpMethod, params, new GetHttpCallBack(params));
+            getHttpCancelable = x.http().request(httpMethod, params, new GetHttpCallBack(params));
+        }
+    }
+
+    /**
+     * 取消获取网络数据
+     */
+    public void cancelGetHttpData() {
+        if (getHttpCancelable != null) {
+            getHttpCancelable.cancel();
+            getHttpCancelable = null;
         }
     }
 
@@ -170,6 +186,7 @@ public class XUtils {
                 downloadListener.onDownloadError(new Throwable(context.getString(R.string.no_set_url)));
             }
         } else {
+            cancelDownloadFile();
             // TODO 设置连接超时时间
             params.setConnectTimeout(HGSystemConfig.TIME_OUT);
 
@@ -185,7 +202,7 @@ public class XUtils {
             // 自动断点下载
             params.setAutoResume(true);
 
-            x.http().request(httpMethod, params, new DownloadCallBack(params));
+            downloadCancelable = x.http().request(httpMethod, params, new DownloadCallBack(params));
         }
     }
 
@@ -200,10 +217,20 @@ public class XUtils {
     }
 
     /**
+     * 取消下载文件
+     */
+    public void cancelDownloadFile() {
+        if (downloadCancelable != null) {
+            downloadCancelable.cancel();
+            downloadCancelable = null;
+        }
+    }
+
+    /**
      * 上传文件
      *
-     * @param params
-     * @param filePaths
+     * @param params    params
+     * @param filePaths filePaths
      */
     public void uploadFile(RequestParams params, ArrayList<KeyValue> filePaths) {
 
@@ -215,6 +242,7 @@ public class XUtils {
                 uploadListener.onUploadError(new Throwable(context.getString(R.string.no_set_url)));
             }
         } else {
+            cancelUploadFile();
             // TODO 设置连接超时时间
             params.setConnectTimeout(HGSystemConfig.TIME_OUT);
             params.setMultipart(true);
@@ -229,15 +257,15 @@ public class XUtils {
                 }
             }
 
-            x.http().post(params, new UploadCallBack(params));
+            uploadCancelable = x.http().post(params, new UploadCallBack(params));
         }
     }
 
     /**
-     * 上传文件，（默认key）
+     * 上传文件，默认key(file)
      *
-     * @param params
-     * @param filePaths
+     * @param params    params
+     * @param filePaths filePaths
      */
     public void uploadFileDefault(RequestParams params, ArrayList<Object> filePaths) {
 
@@ -253,9 +281,19 @@ public class XUtils {
     }
 
     /**
+     * 取消下载文件
+     */
+    public void cancelUploadFile() {
+        if (uploadCancelable != null) {
+            uploadCancelable.cancel();
+            uploadCancelable = null;
+        }
+    }
+
+    /**
      * 设置获取图片监听
      *
-     * @param loadImageListener
+     * @param loadImageListener loadImageListener
      */
     public void setLoadImageListener(LoadImageListener loadImageListener) {
         this.loadImageListener = loadImageListener;
@@ -264,7 +302,7 @@ public class XUtils {
     /**
      * 设置获取网络数据监听
      *
-     * @param getHttpDataListener
+     * @param getHttpDataListener getHttpDataListener
      */
     public void setGetHttpDataListener(GetHttpDataListener getHttpDataListener) {
         this.getHttpDataListener = getHttpDataListener;
@@ -273,7 +311,7 @@ public class XUtils {
     /**
      * 设置下载文件监听
      *
-     * @param downloadListener
+     * @param downloadListener downloadListener
      */
     public void setDownloadListener(DownloadListener downloadListener) {
         this.downloadListener = downloadListener;
@@ -282,13 +320,13 @@ public class XUtils {
     /**
      * 设置上传文件监听
      *
-     * @param uploadListener
+     * @param uploadListener uploadListener
      */
     public void setUploadListener(UploadListener uploadListener) {
         this.uploadListener = uploadListener;
     }
 
-    /*************************************** 不暴露的方法 ***************************************/
+    ////////////////////////////////不暴露的方法////////////////////////////////
 
     /**
      * 获取网络数据返回结果
@@ -299,7 +337,7 @@ public class XUtils {
 
         private RequestParams params;
 
-        public GetHttpCallBack(RequestParams params) {
+        GetHttpCallBack(RequestParams params) {
             this.params = params;
         }
 
@@ -376,7 +414,7 @@ public class XUtils {
         private View view;
         private boolean isPng;
 
-        public LoadImageCallBack(String url, boolean isFromNet, String cachePath, String cacheName, View view, boolean isPng) {
+        LoadImageCallBack(String url, boolean isFromNet, String cachePath, String cacheName, View view, boolean isPng) {
             this.url = url;
             this.isFromNet = isFromNet;
             this.cachePath = cachePath;
@@ -462,7 +500,7 @@ public class XUtils {
 
         private RequestParams params;
 
-        public DownloadCallBack(RequestParams params) {
+        DownloadCallBack(RequestParams params) {
             this.params = params;
         }
 
@@ -537,7 +575,7 @@ public class XUtils {
 
         private RequestParams params;
 
-        public UploadCallBack(RequestParams params) {
+        UploadCallBack(RequestParams params) {
             this.params = params;
         }
 
@@ -607,19 +645,15 @@ public class XUtils {
     /**
      * 保存图片到本地
      *
-     * @param bitmap
-     * @param path
-     * @param name
+     * @param bitmap bitmap
+     * @param path   path
+     * @param name   name
      */
     private void savePhotoToSDCard(Bitmap bitmap, String path, String name, boolean isPng) {
 
         FileOutputStream b = null;
 
-        File file = new File(path);
-        if (!file.exists()) {
-            // 创建文件夹
-            file.mkdirs();
-        }
+        FileUtils.checkFileExist(path);
         String fileName = path + name;
 
         try {

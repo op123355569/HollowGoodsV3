@@ -230,12 +230,7 @@ public class InterfaceConfig {
         projectName.setText(ipConfig.getProjectName());
         realmName.setText(ipConfig.getRealmName());
 
-        if (IS_SHOW_PROTOCOL
-                && IS_SHOW_IP
-                && IS_SHOW_PORT
-                && IS_SHOW_PROJECT_NAME
-                && IS_SHOW_REALM_NAME
-        ) {
+        if (isShowAll()) {
             pre.setText(ipConfig.getRequestUrl());
         } else {
             pre.setText(ipConfig.getRequestHead());
@@ -255,8 +250,10 @@ public class InterfaceConfig {
         BaseDialog baseDialog = new BaseDialog(baseActivity);
         final String[] items = new String[IP.size()];
         int checkedPosition = -1;
+        boolean isShowAll = isShowAll();
+
         for (int i = 0; i < items.length; i++) {
-            items[i] = IP.get(i).getRequestUrl();
+            items[i] = isShowAll ? IP.get(i).getRequestUrl() : IP.get(i).getRequestHead();
             if (IP.get(i).isChecked()) {
                 checkedPosition = i;
             }
@@ -299,6 +296,14 @@ public class InterfaceConfig {
         public void afterTextChanged(Editable s) {
 
         }
+    }
+
+    private static boolean isShowAll() {
+        return IS_SHOW_PROTOCOL
+                && IS_SHOW_IP
+                && IS_SHOW_PORT
+                && IS_SHOW_PROJECT_NAME
+                && IS_SHOW_REALM_NAME;
     }
 
 }

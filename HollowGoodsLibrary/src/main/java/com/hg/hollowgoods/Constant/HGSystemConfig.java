@@ -28,7 +28,7 @@ public class HGSystemConfig {
         APP_NAME = context.getString(R.string.app_name);
         APP_NAME_EN = context.getString(R.string.app_name_en);
         APP_BASE_PATH = FileUtils.getSDCardPath()
-                + ((rootDirectory != null && rootDirectory.length > 0) ? rootDirectory[0] : "/HollowGoods/")
+                + ((rootDirectory != null && rootDirectory.length > 0) ? ("/" + rootDirectory[0] + "/") : "/HollowGoods/")
                 + APP_NAME_EN
                 + "/";
         DATABASE_NAME = APP_NAME_EN.toLowerCase(Locale.getDefault());
@@ -228,6 +228,11 @@ public class HGSystemConfig {
      * 是否需要校对后台系统时间
      */
     public static boolean IS_NEED_CHECK_SERVER_TIME = true;
+
+    /**
+     * 是否需要读取Office文件
+     */
+    public static boolean IS_NEED_READ_OFFICE_FILE = false;
 
     /**
      * 图片最大张数

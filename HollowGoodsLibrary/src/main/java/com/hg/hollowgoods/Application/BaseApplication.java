@@ -30,10 +30,6 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     }
 
     /**
-     * Application上下文
-     */
-    private Application appContext = null;
-    /**
      * activity堆
      */
     private ArrayList<Activity> activityAllList = new ArrayList<>();
@@ -115,9 +111,11 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         initXUtils();
         initAppDataAfterDB();
         if (HGSystemConfig.IS_NEED_CHECK_SERVER_TIME) {
-            TimeService.start(instance);
+            TimeService.start(create());
         }
-        initFileView();
+        if (HGSystemConfig.IS_NEED_READ_OFFICE_FILE) {
+            initFileView();
+        }
 
         super.onCreate();
     }

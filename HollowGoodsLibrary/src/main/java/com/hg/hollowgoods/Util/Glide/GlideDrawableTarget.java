@@ -45,7 +45,7 @@ public class GlideDrawableTarget extends DrawableImageViewTarget {
         super.onResourceReady(resource, transition);
 
         Drawable drawable;
-        Bitmap bitmap = null;
+        Bitmap bitmap;
 
         if (resource != null) {
             drawable = resource.getCurrent().getConstantState().newDrawable();
@@ -57,7 +57,10 @@ public class GlideDrawableTarget extends DrawableImageViewTarget {
         }
 
         if (glideOptions.getGlideLoadImgListener() != null) {
-            glideOptions.getGlideLoadImgListener().onImgLoadSuccess(glideOptions.getLoadView(), bitmap);
+            glideOptions.getGlideLoadImgListener().onImgLoadSuccess(
+                    glideOptions.getLoadView(),
+                    resource.getCurrent().getConstantState().newDrawable()
+            );
         }
     }
 
@@ -86,7 +89,7 @@ public class GlideDrawableTarget extends DrawableImageViewTarget {
 
     private class CacheImgThread implements Runnable {
 
-        private Bitmap b = null;
+        private Bitmap b;
 
         public CacheImgThread(Bitmap b) {
             this.b = b;

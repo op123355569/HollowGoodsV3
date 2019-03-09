@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Util.FormatUtils;
@@ -19,7 +19,7 @@ import java.io.IOException;
  * Created by HG
  */
 
-public class GlideSimpleTarget extends SimpleTarget {
+public class GlideSimpleTarget extends CustomTarget {
 
     private String saveName;
     private String savePath = HGSystemConfig.getPhotoCachePath();
@@ -39,24 +39,25 @@ public class GlideSimpleTarget extends SimpleTarget {
     @Override
     public void onResourceReady(final Object resource, Transition transition) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Drawable drawable;
-                Bitmap bitmap = null;
+        new Thread(() -> {
 
-                if (resource != null) {
-                    drawable = ((Drawable) resource).getCurrent().getConstantState().newDrawable();
-                    bitmap = FormatUtils.drawable2Bitmap(drawable);
+            Drawable drawable;
+            Bitmap bitmap;
 
-                    if (isNeedCache) {
-                        new Thread(new CacheImgThread(bitmap)).start();
-                    }
+            if (resource != null) {
+                drawable = ((Drawable) resource).getCurrent().getConstantState().newDrawable();
+                bitmap = FormatUtils.drawable2Bitmap(drawable);
+
+                if (isNeedCache) {
+                    new Thread(new CacheImgThread(bitmap)).start();
                 }
+            }
 
-                if (glideOptions.getGlideLoadImgListener() != null) {
-                    glideOptions.getGlideLoadImgListener().onImgLoadSuccess(glideOptions.getLoadView(), bitmap);
-                }
+            if (glideOptions.getGlideLoadImgListener() != null) {
+                glideOptions.getGlideLoadImgListener().onImgLoadSuccess(
+                        glideOptions.getLoadView(),
+                        ((Drawable) resource).getCurrent().getConstantState().newDrawable()
+                );
             }
         }).start();
     }
@@ -70,9 +71,14 @@ public class GlideSimpleTarget extends SimpleTarget {
         }
     }
 
+    @Override
+    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+    }
+
     private class CacheImgThread implements Runnable {
 
-        private Bitmap b = null;
+        private Bitmap b;
 
         public CacheImgThread(Bitmap b) {
             this.b = b;

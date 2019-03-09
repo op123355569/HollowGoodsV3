@@ -57,13 +57,13 @@ public class GlideUtils {
                 String saveName = getSaveName(glideOptions);
                 String loadPath = "";
 
-                if (!glideOptions.isNeverCache() && (FileUtils.checkFileExist2(loadPath = glideOptions.getLoadByUrl()) || FileUtils.checkFileExist2(loadPath = (savePath + saveName)))) {
+                if (!glideOptions.isNeverCache() && !glideOptions.isGif() && (FileUtils.checkFileExist2(loadPath = glideOptions.getLoadByUrl()) || FileUtils.checkFileExist2(loadPath = (savePath + saveName)))) {
                     glideOptions.setLoadByFile(new File(loadPath));
                     requestBuilder.load(glideOptions.getLoadByFile());
                     isNeedCache = false;
                 } else {
                     requestBuilder.load(glideOptions.getLoadByUrl());
-                    isNeedCache = true;
+                    isNeedCache = !glideOptions.isGif();
                 }
             } else if (glideOptions.getLoadByRes() != GlideOptions.NO_SETTING_RES) {
                 requestBuilder.load(glideOptions.getLoadByRes());

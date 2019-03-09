@@ -403,6 +403,11 @@ public class FileUtils {
                 || str.endsWith(".bmp");
     }
 
+    public static boolean isImageFileGif(String file) {
+        String str = file.toLowerCase();
+        return str.endsWith(".gif");
+    }
+
     public static boolean isOfficeFile(String file) {
         String str = file.toLowerCase();
         return str.endsWith(".doc")

@@ -1,6 +1,6 @@
 package com.hg.hollowgoods.Util.Glide;
 
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 /**
@@ -13,16 +13,16 @@ public interface GlideLoadImgListener {
     /**
      * 加载图片成功
      *
-     * @param v
-     * @param bitmap
+     * @param v        view
+     * @param drawable drawable
      */
-    public void onImgLoadSuccess(View v, Bitmap bitmap);
+    void onImgLoadSuccess(View v, Drawable drawable);
 
     /**
      * 加载图片失败
      *
-     * @param v
+     * @param v view
      */
-    public void onImgLoadFail(View v);
+    void onImgLoadFail(View v);
 
 }

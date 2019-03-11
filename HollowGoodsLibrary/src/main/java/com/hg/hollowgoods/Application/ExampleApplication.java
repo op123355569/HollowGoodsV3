@@ -33,6 +33,8 @@ public class ExampleApplication extends BaseApplication {
         InterfaceConfig.IS_SHOW_PROJECT_NAME = true;
         InterfaceConfig.IS_SHOW_REALM_NAME = true;
         InterfaceConfig.IS_SHOW_HISTORY = true;
+        HGSystemConfig.IS_NEED_CHECK_SERVER_TIME = false;
+        HGSystemConfig.IS_NEED_READ_OFFICE_FILE = false;
 
         InterfaceConfig.initIP(new IPConfig()
                 .setIp("218.93.5.74")

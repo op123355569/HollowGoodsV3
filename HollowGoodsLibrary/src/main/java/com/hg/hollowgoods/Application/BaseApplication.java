@@ -182,6 +182,11 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     }
 
     public long getNowTime() {
+
+        if (nowTime == 0L) {
+            return System.currentTimeMillis();
+        }
+
         return nowTime;
     }
 

@@ -63,7 +63,7 @@ public class GlideUtils {
                     isNeedCache = false;
                 } else {
                     requestBuilder.load(glideOptions.getLoadByUrl());
-                    isNeedCache = !FileUtils.isImageFileGif(glideOptions.getLoadByUrl());
+                    isNeedCache = !glideOptions.isGif();
                 }
             } else if (glideOptions.getLoadByRes() != GlideOptions.NO_SETTING_RES) {
                 requestBuilder.load(glideOptions.getLoadByRes());

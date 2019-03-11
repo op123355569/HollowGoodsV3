@@ -33,7 +33,7 @@ public class Ex6Activity extends BaseActivity {
     private Ex6Adapter adapter;
     private ArrayList<String> data = new ArrayList<String>() {
         {
-            add("http://img1.imgtn.bdimg.com/it/u=2887586268,2669956094&fm=27&gp=0.jpg");
+            add("http://img.9553.com/uploadfile/2018/0905/20180905012130655.gif");
             add("http://pic2.qnpic.com/doimg/shilitaosheng/ff409a72/");
             add("http://wwe.nubb.com/img/200811/1226371365-12200811118D_13.jpg");
             add("http://imgsrc.baidu.com/forum/w%3D580/sign=958c42576d81800a6ee58906813733d6/c5debd3eb13533fac65f28f6a9d3fd1f40345b07.jpg");

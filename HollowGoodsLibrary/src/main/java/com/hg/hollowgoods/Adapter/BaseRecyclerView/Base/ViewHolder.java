@@ -29,6 +29,7 @@ import com.haozhang.lib.SlantedTextView;
 import com.hg.hollowgoods.UI.Base.Click.OnAdapterViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.DensityUtils;
+import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 import com.hg.hollowgoods.Util.Glide.GlideUtils;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
@@ -234,6 +235,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             }
         } else {
             options.setLoadView(iv);
+            options.setGif(!TextUtils.isEmpty(options.getLoadByUrl()) && FileUtils.isImageFileGif(options.getLoadByUrl()));
             GlideUtils.loadImg(mContext, options);
         }
 

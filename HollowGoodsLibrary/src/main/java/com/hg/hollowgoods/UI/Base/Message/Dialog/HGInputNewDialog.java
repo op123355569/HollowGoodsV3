@@ -108,7 +108,7 @@ public class HGInputNewDialog extends HGDialog {
 
         if (onDialogClickListener != null) {
             Bundle data = new Bundle();
-            data.putString(HGParamKey.InputValue.getValue(), this.inputView.getText().toString());
+            data.putString(HGParamKey.InputValue.getValue(), this.inputView.getText());
             onDialogClickListener.onDialogClick(code, true, data);
         }
 

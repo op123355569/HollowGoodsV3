@@ -16,6 +16,8 @@ public class Media implements Serializable {
     private String url;
     /**** 本地文件 ****/
     private File file;
+    /**** 资源文件 ****/
+    private Integer res;
     /**** 是否可以删除 ****/
     private boolean canRemove = true;
     /**** Tag ****/
@@ -51,6 +53,14 @@ public class Media implements Serializable {
 
     public void setFile(File file) {
         this.file = file;
+    }
+
+    public Integer getRes() {
+        return res;
+    }
+
+    public void setRes(Integer res) {
+        this.res = res;
     }
 
     public boolean isCanRemove() {

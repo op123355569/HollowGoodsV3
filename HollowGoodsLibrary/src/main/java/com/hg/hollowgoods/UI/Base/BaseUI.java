@@ -943,7 +943,7 @@ public class BaseUI {
 
                     // 获取到焦点
                     floatingSearchView.setSearchBarTitle("");
-                    floatingSearchView.setSearchHint(searchKey);
+                    floatingSearchView.setSearchHint("");
                     if (mIsNeedHistory) {
                         floatingSearchView.swapSuggestions(keys);
                     }

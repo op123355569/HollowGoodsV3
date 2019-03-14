@@ -3,6 +3,7 @@ package com.hg.hollowgoods.Adapter.FastAdapter;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ItemViewDelegate;
@@ -13,6 +14,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemNumberPick
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemSwitch;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastItemData;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnCustomizeViewRefreshListener;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
@@ -39,6 +41,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
 
     private Context context;
     private OnFastClick onFastClick = null;
+    private OnCustomizeViewRefreshListener onCustomizeViewRefreshListener = null;
 
     private HashMap<FastItemMode, Integer> defaultRightIcon = new HashMap<FastItemMode, Integer>() {
         {
@@ -137,6 +140,18 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                     viewHolder.setTextColorRes(R.id.tv_content, new BigDecimal(data.textColorRes.toString()).intValue());
                 } else {
                     viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
+                }
+            }
+
+            // 设置自定义控件
+            viewHolder.setVisible(R.id.fl_contentLayout, data.isCustomizeView);
+            if (data.isCustomizeView && data.customizeView != null) {
+                FrameLayout contentLayout = viewHolder.getView(R.id.fl_contentLayout);
+                contentLayout.removeAllViews();
+                contentLayout.addView(data.customizeView);
+
+                if (onCustomizeViewRefreshListener != null) {
+                    onCustomizeViewRefreshListener.onCustomizeViewRefresh(data.customizeView, position, data.sortNumber);
                 }
             }
 
@@ -406,6 +421,10 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         this.onFastClick = onFastClick;
     }
 
+    public void setOnCustomizeViewRefreshListener(OnCustomizeViewRefreshListener onCustomizeViewRefreshListener) {
+        this.onCustomizeViewRefreshListener = onCustomizeViewRefreshListener;
+    }
+
     private FastItemData getDetailItemData(CommonBean bean, Field t) {
 
         FastItemData data = new FastItemData();
@@ -433,6 +452,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         String contentHint;
         String textColorResName;
         Object textColorRes;
+        boolean isCustomizeView;
 
         annotation = t.getAnnotation(FastItem.class);
 
@@ -450,6 +470,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         dateFormatMode = annotation.dateFormatMode();
         contentHint = annotation.contentHint();
         textColorResName = annotation.textColorResName();
+        isCustomizeView = annotation.isCustomizeView();
 
         //  右侧图标
         readability = bean.getOnlyReadItem(t.getName());
@@ -498,6 +519,14 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         data.textColorResName = textColorResName;
         textColorRes = getObjValue(bean, data.textColorResName);
         data.textColorRes = textColorRes;
+        data.isCustomizeView = isCustomizeView;
+        if (isCustomizeView) {
+            data.isNeedContent = false;
+            Object obj = getObjValue(bean, t.getName());
+            if (obj instanceof View) {
+                data.customizeView = (View) obj;
+            }
+        }
 
         if (t.isAnnotationPresent(FastItemFileMaxCount.class)) {
             FastItemFileMaxCount annotation2 = t.getAnnotation(FastItemFileMaxCount.class);

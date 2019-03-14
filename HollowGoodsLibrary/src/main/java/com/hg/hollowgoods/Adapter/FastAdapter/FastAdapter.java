@@ -15,6 +15,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.MultiItemTypeAdapter;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItem;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastItemData;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnCustomizeViewRefreshListener;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.ParamItem;
@@ -99,6 +100,12 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
 
         if (itemFastItem != null) {
             itemFastItem.setOnFastClick(onFastClick);
+        }
+    }
+
+    public void setOnCustomizeViewRefreshListener(OnCustomizeViewRefreshListener onCustomizeViewRefreshListener) {
+        if (itemFastItem != null) {
+            itemFastItem.setOnCustomizeViewRefreshListener(onCustomizeViewRefreshListener);
         }
     }
 

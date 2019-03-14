@@ -127,4 +127,13 @@ public @interface FastItem {
      */
     String textColorResName() default "";
 
+    /**
+     * 是否为自定义控件
+     * 默认否
+     * 适用于View及其子类
+     *
+     * @return
+     */
+    boolean isCustomizeView() default false;
+
 }

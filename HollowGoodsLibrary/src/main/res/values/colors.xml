@@ -61,4 +61,6 @@
     <color name="login_bg_color">#A0EA4335</color>
     <color name="register_bg_color">#A04285F4</color>
 
+    <color name="button_disable_color">#909090</color>
+
 </resources>

@@ -18,7 +18,7 @@ public interface IBaseFragment {
     /**
      * 初始化意图传递的数据
      */
-    default void initIntentData() {
+    default void initArgumentsData(Bundle bundle) {
 
     }
 

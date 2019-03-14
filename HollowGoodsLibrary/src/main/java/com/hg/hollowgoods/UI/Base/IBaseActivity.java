@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.UI.Base;
 
 import android.app.Activity;
+import android.content.Intent;
 
 public interface IBaseActivity extends IBaseFragment {
 
@@ -10,5 +11,12 @@ public interface IBaseActivity extends IBaseFragment {
      * @return Activity
      */
     Activity addToExitGroup();
+
+    /**
+     * 初始化意图传递的数据
+     */
+    default void initIntentData(Intent intent) {
+
+    }
 
 }

@@ -41,7 +41,7 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
         // 初始化界面
         baseUI.initUI(this, inflater.inflate(bindLayout(), container, false));
         // 初始化意图传递的数据
-        initIntentData();
+        initArgumentsData(getArguments());
         // 绑定EventBus
         baseUI.bindEventBus(initView(baseUI.rootView, savedInstanceState));
         // 设置公共标题点击事件监听

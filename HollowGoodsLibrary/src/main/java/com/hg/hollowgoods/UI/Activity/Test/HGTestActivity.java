@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.UI.Activity.Test;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,8 +39,8 @@ public class HGTestActivity extends BaseActivity {
     }
 
     @Override
-    public void initIntentData() {
-        tests = (ArrayList<HGTest>) getIntent().getSerializableExtra(HGParamKey.ListData.getValue());
+    public void initIntentData(Intent intent) {
+        tests = (ArrayList<HGTest>) intent.getSerializableExtra(HGParamKey.ListData.getValue());
         if (tests == null) {
             tests = new ArrayList<>();
         }

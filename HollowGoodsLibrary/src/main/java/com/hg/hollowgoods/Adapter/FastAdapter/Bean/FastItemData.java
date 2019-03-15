@@ -44,6 +44,9 @@ public class FastItemData extends CommonBean {
     public boolean isCustomizeView;
     public Integer customizeViewLayoutRes;
 
+    public boolean isCustomizeContentView;
+    public Integer customizeContentViewLayoutRes;
+
     public FastItemData() {
         super(FastAdapter.ITEM_TYPE_ITEM);
         this.isShowLeftIconRes = false;
@@ -65,6 +68,8 @@ public class FastItemData extends CommonBean {
         this.textColorRes = null;
         this.isCustomizeView = false;
         this.customizeViewLayoutRes = null;
+        this.isCustomizeContentView = false;
+        this.customizeContentViewLayoutRes = null;
     }
 
 

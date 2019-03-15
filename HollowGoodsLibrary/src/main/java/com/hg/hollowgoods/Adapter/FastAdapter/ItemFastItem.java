@@ -156,6 +156,18 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                     }
                 }
 
+                viewHolder.setVisible(R.id.fl_customizeContentViewLayout, data.isCustomizeContentView && data.customizeContentViewLayoutRes != null);
+                if (data.isCustomizeContentView && data.customizeContentViewLayoutRes != null) {
+                    // 设置自定义内容控件
+                    FrameLayout contentLayout = viewHolder.getView(R.id.fl_customizeContentViewLayout);
+                    contentLayout.removeAllViews();
+                    contentLayout.addView(View.inflate(context, data.customizeContentViewLayoutRes, null));
+
+                    if (onCustomizeViewRefreshListener != null) {
+                        onCustomizeViewRefreshListener.onCustomizeViewRefresh(contentLayout.getChildAt(0), position, data.sortNumber);
+                    }
+                }
+
                 // 设置必填项标签的字体颜色
                 if (data.isNotEmpty) {
                     if (data.fastItemMode != FastItemMode.File && TextUtils.isEmpty(content.toString())) {
@@ -455,6 +467,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         String textColorResName;
         Object textColorRes;
         boolean isCustomizeView;
+        boolean isCustomizeContentView;
 
         annotation = t.getAnnotation(FastItem.class);
 
@@ -473,6 +486,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         contentHint = annotation.contentHint();
         textColorResName = annotation.textColorResName();
         isCustomizeView = annotation.isCustomizeView();
+        isCustomizeContentView = annotation.isCustomizeContentView();
 
         //  右侧图标
         readability = bean.getOnlyReadItem(t.getName());
@@ -527,6 +541,12 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             Object obj = getObjValue(bean, t.getName());
             if (obj instanceof Integer) {
                 data.customizeViewLayoutRes = (Integer) obj;
+            }
+        } else if (isCustomizeContentView) {
+            data.isNeedContent = false;
+            Object obj = getObjValue(bean, t.getName());
+            if (obj instanceof Integer) {
+                data.customizeContentViewLayoutRes = (Integer) obj;
             }
         }
 

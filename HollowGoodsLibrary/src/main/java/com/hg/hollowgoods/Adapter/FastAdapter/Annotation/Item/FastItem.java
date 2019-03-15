@@ -136,4 +136,13 @@ public @interface FastItem {
      */
     boolean isCustomizeView() default false;
 
+    /**
+     * 是否为自定义内容控件
+     * 默认否
+     * 适用于int类型
+     *
+     * @return
+     */
+    boolean isCustomizeContentView() default false;
+
 }

@@ -82,6 +82,11 @@
                 android:padding="10dp"
                 android:visibility="gone" />
 
+            <FrameLayout
+                android:id="@+id/fl_customizeContentViewLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </FrameLayout>
 
         <ImageView

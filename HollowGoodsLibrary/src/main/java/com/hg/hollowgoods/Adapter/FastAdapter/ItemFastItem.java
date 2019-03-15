@@ -76,43 +76,64 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             viewHolder.setVisible(R.id.marginTop, data.marginTop > 0);
             viewHolder.setViewHeight(R.id.marginTop, data.marginTop);
 
-            // 排序号
-            viewHolder.setVisible(R.id.tv_sortNumber, HGSystemConfig.IS_DEBUG_MODEL);
-            viewHolder.setText(R.id.tv_sortNumber, data.sortNumber + "");
+            viewHolder.setVisible(R.id.fl_customizeViewLayout, data.isCustomizeView && data.customizeView != null);
+            viewHolder.setVisible(R.id.ll_fastContent, !(data.isCustomizeView && data.customizeView != null));
 
-            // 左侧图标
-            viewHolder.setVisible(R.id.iv_leftIcon, data.isShowLeftIconRes);
-            if (data.isShowLeftIconRes) {
-                viewHolder.setImageResource(R.id.iv_leftIcon, data.leftIconRes);
+            if (data.isCustomizeView && data.customizeView != null) {
+                // 设置自定义控件
+                FrameLayout contentLayout = viewHolder.getView(R.id.fl_customizeViewLayout);
+                contentLayout.removeAllViews();
+                contentLayout.addView(data.customizeView);
+
+                if (onCustomizeViewRefreshListener != null) {
+                    onCustomizeViewRefreshListener.onCustomizeViewRefresh(data.customizeView, position, data.sortNumber);
+                }
             } else {
-                viewHolder.setImageResource(R.id.iv_leftIcon, R.color.transparent);
-            }
+                // 排序号
+                viewHolder.setVisible(R.id.tv_sortNumber, HGSystemConfig.IS_DEBUG_MODEL);
+                viewHolder.setText(R.id.tv_sortNumber, data.sortNumber + "");
 
-            // 必填标识
-            viewHolder.setVisible2(R.id.tv_notEmptyFlag, data.isNotEmpty);
+                // 左侧图标
+                viewHolder.setVisible(R.id.iv_leftIcon, data.isShowLeftIconRes);
+                if (data.isShowLeftIconRes) {
+                    viewHolder.setImageResource(R.id.iv_leftIcon, data.leftIconRes);
+                } else {
+                    viewHolder.setImageResource(R.id.iv_leftIcon, R.color.transparent);
+                }
 
-            // 标签
-            viewHolder.setVisible(R.id.tv_label, data.isShowLabel);
-            viewHolder.setText(R.id.tv_label, data.label);
+                // 必填标识
+                viewHolder.setVisible2(R.id.tv_notEmptyFlag, data.isNotEmpty);
 
-            // 内容
-            viewHolder.setVisible(R.id.tv_content, data.isNeedContent);
-            viewHolder.setVisible(R.id.iv_content, data.isNeedContent);
-            viewHolder.setTextHint(R.id.tv_content, data.contentHint);
-            Object content;
-            if (!data.isNeedContent || data.fastItemMode == FastItemMode.File || (data.isShowNumberPicker && !data.isOnlyRead())) {
-                content = "";
-            } else {
-                content = getRealValue(data.content, data.itemsName);
-            }
+                // 标签
+                viewHolder.setVisible(R.id.tv_label, data.isShowLabel);
+                viewHolder.setText(R.id.tv_label, data.label);
 
-            if (data.isNeedContent) {
-                viewHolder.setVisible(R.id.tv_content, !content.toString().startsWith(CONTENT_ICON_HEAD));
-                viewHolder.setVisible(R.id.iv_content, content.toString().startsWith(CONTENT_ICON_HEAD));
+                // 内容
+                viewHolder.setVisible(R.id.tv_content, data.isNeedContent);
+                viewHolder.setVisible(R.id.iv_content, data.isNeedContent);
+                viewHolder.setTextHint(R.id.tv_content, data.contentHint);
+                Object content;
+                if (!data.isNeedContent || data.fastItemMode == FastItemMode.File || (data.isShowNumberPicker && !data.isOnlyRead())) {
+                    content = "";
+                } else {
+                    content = getRealValue(data.content, data.itemsName);
+                }
 
-                if (content.toString().startsWith(CONTENT_ICON_HEAD)) {
-                    viewHolder.setImageResource(R.id.iv_content, Integer.parseInt(content.toString().substring(6)));
-                    viewHolder.setText(R.id.tv_content, "");
+                if (data.isNeedContent) {
+                    viewHolder.setVisible(R.id.tv_content, !content.toString().startsWith(CONTENT_ICON_HEAD));
+                    viewHolder.setVisible(R.id.iv_content, content.toString().startsWith(CONTENT_ICON_HEAD));
+
+                    if (content.toString().startsWith(CONTENT_ICON_HEAD)) {
+                        viewHolder.setImageResource(R.id.iv_content, Integer.parseInt(content.toString().substring(6)));
+                        viewHolder.setText(R.id.tv_content, "");
+                    } else {
+                        if (data.isDate) {
+                            viewHolder.setText(R.id.tv_content, StringUtils.getDateTimeString(content.toString(), data.dateFormatMode));
+                        } else {
+                            viewHolder.setText(R.id.tv_content, content.toString());
+                        }
+                        viewHolder.setImageResource(R.id.iv_content, R.color.transparent);
+                    }
                 } else {
                     if (data.isDate) {
                         viewHolder.setText(R.id.tv_content, StringUtils.getDateTimeString(content.toString(), data.dateFormatMode));
@@ -121,222 +142,203 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                     }
                     viewHolder.setImageResource(R.id.iv_content, R.color.transparent);
                 }
-            } else {
-                if (data.isDate) {
-                    viewHolder.setText(R.id.tv_content, StringUtils.getDateTimeString(content.toString(), data.dateFormatMode));
-                } else {
-                    viewHolder.setText(R.id.tv_content, content.toString());
-                }
-                viewHolder.setImageResource(R.id.iv_content, R.color.transparent);
-            }
 
-            // 设置内容字体颜色
-            if (TextUtils.isEmpty(data.textColorResName)) {
-                viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
-            } else {
-                if (data.textColorRes == null) {
+                // 设置内容字体颜色
+                if (TextUtils.isEmpty(data.textColorResName)) {
                     viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
-                } else if (RegexUtils.isWholeNumber(data.textColorRes.toString())) {
-                    viewHolder.setTextColorRes(R.id.tv_content, new BigDecimal(data.textColorRes.toString()).intValue());
                 } else {
-                    viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
+                    if (data.textColorRes == null) {
+                        viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
+                    } else if (RegexUtils.isWholeNumber(data.textColorRes.toString())) {
+                        viewHolder.setTextColorRes(R.id.tv_content, new BigDecimal(data.textColorRes.toString()).intValue());
+                    } else {
+                        viewHolder.setTextColorRes(R.id.tv_content, R.color.txt_color_normal);
+                    }
                 }
-            }
 
-            // 设置自定义控件
-            viewHolder.setVisible(R.id.fl_contentLayout, data.isCustomizeView);
-            if (data.isCustomizeView && data.customizeView != null) {
-                FrameLayout contentLayout = viewHolder.getView(R.id.fl_contentLayout);
-                contentLayout.removeAllViews();
-                contentLayout.addView(data.customizeView);
-
-                if (onCustomizeViewRefreshListener != null) {
-                    onCustomizeViewRefreshListener.onCustomizeViewRefresh(data.customizeView, position, data.sortNumber);
-                }
-            }
-
-            // 设置必填项标签的字体颜色
-            if (data.isNotEmpty) {
-                if (data.fastItemMode != FastItemMode.File && TextUtils.isEmpty(content.toString())) {
-                    viewHolder.setTextColorRes(R.id.tv_label, R.color.color_wrong);
-                } else if (data.fastItemMode == FastItemMode.File && (data.getMedia().get(data.sortNumber) == null || data.getMedia().get(data.sortNumber).size() == 0)) {
-                    viewHolder.setTextColorRes(R.id.tv_label, R.color.color_wrong);
+                // 设置必填项标签的字体颜色
+                if (data.isNotEmpty) {
+                    if (data.fastItemMode != FastItemMode.File && TextUtils.isEmpty(content.toString())) {
+                        viewHolder.setTextColorRes(R.id.tv_label, R.color.color_wrong);
+                    } else if (data.fastItemMode == FastItemMode.File && (data.getMedia().get(data.sortNumber) == null || data.getMedia().get(data.sortNumber).size() == 0)) {
+                        viewHolder.setTextColorRes(R.id.tv_label, R.color.color_wrong);
+                    } else {
+                        viewHolder.setTextColorRes(R.id.tv_label, R.color.txt_color_dark);
+                    }
                 } else {
                     viewHolder.setTextColorRes(R.id.tv_label, R.color.txt_color_dark);
                 }
-            } else {
-                viewHolder.setTextColorRes(R.id.tv_label, R.color.txt_color_dark);
-            }
 
-            // 右侧图标
-            if (data.isShowSwitchButton) {
-                viewHolder.setVisible(R.id.iv_rightIcon, false);
-                viewHolder.setVisible(R.id.switch_rightIcon, true);
-                viewHolder.setEnabled(R.id.switch_rightIcon, !data.isOnlyRead());
+                // 右侧图标
+                if (data.isShowSwitchButton) {
+                    viewHolder.setVisible(R.id.iv_rightIcon, false);
+                    viewHolder.setVisible(R.id.switch_rightIcon, true);
+                    viewHolder.setEnabled(R.id.switch_rightIcon, !data.isOnlyRead());
 
-                if (TextUtils.equals(data.content.toString().toLowerCase(), "true")) {
-                    viewHolder.setChecked(R.id.switch_rightIcon, true);
-                } else {
-                    viewHolder.setChecked(R.id.switch_rightIcon, false);
-                }
-            } else {
-                viewHolder.setVisible(R.id.iv_rightIcon, !data.isOnlyRead());
-                viewHolder.setVisible(R.id.switch_rightIcon, false);
-
-                if (data.isOnlyRead()) {
-                    viewHolder.setImageResource(R.id.iv_rightIcon, R.color.transparent);
-                } else {
-                    if (data.rightIconRes == -1) {
-                        viewHolder.setImageResource(R.id.iv_rightIcon, defaultRightIcon.get(data.fastItemMode));
+                    if (TextUtils.equals(data.content.toString().toLowerCase(), "true")) {
+                        viewHolder.setChecked(R.id.switch_rightIcon, true);
                     } else {
-                        viewHolder.setImageResource(R.id.iv_rightIcon, data.rightIconRes);
+                        viewHolder.setChecked(R.id.switch_rightIcon, false);
+                    }
+                } else {
+                    viewHolder.setVisible(R.id.iv_rightIcon, !data.isOnlyRead());
+                    viewHolder.setVisible(R.id.switch_rightIcon, false);
+
+                    if (data.isOnlyRead()) {
+                        viewHolder.setImageResource(R.id.iv_rightIcon, R.color.transparent);
+                    } else {
+                        if (data.rightIconRes == -1) {
+                            viewHolder.setImageResource(R.id.iv_rightIcon, defaultRightIcon.get(data.fastItemMode));
+                        } else {
+                            viewHolder.setImageResource(R.id.iv_rightIcon, data.rightIconRes);
+                        }
                     }
                 }
-            }
 
-            // 文件数量标签
-            viewHolder.setVisible(R.id.fl_count, data.fastItemMode == FastItemMode.File);
-            ArrayList<Media> media = data.getMedia().get(data.sortNumber);
-            if (data.fileMaxCount < 1) {
-                viewHolder.setText(R.id.tv_count, media == null ? "0" : media.size() + "");
-            } else {
-                viewHolder.setText(R.id.tv_count, (media == null ? "0" : media.size() + "") + "/" + data.fileMaxCount);
-            }
+                // 文件数量标签
+                viewHolder.setVisible(R.id.fl_count, data.fastItemMode == FastItemMode.File);
+                ArrayList<Media> media = data.getMedia().get(data.sortNumber);
+                if (data.fileMaxCount < 1) {
+                    viewHolder.setText(R.id.tv_count, media == null ? "0" : media.size() + "");
+                } else {
+                    viewHolder.setText(R.id.tv_count, (media == null ? "0" : media.size() + "") + "/" + data.fileMaxCount);
+                }
 
-            // 文件预览
-            if (media == null || media.size() == 0) {
-                viewHolder.setImageResource(R.id.iv_imgPre, R.color.transparent);
-            } else {
-                Media m = media.get(media.size() - 1);
-                if (m.getFile() == null && TextUtils.isEmpty(m.getUrl())) {
+                // 文件预览
+                if (media == null || media.size() == 0) {
                     viewHolder.setImageResource(R.id.iv_imgPre, R.color.transparent);
                 } else {
-                    RequestOptions requestOptions = new RequestOptions()
-                            .circleCrop();
-                    String url;
-                    if (m.getFile() == null) {
-                        url = m.getUrl();
+                    Media m = media.get(media.size() - 1);
+                    if (m.getFile() == null && TextUtils.isEmpty(m.getUrl())) {
+                        viewHolder.setImageResource(R.id.iv_imgPre, R.color.transparent);
                     } else {
-                        url = m.getFile().getAbsolutePath();
+                        RequestOptions requestOptions = new RequestOptions()
+                                .circleCrop();
+                        String url;
+                        if (m.getFile() == null) {
+                            url = m.getUrl();
+                        } else {
+                            url = m.getFile().getAbsolutePath();
+                        }
+                        GlideOptions glideOptions = new GlideOptions(url, null, GlideOptions.NO_FADE_IN, requestOptions);
+                        glideOptions.setLoadType(HGConstants.IMG_LOAD_TYPE_FAST_ADAPTER_ITEM_SMALL);
+                        viewHolder.setImageByUrl(R.id.iv_imgPre, glideOptions);
                     }
-                    GlideOptions glideOptions = new GlideOptions(url, null, GlideOptions.NO_FADE_IN, requestOptions);
-                    glideOptions.setLoadType(HGConstants.IMG_LOAD_TYPE_FAST_ADAPTER_ITEM_SMALL);
-                    viewHolder.setImageByUrl(R.id.iv_imgPre, glideOptions);
                 }
-            }
 
-            // 数字选择器
-            viewHolder.setVisible(R.id.iv_minus, data.isShowNumberPicker && !data.isOnlyRead());
-            viewHolder.setVisible(R.id.iv_plus, data.isShowNumberPicker && !data.isOnlyRead());
-            viewHolder.setVisible(R.id.tv_number, data.isShowNumberPicker && !data.isOnlyRead());
+                // 数字选择器
+                viewHolder.setVisible(R.id.iv_minus, data.isShowNumberPicker && !data.isOnlyRead());
+                viewHolder.setVisible(R.id.iv_plus, data.isShowNumberPicker && !data.isOnlyRead());
+                viewHolder.setVisible(R.id.tv_number, data.isShowNumberPicker && !data.isOnlyRead());
 
-            if (data.isShowNumberPicker) {
-                Double number = getNumber(data);
+                if (data.isShowNumberPicker) {
+                    Double number = getNumber(data);
 
-                if (data.isOnlyRead()) {
-                    viewHolder.setImageResource(R.id.iv_minus, R.drawable.ic_remove_grey_24dp);
-                } else {
-                    if (data.numberPickerMin != null) {
-                        if (number.doubleValue() == data.numberPickerMin.doubleValue()) {
-                            viewHolder.setImageResource(R.id.iv_minus, R.drawable.ic_remove_grey_24dp);
+                    if (data.isOnlyRead()) {
+                        viewHolder.setImageResource(R.id.iv_minus, R.drawable.ic_remove_grey_24dp);
+                    } else {
+                        if (data.numberPickerMin != null) {
+                            if (number.doubleValue() == data.numberPickerMin.doubleValue()) {
+                                viewHolder.setImageResource(R.id.iv_minus, R.drawable.ic_remove_grey_24dp);
+                            } else {
+                                viewHolder.setImageResource(R.id.iv_minus, R.drawable.ic_remove_black_24dp);
+                            }
                         } else {
                             viewHolder.setImageResource(R.id.iv_minus, R.drawable.ic_remove_black_24dp);
                         }
-                    } else {
-                        viewHolder.setImageResource(R.id.iv_minus, R.drawable.ic_remove_black_24dp);
                     }
-                }
 
-                if (data.isOnlyRead()) {
-                    viewHolder.setImageResource(R.id.iv_plus, R.drawable.ic_add_grey_24dp);
-                } else {
-                    if (data.numberPickerMax != null) {
-                        if (number.doubleValue() == data.numberPickerMax.doubleValue()) {
-                            viewHolder.setImageResource(R.id.iv_plus, R.drawable.ic_add_grey_24dp);
+                    if (data.isOnlyRead()) {
+                        viewHolder.setImageResource(R.id.iv_plus, R.drawable.ic_add_grey_24dp);
+                    } else {
+                        if (data.numberPickerMax != null) {
+                            if (number.doubleValue() == data.numberPickerMax.doubleValue()) {
+                                viewHolder.setImageResource(R.id.iv_plus, R.drawable.ic_add_grey_24dp);
+                            } else {
+                                viewHolder.setImageResource(R.id.iv_plus, R.drawable.ic_add_black_24dp);
+                            }
                         } else {
                             viewHolder.setImageResource(R.id.iv_plus, R.drawable.ic_add_black_24dp);
                         }
-                    } else {
-                        viewHolder.setImageResource(R.id.iv_plus, R.drawable.ic_add_black_24dp);
                     }
+
+                    Object result = getResultNumber(data, number);
+                    viewHolder.setText(R.id.tv_number, result.toString());
+                } else {
+                    viewHolder.setText(R.id.tv_number, "");
                 }
 
-                Object result = getResultNumber(data, number);
-                viewHolder.setText(R.id.tv_number, result.toString());
-            } else {
-                viewHolder.setText(R.id.tv_number, "");
-            }
+                // 点击事件
+                viewHolder.setOnClickListener(R.id.fl_rightIcon, new OnViewClickListener(false) {
+                    @Override
+                    public void onViewClick(View view, int id) {
 
-            // 点击事件
-            viewHolder.setOnClickListener(R.id.fl_rightIcon, new OnViewClickListener(false) {
-                @Override
-                public void onViewClick(View view, int id) {
+                        ArrayList<Media> media = data.getMedia().get(data.sortNumber);
 
-                    ArrayList<Media> media = data.getMedia().get(data.sortNumber);
+                        if (media == null || data.fileMaxCount < 1 || media.size() < data.fileMaxCount) {
+                            if (onFastClick != null) {
+                                onFastClick.onOperateClick(view, position, data.sortNumber);
+                            }
+                        } else {
+                            String tip = context.getString(R.string.is_had_max_count);
+                            tip = String.format(tip, data.fileMaxCount + "");
+                            t.error(tip);
+                        }
+                    }
+                });
 
-                    if (media == null || data.fileMaxCount < 1 || media.size() < data.fileMaxCount) {
+                viewHolder.setOnClickListener(R.id.fl_count, new OnViewClickListener(false) {
+                    @Override
+                    public void onViewClick(View view, int id) {
                         if (onFastClick != null) {
-                            onFastClick.onOperateClick(view, position, data.sortNumber);
-                        }
-                    } else {
-                        String tip = context.getString(R.string.is_had_max_count);
-                        tip = String.format(tip, data.fileMaxCount + "");
-                        t.error(tip);
-                    }
-                }
-            });
-
-            viewHolder.setOnClickListener(R.id.fl_count, new OnViewClickListener(false) {
-                @Override
-                public void onViewClick(View view, int id) {
-                    if (onFastClick != null) {
-                        onFastClick.onFilePreClick(view, position, data.sortNumber);
-                    }
-                }
-            });
-
-            viewHolder.setOnClickListener(R.id.iv_minus, new OnViewClickListener(false) {
-                @Override
-                public void onViewClick(View view, int id) {
-                    if (onFastClick != null) {
-                        Double number = getNumber(data);
-                        Double tempResult = number - data.numberPickerDif;
-                        tempResult = FormatUtils.doNumberFormat(tempResult, data.numberPickerPointCount);
-
-                        if (data.numberPickerMin == null || tempResult.doubleValue() >= data.numberPickerMin.doubleValue()) {
-                            Object result = getResultNumber(data, tempResult);
-                            onFastClick.onNumberPickerClick(view, position, data.sortNumber, result);
-                        } else {
-                            String tips = context.getString(R.string.is_min);
-                            tips = String.format(tips, getResultNumber(data, data.numberPickerMin));
-                            t.error(tips);
+                            onFastClick.onFilePreClick(view, position, data.sortNumber);
                         }
                     }
-                }
-            });
+                });
 
-            viewHolder.setOnClickListener(R.id.iv_plus, new OnViewClickListener(false) {
-                @Override
-                public void onViewClick(View view, int id) {
-                    if (onFastClick != null) {
-                        Double number = getNumber(data);
-                        Double tempResult = number + data.numberPickerDif;
-                        tempResult = FormatUtils.doNumberFormat(tempResult, data.numberPickerPointCount);
+                viewHolder.setOnClickListener(R.id.iv_minus, new OnViewClickListener(false) {
+                    @Override
+                    public void onViewClick(View view, int id) {
+                        if (onFastClick != null) {
+                            Double number = getNumber(data);
+                            Double tempResult = number - data.numberPickerDif;
+                            tempResult = FormatUtils.doNumberFormat(tempResult, data.numberPickerPointCount);
 
-                        if (data.numberPickerMax == null || tempResult.doubleValue() <= data.numberPickerMax.doubleValue()) {
-                            Object result = getResultNumber(data, tempResult);
-                            onFastClick.onNumberPickerClick(view, position, data.sortNumber, result);
-                        } else {
-                            String tips = context.getString(R.string.is_max);
-                            tips = String.format(tips, getResultNumber(data, data.numberPickerMax));
-                            t.error(tips);
+                            if (data.numberPickerMin == null || tempResult.doubleValue() >= data.numberPickerMin.doubleValue()) {
+                                Object result = getResultNumber(data, tempResult);
+                                onFastClick.onNumberPickerClick(view, position, data.sortNumber, result);
+                            } else {
+                                String tips = context.getString(R.string.is_min);
+                                tips = String.format(tips, getResultNumber(data, data.numberPickerMin));
+                                t.error(tips);
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            // 为margin的占位控件设置点击事件，防止margin区域可被点击
-            viewHolder.setOnClickListener(R.id.marginTop, new OnViewClickListener(false));
+                viewHolder.setOnClickListener(R.id.iv_plus, new OnViewClickListener(false) {
+                    @Override
+                    public void onViewClick(View view, int id) {
+                        if (onFastClick != null) {
+                            Double number = getNumber(data);
+                            Double tempResult = number + data.numberPickerDif;
+                            tempResult = FormatUtils.doNumberFormat(tempResult, data.numberPickerPointCount);
+
+                            if (data.numberPickerMax == null || tempResult.doubleValue() <= data.numberPickerMax.doubleValue()) {
+                                Object result = getResultNumber(data, tempResult);
+                                onFastClick.onNumberPickerClick(view, position, data.sortNumber, result);
+                            } else {
+                                String tips = context.getString(R.string.is_max);
+                                tips = String.format(tips, getResultNumber(data, data.numberPickerMax));
+                                t.error(tips);
+                            }
+                        }
+                    }
+                });
+
+                // 为margin的占位控件设置点击事件，防止margin区域可被点击
+                viewHolder.setOnClickListener(R.id.marginTop, new OnViewClickListener(false));
+            }
         } else {
             // 数据类型不正确设置可见性为不可见
             viewHolder.setVisible(R.id.marginTop, false);

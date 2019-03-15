@@ -11,6 +11,7 @@
         android:layout_height="0dp" />
 
     <LinearLayout
+        android:id="@+id/ll_fastContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -80,11 +81,6 @@
                 android:layout_marginRight="8dp"
                 android:padding="10dp"
                 android:visibility="gone" />
-
-            <FrameLayout
-                android:id="@+id/fl_contentLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
         </FrameLayout>
 
@@ -168,6 +164,11 @@
         </FrameLayout>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_customizeViewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"

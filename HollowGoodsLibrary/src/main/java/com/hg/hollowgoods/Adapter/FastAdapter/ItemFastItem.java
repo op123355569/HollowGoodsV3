@@ -536,6 +536,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         textColorRes = getObjValue(bean, data.textColorResName);
         data.textColorRes = textColorRes;
         data.isCustomizeView = isCustomizeView;
+        data.isCustomizeContentView = isCustomizeContentView;
         if (isCustomizeView) {
             data.isNeedContent = false;
             Object obj = getObjValue(bean, t.getName());

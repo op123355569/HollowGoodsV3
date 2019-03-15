@@ -130,7 +130,7 @@ public @interface FastItem {
     /**
      * 是否为自定义控件
      * 默认否
-     * 适用于View及其子类
+     * 适用于int类型
      *
      * @return
      */

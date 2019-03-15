@@ -76,17 +76,17 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             viewHolder.setVisible(R.id.marginTop, data.marginTop > 0);
             viewHolder.setViewHeight(R.id.marginTop, data.marginTop);
 
-            viewHolder.setVisible(R.id.fl_customizeViewLayout, data.isCustomizeView && data.customizeView != null);
-            viewHolder.setVisible(R.id.ll_fastContent, !(data.isCustomizeView && data.customizeView != null));
+            viewHolder.setVisible(R.id.fl_customizeViewLayout, data.isCustomizeView && data.customizeViewLayoutRes != null);
+            viewHolder.setVisible(R.id.ll_fastContent, !(data.isCustomizeView && data.customizeViewLayoutRes != null));
 
-            if (data.isCustomizeView && data.customizeView != null) {
+            if (data.isCustomizeView && data.customizeViewLayoutRes != null) {
                 // 设置自定义控件
                 FrameLayout contentLayout = viewHolder.getView(R.id.fl_customizeViewLayout);
                 contentLayout.removeAllViews();
-                contentLayout.addView(data.customizeView);
+                contentLayout.addView(View.inflate(context, data.customizeViewLayoutRes, null));
 
                 if (onCustomizeViewRefreshListener != null) {
-                    onCustomizeViewRefreshListener.onCustomizeViewRefresh(data.customizeView, position, data.sortNumber);
+                    onCustomizeViewRefreshListener.onCustomizeViewRefresh(contentLayout.getChildAt(0), position, data.sortNumber);
                 }
             } else {
                 // 排序号
@@ -525,8 +525,8 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         if (isCustomizeView) {
             data.isNeedContent = false;
             Object obj = getObjValue(bean, t.getName());
-            if (obj instanceof View) {
-                data.customizeView = (View) obj;
+            if (obj instanceof Integer) {
+                data.customizeViewLayoutRes = (Integer) obj;
             }
         }
 

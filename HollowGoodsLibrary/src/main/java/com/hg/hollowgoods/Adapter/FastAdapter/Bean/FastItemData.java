@@ -1,7 +1,5 @@
 package com.hg.hollowgoods.Adapter.FastAdapter.Bean;
 
-import android.view.View;
-
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
 import com.hg.hollowgoods.Adapter.FastAdapter.FastAdapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
@@ -44,7 +42,7 @@ public class FastItemData extends CommonBean {
     public String textColorResName;
     public Object textColorRes;
     public boolean isCustomizeView;
-    public View customizeView;
+    public Integer customizeViewLayoutRes;
 
     public FastItemData() {
         super(FastAdapter.ITEM_TYPE_ITEM);
@@ -66,7 +64,7 @@ public class FastItemData extends CommonBean {
         this.textColorResName = "";
         this.textColorRes = null;
         this.isCustomizeView = false;
-        this.customizeView = null;
+        this.customizeViewLayoutRes = null;
     }
 
 

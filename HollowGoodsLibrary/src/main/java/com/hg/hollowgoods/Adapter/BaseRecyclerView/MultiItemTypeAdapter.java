@@ -24,16 +24,16 @@ import java.util.List;
 public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> implements ItemTouchHelperAdapter {
 
     protected Context mContext;
-    protected List<T> mDatas;
+    protected List<T> mData;
 
     @SuppressWarnings("rawtypes")
     protected ItemViewDelegateManager mItemViewDelegateManager;
     protected OnItemClickListener mOnItemClickListener;
 
     @SuppressWarnings("rawtypes")
-    public MultiItemTypeAdapter(Context context, List<T> datas) {
+    public MultiItemTypeAdapter(Context context, List<T> data) {
         mContext = context;
-        mDatas = datas;
+        mData = data;
         mItemViewDelegateManager = new ItemViewDelegateManager();
     }
 
@@ -43,7 +43,7 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
         if (!useItemViewDelegateManager())
             return super.getItemViewType(position);
 
-        int result = mItemViewDelegateManager.getItemViewType(mDatas.get(position), position);
+        int result = mItemViewDelegateManager.getItemViewType(mData.get(position), position);
         return result;
     }
 
@@ -74,53 +74,44 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
     protected void setListener(final ViewGroup parent, final ViewHolder viewHolder, int viewType) {
         if (!isEnabled(viewType))
             return;
-        viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    int position = viewHolder.getAdapterPosition();
-                    mOnItemClickListener.onItemClick(v, viewHolder, position);
-                }
+        viewHolder.getConvertView().setOnClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                int position = viewHolder.getAdapterPosition();
+                mOnItemClickListener.onItemClick(v, viewHolder, position);
             }
         });
 
-        viewHolder.getConvertView().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (mOnItemClickListener != null) {
-                    int position = viewHolder.getAdapterPosition();
-                    return mOnItemClickListener.onItemLongClick(v, viewHolder, position);
-                }
-                return false;
+        viewHolder.getConvertView().setOnLongClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                int position = viewHolder.getAdapterPosition();
+                return mOnItemClickListener.onItemLongClick(v, viewHolder, position);
             }
+            return false;
         });
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        convert(holder, mDatas.get(position));
+        convert(holder, mData.get(position));
         if (mDragStartListener != null && dragViewId != -1) {
-            holder.getView(dragViewId).setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (MotionEventCompat.getActionMasked(event) ==
-                            MotionEvent.ACTION_DOWN) {
-                        mDragStartListener.onStartDrag(holder);
-                    }
-                    return false;
+            holder.getView(dragViewId).setOnTouchListener((v, event) -> {
+                if (MotionEventCompat.getActionMasked(event) ==
+                        MotionEvent.ACTION_DOWN) {
+                    mDragStartListener.onStartDrag(holder);
                 }
+                return false;
             });
         }
     }
 
     @Override
     public int getItemCount() {
-        int itemCount = mDatas.size();
+        int itemCount = mData.size();
         return itemCount;
     }
 
-    public List<T> getDatas() {
-        return mDatas;
+    public List<T> getData() {
+        return mData;
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -162,51 +153,51 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
         FullSpanUtil.onViewAttachedToWindow(holder, this, HGConstants.LIST_ITEM_TYPE_HEADER);
     }
 
-    public void refreshData(List<T> datas) {
-        mDatas = datas;
+    public void refreshData(List<T> data) {
+        mData = data;
         notifyDataSetChanged();
     }
 
-    public void refreshData(int oldSize, List<T> datas) {
+    public void refreshData(int oldSize, List<T> data) {
 
-        int newSize = datas.size();
+        int newSize = data.size();
 
         if (oldSize > newSize) {
-            removeDatas(datas, newSize, oldSize - newSize);
+            removeData(data, newSize, oldSize - newSize);
         } else if (newSize > oldSize) {
-            addDatas(datas, oldSize, newSize - oldSize);
+            addData(data, oldSize, newSize - oldSize);
         } else {
-            mDatas = datas;
-            notifyItemRangeChanged(0, datas.size());
+            mData = data;
+            notifyItemRangeChanged(0, data.size());
         }
     }
 
-    public void refreshData(List<T> datas, int position) {
+    public void refreshData(List<T> data, int position) {
 
-        mDatas = datas;
+        mData = data;
         notifyItemChanged(position);
     }
 
-    public void refreshData(List<T> datas, int position, int size) {
+    public void refreshData(List<T> data, int position, int size) {
 
-        mDatas = datas;
+        mData = data;
         notifyItemRangeChanged(position, size);
     }
 
-    public void addDatas(List<T> datas, int position, int itemCount) {
+    public void addData(List<T> data, int position, int itemCount) {
 
-        mDatas = datas;
+        mData = data;
 
         notifyItemRangeInserted(position, itemCount);
-        notifyItemRangeChanged(0, datas.size());
+        notifyItemRangeChanged(0, data.size());
     }
 
-    public void removeDatas(List<T> datas, int position, int itemCount) {
+    public void removeData(List<T> data, int position, int itemCount) {
 
-        mDatas = datas;
+        mData = data;
 
         notifyItemRangeRemoved(position, itemCount);
-        notifyItemRangeChanged(0, datas.size());
+        notifyItemRangeChanged(0, data.size());
     }
 
     private OnStartDragListener mDragStartListener = null;
@@ -220,7 +211,7 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
 
-        Collections.swap(mDatas, fromPosition, toPosition);
+        Collections.swap(mData, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
 
         return true;
@@ -229,13 +220,13 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
     @Override
     public void onItemDismiss(int position) {
 
-        mDatas.remove(position);
+        mData.remove(position);
         notifyItemRemoved(position);
     }
 
     @Override
     public void onItemMoveOver() {
-        notifyItemRangeChanged(0, mDatas.size());
+        notifyItemRangeChanged(0, mData.size());
     }
 
 }

@@ -15,15 +15,15 @@ import java.util.List;
 public class MultiItemTypeAdapter<T> extends BaseAdapter {
 
     protected Context mContext;
-    protected List<T> mDatas;
+    protected List<T> mData;
 
     @SuppressWarnings({"rawtypes"})
     private ItemViewDelegateManager mItemViewDelegateManager;
 
     @SuppressWarnings({"rawtypes"})
-    public MultiItemTypeAdapter(Context context, List<T> datas) {
+    public MultiItemTypeAdapter(Context context, List<T> data) {
         this.mContext = context;
-        this.mDatas = datas;
+        this.mData = data;
         mItemViewDelegateManager = new ItemViewDelegateManager();
     }
 
@@ -48,7 +48,7 @@ public class MultiItemTypeAdapter<T> extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         if (useItemViewDelegateManager()) {
-            int viewType = mItemViewDelegateManager.getItemViewType(mDatas.get(position), position);
+            int viewType = mItemViewDelegateManager.getItemViewType(mData.get(position), position);
             return viewType;
         }
         return super.getItemViewType(position);
@@ -57,7 +57,7 @@ public class MultiItemTypeAdapter<T> extends BaseAdapter {
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ItemViewDelegate itemViewDelegate = mItemViewDelegateManager.getItemViewDelegate(mDatas.get(position),
+        ItemViewDelegate itemViewDelegate = mItemViewDelegateManager.getItemViewDelegate(mData.get(position),
                 position);
         int layoutId = itemViewDelegate.getItemViewLayoutId();
         ViewHolder viewHolder = null;
@@ -85,12 +85,12 @@ public class MultiItemTypeAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mDatas.size();
+        return mData.size();
     }
 
     @Override
     public T getItem(int position) {
-        return mDatas.get(position);
+        return mData.get(position);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class MultiItemTypeAdapter<T> extends BaseAdapter {
      * @param data
      */
     public void refreshData(ArrayList<T> data) {
-        mDatas = data;
+        mData = data;
         notifyDataSetChanged();
     }
 
@@ -112,7 +112,7 @@ public class MultiItemTypeAdapter<T> extends BaseAdapter {
      * 清空数据
      */
     public void clearData() {
-        mDatas.clear();
+        mData.clear();
         notifyDataSetChanged();
     }
 

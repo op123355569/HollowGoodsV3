@@ -34,8 +34,8 @@ public class Ex38Adapter extends CommonAdapter<Ex38> {
             @Override
             public void onViewClick(View view, int id) {
                 animMenuLayout.openMenu(true);
-                mDatas.get(position).setOpen(true);
-                refreshData(mDatas, position);
+                mData.get(position).setOpen(true);
+                refreshData(mData, position);
             }
         });
 
@@ -43,8 +43,8 @@ public class Ex38Adapter extends CommonAdapter<Ex38> {
             @Override
             public void onViewClick(View view, int id) {
                 animMenuLayout.closeMenu(true);
-                mDatas.get(position).setOpen(false);
-                refreshData(mDatas, position);
+                mData.get(position).setOpen(false);
+                refreshData(mData, position);
             }
         });
 

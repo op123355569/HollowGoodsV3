@@ -14,7 +14,7 @@ class Ex13Adapter(context: Context, layoutId: Int, datas: List<Ex13_1>) : Common
 
     override fun convert(viewHolder: ViewHolder, item: Ex13_1, position: Int) {
         viewHolder.setText(R.id.tvName, item.name)
-        viewHolder.setText(R.id.tvPrecent, item.postition.toString() + " /" + mDatas.size)
+        viewHolder.setText(R.id.tvPrecent, item.postition.toString() + " /" + mData.size)
     }
 
 }

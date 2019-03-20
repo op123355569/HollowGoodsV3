@@ -7,7 +7,7 @@ import com.hg.hollowgoods.Adapter.BaseAdapterView.Base.ItemViewDelegate
  * AdapterView公共适配器
  * Created by HG on 2018-03-22.
  */
-abstract class CommonAdapter<T>(context: Context, layoutId: Int, datas: List<T>) : MultiItemTypeAdapter<T>(context, datas) {
+abstract class CommonAdapter<T>(context: Context, layoutId: Int, data: List<T>) : MultiItemTypeAdapter<T>(context, data) {
 
     init {
         addItemViewDelegate(object : ItemViewDelegate<T> {

@@ -6,7 +6,6 @@ import com.hg.hollowgoods.Bean.HGUser;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Util.IP.IPConfig;
 import com.hg.hollowgoods.Util.IP.InterfaceConfig;
-import com.hg.hollowgoods.Util.LogUtils;
 
 /**
  * 示例Application
@@ -40,7 +39,6 @@ public class ExampleApplication extends BaseApplication {
                 .setIp("218.93.5.74")
                 .setPort("4500")
         );
-        LogUtils.init(this);
         BaseApplication baseApplication = create();
         baseApplication.setCrashHandlerUsername("HollowGoods");
     }

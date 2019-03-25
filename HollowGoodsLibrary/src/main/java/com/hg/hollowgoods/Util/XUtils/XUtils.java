@@ -145,7 +145,7 @@ public class XUtils {
     public void getHttpData(HttpMethod httpMethod, RequestParams params) {
 
         String url = params.toString();
-        LogUtils.LogRequest(url);
+        LogUtils.LogRequest(url, "开始请求");
 
         if (TextUtils.isEmpty(url)) {
             if (getHttpDataListener != null) {
@@ -179,7 +179,7 @@ public class XUtils {
     public void downloadFile(HttpMethod httpMethod, RequestParams params, String path) {
 
         String url = params.toString();
-        LogUtils.LogRequest(url);
+        LogUtils.LogRequest(url, "开始请求");
 
         if (TextUtils.isEmpty(url)) {
             if (downloadListener != null) {
@@ -235,7 +235,7 @@ public class XUtils {
     public void uploadFile(RequestParams params, ArrayList<KeyValue> filePaths) {
 
         String url = params.toString();
-        LogUtils.LogRequest(url);
+        LogUtils.LogRequest(url, "开始请求");
 
         if (TextUtils.isEmpty(url)) {
             if (uploadListener != null) {

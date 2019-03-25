@@ -169,7 +169,7 @@ public class Ex5Activity extends BaseActivity implements BottomNavigationBar.OnT
 
     @Override
     public void onTabUnselected(int position) {
-        LogUtils.Log(position, "onTabUnselected");
+        LogUtils.Log("onTabUnselected", position);
         if (position == 0 && msgCount.equals("0")) {
             numberBadgeItem.hide(false);
         }

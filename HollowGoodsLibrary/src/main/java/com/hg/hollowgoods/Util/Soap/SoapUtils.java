@@ -62,70 +62,56 @@ public class SoapUtils {
 
     public void request(final String serviceName, final String methodName, final List<SoapParam> params) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
 
-                SoapObject soapObject = new SoapObject(NAME_SPACE, methodName);
-                res = "";
-                boolean isSuccess = false;
+            SoapObject soapObject = new SoapObject(NAME_SPACE, methodName);
+            res = "";
+            boolean isSuccess = false;
 
-                if (params != null) {
-                    for (int i = 0; i < params.size(); i++) {
-                        soapObject.addProperty(params.get(i).getKey(), params.get(i).getValue());
-                    }
+            if (params != null) {
+                for (int i = 0; i < params.size(); i++) {
+                    soapObject.addProperty(params.get(i).getKey(), params.get(i).getValue());
                 }
-
-                SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-                envelope.bodyOut = soapObject;
-                envelope.dotNet = false;
-                envelope.setOutputSoapObject(soapObject);
-                HttpTransportSE transport = new HttpTransportSE(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName);
-
-                try {
-                    transport.call(null, envelope);
-                    if (envelope.getResponse() != null) {
-                        SoapObject result = (SoapObject) envelope.bodyIn;
-                        res = result.getProperty(0).toString();
-
-                        isSuccess = true;
-                    } else {
-                        isSuccess = false;
-                        res = "";
-                    }
-                } catch (IOException e) {
-                    // 请求失败
-                    isSuccess = false;
-                    res = e.getMessage();
-                } catch (XmlPullParserException e) {
-                    // 请求失败
-                    isSuccess = false;
-                    res = e.getMessage();
-                }
-
-                LogUtils.Log(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName + "/" + methodName, SoapUtils.class);
-                LogUtils.LogRequest(res);
-
-                if (isSuccess) {
-                    requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, HGResponseInfo.class));
-                } else {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            requestListener.onRequestFail(methodName, res);
-                        }
-                    });
-                }
-
-                // 请求完成
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        requestListener.onRequestFinish();
-                    }
-                });
-
             }
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = soapObject;
+            envelope.dotNet = false;
+            envelope.setOutputSoapObject(soapObject);
+            HttpTransportSE transport = new HttpTransportSE(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName);
+
+            try {
+                transport.call(null, envelope);
+                if (envelope.getResponse() != null) {
+                    SoapObject result = (SoapObject) envelope.bodyIn;
+                    res = result.getProperty(0).toString();
+
+                    isSuccess = true;
+                } else {
+                    isSuccess = false;
+                    res = "";
+                }
+            } catch (IOException e) {
+                // 请求失败
+                isSuccess = false;
+                res = e.getMessage();
+            } catch (XmlPullParserException e) {
+                // 请求失败
+                isSuccess = false;
+                res = e.getMessage();
+            }
+
+            LogUtils.LogRequest(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName + "/" + methodName, res);
+
+            if (isSuccess) {
+                requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, HGResponseInfo.class));
+            } else {
+                activity.runOnUiThread(() -> requestListener.onRequestFail(methodName, res));
+            }
+
+            // 请求完成
+            activity.runOnUiThread(() -> requestListener.onRequestFinish());
+
         }).start();
     }
 
@@ -170,27 +156,16 @@ public class SoapUtils {
                 res = e.getMessage();
             }
 
-            LogUtils.Log(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName + "/" + methodName, SoapUtils.class);
-            LogUtils.LogRequest(res);
+            LogUtils.LogRequest(InterfaceConfig.getNowIPConfig().getRequestUrl() + "/" + serviceName + "/" + methodName, res);
 
             if (isSuccess) {
                 requestListener.onRequestSuccess(methodName, new Gson().fromJson(res, HGResponseInfo.class));
             } else {
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        requestListener.onRequestFail(methodName, res);
-                    }
-                });
+                activity.runOnUiThread(() -> requestListener.onRequestFail(methodName, res));
             }
 
             // 请求完成
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    requestListener.onRequestFinish();
-                }
-            });
+            activity.runOnUiThread(() -> requestListener.onRequestFinish());
 
         }).start();
     }

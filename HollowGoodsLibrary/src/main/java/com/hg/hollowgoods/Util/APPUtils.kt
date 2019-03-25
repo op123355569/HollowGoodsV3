@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Looper
 
 /**
  * APP信息工具类
@@ -93,6 +94,11 @@ object APPUtils {
     @JvmStatic
     fun isDebug(context: Context): Boolean {
         return context.applicationInfo != null && context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+    }
+
+    @JvmStatic
+    fun isMainThread(): Boolean {
+        return Looper.myLooper() == Looper.getMainLooper()
     }
 
 }

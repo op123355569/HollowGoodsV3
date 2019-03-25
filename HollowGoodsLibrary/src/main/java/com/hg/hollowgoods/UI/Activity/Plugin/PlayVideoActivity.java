@@ -216,10 +216,10 @@ public class PlayVideoActivity extends BaseActivity {
             @Override
             public void showProgressDialog(long seekTimePosition, long duration, String seekTime, String totalTime) {
 
-                LogUtils.Log(seekTimePosition, "seekTimePosition");
-                LogUtils.Log(duration, "duration");
-                LogUtils.Log(seekTime, "seekTime");
-                LogUtils.Log(totalTime, "totalTime");
+                LogUtils.Log("seekTimePosition", seekTimePosition);
+                LogUtils.Log("duration", duration);
+                LogUtils.Log("seekTime", seekTime);
+                LogUtils.Log("totalTime", totalTime);
 
                 // 显示你的布局
                 playerView.getGestureProgressLayout().setVisibility(View.VISIBLE);

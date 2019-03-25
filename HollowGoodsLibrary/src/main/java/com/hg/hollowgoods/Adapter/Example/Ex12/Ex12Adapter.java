@@ -21,8 +21,8 @@ public class Ex12Adapter extends MultiItemTypeAdapter<CommonBean> {
         addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_HEADER, new itemExHead());
     }
 
-    public void refreshData(List<CommonBean> data) {
-        super.mData = data;
+    public void refreshData(List<CommonBean> datas) {
+        super.mDatas = datas;
         notifyDataSetChanged();
     }
 

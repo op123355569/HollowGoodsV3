@@ -58,17 +58,17 @@ public class MultiChoiceDialogAdapter extends CommonAdapter<Object> {
             this.checkedPositions.addAll(checkedPositions);
         }
 
-        refreshData(super.mData);
+        refreshData(super.mDatas);
     }
 
     public void addCheckedPosition(int position) {
         this.checkedPositions.add(position);
-        refreshData(super.mData, position);
+        refreshData(super.mDatas, position);
     }
 
     public void removeCheckedPosition(int position) {
         this.checkedPositions.remove(Integer.valueOf(position));
-        refreshData(super.mData, position);
+        refreshData(super.mDatas, position);
     }
 
 }

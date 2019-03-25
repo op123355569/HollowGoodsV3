@@ -132,10 +132,6 @@ public class StringUtils {
          */
         Time_M("MM"),
         /**
-         * dd
-         */
-        Time_D("dd"),
-        /**
          * HH:mm:ss:SSS
          */
         Time_HMSS("HH:mm:ss:SSS"),
@@ -249,20 +245,6 @@ public class StringUtils {
         try {
             d = sdf.parse(str);
             result = d.getTime();
-        } catch (ParseException e) {
-
-        }
-
-        return result;
-    }
-
-    public static long getDateLong(String dateStr, String format) {
-
-        long result = 0;
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-
-        try {
-            result = sdf.parse(dateStr).getTime();
         } catch (ParseException e) {
 
         }

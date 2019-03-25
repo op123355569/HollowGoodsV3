@@ -92,7 +92,7 @@ public class ImagePreActivity extends BaseActivity {
                 switch (code) {
                     case DIALOG_CODE_REMOVE_IMAGE:
                         data.remove(clickPosition);
-                        adapter.removeData(data, clickPosition, 1);
+                        adapter.removeDatas(data, clickPosition, 1);
                         backData();
                         break;
                 }

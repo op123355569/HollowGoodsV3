@@ -65,7 +65,7 @@ public class Ex38Activity extends BaseActivity {
             @Override
             public void onRecyclerViewItemLongClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
                 data.remove(position);
-                adapter.removeData(data, position, 1);
+                adapter.removeDatas(data, position, 1);
             }
         });
     }
@@ -73,6 +73,6 @@ public class Ex38Activity extends BaseActivity {
     @Override
     public void onRightTitleClick(View view, int id) {
         data.add(new Ex38());
-        adapter.addData(data, data.size() - 1, 1);
+        adapter.addDatas(data, data.size() - 1, 1);
     }
 }

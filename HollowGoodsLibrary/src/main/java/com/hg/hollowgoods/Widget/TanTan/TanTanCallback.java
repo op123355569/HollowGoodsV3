@@ -36,7 +36,7 @@ public class TanTanCallback extends RenRenCallback {
         super.onSwiped(viewHolder, direction);
 
         //如果不需要循环删除
-/*        Object remove = mData.remove(viewHolder.getLayoutPosition());
+/*        Object remove = mDatas.remove(viewHolder.getLayoutPosition());
         mAdapter.notifyDataSetChanged();*/
 
         //探探只是第一层加了rotate & alpha的操作

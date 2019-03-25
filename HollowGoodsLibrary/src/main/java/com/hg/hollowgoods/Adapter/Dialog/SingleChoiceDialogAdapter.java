@@ -47,7 +47,7 @@ public class SingleChoiceDialogAdapter extends CommonAdapter<Object> {
 
     public void setCheckedPosition(int checkedPosition) {
         this.checkedPosition = checkedPosition;
-        refreshData(super.mData);
+        refreshData(super.mDatas);
     }
 
 }

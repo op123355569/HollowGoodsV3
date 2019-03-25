@@ -49,6 +49,13 @@ public class LogUtils {
 
     public static void Log(String tag, Object msg) {
 
+        String title;
+        if (APPUtils.isMainThread()) {
+            title = "Thread:Main";
+        } else {
+            title = "Thread:Child";
+        }
+
         String str;
 
         if (msg == null) {
@@ -57,7 +64,7 @@ public class LogUtils {
             str = msg.toString();
         }
 
-        Log(tag, str, null, null);
+        Log(tag, title, null, str);
     }
 
     public static void Log(String tag, String title, ArrayList<String> content, String other) {
@@ -78,6 +85,7 @@ public class LogUtils {
             Log.e(tag, "│ ");
         }
         Log.e(tag, "\n");
+
         Log.e(tag, "├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
         Log.e(tag, "\n");
         if (content != null) {
@@ -87,11 +95,11 @@ public class LogUtils {
                     Log.e(tag, "\n");
                 }
             }
-        } else {
-            Log.e(tag, "│ ");
+
+            Log.e(tag, "├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
+            Log.e(tag, "\n");
         }
-        Log.e(tag, "├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
-        Log.e(tag, "\n");
+
         if (!TextUtils.isEmpty(other)) {
             Log.e(tag, "│ " + other);
             Log.e(tag, "\n");

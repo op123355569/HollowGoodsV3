@@ -59,7 +59,7 @@ public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCa
 
             // 加载文件
             Bundle localBundle = new Bundle();
-            LogUtils.Log(mFile.toString(), SuperFileView.class);
+            LogUtils.Log(mFile.toString());
             localBundle.putString("filePath", mFile.toString());
             localBundle.putString("tempPath", bsReaderTemp);
 
@@ -73,7 +73,7 @@ public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCa
                 this.mTbsReaderView.openFile(localBundle);
             }
         } else {
-            LogUtils.Log("文件路径无效！", SuperFileView.class);
+            LogUtils.Log("文件路径无效！");
         }
     }
 
@@ -113,7 +113,7 @@ public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCa
 
     @Override
     public void onCallBackAction(Integer integer, Object o, Object o1) {
-        LogUtils.Log("****************************************************" + integer, SuperFileView.class);
+        LogUtils.Log("****************************************************" + integer);
     }
 
     public void onStopDisplay() {

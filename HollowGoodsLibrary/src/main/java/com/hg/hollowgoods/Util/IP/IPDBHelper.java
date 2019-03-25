@@ -20,7 +20,7 @@ public class IPDBHelper {
             List<IPConfig> result = XDBUtils.getDbManager().findAll(IPConfig.class);
             return result;
         } catch (DbException e) {
-            LogUtils.Log(e.getMessage(), IPDBHelper.class);
+            LogUtils.Log(e.getMessage());
         }
 
         return null;
@@ -32,7 +32,7 @@ public class IPDBHelper {
             delete();
             XDBUtils.getDbManager().save(data);
         } catch (DbException e) {
-            LogUtils.Log(e.getMessage(), IPDBHelper.class);
+            LogUtils.Log(e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class IPDBHelper {
         try {
             XDBUtils.getDbManager().delete(IPConfig.class);
         } catch (DbException e) {
-            LogUtils.Log(e.getMessage(), IPDBHelper.class);
+            LogUtils.Log(e.getMessage());
         }
     }
 

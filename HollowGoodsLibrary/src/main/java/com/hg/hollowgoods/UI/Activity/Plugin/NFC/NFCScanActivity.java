@@ -196,11 +196,11 @@ public abstract class NFCScanActivity extends BaseActivity {
             tagId = buffer.toString();
 
             if (HGSystemConfig.IS_DEBUG_MODEL) {
-                LogUtils.Log("NFC感应标签的ID为:" + tagId, this.getClass());
+                LogUtils.Log("NFC感应标签的ID为:" + tagId);
             }
         } catch (Exception e) {
             if (HGSystemConfig.IS_DEBUG_MODEL) {
-                LogUtils.Log("读取NFC标签异常:" + e.getMessage(), this.getClass());
+                LogUtils.Log("读取NFC标签异常:" + e.getMessage());
             }
         }
         return tagId;
@@ -220,7 +220,7 @@ public abstract class NFCScanActivity extends BaseActivity {
         // 查看TAG的类型
         for (String tech : techList) {
             if (HGSystemConfig.IS_DEBUG_MODEL) {
-                LogUtils.Log("NFC感应标签类型为:" + tech, this.getClass());
+                LogUtils.Log("NFC感应标签类型为:" + tech);
             }
             if (tech.contains(TAG_MifareClassic)) {
                 handler.sendEmptyMessage(READ_TAG_MifareClassic);
@@ -263,7 +263,7 @@ public abstract class NFCScanActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
             if (HGSystemConfig.IS_DEBUG_MODEL) {
-                LogUtils.Log("处理NfcA标签类型数据异常:" + e.getMessage(), this.getClass());
+                LogUtils.Log("处理NfcA标签类型数据异常:" + e.getMessage());
             }
         }
 
@@ -329,7 +329,7 @@ public abstract class NFCScanActivity extends BaseActivity {
             tagContent = metaInfo;
         } catch (Exception e) {
             e.printStackTrace();
-            LogUtils.Log("处理MifareClassic标签类型数据异常:" + e.getMessage(), this.getClass());
+            LogUtils.Log("处理MifareClassic标签类型数据异常:" + e.getMessage());
         }
 
         return tagContent;

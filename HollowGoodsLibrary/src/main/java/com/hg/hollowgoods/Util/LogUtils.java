@@ -3,6 +3,7 @@ package com.hg.hollowgoods.Util;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 
 import java.util.ArrayList;
@@ -15,59 +16,44 @@ public class LogUtils {
 
     public static void LogRequest(String url, String msg) {
 
-        String title;
-        if (APPUtils.isMainThread()) {
-            title = "Thread:Main";
-        } else {
-            title = "Thread:Child";
-        }
-
         ArrayList<String> content = null;
         if (!TextUtils.isEmpty(msg)) {
             content = StringUtils.getStringArray(msg, "\n");
         }
 
-        Log("Network request", title, content, url);
+        Log(getDefaultTag(), getTitle(), content, url);
     }
 
-    public static void Log(Object msg) {
-        Log(LogUtils.class.getSimpleName(), msg);
+    public static void Log(Object other) {
+        Log(getTitle(), other);
     }
 
-    public static void Log(Class<?> tag, Object msg) {
+    public static void Log(Object title, Object other) {
+        Log(title, null, other);
+    }
 
-        String str;
+    public static void Log(Object title, ArrayList<String> content, Object other) {
 
-        if (tag != null) {
-            str = tag.getSimpleName();
+        String strTitle;
+
+        if (title == null) {
+            strTitle = "null";
         } else {
-            str = LogUtils.class.getSimpleName();
+            strTitle = title.toString();
         }
 
-        Log(str, msg);
-    }
+        String strOther;
 
-    public static void Log(String tag, Object msg) {
-
-        String title;
-        if (APPUtils.isMainThread()) {
-            title = "Thread:Main";
+        if (title == null) {
+            strOther = "null";
         } else {
-            title = "Thread:Child";
+            strOther = other.toString();
         }
 
-        String str;
-
-        if (msg == null) {
-            str = "null";
-        } else {
-            str = msg.toString();
-        }
-
-        Log(tag, title, null, str);
+        Log(getDefaultTag(), strTitle, content, strOther);
     }
 
-    public static void Log(String tag, String title, ArrayList<String> content, String other) {
+    private static void Log(String tag, String title, ArrayList<String> content, String other) {
 
         if (!HGSystemConfig.IS_DEBUG_MODEL) {
             return;
@@ -107,6 +93,47 @@ public class LogUtils {
             Log.e(tag, "│ ");
         }
         Log.e(tag, "└────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+    }
+
+    private static String getTitle() {
+
+        String title;
+
+        if (APPUtils.isMainThread()) {
+            title = "Thread:Main";
+        } else {
+            title = "Thread:Child";
+        }
+
+        return title;
+    }
+
+    /**
+     * 获取默认TAG
+     */
+    private static String getDefaultTag() {
+
+        // 运行栈类名
+        String stackClassName;
+        // 运行栈
+        StackTraceElement[] stackTraceElements;
+
+        try {
+            // 获取当前运行任务栈信息
+            stackTraceElements = Thread.currentThread().getStackTrace();
+            // 遍历任务栈信息，获取调用者信息并返回
+            for (StackTraceElement stackTraceElement : stackTraceElements) {
+                stackClassName = stackTraceElement.getClassName() + "";
+                // 仅获取本项目下的非此类调用信息
+                if (!stackClassName.contains(LogUtils.class.getSimpleName()) && stackClassName.contains(BaseApplication.create().getPackageName())) {
+                    return "(" + stackTraceElement.getFileName() + ":" + stackTraceElement.getLineNumber() + ")";
+                }
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        return LogUtils.class.getSimpleName();
     }
 
 }

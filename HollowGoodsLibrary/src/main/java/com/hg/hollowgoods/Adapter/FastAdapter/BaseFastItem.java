@@ -59,7 +59,7 @@ public class BaseFastItem {
                 result = field.get(obj);
             }
         } catch (Exception e) {
-            LogUtils.Log(e.getMessage(), "Exception");
+            LogUtils.Log(e.getMessage());
         }
 
         return result;

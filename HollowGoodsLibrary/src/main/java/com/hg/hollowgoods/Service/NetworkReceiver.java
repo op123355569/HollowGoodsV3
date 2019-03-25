@@ -29,14 +29,14 @@ public class NetworkReceiver extends BroadcastReceiver {
                 if (NetworkInfo.State.CONNECTED == info.getState() && info.isAvailable()) {
                     if (info.getType() == ConnectivityManager.TYPE_WIFI
                             || info.getType() == ConnectivityManager.TYPE_MOBILE) {
-                        LogUtils.Log("连上", NetworkReceiver.class);
+                        LogUtils.Log("连上");
                         TimeService.start(context);
                     }
                 } else {
-                    LogUtils.Log("断开", NetworkReceiver.class);
+                    LogUtils.Log("断开");
                 }
             } else {
-                LogUtils.Log("断开", NetworkReceiver.class);
+                LogUtils.Log("断开");
             }
         }
     }

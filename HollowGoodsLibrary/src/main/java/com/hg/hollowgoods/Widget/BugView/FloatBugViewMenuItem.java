@@ -279,7 +279,7 @@ public class FloatBugViewMenuItem extends FrameLayout {
                 result = field.get(obj);
             }
         } catch (Exception e) {
-            LogUtils.Log(e.getMessage(), "Exception");
+            LogUtils.Log(e.getMessage());
         }
 
         return result;

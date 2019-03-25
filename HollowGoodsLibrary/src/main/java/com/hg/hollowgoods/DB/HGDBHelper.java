@@ -14,9 +14,7 @@ public class HGDBHelper {
         try {
             return XDBUtils.getDbManager().findFirst(clazz);
         } catch (DbException e) {
-            if (e != null) {
-                LogUtils.Log(e.getMessage(), HGDBHelper.class);
-            }
+            LogUtils.Log(e.getMessage());
         }
 
         return null;
@@ -27,9 +25,7 @@ public class HGDBHelper {
         try {
             return XDBUtils.getDbManager().findAll(clazz);
         } catch (DbException e) {
-            if (e != null) {
-                LogUtils.Log(e.getMessage(), HGDBHelper.class);
-            }
+            LogUtils.Log(e.getMessage());
         }
 
         return null;
@@ -39,9 +35,7 @@ public class HGDBHelper {
         try {
             XDBUtils.getDbManager().delete(obj);
         } catch (DbException e) {
-            if (e != null) {
-                LogUtils.Log(e.getMessage(), HGDBHelper.class);
-            }
+            LogUtils.Log(e.getMessage());
         }
     }
 
@@ -49,9 +43,7 @@ public class HGDBHelper {
         try {
             XDBUtils.getDbManager().delete(clazz);
         } catch (DbException e) {
-            if (e != null) {
-                LogUtils.Log(e.getMessage(), HGDBHelper.class);
-            }
+            LogUtils.Log(e.getMessage());
         }
     }
 
@@ -59,9 +51,7 @@ public class HGDBHelper {
         try {
             XDBUtils.getDbManager().save(obj);
         } catch (DbException e) {
-            if (e != null) {
-                LogUtils.Log(e.getMessage(), HGDBHelper.class);
-            }
+            LogUtils.Log(e.getMessage());
         }
     }
 

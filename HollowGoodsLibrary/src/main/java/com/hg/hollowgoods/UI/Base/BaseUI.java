@@ -787,7 +787,7 @@ public class BaseUI {
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
-            int colorInt = ContextCompat.getColor(getBaseContext(), R.color.black_transparent);
+            int colorInt = ContextCompat.getColor(getBaseContext(), com.codemybrainsout.onboarder.R.color.black_transparent);
 
             if (color instanceof String) {
                 colorInt = Color.parseColor((String) color);

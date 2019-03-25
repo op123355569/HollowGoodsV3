@@ -17,8 +17,8 @@ public class MultiChoiceDialogAdapter extends CommonAdapter<Object> {
 
     private ArrayList<Integer> checkedPositions = new ArrayList<>();
 
-    public MultiChoiceDialogAdapter(Context context, int layoutId, List<Object> datas) {
-        super(context, layoutId, datas);
+    public MultiChoiceDialogAdapter(Context context, int layoutId, List<Object> data) {
+        super(context, layoutId, data);
     }
 
     @Override
@@ -58,17 +58,17 @@ public class MultiChoiceDialogAdapter extends CommonAdapter<Object> {
             this.checkedPositions.addAll(checkedPositions);
         }
 
-        refreshData(super.mDatas);
+        refreshData(super.mData);
     }
 
     public void addCheckedPosition(int position) {
         this.checkedPositions.add(position);
-        refreshData(super.mDatas, position);
+        refreshData(super.mData, position);
     }
 
     public void removeCheckedPosition(int position) {
         this.checkedPositions.remove(Integer.valueOf(position));
-        refreshData(super.mDatas, position);
+        refreshData(super.mData, position);
     }
 
 }

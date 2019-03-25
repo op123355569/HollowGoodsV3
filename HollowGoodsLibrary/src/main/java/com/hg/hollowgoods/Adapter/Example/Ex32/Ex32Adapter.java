@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class Ex32Adapter extends MultiItemTypeAdapter<CommonBean> {
 
-    public Ex32Adapter(Context context, List<CommonBean> datas) {
-        super(context, datas);
+    public Ex32Adapter(Context context, List<CommonBean> data) {
+        super(context, data);
         addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_LEFT_MENU, new ItemEx32Left());
         addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_RIGHT_MENU, new ItemEx32Right());
         addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_LEFT_AND_RIGHT_MENU, new ItemEx32LeftAndRight());

@@ -28,8 +28,8 @@ public class MediaAdapter extends CommonAdapter<Media> {
     private OnViewClickListener onViewClickListener;
     private FileSelectorUtils fileSelectorUtils;
 
-    public MediaAdapter(Context context, int layoutId, List<Media> datas, OnViewClickListener onViewClickListener) {
-        super(context, layoutId, datas);
+    public MediaAdapter(Context context, int layoutId, List<Media> data, OnViewClickListener onViewClickListener) {
+        super(context, layoutId, data);
         this.onViewClickListener = onViewClickListener;
         fileSelectorUtils = new FileSelectorUtils();
     }

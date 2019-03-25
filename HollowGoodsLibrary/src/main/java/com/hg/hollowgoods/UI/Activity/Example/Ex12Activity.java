@@ -12,7 +12,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.HeaderItemDecoration;
-import com.hg.hollowgoods.Adapter.BaseRecyclerView.CallBack.OnRcvScrollListener;
+import com.hg.hollowgoods.Adapter.BaseRecyclerView.CallBack.OnRecyclerViewScrollListener;
 import com.hg.hollowgoods.Adapter.Example.Ex12.Ex12Adapter;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Bean.Example.Ex12;
@@ -89,7 +89,7 @@ public class Ex12Activity extends BaseActivity implements SwipeRefreshLayout.OnR
     public void setListener() {
 
         refreshLayout.setOnRefreshListener(this);
-        result.addOnScrollListener(new OnRcvScrollListener() {
+        result.addOnScrollListener(new OnRecyclerViewScrollListener() {
             @Override
             public void onBottom() {
                 onLoadMore();

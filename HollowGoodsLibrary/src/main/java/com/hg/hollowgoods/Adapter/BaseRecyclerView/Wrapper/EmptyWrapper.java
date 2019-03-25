@@ -1,6 +1,5 @@
 package com.hg.hollowgoods.Adapter.BaseRecyclerView.Wrapper;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +7,13 @@ import android.view.ViewGroup;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Util.WrapperUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by HG
  */
 public class EmptyWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     public static final int ITEM_TYPE_EMPTY = Integer.MAX_VALUE - 1;
 
     @SuppressWarnings("rawtypes")
@@ -28,8 +30,9 @@ public class EmptyWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return (mEmptyView != null || mEmptyLayoutId != 0) && mInnerAdapter.getItemCount() == 0;
     }
 
+    @NotNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         if (isEmpty()) {
             ViewHolder holder;
             if (mEmptyView != null) {
@@ -43,26 +46,22 @@ public class EmptyWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        WrapperUtils.onAttachedToRecyclerView(mInnerAdapter, recyclerView, new WrapperUtils.SpanSizeCallback() {
-            @Override
-            public int getSpanSize(GridLayoutManager gridLayoutManager, GridLayoutManager.SpanSizeLookup oldLookup,
-                                   int position) {
-                if (isEmpty()) {
-                    return gridLayoutManager.getSpanCount();
-                }
-                if (oldLookup != null) {
-                    return oldLookup.getSpanSize(position);
-                }
-                return 1;
+    public void onAttachedToRecyclerView(@NotNull RecyclerView recyclerView) {
+        WrapperUtils.onAttachedToRecyclerView(mInnerAdapter, recyclerView, (gridLayoutManager, oldLookup, position) -> {
+            if (isEmpty()) {
+                return gridLayoutManager.getSpanCount();
             }
+            if (oldLookup != null) {
+                return oldLookup.getSpanSize(position);
+            }
+            return 1;
         });
 
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+    public void onViewAttachedToWindow(@NotNull RecyclerView.ViewHolder holder) {
         mInnerAdapter.onViewAttachedToWindow(holder);
         if (isEmpty()) {
             WrapperUtils.setFullSpan(holder);
@@ -79,7 +78,7 @@ public class EmptyWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull RecyclerView.ViewHolder holder, int position) {
         if (isEmpty()) {
             return;
         }

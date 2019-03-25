@@ -128,7 +128,7 @@ public class FileSelectorActivity extends BaseActivity {
                     fileData.addAll(result);
                 }
 
-                fileAdapter.addDatas(fileData, 0, fileData.size());
+                fileAdapter.addData(fileData, 0, fileData.size());
 
                 if (nowStep == 1) {
                     scrollToPosition(0, 0);
@@ -202,7 +202,7 @@ public class FileSelectorActivity extends BaseActivity {
         }
 
         labelData.add(label);
-        labelAdapter.addDatas(labelData, labelData.size() - 1, 1);
+        labelAdapter.addData(labelData, labelData.size() - 1, 1);
         labels.smoothScrollToPosition(labelData.size() - 1);
 
         fileData.clear();
@@ -227,7 +227,7 @@ public class FileSelectorActivity extends BaseActivity {
             removeCount++;
         }
         if (removeCount > 0) {
-            labelAdapter.removeDatas(labelData, index + 1, removeCount);
+            labelAdapter.removeData(labelData, index + 1, removeCount);
         } else {
             labelAdapter.refreshData(labelData);
         }

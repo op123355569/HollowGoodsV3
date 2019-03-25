@@ -23,8 +23,8 @@ public class FileAdapter extends CommonAdapter<File> {
 
     private FileSelectorUtils fileSelectorUtils = new FileSelectorUtils();
 
-    public FileAdapter(Context context, int layoutId, List<File> datas) {
-        super(context, layoutId, datas);
+    public FileAdapter(Context context, int layoutId, List<File> data) {
+        super(context, layoutId, data);
     }
 
     @Override

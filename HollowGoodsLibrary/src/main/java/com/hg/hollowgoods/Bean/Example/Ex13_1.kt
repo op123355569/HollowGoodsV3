@@ -21,21 +21,21 @@ class Ex13_1 {
     companion object {
 
         @JvmStatic
-        fun initDatas(): List<Ex13_1> {
+        fun initData(): List<Ex13_1> {
 
-            val datas = ArrayList<Ex13_1>()
+            val data = ArrayList<Ex13_1>()
             var i = 1
 
-            datas.add(Ex13_1(i++, "", "Item 1"))
-            datas.add(Ex13_1(i++, "", "Item 2"))
-            datas.add(Ex13_1(i++, "", "Item 3"))
-            datas.add(Ex13_1(i++, "", "Item 4"))
-            datas.add(Ex13_1(i++, "", "Item 5"))
-            datas.add(Ex13_1(i++, "", "Item 6"))
-            datas.add(Ex13_1(i++, "", "Item 7"))
-            datas.add(Ex13_1(i++, "", "Item 8"))
+            data.add(Ex13_1(i++, "", "Item 1"))
+            data.add(Ex13_1(i++, "", "Item 2"))
+            data.add(Ex13_1(i++, "", "Item 3"))
+            data.add(Ex13_1(i++, "", "Item 4"))
+            data.add(Ex13_1(i++, "", "Item 5"))
+            data.add(Ex13_1(i++, "", "Item 6"))
+            data.add(Ex13_1(i++, "", "Item 7"))
+            data.add(Ex13_1(i++, "", "Item 8"))
 
-            return datas
+            return data
         }
 
     }

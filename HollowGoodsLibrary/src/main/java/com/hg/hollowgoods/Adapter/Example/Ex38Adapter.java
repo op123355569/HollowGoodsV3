@@ -15,8 +15,8 @@ import java.util.List;
 
 public class Ex38Adapter extends CommonAdapter<Ex38> {
 
-    public Ex38Adapter(Context context, int layoutId, List<Ex38> datas) {
-        super(context, layoutId, datas);
+    public Ex38Adapter(Context context, int layoutId, List<Ex38> data) {
+        super(context, layoutId, data);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class Ex38Adapter extends CommonAdapter<Ex38> {
             @Override
             public void onViewClick(View view, int id) {
                 animMenuLayout.openMenu(true);
-                mDatas.get(position).setOpen(true);
-                refreshData(mDatas, position);
+                mData.get(position).setOpen(true);
+                refreshData(mData, position);
             }
         });
 
@@ -43,8 +43,8 @@ public class Ex38Adapter extends CommonAdapter<Ex38> {
             @Override
             public void onViewClick(View view, int id) {
                 animMenuLayout.closeMenu(true);
-                mDatas.get(position).setOpen(false);
-                refreshData(mDatas, position);
+                mData.get(position).setOpen(false);
+                refreshData(mData, position);
             }
         });
 

@@ -8,7 +8,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 /**
  * 滚动监听器
  */
-public class OnRcvScrollListener extends RecyclerView.OnScrollListener implements OnBottomListener {
+public class OnRecyclerViewScrollListener extends RecyclerView.OnScrollListener implements OnBottomListener {
 
     @SuppressWarnings("unused")
     private String TAG = getClass().getSimpleName();

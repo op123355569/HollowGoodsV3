@@ -9,7 +9,7 @@ import com.hg.hollowgoods.R
  * 示例10适配器
  * Created by HG on 2018-03-22.
  */
-class Ex10Adapter(context: Context, layoutId: Int, datas: List<String>) : CommonAdapter<String>(context, layoutId, datas) {
+class Ex10Adapter(context: Context, layoutId: Int, data: List<String>) : CommonAdapter<String>(context, layoutId, data) {
 
     override fun convert(viewHolder: ViewHolder, item: String, position: Int) {
         viewHolder.setText(R.id.tv_txt, item)

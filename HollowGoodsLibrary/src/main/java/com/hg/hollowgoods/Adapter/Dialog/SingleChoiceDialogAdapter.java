@@ -16,8 +16,8 @@ public class SingleChoiceDialogAdapter extends CommonAdapter<Object> {
 
     private int checkedPosition = -1;
 
-    public SingleChoiceDialogAdapter(Context context, int layoutId, List<Object> datas) {
-        super(context, layoutId, datas);
+    public SingleChoiceDialogAdapter(Context context, int layoutId, List<Object> data) {
+        super(context, layoutId, data);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class SingleChoiceDialogAdapter extends CommonAdapter<Object> {
 
     public void setCheckedPosition(int checkedPosition) {
         this.checkedPosition = checkedPosition;
-        refreshData(super.mDatas);
+        refreshData(super.mData);
     }
 
 }

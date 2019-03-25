@@ -17,7 +17,7 @@ import com.hg.hollowgoods.Util.Glide.GlideOptions
  * 示例6适配器
  * Created by HG on 2018-03-22.
  */
-class Ex6Adapter(context: Context, layoutId: Int, datas: List<String>) : CommonAdapter<String>(context, layoutId, datas) {
+class Ex6Adapter(context: Context, layoutId: Int, data: List<String>) : CommonAdapter<String>(context, layoutId, data) {
 
     override fun convert(viewHolder: ViewHolder, item: String, position: Int) {
 

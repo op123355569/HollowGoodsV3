@@ -22,13 +22,13 @@ public class TanTanCallback extends RenRenCallback {
 
     private static final int MAX_ROTATION = 15;
 
-    public TanTanCallback(RecyclerView rv, RecyclerView.Adapter adapter, List datas) {
-//        this(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, rv, adapter, datas);
-        super(rv, adapter, datas);
+    public TanTanCallback(RecyclerView rv, RecyclerView.Adapter adapter, List data) {
+//        this(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, rv, adapter, data);
+        super(rv, adapter, data);
     }
 
-    public TanTanCallback(int dragDirs, int swipeDirs, RecyclerView rv, RecyclerView.Adapter adapter, List datas) {
-        super(dragDirs, swipeDirs, rv, adapter, datas);
+    public TanTanCallback(int dragDirs, int swipeDirs, RecyclerView rv, RecyclerView.Adapter adapter, List data) {
+        super(dragDirs, swipeDirs, rv, adapter, data);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class TanTanCallback extends RenRenCallback {
         super.onSwiped(viewHolder, direction);
 
         //如果不需要循环删除
-/*        Object remove = mDatas.remove(viewHolder.getLayoutPosition());
+/*        Object remove = mData.remove(viewHolder.getLayoutPosition());
         mAdapter.notifyDataSetChanged();*/
 
         //探探只是第一层加了rotate & alpha的操作

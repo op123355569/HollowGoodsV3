@@ -56,13 +56,13 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
     private ItemFastItem itemFastItem;
     private OnFastClick onFastClick;
 
-    public FastAdapter(Context context, List<CommonBean> datas, boolean openList, boolean openItem) {
-        this(context, datas, openList, openItem, ParamItem.class);
+    public FastAdapter(Context context, List<CommonBean> data, boolean openList, boolean openItem) {
+        this(context, data, openList, openItem, ParamItem.class);
     }
 
-    public FastAdapter(Context context, List<CommonBean> datas, boolean openList, boolean openItem, Class<?> itemsNameClass) {
+    public FastAdapter(Context context, List<CommonBean> data, boolean openList, boolean openItem, Class<?> itemsNameClass) {
 
-        super(context, datas);
+        super(context, data);
         this.context = context;
 
         if (openList) {
@@ -165,11 +165,11 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
      */
     public void refreshFastItem(CommonBean bean, int position) {
         if (itemFastItem != null) {
-            FastItemData temp = mDatas.get(position).getData();
+            FastItemData temp = mData.get(position).getData();
             FastItemData newData = itemFastItem.getDetailItemData(bean, temp.sortNumber);
 
-            mDatas.set(position, newData);
-            refreshData(mDatas, position);
+            mData.set(position, newData);
+            refreshData(mData, position);
         }
     }
 
@@ -194,9 +194,9 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             FastItemData before;
             FastItemData next;
 
-            for (int i = 0; i < mDatas.size() - 1; i++) {
-                before = mDatas.get(i).getData();
-                next = mDatas.get(i + 1).getData();
+            for (int i = 0; i < mData.size() - 1; i++) {
+                before = mData.get(i).getData();
+                next = mData.get(i + 1).getData();
                 if (addItem.get(0).sortNumber > before.sortNumber && addItem.get(0).sortNumber < next.sortNumber) {
                     index = i + 1;
                     break;
@@ -204,12 +204,12 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             }
 
             if (index == -1) {
-                mDatas.add(addItem.get(0));
+                mData.add(addItem.get(0));
             } else {
-                mDatas.add(index, addItem.get(0));
+                mData.add(index, addItem.get(0));
             }
 
-            addDatas(mDatas, index == -1 ? mDatas.size() - 1 : index, 1);
+            addData(mData, index == -1 ? mData.size() - 1 : index, 1);
             addItem.remove(0);
 
             new Handler().postDelayed(this::addFastItem, 300);
@@ -236,8 +236,8 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             int index = -1;
             FastItemData temp;
 
-            for (int i = 0; i < mDatas.size(); i++) {
-                temp = mDatas.get(i).getData();
+            for (int i = 0; i < mData.size(); i++) {
+                temp = mData.get(i).getData();
                 if (removeItem.get(0).sortNumber == temp.sortNumber) {
                     index = i;
                     break;
@@ -245,8 +245,8 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             }
 
             if (index != -1) {
-                mDatas.remove(index);
-                removeDatas(mDatas, index, 1);
+                mData.remove(index);
+                removeData(mData, index, 1);
             }
 
             removeItem.remove(0);

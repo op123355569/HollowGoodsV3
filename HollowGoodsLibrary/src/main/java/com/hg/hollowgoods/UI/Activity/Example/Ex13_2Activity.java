@@ -21,7 +21,7 @@ public class Ex13_2Activity extends AppCompatActivity {
 
     RecyclerView mRv;
     Ex13Adapter mAdapter;
-    List<Ex13_1> mDatas;
+    List<Ex13_1> mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +29,13 @@ public class Ex13_2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_ex_13_1);
         mRv = findViewById(R.id.rv);
         mRv.setLayoutManager(new OverLayCardLayoutManager());
-        mAdapter = new Ex13Adapter(this, R.layout.item_ex_13_1, mDatas = Ex13_1.initDatas());
+        mAdapter = new Ex13Adapter(this, R.layout.item_ex_13_1, mData = Ex13_1.initData());
         mRv.setAdapter(mAdapter);
 
         CardConfig.initConfig(this);
 
         //探探上下滑是不能删除的，所以只传入左右即可
-        final ItemTouchHelper.Callback callback = new TanTanCallback(mRv, mAdapter, mDatas);
+        final ItemTouchHelper.Callback callback = new TanTanCallback(mRv, mAdapter, mData);
         final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(mRv);
 

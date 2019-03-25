@@ -14,15 +14,15 @@ import java.util.List;
 
 public class Ex12Adapter extends MultiItemTypeAdapter<CommonBean> {
 
-    public Ex12Adapter(Context context, List<CommonBean> datas) {
-        super(context, datas);
+    public Ex12Adapter(Context context, List<CommonBean> data) {
+        super(context, data);
         addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_1, new ItemEx12_1());
         addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_2, new ItemEx12_2());
         addItemViewDelegate(HGConstants.LIST_ITEM_TYPE_HEADER, new itemExHead());
     }
 
-    public void refreshData(List<CommonBean> datas) {
-        super.mDatas = datas;
+    public void refreshData(List<CommonBean> data) {
+        super.mData = data;
         notifyDataSetChanged();
     }
 

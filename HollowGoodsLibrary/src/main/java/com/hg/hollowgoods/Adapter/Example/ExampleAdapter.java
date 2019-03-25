@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class ExampleAdapter extends CommonAdapter<Example> {
 
-    public ExampleAdapter(Context context, int layoutId, List<Example> datas) {
-        super(context, layoutId, datas);
+    public ExampleAdapter(Context context, int layoutId, List<Example> data) {
+        super(context, layoutId, data);
     }
 
     @Override

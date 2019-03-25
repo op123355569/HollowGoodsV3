@@ -1,5 +1,6 @@
 package com.hg.hollowgoods.Adapter.BaseRecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,8 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Helper.OnStartDragListener;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Util.FullSpanUtil;
 import com.hg.hollowgoods.Constant.HGConstants;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -24,37 +27,38 @@ import java.util.List;
 public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> implements ItemTouchHelperAdapter {
 
     protected Context mContext;
-    protected List<T> mDatas;
+    protected List<T> mData;
 
-    @SuppressWarnings("rawtypes")
     protected ItemViewDelegateManager mItemViewDelegateManager;
     protected OnItemClickListener mOnItemClickListener;
 
-    @SuppressWarnings("rawtypes")
-    public MultiItemTypeAdapter(Context context, List<T> datas) {
+    public MultiItemTypeAdapter(Context context, List<T> data) {
         mContext = context;
-        mDatas = datas;
+        mData = data;
         mItemViewDelegateManager = new ItemViewDelegateManager();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public int getItemViewType(int position) {
-        if (!useItemViewDelegateManager())
-            return super.getItemViewType(position);
 
-        int result = mItemViewDelegateManager.getItemViewType(mDatas.get(position), position);
-        return result;
+        if (!useItemViewDelegateManager()) {
+            return super.getItemViewType(position);
+        }
+
+        return mItemViewDelegateManager.getItemViewType(mData.get(position), position);
     }
 
-    @SuppressWarnings("rawtypes")
+    @NotNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+
         ItemViewDelegate itemViewDelegate = mItemViewDelegateManager.getItemViewDelegate(viewType);
         int layoutId = itemViewDelegate.getItemViewLayoutId();
         ViewHolder holder = ViewHolder.createViewHolder(mContext, parent, layoutId);
         onViewHolderCreated(holder, holder.getConvertView());
         setListener(parent, holder, viewType);
+
         return holder;
     }
 
@@ -71,56 +75,55 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
         return true;
     }
 
-    protected void setListener(final ViewGroup parent, final ViewHolder viewHolder, int viewType) {
-        if (!isEnabled(viewType))
+    protected void setListener(ViewGroup parent, ViewHolder viewHolder, int viewType) {
+
+        if (!isEnabled(viewType)) {
             return;
-        viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    int position = viewHolder.getAdapterPosition();
-                    mOnItemClickListener.onItemClick(v, viewHolder, position);
-                }
+        }
+
+        viewHolder.getConvertView().setOnClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                int position = viewHolder.getAdapterPosition();
+                mOnItemClickListener.onItemClick(v, viewHolder, position);
             }
         });
 
-        viewHolder.getConvertView().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (mOnItemClickListener != null) {
-                    int position = viewHolder.getAdapterPosition();
-                    return mOnItemClickListener.onItemLongClick(v, viewHolder, position);
-                }
-                return false;
+        viewHolder.getConvertView().setOnLongClickListener(v -> {
+
+            if (mOnItemClickListener != null) {
+                int position = viewHolder.getAdapterPosition();
+                return mOnItemClickListener.onItemLongClick(v, viewHolder, position);
             }
+
+            return false;
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        convert(holder, mDatas.get(position));
+    public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
+
+        convert(holder, mData.get(position));
+
         if (mDragStartListener != null && dragViewId != -1) {
-            holder.getView(dragViewId).setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (MotionEventCompat.getActionMasked(event) ==
-                            MotionEvent.ACTION_DOWN) {
-                        mDragStartListener.onStartDrag(holder);
-                    }
-                    return false;
+            holder.getView(dragViewId).setOnTouchListener((v, event) -> {
+
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mDragStartListener.onStartDrag(holder);
                 }
+
+                return false;
             });
         }
     }
 
     @Override
     public int getItemCount() {
-        int itemCount = mDatas.size();
-        return itemCount;
+        return mData.size();
     }
 
-    public List<T> getDatas() {
-        return mDatas;
+    public List<T> getData() {
+        return mData;
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -150,63 +153,60 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NotNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         FullSpanUtil.onAttachedToRecyclerView(recyclerView, this, HGConstants.LIST_ITEM_TYPE_HEADER);
     }
 
     @Override
-    public void onViewAttachedToWindow(ViewHolder holder) {
-
+    public void onViewAttachedToWindow(@NotNull ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         FullSpanUtil.onViewAttachedToWindow(holder, this, HGConstants.LIST_ITEM_TYPE_HEADER);
     }
 
-    public void refreshData(List<T> datas) {
-        mDatas = datas;
+    public void refreshData(List<T> data) {
+        mData = data;
         notifyDataSetChanged();
     }
 
-    public void refreshData(int oldSize, List<T> datas) {
+    public void refreshData(int oldSize, List<T> data) {
 
-        int newSize = datas.size();
+        int newSize = data.size();
 
         if (oldSize > newSize) {
-            removeDatas(datas, newSize, oldSize - newSize);
+            removeData(data, newSize, oldSize - newSize);
         } else if (newSize > oldSize) {
-            addDatas(datas, oldSize, newSize - oldSize);
+            addData(data, oldSize, newSize - oldSize);
         } else {
-            mDatas = datas;
-            notifyItemRangeChanged(0, datas.size());
+            mData = data;
+            notifyItemRangeChanged(0, data.size());
         }
     }
 
-    public void refreshData(List<T> datas, int position) {
-
-        mDatas = datas;
+    public void refreshData(List<T> data, int position) {
+        mData = data;
         notifyItemChanged(position);
     }
 
-    public void refreshData(List<T> datas, int position, int size) {
-
-        mDatas = datas;
+    public void refreshData(List<T> data, int position, int size) {
+        mData = data;
         notifyItemRangeChanged(position, size);
     }
 
-    public void addDatas(List<T> datas, int position, int itemCount) {
+    public void addData(List<T> data, int position, int itemCount) {
 
-        mDatas = datas;
+        mData = data;
 
         notifyItemRangeInserted(position, itemCount);
-        notifyItemRangeChanged(0, datas.size());
+        notifyItemRangeChanged(0, data.size());
     }
 
-    public void removeDatas(List<T> datas, int position, int itemCount) {
+    public void removeData(List<T> data, int position, int itemCount) {
 
-        mDatas = datas;
+        mData = data;
 
         notifyItemRangeRemoved(position, itemCount);
-        notifyItemRangeChanged(0, datas.size());
+        notifyItemRangeChanged(0, data.size());
     }
 
     private OnStartDragListener mDragStartListener = null;
@@ -220,7 +220,7 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
 
-        Collections.swap(mDatas, fromPosition, toPosition);
+        Collections.swap(mData, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
 
         return true;
@@ -228,14 +228,13 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> im
 
     @Override
     public void onItemDismiss(int position) {
-
-        mDatas.remove(position);
+        mData.remove(position);
         notifyItemRemoved(position);
     }
 
     @Override
     public void onItemMoveOver() {
-        notifyItemRangeChanged(0, mDatas.size());
+        notifyItemRangeChanged(0, mData.size());
     }
 
 }

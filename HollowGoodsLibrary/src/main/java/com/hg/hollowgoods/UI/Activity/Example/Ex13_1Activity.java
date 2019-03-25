@@ -21,7 +21,7 @@ public class Ex13_1Activity extends AppCompatActivity {
 
     RecyclerView mRv;
     Ex13Adapter mAdapter;
-    List<Ex13_1> mDatas;
+    List<Ex13_1> mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,12 @@ public class Ex13_1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_ex_13_1);
         mRv = findViewById(R.id.rv);
         mRv.setLayoutManager(new OverLayCardLayoutManager());
-        mAdapter = new Ex13Adapter(this, R.layout.item_ex_13_1, mDatas = Ex13_1.initDatas());
+        mAdapter = new Ex13Adapter(this, R.layout.item_ex_13_1, mData = Ex13_1.initData());
         mRv.setAdapter(mAdapter);
 
         //初始化配置
         CardConfig.initConfig(this);
-        ItemTouchHelper.Callback callback = new RenRenCallback(mRv, mAdapter, mDatas);
+        ItemTouchHelper.Callback callback = new RenRenCallback(mRv, mAdapter, mData);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(mRv);
     }

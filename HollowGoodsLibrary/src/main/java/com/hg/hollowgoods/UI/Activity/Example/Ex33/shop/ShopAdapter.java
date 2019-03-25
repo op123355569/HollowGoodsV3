@@ -13,8 +13,8 @@ public class ShopAdapter extends CommonAdapter<Item> {
 
     private InfiniteScrollAdapter infiniteAdapter;
 
-    public ShopAdapter(Context context, int layoutId, List<Item> datas) {
-        super(context, layoutId, datas);
+    public ShopAdapter(Context context, int layoutId, List<Item> data) {
+        super(context, layoutId, data);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ShopAdapter extends CommonAdapter<Item> {
         viewHolder.setImageResource(R.id.iv_img, item.getImage());
 
         if (infiniteAdapter != null) {
-            viewHolder.setText(R.id.tv_number, (infiniteAdapter.getRealPosition(position) + 1) + "/" + mDatas.size());
+            viewHolder.setText(R.id.tv_number, (infiniteAdapter.getRealPosition(position) + 1) + "/" + mData.size());
         } else {
             viewHolder.setText(R.id.tv_number, "");
         }

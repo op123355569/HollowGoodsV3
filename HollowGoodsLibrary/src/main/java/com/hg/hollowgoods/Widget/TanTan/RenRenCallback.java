@@ -18,21 +18,21 @@ import static com.hg.hollowgoods.Widget.TanTan.CardConfig.TRANS_Y_GAP;
 public class RenRenCallback extends ItemTouchHelper.SimpleCallback {
 
     protected RecyclerView mRv;
-    protected List mDatas;
+    protected List mData;
     protected RecyclerView.Adapter mAdapter;
 
-    public RenRenCallback(RecyclerView rv, RecyclerView.Adapter adapter, List datas) {
+    public RenRenCallback(RecyclerView rv, RecyclerView.Adapter adapter, List data) {
         this(0,
                 ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT,
-                rv, adapter, datas);
+                rv, adapter, data);
     }
 
     public RenRenCallback(int dragDirs, int swipeDirs
-            , RecyclerView rv, RecyclerView.Adapter adapter, List datas) {
+            , RecyclerView rv, RecyclerView.Adapter adapter, List data) {
         super(dragDirs, swipeDirs);
         mRv = rv;
         mAdapter = adapter;
-        mDatas = datas;
+        mData = data;
     }
 
     //水平方向是否可以被回收掉的阈值
@@ -50,8 +50,8 @@ public class RenRenCallback extends ItemTouchHelper.SimpleCallback {
         //Log.e("swipecard", "onSwiped() called with: viewHolder = [" + viewHolder + "], direction = [" + direction + "]");
         //rollBack(viewHolder);
         //★实现循环的要点
-        Object remove = mDatas.remove(viewHolder.getLayoutPosition());
-        mDatas.add(0, remove);
+        Object remove = mData.remove(viewHolder.getLayoutPosition());
+        mData.add(0, remove);
         mAdapter.notifyDataSetChanged();
 
 

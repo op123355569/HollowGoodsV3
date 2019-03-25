@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class FileLabelAdapter extends CommonAdapter<FileSelectorLabel> {
 
-    public FileLabelAdapter(Context context, int layoutId, List<FileSelectorLabel> datas) {
-        super(context, layoutId, datas);
+    public FileLabelAdapter(Context context, int layoutId, List<FileSelectorLabel> data) {
+        super(context, layoutId, data);
     }
 
     @Override

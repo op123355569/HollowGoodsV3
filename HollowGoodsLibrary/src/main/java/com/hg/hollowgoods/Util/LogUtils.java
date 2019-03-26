@@ -7,12 +7,21 @@ import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * 日志工具
  * Created by Hollow Goods on 2019-03-25.
  */
 public class LogUtils {
+
+    private static ArrayList<String> MODULE_PACKAGE = new ArrayList<>();
+
+    public static void addModulePackage(String... modulePackages) {
+        if (modulePackages != null && modulePackages.length > 0) {
+            MODULE_PACKAGE.addAll(Arrays.asList(modulePackages));
+        }
+    }
 
     public static void LogRequest(String url, String msg) {
 
@@ -125,7 +134,10 @@ public class LogUtils {
             for (StackTraceElement stackTraceElement : stackTraceElements) {
                 stackClassName = stackTraceElement.getClassName() + "";
                 // 仅获取本项目下的非此类调用信息
-                if (!stackClassName.contains(LogUtils.class.getSimpleName()) && stackClassName.contains(BaseApplication.create().getPackageName())) {
+                if (!stackClassName.contains(LogUtils.class.getSimpleName())
+                        && (stackClassName.contains(BaseApplication.create().getPackageName())
+                        || isIncludeModule(stackClassName))
+                ) {
                     return "(" + stackTraceElement.getFileName() + ":" + stackTraceElement.getLineNumber() + ")";
                 }
             }
@@ -134,6 +146,17 @@ public class LogUtils {
         }
 
         return LogUtils.class.getSimpleName();
+    }
+
+    private static boolean isIncludeModule(String stackClassName) {
+
+        for (String t : MODULE_PACKAGE) {
+            if (stackClassName.contains(t)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

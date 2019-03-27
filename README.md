@@ -1,6 +1,6 @@
 # HollowGoodsV3
 ## 1.导入
-### Version：
+### LastVersion：
 [![](https://jitpack.io/v/op123355569/HollowGoodsV3.svg)](https://jitpack.io/#op123355569/HollowGoodsV3)
 
 ```
@@ -14,7 +14,7 @@ allprojects {
   
 ```
 dependencies {
-	implementation 'com.github.op123355569:HollowGoodsV3:{Version}'
+	implementation 'com.github.op123355569:HollowGoodsV3:LastVersion'
 }
 ```
 
@@ -84,7 +84,6 @@ allprojects {
     repositories {
         ...
         mavenCentral()
-        mavenCentral(url: "https://dl.bintray.com/ycjiang/ycjiang")
         maven { url "https://jitpack.io" }
     }
 }
@@ -107,7 +106,7 @@ allprojects {
 
 ## 5.添加权限
 ```
-<!-- **** 本APP相关权限 **** -->
+    <!-- **** 本APP相关权限 **** -->
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" /><!-- 在SDCard中创建与删除文件权限 -->

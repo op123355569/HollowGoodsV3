@@ -141,15 +141,15 @@ public class ForecastView extends LinearLayout {
     private int weatherToIcon(Weather weather) {
         switch (weather) {
             case PERIODIC_CLOUDS:
-                return R.drawable.periodic_clouds;
+                return R.drawable.ic_android_white_24dp;
             case CLOUDY:
-                return R.drawable.cloudy;
+                return R.drawable.ic_android_white_24dp;
             case MOSTLY_CLOUDY:
-                return R.drawable.mostly_cloudy;
+                return R.drawable.ic_android_white_24dp;
             case PARTLY_CLOUDY:
-                return R.drawable.partly_cloudy;
+                return R.drawable.ic_android_white_24dp;
             case CLEAR:
-                return R.drawable.clear;
+                return R.drawable.ic_android_white_24dp;
             default:
                 throw new IllegalArgumentException();
         }

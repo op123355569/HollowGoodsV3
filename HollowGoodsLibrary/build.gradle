@@ -134,7 +134,7 @@ dependencies {
     api libs.AnimSVG
 
     // 视频播放-完整版
-    api libs.VideoPlayModule
+//    api libs.VideoPlayModule
 
     // 照片墙
     api libs.DiscreteScrollview

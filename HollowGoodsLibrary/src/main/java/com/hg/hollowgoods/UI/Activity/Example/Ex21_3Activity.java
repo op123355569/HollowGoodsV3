@@ -43,7 +43,7 @@ public class Ex21_3Activity extends AhoyOnboarderActivity {
         setFinishButtonTitle("Get Started");
         showNavigationControls(true);
         //setGradientBackground();
-        setImageBackground(R.drawable.download);
+        setImageBackground(R.drawable.ic_android_black_24dp);
 
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
         //setFont(face);

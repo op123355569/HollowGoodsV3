@@ -24,45 +24,38 @@ public class LogUtils {
     }
 
     public static void LogRequest(String url, String msg) {
+        BaseLog(getDefaultTag(), getTitle(), url, msg);
+    }
 
-        ArrayList<String> content = null;
-        if (!TextUtils.isEmpty(msg)) {
-            content = StringUtils.getStringArray(msg, "\n");
+    public static void Log(Object... content) {
+
+        if (!HGSystemConfig.IS_DEBUG_MODEL) {
+            return;
         }
 
-        Log(getDefaultTag(), getTitle(), content, url);
-    }
-
-    public static void Log(Object other) {
-        Log(getTitle(), other);
-    }
-
-    public static void Log(Object title, Object other) {
-        Log(title, null, other);
-    }
-
-    public static void Log(Object title, ArrayList<String> content, Object other) {
-
-        String strTitle;
-
-        if (title == null) {
-            strTitle = "null";
-        } else {
-            strTitle = title.toString();
+        if (content == null || content.length == 0) {
+            return;
         }
 
-        String strOther;
+        String[] str = new String[content.length + 1];
+        int i = 0;
 
-        if (title == null) {
-            strOther = "null";
-        } else {
-            strOther = other.toString();
+        str[i++] = getTitle();
+
+        for (Object t : content) {
+            if (t == null) {
+                str[i] = "<null>";
+            } else {
+                str[i] = t.toString();
+            }
+
+            i++;
         }
 
-        Log(getDefaultTag(), strTitle, content, strOther);
+        BaseLog(getDefaultTag(), str);
     }
 
-    private static void Log(String tag, String title, ArrayList<String> content, String other) {
+    private static void BaseLog(String tag, String... content) {
 
         if (!HGSystemConfig.IS_DEBUG_MODEL) {
             return;
@@ -72,36 +65,40 @@ public class LogUtils {
             tag = LogUtils.class.getSimpleName();
         }
 
+        // 头部
         Log.e(tag, "┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         Log.e(tag, "\n");
-        if (!TextUtils.isEmpty(title)) {
-            Log.e(tag, "│ " + title);
-        } else {
-            Log.e(tag, "│ ");
-        }
-        Log.e(tag, "\n");
 
-        Log.e(tag, "├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
-        Log.e(tag, "\n");
-        if (content != null) {
-            for (String t : content) {
-                if (!TextUtils.isEmpty(t)) {
-                    Log.e(tag, "│ " + t);
-                    Log.e(tag, "\n");
+        // 正文
+        ArrayList<String> contentList;
+        int i = 0;
+
+        for (String t : content) {
+            contentList = getContentList(t);
+
+            if (contentList != null && contentList.size() > 0) {
+                for (String p : contentList) {
+                    if (!TextUtils.isEmpty(p)) {
+                        Log.e(tag, "│ " + p);
+                        Log.e(tag, "\n");
+                    }
                 }
+            } else {
+                Log.e(tag, "│ <null>");
+                Log.e(tag, "\n");
             }
 
-            Log.e(tag, "├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
-            Log.e(tag, "\n");
-        }
+            if (i < content.length - 1) {
+                // 中部分割线
+                Log.e(tag, "├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
+                Log.e(tag, "\n");
+            } else {
+                // 底部
+                Log.e(tag, "└────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            }
 
-        if (!TextUtils.isEmpty(other)) {
-            Log.e(tag, "│ " + other);
-            Log.e(tag, "\n");
-        } else {
-            Log.e(tag, "│ ");
+            i++;
         }
-        Log.e(tag, "└────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     private static String getTitle() {
@@ -115,6 +112,17 @@ public class LogUtils {
         }
 
         return title;
+    }
+
+    private static ArrayList<String> getContentList(String str) {
+
+        ArrayList<String> content = null;
+
+        if (!TextUtils.isEmpty(str)) {
+            content = StringUtils.getStringArray(str, "\n");
+        }
+
+        return content;
     }
 
     /**

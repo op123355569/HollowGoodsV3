@@ -4,8 +4,8 @@ ext {
             buildToolsVersion: '28.0.3',
             minSdkVersion    : 21,
             targetSdkVersion : 27,
-            versionCode      : 195,
-            versionName      : '1.9.5',
+            versionCode      : 197,
+            versionName      : '1.9.7',
     ]
 
     // 基础Android Support控件
@@ -70,6 +70,8 @@ ext {
             Percent                  : "com.android.support:percent:$SupportLibraryVersion",
             // Palette图片色调提取库
             Palette                  : "com.android.support:palette-v7:$SupportLibraryVersion",
+            // Animation
+            Animation                : "com.android.support:support-dynamic-animation:$SupportLibraryVersion",
             // 拉性布局，新布局
             ConstraintLayout         : "com.android.support.constraint:constraint-layout:$ConstraintVersion",
             // GooglePlay

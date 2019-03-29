@@ -63,6 +63,9 @@ dependencies {
     // Palette图片色调提取库
     api libs.Palette
 
+    // Animation
+    api libs.Animation
+
     // 拉性布局，新布局
     api libs.ConstraintLayout
 

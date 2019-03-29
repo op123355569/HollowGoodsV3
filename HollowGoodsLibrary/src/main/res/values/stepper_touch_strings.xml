@@ -1,0 +1,5 @@
+<resources>
+    <string name="stepper_text_negative">-</string>
+    <string name="stepper_text_positive">+</string>
+    <string name="stepper_text_count">0</string>
+</resources>

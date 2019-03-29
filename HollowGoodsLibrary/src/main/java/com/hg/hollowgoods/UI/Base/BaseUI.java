@@ -664,6 +664,9 @@ public class BaseUI {
      * 显示公共标题右侧菜单
      */
     public void showCommonTitleRightTitleMenu() {
+
+        hideCommonTitleRightTitleMenu();
+        
         if (menuRes != -1) {
             getBaseContext().getMenuInflater().inflate(menuRes, commonTitleView.getToolbar().getMenu());
             setIconVisible(commonTitleView.getToolbar().getMenu(), true);

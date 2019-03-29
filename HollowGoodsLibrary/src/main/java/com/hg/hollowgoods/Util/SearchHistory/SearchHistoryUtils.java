@@ -17,13 +17,14 @@ import java.util.ArrayList;
 
 public class SearchHistoryUtils {
 
-    private static final int MAX_KEY_COUNT = 3;
+    public static final int MAX_KEY_COUNT = 3;
 
     public static ArrayList<SearchKeys> getKeys(Class clazz, int... historyCode) {
 
-        ArrayList<SearchKeys> result = new ArrayList<>();
+        ArrayList<SearchKeys> result = null;
         FileUtils.checkFileExist(HGSystemConfig.getSearchHistoryPath());
         String name = HGSystemConfig.getSearchHistoryPath() + EncryptUtils.md5Encrypt(clazz.getName());
+
         if (historyCode != null && historyCode.length > 0) {
             name = name + historyCode[0];
         }
@@ -33,6 +34,10 @@ public class SearchHistoryUtils {
 
             result = new Gson().fromJson(str, new TypeToken<ArrayList<SearchKeys>>() {
             }.getType());
+        }
+
+        if (result == null) {
+            result = new ArrayList<>();
         }
 
         return result;
@@ -69,9 +74,11 @@ public class SearchHistoryUtils {
             FileUtils.checkFileExist(HGSystemConfig.getSearchHistoryPath());
             String str = new Gson().toJson(keys);
             String name = HGSystemConfig.getSearchHistoryPath() + EncryptUtils.md5Encrypt(clazz.getName());
+
             if (historyCode != null && historyCode.length > 0) {
                 name = name + historyCode[0];
             }
+
             FileUtils.saveToSD(name, str);
         }
     }

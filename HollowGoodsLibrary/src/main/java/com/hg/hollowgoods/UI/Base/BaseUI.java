@@ -229,9 +229,9 @@ public class BaseUI {
 
         if (mIsNeedHistory) {
             if (historyCodeTag != -9999) {
-                SearchHistoryUtils.saveKeys(this.getClass(), keys, historyCodeTag);
+                SearchHistoryUtils.saveKeys(initUI.getClass(), keys, historyCodeTag);
             } else {
-                SearchHistoryUtils.saveKeys(this.getClass(), keys);
+                SearchHistoryUtils.saveKeys(initUI.getClass(), keys);
             }
         }
 
@@ -906,10 +906,10 @@ public class BaseUI {
         if (floatingSearchView != null) {
             if (isNeedHistory) {
                 if (historyCode == null || historyCode.length == 0) {
-                    keys = SearchHistoryUtils.getKeys(this.getClass());
+                    keys = SearchHistoryUtils.getKeys(initUI.getClass());
                 } else {
                     historyCodeTag = historyCode[0];
-                    keys = SearchHistoryUtils.getKeys(this.getClass(), historyCodeTag);
+                    keys = SearchHistoryUtils.getKeys(initUI.getClass(), historyCodeTag);
                 }
             }
 

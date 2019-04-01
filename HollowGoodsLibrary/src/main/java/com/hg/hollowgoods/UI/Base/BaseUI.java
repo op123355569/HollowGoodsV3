@@ -49,10 +49,10 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.BaseDialog;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.CircularAnimUtils;
+import com.hg.hollowgoods.Util.ExampleUpdateAPPUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchHistoryUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchKeys;
 import com.hg.hollowgoods.Util.SystemBarTintUtils;
-import com.hg.hollowgoods.Util.ExampleUpdateAPPUtils;
 import com.hg.hollowgoods.Widget.CommonTitleView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -308,7 +308,11 @@ public class BaseUI {
             // 这里就是向系统请求权限了,这里我还做了一个判断.
             // SDK是M(M = 23 android L)才做这个请求,否则就不做.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                getBaseContext().requestPermissions(result, requestCode);
+                if (isActivity) {
+                    getBaseContext().requestPermissions(result, requestCode);
+                } else {
+                    ((Fragment) this.initUI).requestPermissions(result, requestCode);
+                }
             }
 
             return false;
@@ -666,7 +670,7 @@ public class BaseUI {
     public void showCommonTitleRightTitleMenu() {
 
         hideCommonTitleRightTitleMenu();
-        
+
         if (menuRes != -1) {
             getBaseContext().getMenuInflater().inflate(menuRes, commonTitleView.getToolbar().getMenu());
             setIconVisible(commonTitleView.getToolbar().getMenu(), true);

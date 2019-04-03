@@ -110,11 +110,16 @@ public class FileSelectorUtils {
 
     public Integer getFileIcon(File file) {
 
-        String extensionName = file.getName().toLowerCase();
-
         if (file.isDirectory()) {// 文件夹
             return fileIcons.get("dir");
         }
+
+        return getFileIcon(file.getName());
+    }
+
+    public Integer getFileIcon(String file) {
+
+        String extensionName = file.toLowerCase();
 
         int index = extensionName.lastIndexOf(".");
         if (index == -1) {

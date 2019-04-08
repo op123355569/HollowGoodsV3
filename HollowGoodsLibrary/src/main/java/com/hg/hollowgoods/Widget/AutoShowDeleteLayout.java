@@ -30,7 +30,7 @@ public class AutoShowDeleteLayout extends FrameLayout {
     private ImageView mDelete = null;
     private EditText mEditText = null;
 
-    private int mDeleteWidth = 0;
+    private int mDeleteSize = 0;
     private int mDeletePadding = 0;
     private boolean mIsMeasure = false;
     private Context mContext = null;
@@ -69,31 +69,27 @@ public class AutoShowDeleteLayout extends FrameLayout {
         }
 
         if (mEditText != null) {
-            mDeleteWidth = dp2px(mContext, 30f);
+            mDeleteSize = dp2px(mContext, 30f);
             mDeletePadding = dp2px(mContext, 7.5f);
             getDeleteDrawable();
 
             mDelete = new ImageView(context);
             int textColor = mEditText.getCurrentTextColor();
             setDeleteButtonColor(textColor);
-            LayoutParams layoutParams = new LayoutParams(mDeleteWidth, mDeleteWidth, Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+            LayoutParams layoutParams = new LayoutParams(mDeleteSize, mDeleteSize, Gravity.CENTER_VERTICAL | Gravity.RIGHT);
             mDelete.setLayoutParams(layoutParams);
             mDelete.setPadding(mDeletePadding, mDeletePadding, mDeletePadding, mDeletePadding);
             mDelete.setVisibility(View.GONE);
 
-            mDelete.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (enable) {
-                        mEditText.setText("");
-                    }
+            mDelete.setOnClickListener(v -> {
+                if (enable) {
+                    mEditText.setText("");
                 }
             });
 
             this.addView(mDelete);
 
-            int editTextPaddingRight = mDeleteWidth;
+            int editTextPaddingRight = mEditText.getPaddingRight() > mDeleteSize ? mEditText.getPaddingRight() : mDeleteSize;
             mEditText.setPadding(mEditText.getPaddingLeft(), mEditText.getPaddingTop(), editTextPaddingRight, mEditText.getPaddingBottom());
 
             mEditText.addTextChangedListener(new TextWatcher() {

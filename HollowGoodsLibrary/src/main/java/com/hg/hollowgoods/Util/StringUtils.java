@@ -132,6 +132,10 @@ public class StringUtils {
          */
         Time_M("MM"),
         /**
+         * DD
+         */
+        Time_D("dd"),
+        /**
          * HH:mm:ss:SSS
          */
         Time_HMSS("HH:mm:ss:SSS"),
@@ -147,6 +151,14 @@ public class StringUtils {
          * HH
          */
         Time_H("HH"),
+        /**
+         * ss
+         */
+        Time_S("ss"),
+        /**
+         * SSS
+         */
+        Time__S("SSS"),
         ;
 
         private String format;
@@ -196,6 +208,20 @@ public class StringUtils {
         c.set(year, month, date, 0, 0, 0);
 
         return getDateTimeString(c.getTimeInMillis(), dateFormatMode);
+    }
+
+    public static long getDateLong(String dateStr, DateFormatMode dateFormatMode) {
+
+        long result = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormatMode.format);
+
+        try {
+            result = sdf.parse(dateStr).getTime();
+        } catch (ParseException e) {
+            LogUtils.Log(e.getMessage());
+        }
+
+        return result;
     }
 
     public static String getTen(int num) {

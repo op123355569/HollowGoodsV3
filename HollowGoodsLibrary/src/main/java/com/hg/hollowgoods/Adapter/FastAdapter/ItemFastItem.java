@@ -76,6 +76,10 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
             viewHolder.setVisible(R.id.marginTop, data.marginTop > 0);
             viewHolder.setViewHeight(R.id.marginTop, data.marginTop);
 
+            // 下间距
+            viewHolder.setVisible(R.id.marginBottom, data.marginBottom > 0);
+            viewHolder.setViewHeight(R.id.marginBottom, data.marginBottom);
+
             viewHolder.setVisible(R.id.fl_customizeViewLayout, data.isCustomizeView && data.customizeViewLayoutRes != null);
             viewHolder.setVisible(R.id.ll_fastContent, !(data.isCustomizeView && data.customizeViewLayoutRes != null));
 
@@ -350,10 +354,13 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
 
                 // 为margin的占位控件设置点击事件，防止margin区域可被点击
                 viewHolder.setOnClickListener(R.id.marginTop, new OnViewClickListener(false));
+                // 为margin的占位控件设置点击事件，防止margin区域可被点击
+                viewHolder.setOnClickListener(R.id.marginBottom, new OnViewClickListener(false));
             }
         } else {
             // 数据类型不正确设置可见性为不可见
             viewHolder.setVisible(R.id.marginTop, false);
+            viewHolder.setVisible(R.id.marginBottom, false);
             viewHolder.setVisible(R.id.iv_leftIcon, false);
             viewHolder.setVisible(R.id.tv_notEmptyFlag, false);
             viewHolder.setVisible(R.id.tv_label, false);
@@ -452,6 +459,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         int rightIconRes;
         FastItemMode mode;
         int marginTop;
+        int marginBottom;
         String visible;
         Boolean readability;
         boolean isOnlyRead;
@@ -480,6 +488,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         rightIconRes = annotation.rightIconRes();
         mode = annotation.mode();
         marginTop = annotation.marginTop();
+        marginBottom = annotation.marginBottom();
         visible = annotation.visible();
         isDate = annotation.isDate();
         dateFormatMode = annotation.dateFormatMode();
@@ -509,6 +518,8 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         data.sortNumber = sortNumber;
         // 上间距
         data.marginTop = marginTop;
+        // 下间距
+        data.marginBottom = marginBottom;
         // 模式
         data.fastItemMode = mode;
         if (data.fastItemMode == FastItemMode.File) {

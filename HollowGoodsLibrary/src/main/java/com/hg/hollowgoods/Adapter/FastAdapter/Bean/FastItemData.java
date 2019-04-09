@@ -17,6 +17,7 @@ public class FastItemData extends CommonBean {
     public Object content;
     public FastItemMode fastItemMode;
     public int marginTop;
+    public int marginBottom;
     public boolean visible;
     public String itemsName;
 

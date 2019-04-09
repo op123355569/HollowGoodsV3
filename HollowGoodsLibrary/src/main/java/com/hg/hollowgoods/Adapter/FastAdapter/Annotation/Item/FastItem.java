@@ -100,6 +100,14 @@ public @interface FastItem {
     int marginTop() default 0;
 
     /**
+     * 下间距间距 单位 dp
+     * 默认0
+     *
+     * @return
+     */
+    int marginBottom() default 0;
+
+    /**
      * 绑定可见性控制的变量名
      *
      * @return

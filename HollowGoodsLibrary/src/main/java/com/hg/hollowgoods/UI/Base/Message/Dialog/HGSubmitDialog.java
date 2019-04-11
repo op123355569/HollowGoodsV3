@@ -1,12 +1,16 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hg.hollowgoods.Adapter.Dialog.SubmitDialogAdapter;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.LogUtils;
 import com.yarolegovich.discretescrollview.DSVOrientation;
@@ -85,6 +89,17 @@ public class HGSubmitDialog extends HGDialog {
                     .build());
 
             onItemChanged(nowPosition);
+
+            adapter.setOnRefreshClickListener(new OnRecyclerViewItemClickListener(false) {
+                @Override
+                public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+                    if (onDialogClickListener != null) {
+                        Bundle data = new Bundle();
+                        data.putInt(HGParamKey.Position.getValue(), position);
+                        onDialogClickListener.onDialogClick(code, true, data);
+                    }
+                }
+            });
         }
 
         refreshStep();

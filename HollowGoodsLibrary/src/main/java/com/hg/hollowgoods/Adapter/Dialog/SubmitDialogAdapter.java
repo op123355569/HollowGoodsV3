@@ -1,10 +1,13 @@
 package com.hg.hollowgoods.Adapter.Dialog;
 
 import android.content.Context;
+import android.view.View;
 
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.CommonAdapter;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
+import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.ConfigSubmit;
 import com.hg.hollowgoods.Widget.RingProgressBar;
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
@@ -18,6 +21,7 @@ import java.util.List;
 public class SubmitDialogAdapter extends CommonAdapter<ConfigSubmit> {
 
     private InfiniteScrollAdapter infiniteAdapter;
+    private OnRecyclerViewItemClickListener onRefreshClickListener;
 
     public SubmitDialogAdapter(Context context, int layoutId, List<ConfigSubmit> data) {
         super(context, layoutId, data);
@@ -91,10 +95,22 @@ public class SubmitDialogAdapter extends CommonAdapter<ConfigSubmit> {
         }
         // 状态文字
         viewHolder.setText(R.id.tv_status, status);
+
+        viewHolder.setOnClickListener(R.id.iv_refresh, new OnViewClickListener(false) {
+            @Override
+            public void onViewClick(View view, int id) {
+                if (onRefreshClickListener != null) {
+                    onRefreshClickListener.onRecyclerViewItemClick(view, viewHolder, position);
+                }
+            }
+        });
     }
 
     public void setInfiniteAdapter(InfiniteScrollAdapter infiniteAdapter) {
         this.infiniteAdapter = infiniteAdapter;
     }
 
+    public void setOnRefreshClickListener(OnRecyclerViewItemClickListener onRefreshClickListener) {
+        this.onRefreshClickListener = onRefreshClickListener;
+    }
 }

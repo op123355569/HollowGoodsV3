@@ -42,7 +42,7 @@ public class BaseDialog {
      * @param content      对话框提示文字
      * @param cancelable   是否可以用返回键关闭对话框
      * @param isIndefinite 是否是不确定进度
-     * @param code
+     * @param code         code
      */
     public void showProgressDialog(Object title, Object content, boolean cancelable, boolean isIndefinite, int code) {
 
@@ -50,16 +50,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGProgressDialog dialog = new HGProgressDialog(context, title, content, cancelable, isIndefinite, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGProgressDialog dialog = new HGProgressDialog(context, title, content, cancelable, isIndefinite, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -70,7 +67,7 @@ public class BaseDialog {
      * 显示进度对话框（不确定进度）
      *
      * @param content 对话框提示文字
-     * @param code
+     * @param code    code
      */
     public void showProgressDialog(Object content, int code) {
         showProgressDialog(null, content, true, true, code);
@@ -80,7 +77,7 @@ public class BaseDialog {
      * 设置进度
      *
      * @param progress 0-100
-     * @param code
+     * @param code     code
      */
     public void setProgress(int progress, int code) {
 
@@ -115,16 +112,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGAlertDialog dialog = new HGAlertDialog(context, title, tip, noButtonTxt, yesButtonTxt, cancelable, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGAlertDialog dialog = new HGAlertDialog(context, title, tip, noButtonTxt, yesButtonTxt, cancelable, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -148,7 +142,7 @@ public class BaseDialog {
      *
      * @param title 标题字样
      * @param tip   提示字样
-     * @param code
+     * @param code  code
      */
     public void showAlertDialog(Object title, Object tip, int code) {
         showAlertDialog(title, tip, null, null, true, code);
@@ -160,7 +154,7 @@ public class BaseDialog {
      * @param tip          提示字样
      * @param yesButtonTxt 确定按钮字样
      * @param cancelable   是否可以用返回键关闭对话框
-     * @param code
+     * @param code         code
      */
     public void showWarningDialog(Object tip, Object yesButtonTxt, boolean cancelable, int code) {
 
@@ -168,16 +162,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGWarningDialog dialog = new HGWarningDialog(context, tip, yesButtonTxt, cancelable, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGWarningDialog dialog = new HGWarningDialog(context, tip, yesButtonTxt, cancelable, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -189,7 +180,7 @@ public class BaseDialog {
      *
      * @param tip        提示字样
      * @param cancelable 是否可以用返回键关闭对话框
-     * @param code
+     * @param code       code
      */
     public void showWarningDialog(Object tip, boolean cancelable, int code) {
         showWarningDialog(tip, null, cancelable, code);
@@ -199,7 +190,7 @@ public class BaseDialog {
      * 显示警告对话框
      *
      * @param tip  提示字样
-     * @param code
+     * @param code code
      */
     public void showWarningDialog(Object tip, int code) {
         showWarningDialog(tip, null, true, code);
@@ -211,7 +202,7 @@ public class BaseDialog {
      * @param title      提示主题
      * @param tip        提示文字
      * @param cancelable 是否可以用返回键关闭对话框
-     * @param code
+     * @param code       code
      */
     public void showTipDialog(Object title, Object tip, boolean cancelable, int code) {
 
@@ -237,7 +228,7 @@ public class BaseDialog {
      *
      * @param title 提示主题
      * @param tip   提示文字
-     * @param code
+     * @param code  code
      */
     public void showTipDialog(Object title, Object tip, int code) {
         showTipDialog(title, tip, true, code);
@@ -246,10 +237,10 @@ public class BaseDialog {
     /**
      * 显示输入对话框
      *
-     * @param hint
-     * @param value
-     * @param inputType
-     * @param code
+     * @param hint      hint
+     * @param value     value
+     * @param inputType inputType
+     * @param code      code
      */
     @Deprecated
     public void showInputDialog(Object hint, Object value, int inputType, final int code, final int minSize, final int maxSize) {
@@ -258,16 +249,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGInputDialog dialog = new HGInputDialog(context, hint, value, inputType, code, minSize, maxSize, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGInputDialog dialog = new HGInputDialog(context, hint, value, inputType, code, minSize, maxSize, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -277,8 +265,8 @@ public class BaseDialog {
     /**
      * 显示输入对话框
      *
-     * @param value
-     * @param code
+     * @param value value
+     * @param code  code
      */
     @Deprecated
     public void showInputDialog(Object value, int code) {
@@ -288,8 +276,8 @@ public class BaseDialog {
     /**
      * 显示新输入对话框
      *
-     * @param configInput
-     * @param code
+     * @param configInput configInput
+     * @param code        code
      */
     public void showInputDialog(ConfigInput configInput, final int code) {
 
@@ -313,8 +301,8 @@ public class BaseDialog {
     /**
      * 显示年月日时分对话框
      *
-     * @param timeInMillis
-     * @param code
+     * @param timeInMillis timeInMillis
+     * @param code         code
      */
     public void showDateTimeDialog(long timeInMillis, HGDateTimeDialog.DateTimeDialogType dateTimeDialogType, int code) {
 
@@ -322,16 +310,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGDateTimeDialog dialog = new HGDateTimeDialog(context, timeInMillis, dateTimeDialogType, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGDateTimeDialog dialog = new HGDateTimeDialog(context, timeInMillis, dateTimeDialogType, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -344,16 +329,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGSingleChoiceDialog dialog = new HGSingleChoiceDialog(context, title, items, checkedPosition, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGSingleChoiceDialog dialog = new HGSingleChoiceDialog(context, title, items, checkedPosition, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -366,16 +348,13 @@ public class BaseDialog {
             hgDialogs = new ArrayList<>();
         }
 
-        HGMultiChoiceDialog dialog = new HGMultiChoiceDialog(context, title, items, checkedPositions, maxCount, code, new OnDialogDismissListener() {
-            @Override
-            public void onDialogDismiss(HGDialog dialog) {
-                hgDialogs.remove(dialog);
-                if (onDialogDismissListener != null) {
-                    onDialogDismissListener.onDialogDismiss(dialog);
-                }
-                if (dialog.isCloseAll) {
-                    closeAllDialog();
-                }
+        HGMultiChoiceDialog dialog = new HGMultiChoiceDialog(context, title, items, checkedPositions, maxCount, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
             }
         });
         dialog.setOnDialogClickListener(onDialogClickListener);
@@ -385,8 +364,8 @@ public class BaseDialog {
     /**
      * 显示年月日对话框
      *
-     * @param timeInMillis
-     * @param code
+     * @param timeInMillis timeInMillis
+     * @param code         code
      */
     @Deprecated
     public void showDateDialog(long timeInMillis, int code) {
@@ -411,10 +390,10 @@ public class BaseDialog {
     /**
      * 显示年月日对话框
      *
-     * @param year
+     * @param year  year
      * @param month 1-12
-     * @param date
-     * @param code
+     * @param date  date
+     * @param code  code
      */
     @Deprecated
     public void showDateDialog(int year, int month, int date, int code) {
@@ -435,7 +414,7 @@ public class BaseDialog {
     /**
      * 显示年月日对话框
      *
-     * @param code
+     * @param code code
      */
     @Deprecated
     public void showDateDialog(int code) {
@@ -445,8 +424,8 @@ public class BaseDialog {
     /**
      * 显示时间对话框
      *
-     * @param timeInMillis
-     * @param code
+     * @param timeInMillis timeInMillis
+     * @param code         code
      */
     @Deprecated
     public void showTimeDialog(long timeInMillis, int code) {
@@ -471,9 +450,9 @@ public class BaseDialog {
     /**
      * 显示时间对话框
      *
-     * @param hour
-     * @param minute
-     * @param code
+     * @param hour   hour
+     * @param minute minute
+     * @param code   code
      */
     @Deprecated
     public void showTimeDialog(int hour, int minute, int code) {
@@ -492,11 +471,53 @@ public class BaseDialog {
     /**
      * 显示时间对话框
      *
-     * @param code
+     * @param code code
      */
     @Deprecated
     public void showTimeDialog(int code) {
         showTimeDialog(HGConstants.DEFAULT_TIME, code);
+    }
+
+    /**
+     * 显示提交对话框
+     *
+     * @param code code
+     */
+    public void showSubmitDialog(ArrayList<ConfigSubmit> configSubmits, int code) {
+
+        if (hgDialogs == null) {
+            hgDialogs = new ArrayList<>();
+        }
+
+        HGSubmitDialog dialog = new HGSubmitDialog(context, configSubmits, code, dialog1 -> {
+            hgDialogs.remove(dialog1);
+            if (onDialogDismissListener != null) {
+                onDialogDismissListener.onDialogDismiss(dialog1);
+            }
+            if (dialog1.isCloseAll) {
+                closeAllDialog();
+            }
+        });
+        dialog.setOnDialogClickListener(onDialogClickListener);
+        hgDialogs.add(0, dialog);
+    }
+
+    public void refreshSubmitDialog(ArrayList<ConfigSubmit> configSubmits, int code) {
+
+        if (hgDialogs != null) {
+            HGSubmitDialog submitDialog = null;
+
+            for (int i = 0; i < hgDialogs.size(); i++) {
+                if (hgDialogs.get(i) instanceof HGSubmitDialog && hgDialogs.get(i).code == code) {
+                    submitDialog = (HGSubmitDialog) hgDialogs.get(i);
+                    break;
+                }
+            }
+
+            if (submitDialog != null) {
+                submitDialog.refreshDialog(configSubmits);
+            }
+        }
     }
 
     /**

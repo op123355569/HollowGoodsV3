@@ -92,6 +92,12 @@
     <string name="nfc_disabled">NFC开关尚未开启，是否开启NFC功能？</string>
     <string name="not_support_file_type">不支持的文件类型</string>
 
+    <string name="submit_dialog_status_wait">等待中</string>
+    <string name="submit_dialog_status_request">请求中</string>
+    <string name="submit_dialog_status_error">请求失败</string>
+    <string name="submit_dialog_status_success">请求成功</string>
+    <string name="submit_dialog_status_unknown">未知</string>
+
     <string name="developer">Hollow Goods</string>
     <string name="email">op123355569@163.com</string>
     <string name="menu_item_import">Import</string>

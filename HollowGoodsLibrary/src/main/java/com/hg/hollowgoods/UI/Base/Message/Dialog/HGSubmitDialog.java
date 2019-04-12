@@ -12,7 +12,6 @@ import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
-import com.hg.hollowgoods.Util.LogUtils;
 import com.yarolegovich.discretescrollview.DSVOrientation;
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
@@ -95,7 +94,7 @@ public class HGSubmitDialog extends HGDialog {
                 public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
                     if (onDialogClickListener != null) {
                         Bundle data = new Bundle();
-                        data.putInt(HGParamKey.Position.getValue(), position);
+                        data.putInt(HGParamKey.Position.getValue(), infiniteScrollAdapter.getRealPosition(position));
                         onDialogClickListener.onDialogClick(code, true, data);
                     }
                 }
@@ -139,12 +138,12 @@ public class HGSubmitDialog extends HGDialog {
                 switch (t.getStatus()) {
                     case Request:
                     case Wait:
+                    case Error:
                         tips.setText("当前正在提交第" + (i + 1) + "步，共" + data.size() + "步");
                         allFlag.setVisibility(View.GONE);
                         result.setVisibility(View.VISIBLE);
 
                         if (nowPosition != i) {
-                            LogUtils.Log("nowPosition", nowPosition, "i", i);
                             int position = infiniteScrollAdapter.getClosestPosition(i);
                             result.smoothScrollToPosition(position);
                         }

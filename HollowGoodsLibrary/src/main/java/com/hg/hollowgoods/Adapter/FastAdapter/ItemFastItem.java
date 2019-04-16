@@ -100,7 +100,12 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                 // 左侧图标
                 viewHolder.setVisible(R.id.iv_leftIcon, data.isShowLeftIconRes);
                 if (data.isShowLeftIconRes) {
-                    viewHolder.setImageResource(R.id.iv_leftIcon, data.leftIconRes);
+                    if (TextUtils.isEmpty(data.leftIconName)) {
+                        viewHolder.setImageResource(R.id.iv_leftIcon, data.leftIconRes);
+                    } else {
+                        Object leftIconRes = getContentItems(data.leftIconNameClass, data.leftIconName);
+                        viewHolder.setImageResource(R.id.iv_leftIcon, new BigDecimal(leftIconRes + "").intValue());
+                    }
                 } else {
                     viewHolder.setImageResource(R.id.iv_leftIcon, R.color.transparent);
                 }
@@ -203,10 +208,15 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                     if (data.isOnlyRead()) {
                         viewHolder.setImageResource(R.id.iv_rightIcon, R.color.transparent);
                     } else {
-                        if (data.rightIconRes == -1) {
-                            viewHolder.setImageResource(R.id.iv_rightIcon, defaultRightIcon.get(data.fastItemMode));
+                        if (TextUtils.isEmpty(data.rightIconName)) {
+                            if (data.rightIconRes == -1) {
+                                viewHolder.setImageResource(R.id.iv_rightIcon, defaultRightIcon.get(data.fastItemMode));
+                            } else {
+                                viewHolder.setImageResource(R.id.iv_rightIcon, data.rightIconRes);
+                            }
                         } else {
-                            viewHolder.setImageResource(R.id.iv_rightIcon, data.rightIconRes);
+                            Object rightIconRes = getContentItems(data.rightIconNameClass, data.rightIconName);
+                            viewHolder.setImageResource(R.id.iv_rightIcon, new BigDecimal(rightIconRes + "").intValue());
                         }
                     }
                 }
@@ -456,7 +466,11 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         int sortNumber;
         String itemsName;
         int leftIconRes;
+        String leftIconName;
+        Class<?> leftIconNameClass;
         int rightIconRes;
+        String rightIconName;
+        Class<?> rightIconNameClass;
         FastItemMode mode;
         int marginTop;
         int marginBottom;
@@ -485,7 +499,11 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         sortNumber = annotation.sortNumber();
         itemsName = annotation.itemsName();
         leftIconRes = annotation.leftIconRes();
+        leftIconName = annotation.leftIconName();
+        leftIconNameClass = annotation.leftIconNameClass();
         rightIconRes = annotation.rightIconRes();
+        rightIconName = annotation.rightIconName();
+        rightIconNameClass = annotation.rightIconNameClass();
         mode = annotation.mode();
         marginTop = annotation.marginTop();
         marginBottom = annotation.marginBottom();
@@ -501,6 +519,8 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         readability = bean.getOnlyReadItem(t.getName());
         isOnlyRead = readability == null ? true : readability;
         data.rightIconRes = rightIconRes;
+        data.rightIconName = rightIconName;
+        data.rightIconNameClass = rightIconNameClass;
         // 可读性
         data.setOnlyRead(isOnlyRead);
         // 必填
@@ -529,6 +549,8 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
         data.itemsName = itemsName;
         // 左侧图标
         data.leftIconRes = leftIconRes;
+        data.leftIconName = leftIconName;
+        data.leftIconNameClass = leftIconNameClass;
         data.isShowLeftIconRes = leftIconRes != -1;
         // 绑定的可见性变量名
         if (TextUtils.isEmpty(visible)) {

@@ -11,7 +11,12 @@ import com.hg.hollowgoods.Util.StringUtils;
 public class FastItemData extends CommonBean {
 
     public int leftIconRes;
+    public String leftIconName;
+    public Class<?> leftIconNameClass;
     public int rightIconRes;
+    public String rightIconName;
+    public Class<?> rightIconNameClass;
+
     public String label;
     public int sortNumber;
     public Object content;

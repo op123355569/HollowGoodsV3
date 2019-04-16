@@ -68,13 +68,23 @@ public class BaseFastItem {
     /**
      * 获取翻译数组
      *
-     * @param name
-     * @return
+     * @param name name
+     * @return Object
      */
     public Object getContentItems(String name) {
+        return getContentItems(itemsNameClass, name);
+    }
+
+    /**
+     * 获取翻译数组
+     *
+     * @param name name
+     * @return Object
+     */
+    public Object getContentItems(Class<?> clazz, String name) {
 
         try {
-            return itemsNameClass.getDeclaredField(name).get(null);
+            return clazz.getDeclaredField(name).get(null);
         } catch (IllegalAccessException e) {
 
         } catch (NoSuchFieldException e) {
@@ -85,9 +95,13 @@ public class BaseFastItem {
     }
 
     public String getRealValue(Object value, String itemsName) {
+        return getRealValue(itemsNameClass, value, itemsName);
+    }
+
+    public String getRealValue(Class<?> clazz, Object value, String itemsName) {
 
         if (!TextUtils.isEmpty(itemsName)) {
-            Object objItems = getContentItems(itemsName);
+            Object objItems = getContentItems(clazz, itemsName);
 
             if (objItems == null) {
                 value = "";

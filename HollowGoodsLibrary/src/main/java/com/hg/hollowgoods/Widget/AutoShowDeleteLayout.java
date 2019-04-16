@@ -31,7 +31,7 @@ public class AutoShowDeleteLayout extends FrameLayout {
     private EditText mEditText = null;
 
     private int mDeleteSize = 0;
-    private int mDeletePadding = 0;
+    private int mDeleteMarginRight = 0;
     private boolean mIsMeasure = false;
     private Context mContext = null;
     private Drawable mDeleteImg = null;
@@ -70,15 +70,20 @@ public class AutoShowDeleteLayout extends FrameLayout {
 
         if (mEditText != null) {
             mDeleteSize = dp2px(mContext, 30f);
-            mDeletePadding = dp2px(mContext, 7.5f);
+            int mDeletePaddingDefault = dp2px(mContext, 7.5f);
+            mDeleteMarginRight = 0;
+            if (mEditText.getPaddingEnd() > 0) {
+                mDeleteMarginRight = mEditText.getPaddingEnd();
+            }
             getDeleteDrawable();
 
             mDelete = new ImageView(context);
             int textColor = mEditText.getCurrentTextColor();
             setDeleteButtonColor(textColor);
             LayoutParams layoutParams = new LayoutParams(mDeleteSize, mDeleteSize, Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+            layoutParams.setMarginEnd(mDeleteMarginRight);
             mDelete.setLayoutParams(layoutParams);
-            mDelete.setPadding(mDeletePadding, mDeletePadding, mDeletePadding, mDeletePadding);
+            mDelete.setPadding(mDeletePaddingDefault, mDeletePaddingDefault, mDeletePaddingDefault, mDeletePaddingDefault);
             mDelete.setVisibility(View.GONE);
 
             mDelete.setOnClickListener(v -> {
@@ -89,8 +94,8 @@ public class AutoShowDeleteLayout extends FrameLayout {
 
             this.addView(mDelete);
 
-            int editTextPaddingRight = mEditText.getPaddingRight() > mDeleteSize ? mEditText.getPaddingRight() : mDeleteSize;
-            mEditText.setPadding(mEditText.getPaddingLeft(), mEditText.getPaddingTop(), editTextPaddingRight, mEditText.getPaddingBottom());
+            int editTextPaddingEnd = mDeleteSize + mDeleteMarginRight;
+            mEditText.setPadding(mEditText.getPaddingLeft(), mEditText.getPaddingTop(), editTextPaddingEnd, mEditText.getPaddingBottom());
 
             mEditText.addTextChangedListener(new TextWatcher() {
                 @Override

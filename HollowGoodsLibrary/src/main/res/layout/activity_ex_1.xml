@@ -1,40 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_body_color"
-    android:orientation="vertical">
+    android:background="@color/main_body_color">
 
-    <com.hg.hollowgoods.Widget.CommonTitleView
+    <com.hg.hollowgoods.Widget.CommonTitle.CommonTitleLayout
         android:id="@+id/commonTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.design.widget.CoordinatorLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <View
-            android:id="@+id/view_wave"
+        <LinearLayout
+            android:id="@+id/view_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center" />
+            <!-- 主体内容在此填写 -->
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="30dp"
-            app:srcCompat="@drawable/ic_android_white_24dp" />
+            <View
+                android:id="@+id/view_wave"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    </android.support.design.widget.CoordinatorLayout>
+            <ImageView
+                android:id="@+id/iv_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center" />
 
-</LinearLayout>
+        </LinearLayout>
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"
+            app:floatingSearch_leftActionMode="showSearch"
+            app:floatingSearch_menu="@menu/menu"
+            app:floatingSearch_searchBarMarginLeft="16dp"
+            app:floatingSearch_searchBarMarginRight="16dp"
+            app:floatingSearch_searchBarMarginTop="16dp"
+            app:floatingSearch_searchHint="@string/search"
+            app:floatingSearch_showSearchKey="true"
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_viewTextColor="#323232" />
+
+        <include
+            android:id="@+id/view_common_no_data"
+            layout="@layout/common_no_data"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_center"
+            layout="@layout/common_load_data_center"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/view_common_load_data_bottom"
+            layout="@layout/common_load_data_bottom"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="30dp"
+        app:srcCompat="@drawable/ic_android_white_24dp" />
+
+</android.support.design.widget.CoordinatorLayout>

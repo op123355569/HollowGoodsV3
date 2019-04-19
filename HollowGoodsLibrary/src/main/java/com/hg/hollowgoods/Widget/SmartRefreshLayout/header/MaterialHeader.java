@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshHeader;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshKernel;
@@ -82,8 +83,8 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
         mProgress = new MaterialProgressDrawable(this);
         mProgress.setBackgroundColor(CIRCLE_BG_LIGHT);
         mProgress.setAlpha(255);
-        mProgress.setColorSchemeColors(0xff0099cc,0xffff4444,0xff669900,0xffaa66cc,0xffff8800);
-        mCircleView = new CircleImageView(context,CIRCLE_BG_LIGHT);
+        mProgress.setColorSchemeColors(HGSystemConfig.REFRESH_COLORS);
+        mCircleView = new CircleImageView(context, CIRCLE_BG_LIGHT);
         mCircleView.setImageDrawable(mProgress);
         mCircleView.setAlpha(0f);
         thisGroup.addView(mCircleView);
@@ -303,8 +304,9 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             mBezierPaint.setColor(colors[0]);
         }
@@ -322,6 +324,7 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
 
     /**
      * 设置 ColorScheme
+     *
      * @param colors ColorScheme
      * @return MaterialHeader
      */
@@ -332,6 +335,7 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
 
     /**
      * 设置 ColorScheme
+     *
      * @param colorIds ColorSchemeResources
      * @return MaterialHeader
      */
@@ -347,6 +351,7 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
 
     /**
      * 设置大小尺寸
+     *
      * @param size One of DEFAULT, or LARGE.
      * @return MaterialHeader
      */
@@ -372,6 +377,7 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
 
     /**
      * 是否显示贝塞尔图形
+     *
      * @param show 是否显示
      * @return MaterialHeader
      */

@@ -1,62 +1,69 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_body_color"
-    android:orientation="vertical">
+    android:background="@color/main_body_color">
 
-    <com.hg.hollowgoods.Widget.CommonTitleView
+    <com.hg.hollowgoods.Widget.CommonTitle.CommonTitleLayout
         android:id="@+id/commonTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/view_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <!-- 主体内容在此填写 -->
 
-            <com.hg.hollowgoods.Widget.Ticker.TickerView
-                android:id="@+id/tv_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/txt_color_dark"
-                android:textSize="26sp"
-                app:ticker_animationDuration="500" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <com.jaredrummler.android.widget.AnimatedSvgView
-                android:id="@+id/animatedSvgView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:animatedSvgFillColors="@array/google_glyph_colors"
-                app:animatedSvgFillStart="1200"
-                app:animatedSvgFillTime="1000"
-                app:animatedSvgGlyphStrings="@array/google_glyph_strings"
-                app:animatedSvgImageSizeX="400"
-                app:animatedSvgImageSizeY="400"
-                app:animatedSvgTraceTime="2000"
-                app:animatedSvgTraceTimePerGlyph="1000" />
+                <com.hg.hollowgoods.Widget.Ticker.TickerView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/txt_color_dark"
+                    android:textSize="26sp"
+                    app:ticker_animationDuration="500" />
 
-            <com.hg.hollowgoods.Widget.Ticker.TickerView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="16dp"
-                android:textColor="@color/txt_color_dark"
-                android:textSize="26sp"
-                app:ticker_animationDuration="500" />
+                <com.jaredrummler.android.widget.AnimatedSvgView
+                    android:id="@+id/animatedSvgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:animatedSvgFillColors="@array/google_glyph_colors"
+                    app:animatedSvgFillStart="1200"
+                    app:animatedSvgFillTime="1000"
+                    app:animatedSvgGlyphStrings="@array/google_glyph_strings"
+                    app:animatedSvgImageSizeX="400"
+                    app:animatedSvgImageSizeY="400"
+                    app:animatedSvgTraceTime="2000"
+                    app:animatedSvgTraceTimePerGlyph="1000" />
 
-        </FrameLayout>
+                <com.hg.hollowgoods.Widget.Ticker.TickerView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/txt_color_dark"
+                    android:textSize="26sp"
+                    app:ticker_animationDuration="500" />
+
+            </FrameLayout>
+
+        </LinearLayout>
 
         <com.arlib.floatingsearchview.FloatingSearchView
             android:id="@+id/floating_search_view"
@@ -91,4 +98,4 @@
 
     </FrameLayout>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

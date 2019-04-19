@@ -10,5 +10,7 @@ public class HGEventActionCode {
     public static final int REMOVE_IMAGE = -1002;
     /**** 文件选择 ****/
     public static final int FILE_SELECTOR = -1003;
+    /**** 二维码扫描结果 ****/
+    public static final int QR_CODE_SCAN_RESULT = -1004;
 
 }

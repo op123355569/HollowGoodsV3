@@ -23,9 +23,21 @@
     </declare-styleable>
 
     <!-- 公共标题自定义属性-->
+    <declare-styleable name="CommonTitleLayout">
+        <!-- 是否需要阴影 默认 true -->
+        <attr name="ctl_needShadow" format="boolean" />
+        <!-- 是否开启头部 默认 false -->
+        <attr name="ctl_openHeader" format="boolean" />
+        <!-- 头部高度 默认 200dp -->
+        <attr name="ctl_headerHeight" format="dimension" />
+    </declare-styleable>
+
+    <!-- 公共标题自定义属性-->
     <declare-styleable name="CommonTitleView">
-        <!-- 是否需要阴影 -->
-        <attr name="needShadow" format="boolean" />
+        <!-- 是否需要阴影 默认 true -->
+        <attr name="ctv_needShadow" format="boolean" />
+        <!-- 是否始终显示 默认 true -->
+        <attr name="ctv_alwaysShow" format="boolean" />
     </declare-styleable>
 
 </resources>

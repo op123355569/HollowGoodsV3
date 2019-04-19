@@ -1,19 +1,19 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_body_color"
-    android:orientation="vertical">
+    android:background="@color/main_body_color">
 
-    <com.hg.hollowgoods.Widget.CommonTitleView
+    <com.hg.hollowgoods.Widget.CommonTitle.CommonTitleLayout
         android:id="@+id/commonTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/view_content"
@@ -35,10 +35,10 @@
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="18dp"
-                        android:layout_marginRight="18dp"
                         android:layout_marginTop="80dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginBottom="16dp"
                         app:cardBackgroundColor="@android:color/white"
                         app:cardCornerRadius="3dp"
                         app:cardMaxElevation="2dp">
@@ -88,4 +88,4 @@
 
     </FrameLayout>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

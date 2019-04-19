@@ -1,19 +1,19 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_body_color"
-    android:orientation="vertical">
+    android:background="@color/main_body_color">
 
-    <com.hg.hollowgoods.Widget.CommonTitleView
+    <com.hg.hollowgoods.Widget.CommonTitle.CommonTitleLayout
         android:id="@+id/commonTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/view_content"
@@ -41,7 +41,8 @@
                         android:id="@+id/et_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="用户名"
+                        android:hint="@string/hg_username"
+                        android:inputType="text"
                         android:textColor="@color/txt_color_normal"
                         android:textColorHint="@color/txt_color_light"
                         android:textSize="16sp" />
@@ -50,7 +51,8 @@
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="密码"
+                        android:hint="@string/hg_password"
+                        android:inputType="textPassword"
                         android:textColor="@color/txt_color_normal"
                         android:textColorHint="@color/txt_color_light"
                         android:textSize="16sp" />
@@ -61,7 +63,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="32dp"
                         android:background="@drawable/button_main_color"
-                        android:text="登录"
+                        android:text="@string/hg_login"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
@@ -71,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="48dp"
                         android:background="@color/txt_color_normal"
-                        android:hint="(显示屏)"
+                        android:hint="@string/hg_print"
                         android:padding="16dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
@@ -116,4 +118,4 @@
 
     </FrameLayout>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

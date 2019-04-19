@@ -16,8 +16,6 @@ import com.hg.hollowgoods.Widget.AutoShowDeleteLayout;
  */
 public class Ex7Activity extends BaseActivity {
 
-    private AutoShowDeleteLayout deleteLayout;
-
     @Override
     public Activity addToExitGroup() {
         return this;
@@ -32,10 +30,9 @@ public class Ex7Activity extends BaseActivity {
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        deleteLayout = findViewById(R.id.deleteLayout);
-
         baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex7);
 
+        AutoShowDeleteLayout deleteLayout = findViewById(R.id.deleteLayout);
         deleteLayout.setDeleteButtonColorRes(R.color.colorAccent);
 
         return null;

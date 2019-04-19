@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.hg.hollowgoods.Widget.SmartRefreshLayout.header.WaveSwipeHeader
+    <com.hg.hollowgoods.Widget.SmartRefreshLayout.header.MaterialHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

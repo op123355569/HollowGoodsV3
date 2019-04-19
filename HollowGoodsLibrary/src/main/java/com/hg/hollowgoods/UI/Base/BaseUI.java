@@ -53,7 +53,7 @@ import com.hg.hollowgoods.Util.ExampleUpdateAPPUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchHistoryUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchKeys;
 import com.hg.hollowgoods.Util.SystemBarTintUtils;
-import com.hg.hollowgoods.Widget.CommonTitleView;
+import com.hg.hollowgoods.Widget.CommonTitle.BaseCommonTitle;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
@@ -67,10 +67,9 @@ import java.util.TimerTask;
 import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 
 /**
- * @ClassName:
- * @Description:
- * @author: HollowGoods
- * @date: 2018年12月18日
+ * 基础UI
+ * <p>
+ * Created by Hollow Goods on 2018-12-18.
  */
 public class BaseUI {
 
@@ -111,7 +110,7 @@ public class BaseUI {
 
     /**** 当前加载的视图界面 ****/
     public View rootView;
-    private CommonTitleView commonTitleView;
+    private BaseCommonTitle commonTitle;
     private FrameLayout noDataView;
     private View contentView;
     private View loadDataViewCenter;
@@ -207,7 +206,7 @@ public class BaseUI {
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        if (commonTitleView != null && menuRes != -1) {
+        if (commonTitle != null && menuRes != -1) {
             if (isActivity) {
                 getBaseContext().getMenuInflater().inflate(menuRes, menu);
             } else {
@@ -481,18 +480,18 @@ public class BaseUI {
     }
 
     public void setMenuRes(int menuRes) {
-        this.menuRes = commonTitleView != null ? menuRes : -1;
+        this.menuRes = commonTitle != null ? menuRes : -1;
     }
 
     public void addCommonTitleOtherView(View view) {
-        if (commonTitleView != null) {
-            commonTitleView.addOtherView(view);
+        if (commonTitle != null) {
+            commonTitle.addOtherView(view);
         }
     }
 
     public void addCommonTitleOtherView(View view, Toolbar.LayoutParams layoutParams) {
-        if (commonTitleView != null) {
-            commonTitleView.addOtherView(view, layoutParams);
+        if (commonTitle != null) {
+            commonTitle.addOtherView(view, layoutParams);
         }
     }
 
@@ -503,11 +502,11 @@ public class BaseUI {
      */
     public void setCommonTitleLeftIcon(Object leftIcon) {
 
-        if (commonTitleView != null) {
+        if (commonTitle != null) {
             if (leftIcon instanceof Integer) {
-                commonTitleView.setLeftIcon((Integer) leftIcon);
+                commonTitle.setLeftIcon((Integer) leftIcon);
             } else if (leftIcon instanceof Drawable) {
-                commonTitleView.setLeftIcon((Drawable) leftIcon);
+                commonTitle.setLeftIcon((Drawable) leftIcon);
             }
         }
     }
@@ -519,11 +518,11 @@ public class BaseUI {
      */
     public void setCommonTitleText(Object titleText) {
 
-        if (commonTitleView != null) {
+        if (commonTitle != null) {
             if (titleText instanceof Integer) {
-                commonTitleView.setCenterTitle((Integer) titleText);
+                commonTitle.setCenterTitle((Integer) titleText);
             } else if (titleText instanceof String) {
-                commonTitleView.setCenterTitle((String) titleText);
+                commonTitle.setCenterTitle((String) titleText);
             }
         }
     }
@@ -534,8 +533,8 @@ public class BaseUI {
      * @param size
      */
     public void setCommonTitleTextSize(float size) {
-        if (commonTitleView != null) {
-            commonTitleView.setCenterTitleTextSize(size);
+        if (commonTitle != null) {
+            commonTitle.setCenterTitleTextSize(size);
         }
     }
 
@@ -546,11 +545,11 @@ public class BaseUI {
      */
     public void setCommonTitleTextColor(Object color) {
 
-        if (commonTitleView != null) {
+        if (commonTitle != null) {
             if (color instanceof Integer) {
-                commonTitleView.setCenterTitleTextColorRes((Integer) color);
+                commonTitle.setCenterTitleTextColorRes((Integer) color);
             } else if (color instanceof String) {
-                commonTitleView.setCenterTitleTextColor(Color.parseColor((String) color));
+                commonTitle.setCenterTitleTextColor(Color.parseColor((String) color));
             }
         }
     }
@@ -562,11 +561,11 @@ public class BaseUI {
      */
     public void setCommonRightTitleText(Object titleText) {
 
-        if (commonTitleView != null && menuRes == -1) {
+        if (commonTitle != null && menuRes == -1) {
             if (titleText instanceof Integer) {
-                commonTitleView.setRightTitle((Integer) titleText);
+                commonTitle.setRightTitle((Integer) titleText);
             } else if (titleText instanceof String) {
-                commonTitleView.setRightTitle((String) titleText);
+                commonTitle.setRightTitle((String) titleText);
             }
         }
     }
@@ -577,8 +576,8 @@ public class BaseUI {
      * @param size
      */
     public void setCommonRightTitleTextSize(float size) {
-        if (commonTitleView != null && menuRes == -1) {
-            commonTitleView.setRightTitleTextSize(size);
+        if (commonTitle != null && menuRes == -1) {
+            commonTitle.setRightTitleTextSize(size);
         }
     }
 
@@ -589,11 +588,11 @@ public class BaseUI {
      */
     public void setCommonRightTitleTextColor(Object color) {
 
-        if (commonTitleView != null && menuRes == -1) {
+        if (commonTitle != null && menuRes == -1) {
             if (color instanceof Integer) {
-                commonTitleView.setRightTitleTextColor((Integer) color);
+                commonTitle.setRightTitleTextColor((Integer) color);
             } else if (color instanceof String) {
-                commonTitleView.setRightTitleTextColor(Color.parseColor((String) color));
+                commonTitle.setRightTitleTextColor(Color.parseColor((String) color));
             }
         }
     }
@@ -605,15 +604,15 @@ public class BaseUI {
      */
     public void setCommonTitleBackground(Object background) {
 
-        if (commonTitleView != null) {
+        if (commonTitle != null) {
             if (background instanceof Integer) {
-                commonTitleView.setTitleBackgroundResource((Integer) background);
+                commonTitle.setTitleBackgroundResource((Integer) background);
                 setActionBar(background);
             } else if (background instanceof Drawable) {
-                commonTitleView.setTitleBackground((Drawable) background);
+                commonTitle.setTitleBackground((Drawable) background);
                 setActionBar(background);
             } else if (background instanceof String) {
-                commonTitleView.setTitleBackgroundColor(Color.parseColor((String) background));
+                commonTitle.setTitleBackgroundColor(Color.parseColor((String) background));
                 setActionBar(background);
             }
         }
@@ -626,22 +625,25 @@ public class BaseUI {
      */
     public void setCommonTitleOverflowIcon(Object icon) {
 
-        if (commonTitleView != null) {
+        if (commonTitle != null) {
             if (icon instanceof Integer) {
-                commonTitleView.setOverflowIcon(getBaseContext().getResources().getDrawable((Integer) icon));
+                commonTitle.setOverflowIcon(getBaseContext().getResources().getDrawable((Integer) icon));
             } else if (icon instanceof Drawable) {
-                commonTitleView.setOverflowIcon((Drawable) icon);
+                commonTitle.setOverflowIcon((Drawable) icon);
             }
         }
     }
 
     /**
      * 获取公共标题体
+     * CommonTitleLayout
+     * 或
+     * CommonTitleView
      *
-     * @return
+     * @return View
      */
-    public CommonTitleView getCommonTitleBody() {
-        return commonTitleView;
+    public BaseCommonTitle getCommonTitleBody() {
+        return commonTitle;
     }
 
     /**
@@ -650,8 +652,8 @@ public class BaseUI {
      * @param visibility
      */
     public void setCommonTitleViewVisibility(boolean visibility) {
-        if (commonTitleView != null) {
-            commonTitleView.setVisibility(visibility ? View.VISIBLE : View.GONE);
+        if (commonTitle != null) {
+            commonTitle.setVisibility(visibility ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -659,8 +661,12 @@ public class BaseUI {
      * 隐藏公共标题右侧菜单
      */
     public void hideCommonTitleRightTitleMenu() {
-        if (menuRes != -1) {
-            commonTitleView.getToolbar().getMenu().clear();
+        if (menuRes != -1 && commonTitle != null) {
+            Toolbar toolbar = commonTitle.getToolbar();
+
+            if (toolbar != null) {
+                toolbar.getMenu().clear();
+            }
         }
     }
 
@@ -671,9 +677,13 @@ public class BaseUI {
 
         hideCommonTitleRightTitleMenu();
 
-        if (menuRes != -1) {
-            getBaseContext().getMenuInflater().inflate(menuRes, commonTitleView.getToolbar().getMenu());
-            setIconVisible(commonTitleView.getToolbar().getMenu(), true);
+        if (menuRes != -1 && commonTitle != null) {
+            Toolbar toolbar = commonTitle.getToolbar();
+
+            if (toolbar != null) {
+                getBaseContext().getMenuInflater().inflate(menuRes, toolbar.getMenu());
+                setIconVisible(toolbar.getMenu(), true);
+            }
         }
     }
 
@@ -1671,33 +1681,33 @@ public class BaseUI {
      */
     private void initCommonTitle() {
 
-        commonTitleView = findViewById(R.id.commonTitleView);
+        commonTitle = findViewById(R.id.commonTitleView);
 
-        if (commonTitleView != null) {
-            getBaseContext().setSupportActionBar(commonTitleView.getToolbar());
+        if (commonTitle != null) {
+            getBaseContext().setSupportActionBar(commonTitle.getToolbar());
 
-            commonTitleView.setLeftOnClickListener(new OnViewClickListener(false) {
+            commonTitle.setLeftOnClickListener(new OnViewClickListener(false) {
                 @Override
                 public void onViewClick(View view, int id) {
                     iCommonTitleClickListener.onLeftTitleClick(view);
                 }
             });
 
-            commonTitleView.setCenterTitleOnClickListener(new OnViewClickListener(false) {
+            commonTitle.setCenterTitleOnClickListener(new OnViewClickListener(false) {
                 @Override
                 public void onViewClick(View view, int id) {
                     iCommonTitleClickListener.onCenterTitleClick(view);
                 }
             });
 
-            commonTitleView.setRightOnClickListener(new OnToolbarMenuItemClickListener(getBaseContext(), false) {
+            commonTitle.setRightOnClickListener(new OnToolbarMenuItemClickListener(getBaseContext(), false) {
                 @Override
                 public void onToolbarMenuItemClick(MenuItem item) {
 
                     View view = item.getActionView();
 
                     if (view == null) {
-                        Object obj = getObjValue(commonTitleView.getToolbar(), "mMenuView");
+                        Object obj = getObjValue(commonTitle.getToolbar(), "mMenuView");
                         if (obj != null) {
                             View parent = (View) obj;
                             view = parent.findViewById(item.getItemId());
@@ -1708,7 +1718,7 @@ public class BaseUI {
                 }
             });
 
-            commonTitleView.setRightTitleTextOnClickListener(new OnViewClickListener(false) {
+            commonTitle.setRightTitleTextOnClickListener(new OnViewClickListener(false) {
                 @Override
                 public void onViewClick(View view, int id) {
                     iCommonTitleClickListener.onRightTitleClick(view, view.getId());

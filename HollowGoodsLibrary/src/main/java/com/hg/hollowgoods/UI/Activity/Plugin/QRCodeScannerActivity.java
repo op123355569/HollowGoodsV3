@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.UI.Activity.Plugin;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -8,27 +9,33 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.hg.hollowgoods.Bean.EventBus.Event;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.FormatUtils;
+import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.QRCodeUtils.CameraManager;
 import com.hg.hollowgoods.Util.QRCodeUtils.CaptureActivityHandler;
 import com.hg.hollowgoods.Util.QRCodeUtils.InactivityTimer;
 import com.hg.hollowgoods.Util.QRCodeUtils.Util.AnimationUtils;
 import com.hg.hollowgoods.Util.QRCodeUtils.Util.BeepUtils;
 import com.hg.hollowgoods.Util.QRCodeUtils.Util.QRCodeUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -60,6 +67,7 @@ public class QRCodeScannerActivity extends BaseActivity {
     private boolean vibrate = true;
     /**** 闪光灯开启状态 ****/
     private boolean mFlashing = true;
+    private String title = "";
 
     private final int SCAN_LINE_COLOR_RES = R.color.colorAccent;
 
@@ -73,6 +81,11 @@ public class QRCodeScannerActivity extends BaseActivity {
         return R.layout.activity_qr_code_scanner;
     }
 
+    @Override
+    public void initIntentData(Intent intent) {
+        title = intent.getStringExtra(HGParamKey.Title.getValue());
+    }
+
     @Nullable
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
@@ -82,7 +95,9 @@ public class QRCodeScannerActivity extends BaseActivity {
         light = findViewById(R.id.light);
         scanLine = findViewById(R.id.capture_scan_line);
 
-        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON, R.string.title_activity_ex23);
+        baseUI.setCommonTitleStyleAutoBackground(HGCommonResource.BACK_ICON,
+                TextUtils.isEmpty(title) ? R.string.title_activity_ex23 : title
+        );
 
         // 扫描动画初始化
         initScannerAnimation();
@@ -258,12 +273,20 @@ public class QRCodeScannerActivity extends BaseActivity {
         msg.append("\n");
         msg.append(realContent);
 
-        Toast.makeText(this, msg.toString(), Toast.LENGTH_SHORT).show();
+        LogUtils.Log(msg);
 
-        if (handler != null) {
-            // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
-            handler.sendEmptyMessage(R.id.restart_preview);
-        }
+        Event event = new Event(HGEventActionCode.QR_CODE_SCAN_RESULT);
+        event.getData().putString(HGParamKey.ObjData.getValue(), realContent);
+        EventBus.getDefault().post(event);
+
+        finishMyActivity();
+
+//        Toast.makeText(this, msg.toString(), Toast.LENGTH_SHORT).show();
+//
+//        if (handler != null) {
+//            // 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
+//            handler.sendEmptyMessage(R.id.restart_preview);
+//        }
     }
 
 }

@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.hg.hollowgoods.R;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 /**
  * 输入框自动显示删除按钮布局
@@ -80,8 +81,9 @@ public class AutoShowDeleteLayout extends FrameLayout {
             mDelete = new ImageView(context);
             int textColor = mEditText.getCurrentTextColor();
             setDeleteButtonColor(textColor);
-            LayoutParams layoutParams = new LayoutParams(mDeleteSize, mDeleteSize, Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+            LayoutParams layoutParams = new LayoutParams(mDeleteSize, mDeleteSize, Gravity.CENTER_VERTICAL | Gravity.END);
             layoutParams.setMarginEnd(mDeleteMarginRight);
+            layoutParams.bottomMargin = mEditText instanceof MaterialEditText ? 10 : 0;
             mDelete.setLayoutParams(layoutParams);
             mDelete.setPadding(mDeletePaddingDefault, mDeletePaddingDefault, mDeletePaddingDefault, mDeletePaddingDefault);
             mDelete.setVisibility(View.GONE);
@@ -95,7 +97,21 @@ public class AutoShowDeleteLayout extends FrameLayout {
             this.addView(mDelete);
 
             int editTextPaddingEnd = mDeleteSize + mDeleteMarginRight;
-            mEditText.setPadding(mEditText.getPaddingLeft(), mEditText.getPaddingTop(), editTextPaddingEnd, mEditText.getPaddingBottom());
+            if (mEditText instanceof MaterialEditText) {
+                ((MaterialEditText) mEditText).setPaddings(
+                        ((MaterialEditText) mEditText).getInnerPaddingLeft(),
+                        ((MaterialEditText) mEditText).getInnerPaddingTop(),
+                        editTextPaddingEnd,
+                        ((MaterialEditText) mEditText).getInnerPaddingBottom()
+                );
+            } else {
+                mEditText.setPadding(
+                        mEditText.getPaddingStart(),
+                        mEditText.getPaddingTop(),
+                        editTextPaddingEnd,
+                        mEditText.getPaddingBottom()
+                );
+            }
 
             mEditText.addTextChangedListener(new TextWatcher() {
                 @Override

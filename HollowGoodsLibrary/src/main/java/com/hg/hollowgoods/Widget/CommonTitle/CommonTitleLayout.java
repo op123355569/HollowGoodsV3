@@ -69,7 +69,11 @@ public class CommonTitleLayout extends BaseCommonTitle {
         this.addView(parent);
 
         LayoutParams alp = (LayoutParams) parent.getLayoutParams();
-        alp.setScrollFlags(LayoutParams.SCROLL_FLAG_SCROLL | LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
+        if (openHeader) {
+            alp.setScrollFlags(LayoutParams.SCROLL_FLAG_SCROLL | LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
+        } else {
+            alp.setScrollFlags(LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+        }
 
         setTitleBackgroundResource(HGCommonResource.TITLE_BAR_RESOURCE);
         // 收缩前字体颜色

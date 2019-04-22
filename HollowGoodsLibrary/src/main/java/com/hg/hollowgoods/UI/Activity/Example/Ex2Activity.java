@@ -35,6 +35,8 @@ import java.util.ArrayList;
  */
 public class Ex2Activity extends BaseActivity {
 
+    private final int PERMISSION_CODE_INSTALL = 1000;
+
     private ImageView head;
     private GridView imgs;
     private ProgressBar bar;
@@ -82,7 +84,11 @@ public class Ex2Activity extends BaseActivity {
         head.setOnClickListener(new OnViewClickListener(false) {
             @Override
             public void onViewClick(View view, int id) {
-                downloadAPP();
+                if (systemAppUtils.canInstallAPK(baseUI.getBaseContext())) {
+                    downloadAPP();
+                } else {
+                    systemAppUtils.requestInstallPermission(baseUI.getBaseContext(), PERMISSION_CODE_INSTALL);
+                }
             }
         });
         imgs.setOnItemClickListener(new OnAdapterViewItemClickListener(false) {
@@ -143,6 +149,8 @@ public class Ex2Activity extends BaseActivity {
                 bar.setProgress(100);
 
                 t.showLongToast(file.getAbsolutePath());
+                filepath = file.getAbsolutePath();
+                installAPK();
             }
 
             @Override
@@ -169,6 +177,12 @@ public class Ex2Activity extends BaseActivity {
         });
         RequestParams params = new RequestParams(url);
         xUtils.downloadFile(HttpMethod.GET, params);
+    }
+
+    private String filepath;
+
+    private void installAPK() {
+        systemAppUtils.installAPK(baseUI.getBaseContext(), filepath);
     }
 
 }

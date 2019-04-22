@@ -631,8 +631,11 @@ public class SystemAppUtils {
      * 8.0以上需要使用
      */
     public void requestInstallPermission(Activity activity, int requestCode) {
-        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
-        activity.startActivityForResult(intent, requestCode);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.startActivityForResult(intent, requestCode);
+        }
     }
 
 }

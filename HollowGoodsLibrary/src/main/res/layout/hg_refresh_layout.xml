@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.hg.hollowgoods.Widget.SmartRefreshLayout.footer.BallPulseFooter
+    <com.hg.hollowgoods.Widget.SmartRefreshLayout.footer.ClassicsFooter
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

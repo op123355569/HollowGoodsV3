@@ -1092,6 +1092,10 @@ public class BaseUI {
         }
     }
 
+    public FloatingSearchView getFloatingSearchView() {
+        return floatingSearchView;
+    }
+
     /**
      * 显示短底部提示
      *

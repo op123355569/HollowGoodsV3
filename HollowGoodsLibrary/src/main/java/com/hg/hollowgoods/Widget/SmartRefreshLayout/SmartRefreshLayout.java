@@ -3619,4 +3619,9 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
     }
 
     //</editor-fold>
+
+    public boolean isNoMoreData() {
+        return mFooterNoMoreData;
+    }
+
 }

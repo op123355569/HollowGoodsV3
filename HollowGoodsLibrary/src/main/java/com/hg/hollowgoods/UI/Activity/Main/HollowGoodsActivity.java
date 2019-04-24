@@ -32,7 +32,7 @@ public class HollowGoodsActivity extends BaseActivity {
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_example_white_24dp, R.string.title_activity_main, R.menu.menu_activity_main);
+        baseUI.setCommonTitleStyleAutoBackground(R.drawable.ic_example_white_24dp, R.string.title_activity_main, R.menu.menu_activity_hollow_goods);
 
         return null;
     }

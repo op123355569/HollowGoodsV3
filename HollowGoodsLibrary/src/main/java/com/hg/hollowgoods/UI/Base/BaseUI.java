@@ -1092,6 +1092,12 @@ public class BaseUI {
         }
     }
 
+    public void clearSearch() {
+        searchKey = "";
+        iSearchViewClickListener.onSearched(searchKey);
+        floatingSearchView.clearSearchFocus();
+    }
+
     public FloatingSearchView getFloatingSearchView() {
         return floatingSearchView;
     }

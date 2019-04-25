@@ -3,7 +3,7 @@ package com.hg.hollowgoods.UI.Base.Click;
 import android.content.Context;
 import android.view.MenuItem;
 
-import com.arlib.floatingsearchview.FloatingSearchView;
+import com.hg.hollowgoods.Widget.FloatingSearchView.FloatingSearchView;
 
 /**
  * FloatingSearchView菜单项目点击事件

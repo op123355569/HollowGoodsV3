@@ -35,9 +35,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.arlib.floatingsearchview.FloatingSearchView;
-import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
-import com.arlib.floatingsearchview.util.Util;
 import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
@@ -54,6 +51,9 @@ import com.hg.hollowgoods.Util.SearchHistory.SearchHistoryUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchKeys;
 import com.hg.hollowgoods.Util.SystemBarTintUtils;
 import com.hg.hollowgoods.Widget.CommonTitle.BaseCommonTitle;
+import com.hg.hollowgoods.Widget.FloatingSearchView.FloatingSearchView;
+import com.hg.hollowgoods.Widget.FloatingSearchView.suggestions.model.SearchSuggestion;
+import com.hg.hollowgoods.Widget.FloatingSearchView.util.Util;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
@@ -97,6 +97,7 @@ public class BaseUI {
     private ArrayList<SearchKeys> keys = new ArrayList<>();
     private int historyCodeTag = -9999;
     private boolean mIsNeedHistory;
+    private boolean mIsAutoClearSearch = true;
     private int menuRes = -1;
     private long exitTime = 0l;
 
@@ -181,7 +182,7 @@ public class BaseUI {
     /**
      * 绑定EventBus
      *
-     * @param eventBusObj
+     * @param eventBusObj eventBusObj
      */
     public void bindEventBus(Object eventBusObj) {
 
@@ -268,7 +269,7 @@ public class BaseUI {
     /**
      * 请求文件操作权限
      *
-     * @return
+     * @return boolean
      */
     public boolean requestIOPermission() {
         return requestPermission(PERMISSION_CODE_IO,
@@ -281,7 +282,7 @@ public class BaseUI {
     /**
      * 检查文件操作权限
      *
-     * @return
+     * @return boolean
      */
     public boolean checkIOPermission() {
         return checkPermission(
@@ -294,9 +295,9 @@ public class BaseUI {
     /**
      * 请求权限
      *
-     * @param requestCode
-     * @param permission
-     * @return
+     * @param requestCode requestCode
+     * @param permission  permission
+     * @return boolean
      */
     public boolean requestPermission(int requestCode, String... permission) {
 
@@ -323,8 +324,8 @@ public class BaseUI {
     /**
      * 检查权限
      *
-     * @param permission
-     * @return
+     * @param permission permission
+     * @return String[]
      */
     public String[] checkPermission(String... permission) {
 
@@ -350,6 +351,11 @@ public class BaseUI {
         return result;
     }
 
+    /**
+     * 检查返回按钮
+     *
+     * @return boolean
+     */
     public boolean checkBackPressed() {
 
         if (System.currentTimeMillis() - exitTime <= HGSystemConfig.PRESS_AGAIN_TO_EXIT_TIME) {
@@ -365,9 +371,9 @@ public class BaseUI {
     /**
      * 反射获取属性
      *
-     * @param obj
-     * @param valueName
-     * @return
+     * @param obj       obj
+     * @param valueName valueName
+     * @return Object
      */
     public Object getObjValue(Object obj, String valueName) {
 
@@ -384,7 +390,7 @@ public class BaseUI {
                     //得到此属性的值
                     result = field.get(obj);
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
 
             }
         }
@@ -392,6 +398,13 @@ public class BaseUI {
         return result;
     }
 
+    /**
+     * 反射设置属性
+     *
+     * @param obj       obj
+     * @param valueName valueName
+     * @param value     value
+     */
     public void setObjValue(Object obj, String valueName, Object value) {
         if (obj != null && value != null) {
             try {
@@ -407,9 +420,9 @@ public class BaseUI {
     /**
      * 查找绑定控件
      *
-     * @param id
-     * @param <T>
-     * @return
+     * @param id  id
+     * @param <T> <T>
+     * @return <T extends View> T
      */
     public <T extends View> T findViewById(@IdRes int id) {
         return (T) rootView.findViewById(id);
@@ -514,7 +527,7 @@ public class BaseUI {
     /**
      * 设置公共标题中间文字
      *
-     * @param titleText
+     * @param titleText titleText
      */
     public void setCommonTitleText(Object titleText) {
 
@@ -530,7 +543,7 @@ public class BaseUI {
     /**
      * 设置公共标题中间文字大小
      *
-     * @param size
+     * @param size size
      */
     public void setCommonTitleTextSize(float size) {
         if (commonTitle != null) {
@@ -541,7 +554,7 @@ public class BaseUI {
     /**
      * 设置公共标题中间文字颜色
      *
-     * @param color
+     * @param color color
      */
     public void setCommonTitleTextColor(Object color) {
 
@@ -557,7 +570,7 @@ public class BaseUI {
     /**
      * 设置公共标题右侧文字
      *
-     * @param titleText
+     * @param titleText titleText
      */
     public void setCommonRightTitleText(Object titleText) {
 
@@ -573,7 +586,7 @@ public class BaseUI {
     /**
      * 设置公共标题右侧文字大小
      *
-     * @param size
+     * @param size size
      */
     public void setCommonRightTitleTextSize(float size) {
         if (commonTitle != null && menuRes == -1) {
@@ -584,7 +597,7 @@ public class BaseUI {
     /**
      * 设置公共标题右侧文字颜色
      *
-     * @param color
+     * @param color color
      */
     public void setCommonRightTitleTextColor(Object color) {
 
@@ -600,7 +613,7 @@ public class BaseUI {
     /**
      * 设置公共标题背景
      *
-     * @param background
+     * @param background background
      */
     public void setCommonTitleBackground(Object background) {
 
@@ -621,7 +634,7 @@ public class BaseUI {
     /**
      * 设置右侧菜单溢出时的图标
      *
-     * @param icon
+     * @param icon icon
      */
     public void setCommonTitleOverflowIcon(Object icon) {
 
@@ -649,7 +662,7 @@ public class BaseUI {
     /**
      * 设置公共标题可见性
      *
-     * @param visibility
+     * @param visibility visibility
      */
     public void setCommonTitleViewVisibility(boolean visibility) {
         if (commonTitle != null) {
@@ -690,8 +703,8 @@ public class BaseUI {
     /**
      * 当使用menu需要让溢出菜单显示图标时使用
      *
-     * @param menu
-     * @param visible
+     * @param menu    menu
+     * @param visible visible
      */
     public void setIconVisible(Menu menu, boolean visible) {
 
@@ -701,7 +714,7 @@ public class BaseUI {
             field = menu.getClass().getDeclaredField("mOptionalIconsVisible");
             field.setAccessible(true);
             field.set(menu, visible);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -862,7 +875,7 @@ public class BaseUI {
     /**
      * 显示底部加载数据模式
      *
-     * @param isShow
+     * @param isShow isShow
      */
     public void setLoadDataBottomMode(boolean isShow) {
 
@@ -882,7 +895,7 @@ public class BaseUI {
     /**
      * 添加自定义无数据界面
      *
-     * @param view
+     * @param view view
      */
     public void addNoDataView(View view) {
         noDataView.addView(view);
@@ -891,9 +904,9 @@ public class BaseUI {
     /**
      * 根据View所在坐标和用户点击的坐标相对比，来判断是否触摸在原本所点击的View上
      *
-     * @param v
-     * @param event
-     * @return
+     * @param v     v
+     * @param event event
+     * @return boolean
      */
     private boolean isTouchView(View v, MotionEvent event) {
 
@@ -909,7 +922,7 @@ public class BaseUI {
         return false;
     }
 
-    public void initSearchView(final View dataView, boolean isNeedHistory, int... historyCode) {
+    public void initSearchView(View dataView, boolean isNeedHistory, int... historyCode) {
 
         this.mIsNeedHistory = isNeedHistory;
 
@@ -943,7 +956,6 @@ public class BaseUI {
                         timer.schedule(new TimerTask() {
                             @Override
                             public void run() {
-
                                 getBaseContext().runOnUiThread(() -> floatingSearchView.hideProgress());
                             }
                         }, 500);
@@ -959,7 +971,7 @@ public class BaseUI {
                 public void onFocus() {
 
                     // 获取到焦点
-                    floatingSearchView.setSearchBarTitle("");
+                    floatingSearchView.setSearchBarTitle(TextUtils.isEmpty(searchKey) ? "" : searchKey);
                     floatingSearchView.setSearchHint("");
                     if (mIsNeedHistory) {
                         floatingSearchView.swapSuggestions(keys);
@@ -1039,6 +1051,12 @@ public class BaseUI {
                 }
             });
 
+            floatingSearchView.setOnArrowActionClickListener(() -> {
+                if (mIsAutoClearSearch) {
+                    clearSearch();
+                }
+            });
+
             floatingSearchView.setOnMenuItemClickListener(new OnFloatingSearchMenuItemClickListener(getBaseContext(), false) {
                 @Override
                 public void onFloatingSearchMenuItemClick(MenuItem item) {
@@ -1046,6 +1064,10 @@ public class BaseUI {
                 }
             });
         }
+    }
+
+    public void setIsAutoClearSearch(boolean mIsAutoClearSearch) {
+        this.mIsAutoClearSearch = mIsAutoClearSearch;
     }
 
     public void setSearchHint(Object text) {
@@ -1105,7 +1127,7 @@ public class BaseUI {
     /**
      * 显示短底部提示
      *
-     * @param tip
+     * @param tip tip
      */
     public void showShortSnackbar(Object tip) {
 
@@ -1131,8 +1153,8 @@ public class BaseUI {
     /**
      * 显示短底部提示并附带可点击文字
      *
-     * @param tip
-     * @param clickText
+     * @param tip       tip
+     * @param clickText clickText
      */
     public void showShortSnackbar(Object tip, Object clickText, View.OnClickListener onClickListener) {
 
@@ -1166,7 +1188,7 @@ public class BaseUI {
     /**
      * 显示长底部提示
      *
-     * @param tip
+     * @param tip tip
      */
     public void showLongSnackbar(Object tip) {
 
@@ -1192,9 +1214,9 @@ public class BaseUI {
     /**
      * 显示长底部提示并附带可点击文字
      *
-     * @param tip
-     * @param clickText
-     * @param onClickListener
+     * @param tip             tip
+     * @param clickText       clickText
+     * @param onClickListener onClickListener
      */
     public void showLongSnackbar(Object tip, Object clickText, View.OnClickListener onClickListener) {
 
@@ -1243,9 +1265,9 @@ public class BaseUI {
     /**
      * 界面跳转方法1-2
      *
-     * @param clazz
-     * @param publicView
-     * @param transitionName
+     * @param clazz          clazz
+     * @param publicView     publicView
+     * @param transitionName transitionName
      */
     public void startMyActivity(
             Class<?> clazz,
@@ -1283,7 +1305,6 @@ public class BaseUI {
      * @param key    键
      * @param values 值
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public void startMyActivity(
             Class<?> clazz,
             String[] key,
@@ -1301,13 +1322,12 @@ public class BaseUI {
     /**
      * 界面跳转方法2-2
      *
-     * @param clazz
-     * @param key
-     * @param values
-     * @param publicView
-     * @param transitionName
+     * @param clazz          clazz
+     * @param key            key
+     * @param values         values
+     * @param publicView     publicView
+     * @param transitionName transitionName
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public void startMyActivity(
             Class<?> clazz,
             String[] key,
@@ -1364,10 +1384,10 @@ public class BaseUI {
     /**
      * 界面跳转方法3-2
      *
-     * @param clazz
-     * @param requestCode
-     * @param publicView
-     * @param transitionName
+     * @param clazz          clazz
+     * @param requestCode    requestCode
+     * @param publicView     publicView
+     * @param transitionName transitionName
      */
     public void startMyActivityForResult(
             Class<?> clazz,
@@ -1407,7 +1427,6 @@ public class BaseUI {
      * @param key         键
      * @param values      值
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
     public void startMyActivityForResult(
             Class<?> clazz,
             int requestCode,
@@ -1430,14 +1449,13 @@ public class BaseUI {
     /**
      * 界面跳转方法4-2
      *
-     * @param clazz
-     * @param requestCode
-     * @param key
-     * @param values
-     * @param publicView
-     * @param transitionName
+     * @param clazz          clazz
+     * @param requestCode    requestCode
+     * @param key            key
+     * @param values         values
+     * @param publicView     publicView
+     * @param transitionName transitionName
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
     public void startMyActivityForResult(
             Class<?> clazz,
             int requestCode,
@@ -1625,10 +1643,10 @@ public class BaseUI {
     /**
      * 设置Intent的携带参数
      *
-     * @param intent
-     * @param key
-     * @param values
-     * @return
+     * @param intent intent
+     * @param key    key
+     * @param values values
+     * @return Intent
      */
     private Intent setIntentKeys(Intent intent, String[] key, Object[] values) {
 
@@ -1685,7 +1703,8 @@ public class BaseUI {
         return contentView;
     }
 
-    /**** 不暴露的方法 ****/
+    // 不暴露的方法
+
     /**
      * 初始化公共标题
      */

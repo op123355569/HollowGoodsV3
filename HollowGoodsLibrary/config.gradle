@@ -4,8 +4,8 @@ ext {
             buildToolsVersion: '28.0.3',
             minSdkVersion    : 21,
             targetSdkVersion : 27,
-            versionCode      : 300,
-            versionName      : '3.0.0',
+            versionCode      : 304,
+            versionName      : '3.0.4',
     ]
 
     // 基础Android Support控件
@@ -25,8 +25,8 @@ ext {
     MaterialEditText = "2.1.4"
     // EventBus
     EventBus = "3.1.1"
-    // 悬浮搜索框
-    FloatingSearchView = "2.1.1"
+//    // 悬浮搜索框
+//    FloatingSearchView = "2.1.1"
     // Glide图片加载库
     Glide = "4.9.0"
     // 角标
@@ -88,8 +88,8 @@ ext {
             MaterialEditText         : "com.rengwuxian.materialedittext:library:$MaterialEditText",
             // EventBus
             EventBus                 : "org.greenrobot:eventbus:$EventBus",
-            // 悬浮搜索框
-            FloatingSearchView       : "com.github.arimorty:floatingsearchview:$FloatingSearchView",
+//            // 悬浮搜索框
+//            FloatingSearchView       : "com.github.arimorty:floatingsearchview:$FloatingSearchView",
             // Glide图片加载库
             Glide                    : "com.github.bumptech.glide:glide:$Glide",
             GlideCompiler            : "com.github.bumptech.glide:compiler:$Glide",

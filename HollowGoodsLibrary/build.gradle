@@ -90,8 +90,9 @@ dependencies {
     // EventBus
     api libs.EventBus
 
-    // 悬浮搜索框
-    api libs.FloatingSearchView
+//    // 悬浮搜索框
+//    api libs.FloatingSearchView
+    api 'com.bartoszlipinski:viewpropertyobjectanimator:1.2.0'
 
     // Glide图片加载库
     api libs.Glide

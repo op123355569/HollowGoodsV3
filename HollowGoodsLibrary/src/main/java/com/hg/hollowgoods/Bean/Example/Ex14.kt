@@ -1,8 +1,9 @@
 package com.hg.hollowgoods.Bean.Example
 
+import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
-import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
+import com.hg.hollowgoods.Widget.FloatingSearchView.suggestions.model.SearchSuggestion
 
 /**
  * 示例14
@@ -35,6 +36,7 @@ class Ex14 : SearchSuggestion {
         return mColorName
     }
 
+    @SuppressLint("ParcelCreator")
     val CREATOR: Parcelable.Creator<Ex14> = object : Parcelable.Creator<Ex14> {
         override fun createFromParcel(`in`: Parcel): Ex14 {
             return Ex14(`in`)

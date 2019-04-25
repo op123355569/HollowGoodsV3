@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Util.SearchHistory;
 
 import android.os.Parcel;
 
-import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+import com.hg.hollowgoods.Widget.FloatingSearchView.suggestions.model.SearchSuggestion;
 
 /**
  * 搜索历史记录

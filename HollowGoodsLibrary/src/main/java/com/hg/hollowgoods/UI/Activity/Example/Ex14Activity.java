@@ -8,15 +8,15 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.arlib.floatingsearchview.FloatingSearchView;
-import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
-import com.arlib.floatingsearchview.util.Util;
 import com.hg.hollowgoods.Bean.Example.Ex14;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
+import com.hg.hollowgoods.Widget.FloatingSearchView.FloatingSearchView;
+import com.hg.hollowgoods.Widget.FloatingSearchView.suggestions.model.SearchSuggestion;
+import com.hg.hollowgoods.Widget.FloatingSearchView.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;

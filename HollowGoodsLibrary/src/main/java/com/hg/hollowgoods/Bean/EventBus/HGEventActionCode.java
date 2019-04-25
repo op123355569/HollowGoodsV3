@@ -12,5 +12,9 @@ public class HGEventActionCode {
     public static final int FILE_SELECTOR = -1003;
     /**** 二维码扫描结果 ****/
     public static final int QR_CODE_SCAN_RESULT = -1004;
+    /**** 网络状态——断网 ****/
+    public static final int NETWORK_STATUS_BREAK = -1005;
+    /**** 网络状态——联网 ****/
+    public static final int NETWORK_STATUS_LINK = -1006;
 
 }

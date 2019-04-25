@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.hg.hollowgoods.Service.Time.TimeService;
+import com.hg.hollowgoods.Bean.EventBus.Event;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Util.LogUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * 网络连接状态改变监听
@@ -30,15 +33,22 @@ public class NetworkReceiver extends BroadcastReceiver {
                     if (info.getType() == ConnectivityManager.TYPE_WIFI
                             || info.getType() == ConnectivityManager.TYPE_MOBILE) {
                         LogUtils.Log("连上");
-                        TimeService.start(context);
+                        sendMessage(HGEventActionCode.NETWORK_STATUS_LINK);
                     }
                 } else {
                     LogUtils.Log("断开");
+                    sendMessage(HGEventActionCode.NETWORK_STATUS_BREAK);
                 }
             } else {
                 LogUtils.Log("断开");
+                sendMessage(HGEventActionCode.NETWORK_STATUS_BREAK);
             }
         }
+    }
+
+    private void sendMessage(int code) {
+        Event event = new Event(code);
+        EventBus.getDefault().post(event);
     }
 
 }

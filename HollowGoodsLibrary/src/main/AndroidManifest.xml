@@ -10,7 +10,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!-- 在SDCard中写入文件权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!-- 在SDCard中读取文件权限 -->
     <uses-permission android:name="android.permission.INTERNET" /><!-- 上网权限 -->
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /><!-- 查看网络状态权限 -->
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /><!-- BugView所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" /><!-- 获取最近任务权限 -->
     <uses-permission android:name="android.permission.NFC" /><!-- NFC -->
@@ -155,16 +160,16 @@
         <!-- **** 反馈中心 **** -->
         <activity android:name=".UI.Activity.Main.HGFeedbackActivity" /><!-- 反馈中心 -->
 
-        <!-- **** 网络状态变化监听 **** -->
-        <receiver android:name=".Service.NetworkReceiver">
-            <intent-filter>
-                <action
-                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
-                    tools:ignore="BatteryLife" />
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
-                <action android:name="android.net.wifi.STATE_CHANGE" />
-            </intent-filter>
-        </receiver><!-- 网络监听广播 -->
+        <!--&lt;!&ndash; **** 网络状态变化监听 **** &ndash;&gt;-->
+        <!--<receiver android:name=".Service.NetworkReceiver">-->
+        <!--<intent-filter>-->
+        <!--<action-->
+        <!--android:name="android.net.conn.CONNECTIVITY_CHANGE"-->
+        <!--tools:ignore="BatteryLife" />-->
+        <!--<action android:name="android.net.wifi.WIFI_STATE_CHANGED" />-->
+        <!--<action android:name="android.net.wifi.STATE_CHANGE" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>&lt;!&ndash; 网络监听广播 &ndash;&gt;-->
 
         <!-- **** 时间服务 **** -->
         <service android:name=".Service.Time.TimeService" /><!-- 计时服务 -->

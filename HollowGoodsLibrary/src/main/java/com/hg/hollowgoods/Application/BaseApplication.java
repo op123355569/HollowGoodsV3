@@ -3,16 +3,27 @@ package com.hg.hollowgoods.Application;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkRequest;
 import android.support.multidex.MultiDex;
 
+import com.hg.hollowgoods.Bean.EventBus.Event;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Exception.CrashHandler;
 import com.hg.hollowgoods.Service.Time.TimeService;
 import com.hg.hollowgoods.Service.Time.TimeThread;
+import com.hg.hollowgoods.UI.Base.BaseActivity;
+import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Widget.HGStatusLayout;
 import com.tencent.smtt.sdk.QbSdk;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 基Application
@@ -110,6 +121,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         initAppDataBeforeDB();
         initXUtils();
         initAppDataAfterDB();
+        initNetworkWatcher();
         if (HGSystemConfig.IS_NEED_CHECK_SERVER_TIME) {
             TimeService.start(create());
         }
@@ -118,6 +130,93 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         }
 
         super.onCreate();
+    }
+
+    /**
+     * 初始化网络监察者
+     */
+    private void initNetworkWatcher() {
+
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (manager != null) {
+            manager.requestNetwork(new NetworkRequest.Builder().build(), new ConnectivityManager.NetworkCallback() {
+                @Override
+                public void onLost(Network network) {
+                    super.onLost(network);
+                    // 网络不可用
+                    LogUtils.Log("断网");
+                    sendMessage(HGEventActionCode.NETWORK_STATUS_BREAK);
+                    networkBreak();
+                }
+
+                @Override
+                public void onAvailable(Network network) {
+                    super.onAvailable(network);
+                    // 网络可用
+                    LogUtils.Log("联网");
+                    sendMessage(HGEventActionCode.NETWORK_STATUS_LINK);
+                    networkLink();
+                }
+            });
+        }
+    }
+
+    /**
+     * 设置断网界面布局
+     */
+    private void networkBreak() {
+
+        BaseActivity baseActivity = getTopActivity();
+
+        if (baseActivity != null) {
+            baseActivity.runOnUiThread(() -> baseActivity.baseUI.setStatus(HGStatusLayout.Status.NetworkBreak));
+        }
+    }
+
+    /**
+     * 设置联网界面布局
+     */
+    private void networkLink() {
+
+        BaseActivity baseActivity = getTopActivity();
+
+        if (baseActivity != null) {
+            if (baseActivity.baseUI.getStatusLayout() != null) {
+                baseActivity.runOnUiThread(() -> baseActivity.baseUI.getStatusLayout().networkLink());
+            }
+        }
+    }
+
+    /**
+     * 获取当前的Activity
+     *
+     * @return BaseActivity
+     */
+    public BaseActivity getTopActivity() {
+
+        BaseApplication application = BaseApplication.create();
+        List<Activity> activities = application.getAllActivity();
+
+        if (activities != null && activities.size() > 0) {
+            Activity activity = activities.get(activities.size() - 1);
+
+            if (activity instanceof BaseActivity) {
+                return (BaseActivity) activity;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * 发送网络状态变化的Event消息
+     *
+     * @param code code
+     */
+    private void sendMessage(int code) {
+        Event event = new Event(code);
+        EventBus.getDefault().post(event);
     }
 
     /**

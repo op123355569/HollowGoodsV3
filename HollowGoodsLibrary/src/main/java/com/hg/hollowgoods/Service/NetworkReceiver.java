@@ -22,6 +22,7 @@ import java.util.List;
  * 网络连接状态改变监听
  * Created by HG on 2018-05-23.
  */
+@Deprecated
 public class NetworkReceiver extends BroadcastReceiver {
 
     @Override
@@ -31,7 +32,11 @@ public class NetworkReceiver extends BroadcastReceiver {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             // 获取联网状态的NetworkInfo对象
             ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+            NetworkInfo info = null;
+
+            if (connectivityManager != null) {
+                info = connectivityManager.getActiveNetworkInfo();
+            }
 
             if (info != null) {
                 // 如果当前的网络连接成功并且网络连接可用

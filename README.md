@@ -113,7 +113,12 @@ allprojects {
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!-- 在SDCard中写入文件权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!-- 在SDCard中读取文件权限 -->
     <uses-permission android:name="android.permission.INTERNET" /><!-- 上网权限 -->
+   
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /><!-- 查看网络状态权限 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /><!-- 查看网络状态权限 -->
+   
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /><!-- BugView所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" /><!-- 获取最近任务权限 -->
     <uses-permission android:name="android.permission.NFC" /><!-- NFC -->

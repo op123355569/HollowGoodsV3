@@ -40,4 +40,18 @@
         <attr name="ctv_alwaysShow" format="boolean" />
     </declare-styleable>
 
+    <!-- Status Layout自定义属性-->
+    <declare-styleable name="HGStatusLayout">
+        <attr name="sl_loadingView" format="reference" />
+        <attr name="sl_errorView" format="reference" />
+        <attr name="sl_noDataView" format="reference" />
+        <attr name="sl_networkBreakView" format="reference" />
+        <attr name="sl_searchResultView" format="reference" />
+        <attr name="sl_loadingViewTop" format="boolean" />
+        <attr name="sl_errorViewTop" format="boolean" />
+        <attr name="sl_noDataViewTop" format="boolean" />
+        <attr name="sl_networkBreakViewTop" format="boolean" />
+        <attr name="sl_searchResultViewTop" format="boolean" />
+    </declare-styleable>
+
 </resources>

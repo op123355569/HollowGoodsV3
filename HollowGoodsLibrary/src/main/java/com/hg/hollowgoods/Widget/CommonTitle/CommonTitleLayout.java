@@ -13,6 +13,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -96,10 +97,14 @@ public class CommonTitleLayout extends BaseCommonTitle {
         getToolbar().setTitle("");
 
         Toolbar.LayoutParams lp = new Toolbar.LayoutParams(Gravity.CENTER);
+        int maxTitleWidth = (int) (mContext.getResources().getDisplayMetrics().widthPixels * 0.5f);
         mTitle = new TextView(mContext);
         mTitle.setLayoutParams(lp);
         mTitle.setId(R.id.commonTitleCenterText);
         mTitle.setGravity(Gravity.CENTER);
+        mTitle.setMaxWidth(maxTitleWidth);
+        mTitle.setMaxLines(2);
+        mTitle.setEllipsize(TextUtils.TruncateAt.END);
         getToolbar().addView(mTitle, lp);
 
         lp = new Toolbar.LayoutParams(Gravity.END);

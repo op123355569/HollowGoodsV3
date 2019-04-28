@@ -96,6 +96,12 @@
     <string name="hg_password">密码</string>
     <string name="hg_login">登录</string>
     <string name="hg_print">(显示屏)</string>
+    <string name="status_view_loading_tips">加载中，请稍候……</string>
+    <string name="status_view_error_tips">出错了\n请与管理员联系</string>
+    <string name="status_view_no_data_tips">暂无数据</string>
+    <string name="status_view_network_break_tips">连接失败\n请检查您的手机是否有网络</string>
+    <string name="status_view_network_break_button">设置网络</string>
+    <string name="status_view_search_result_tips">未找到相关数据</string>
 
     <string name="submit_dialog_status_wait">等待中</string>
     <string name="submit_dialog_status_request">请求中</string>

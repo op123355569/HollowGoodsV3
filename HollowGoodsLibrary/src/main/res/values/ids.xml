@@ -13,4 +13,6 @@
 
     <item name="submit" type="id" />
 
+    <item name="hgStatusLayout" type="id" />
+
 </resources>

@@ -54,6 +54,7 @@ import com.hg.hollowgoods.Widget.CommonTitle.BaseCommonTitle;
 import com.hg.hollowgoods.Widget.FloatingSearchView.FloatingSearchView;
 import com.hg.hollowgoods.Widget.FloatingSearchView.suggestions.model.SearchSuggestion;
 import com.hg.hollowgoods.Widget.FloatingSearchView.util.Util;
+import com.hg.hollowgoods.Widget.HGStatusLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
@@ -74,10 +75,13 @@ import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 public class BaseUI {
 
     /**** 无数据 ****/
+    @Deprecated
     public final int DATA_MODE_NO_DATA = -5000;
     /**** 有数据 ****/
+    @Deprecated
     public final int DATA_MODE_HAS_DATA = -5001;
     /**** 在中间加载数据 ****/
+    @Deprecated
     public final int DATA_MODE_LOAD_DATA_CENTER = -5002;
 
     /**** 权限请求代码——文件操作 ****/
@@ -118,6 +122,7 @@ public class BaseUI {
     private View loadDataViewBottom;
     private SmoothProgressBar bottomProgressBar;
     private FloatingSearchView floatingSearchView;
+    private HGStatusLayout statusLayout;
 
     /**** 暴露的方法 ****/
 
@@ -168,6 +173,7 @@ public class BaseUI {
         loadDataViewBottom = findViewById(R.id.view_common_load_data_bottom);
         bottomProgressBar = loadDataViewBottom == null ? null : (SmoothProgressBar) ((LinearLayout) loadDataViewBottom).getChildAt(0);
         floatingSearchView = findViewById(R.id.floating_search_view);
+        statusLayout = findViewById(R.id.hgStatusLayout);
 
         if (noDataView != null) {
             noDataView.setOnClickListener(new OnViewClickListener(false) {
@@ -843,6 +849,7 @@ public class BaseUI {
      *
      * @param dataMode 数据模式
      */
+    @Deprecated
     public void setDataMode(int dataMode) {
 
         if (contentView != null) {
@@ -1756,5 +1763,14 @@ public class BaseUI {
         }
     }
 
+    public HGStatusLayout getStatusLayout() {
+        return statusLayout;
+    }
+
+    public void setStatus(HGStatusLayout.Status status) {
+        if (statusLayout != null) {
+            statusLayout.setStatus(status);
+        }
+    }
 
 }

@@ -1,16 +1,22 @@
 package com.hg.hollowgoods.Service;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
+import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Util.LogUtils;
+import com.hg.hollowgoods.Widget.HGStatusLayout;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 /**
  * 网络连接状态改变监听
@@ -34,16 +40,55 @@ public class NetworkReceiver extends BroadcastReceiver {
                             || info.getType() == ConnectivityManager.TYPE_MOBILE) {
                         LogUtils.Log("连上");
                         sendMessage(HGEventActionCode.NETWORK_STATUS_LINK);
+                        networkLink();
                     }
                 } else {
                     LogUtils.Log("断开");
                     sendMessage(HGEventActionCode.NETWORK_STATUS_BREAK);
+                    networkBreak();
                 }
             } else {
                 LogUtils.Log("断开");
                 sendMessage(HGEventActionCode.NETWORK_STATUS_BREAK);
+                networkBreak();
             }
         }
+    }
+
+    private void networkBreak() {
+
+        BaseActivity baseActivity = getActivity();
+
+        if (baseActivity != null) {
+            baseActivity.baseUI.setStatus(HGStatusLayout.Status.NetworkBreak);
+        }
+    }
+
+    private void networkLink() {
+
+        BaseActivity baseActivity = getActivity();
+
+        if (baseActivity != null) {
+            if (baseActivity.baseUI.getStatusLayout() != null) {
+                baseActivity.baseUI.getStatusLayout().networkLink();
+            }
+        }
+    }
+
+    private BaseActivity getActivity() {
+
+        BaseApplication application = BaseApplication.create();
+        List<Activity> activities = application.getAllActivity();
+
+        if (activities != null && activities.size() > 0) {
+            Activity activity = activities.get(activities.size() - 1);
+
+            if (activity instanceof BaseActivity) {
+                return (BaseActivity) activity;
+            }
+        }
+
+        return null;
     }
 
     private void sendMessage(int code) {

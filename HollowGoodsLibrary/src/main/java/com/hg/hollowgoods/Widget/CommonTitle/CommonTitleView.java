@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -66,10 +67,14 @@ public class CommonTitleView extends BaseCommonTitle {
         }
 
         Toolbar.LayoutParams lp = new Toolbar.LayoutParams(Gravity.CENTER);
+        int maxTitleWidth = (int) (mContext.getResources().getDisplayMetrics().widthPixels * 0.5f);
         mTitle = new TextView(mContext);
         mTitle.setLayoutParams(lp);
         mTitle.setId(R.id.commonTitleCenterText);
         mTitle.setGravity(Gravity.CENTER);
+        mTitle.setMaxWidth(maxTitleWidth);
+        mTitle.setMaxLines(2);
+        mTitle.setEllipsize(TextUtils.TruncateAt.END);
         mToolbar.addView(mTitle, lp);
 
         lp = new Toolbar.LayoutParams(Gravity.END);

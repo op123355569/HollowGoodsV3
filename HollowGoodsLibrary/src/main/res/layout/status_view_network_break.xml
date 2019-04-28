@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.hg.hollowgoods.Widget.DesertPlaceholder.DesertPlaceholder
+        android:id="@+id/placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:dp_buttonText="@string/status_view_network_break_button"
+        app:dp_message="@string/status_view_network_break_tips" />
+
+</FrameLayout>

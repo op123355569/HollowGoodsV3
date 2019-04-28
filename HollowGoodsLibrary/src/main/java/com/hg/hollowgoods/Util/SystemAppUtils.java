@@ -638,4 +638,15 @@ public class SystemAppUtils {
         }
     }
 
+    /**
+     * 打开系统无线网络设置界面
+     *
+     * @param context context
+     */
+    public void openNetworkSetting(Context context) {
+        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
 }

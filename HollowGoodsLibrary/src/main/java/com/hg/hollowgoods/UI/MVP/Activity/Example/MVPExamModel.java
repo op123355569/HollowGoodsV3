@@ -1,21 +1,22 @@
 package com.hg.hollowgoods.UI.MVP.Activity.Example;
 
+import android.content.Context;
 import android.os.Handler;
 
 import com.hg.hollowgoods.Bean.HGUser;
 
 /**
- * @ClassName:数据层
- * @Description:
- * @author: HollowGoods
- * @date: 2019年01月17日
+ * 数据层
+ * Created by Hollow Goods on 2019-01-16.
  */
 public class MVPExamModel implements MVPExamContract.Model {
 
     private MVPExamContract.View mView;
+    protected Context mContext;
 
-    public MVPExamModel(MVPExamContract.View mView) {
+    public MVPExamModel(MVPExamContract.View mView, Context mContext) {
         this.mView = mView;
+        this.mContext = mContext;
     }
 
     @Override
@@ -48,7 +49,7 @@ public class MVPExamModel implements MVPExamContract.Model {
             if (isViewAttached()) {
                 mView.onSuccess(user);
             }
-        }, 3 * 1000l);
+        }, 3 * 1000L);
     }
 
 }

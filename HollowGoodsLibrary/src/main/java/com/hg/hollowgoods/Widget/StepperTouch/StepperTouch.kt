@@ -63,6 +63,7 @@ class StepperTouch : ConstraintLayout {
         updateSideControls()
         notifyStepCallback(new, new > old)
     }
+    var difValue = 1
 
     // Style properties
     private var stepperBackground = R.color.stepper_background
@@ -89,16 +90,16 @@ class StepperTouch : ConstraintLayout {
 
         try {
             stepperBackground =
-                styles.getResourceId(R.styleable.StepperTouch_stepperBackgroundColor, R.color.stepper_background)
+                    styles.getResourceId(R.styleable.StepperTouch_stepperBackgroundColor, R.color.stepper_background)
             stepperActionColor =
-                styles.getResourceId(R.styleable.StepperTouch_stepperActionsColor, R.color.stepper_actions)
+                    styles.getResourceId(R.styleable.StepperTouch_stepperActionsColor, R.color.stepper_actions)
             stepperActionColorDisabled = styles.getResourceId(
-                R.styleable.StepperTouch_stepperActionsDisabledColor,
-                R.color.stepper_actions_disabled
+                    R.styleable.StepperTouch_stepperActionsDisabledColor,
+                    R.color.stepper_actions_disabled
             )
             stepperTextColor = styles.getResourceId(R.styleable.StepperTouch_stepperTextColor, R.color.stepper_text)
             stepperButtonColor =
-                styles.getResourceId(R.styleable.StepperTouch_stepperButtonColor, R.color.stepper_button)
+                    styles.getResourceId(R.styleable.StepperTouch_stepperButtonColor, R.color.stepper_button)
             stepperTextSize = styles.getDimensionPixelSize(R.styleable.StepperTouch_stepperTextSize, stepperTextSize)
             allowNegative = styles.getBoolean(R.styleable.StepperTouch_stepperAllowNegative, true)
             allowPositive = styles.getBoolean(R.styleable.StepperTouch_stepperAllowPositive, true)
@@ -196,16 +197,16 @@ class StepperTouch : ConstraintLayout {
         textViewPositive.setVisibility(allowPositive)
 
         textViewNegative.setTextColor(
-            ContextCompat.getColor(
-                context,
-                if (count == minValue) stepperActionColorDisabled else stepperActionColor
-            )
+                ContextCompat.getColor(
+                        context,
+                        if (count == minValue) stepperActionColorDisabled else stepperActionColor
+                )
         )
         textViewPositive.setTextColor(
-            ContextCompat.getColor(
-                context,
-                if (count == maxValue) stepperActionColorDisabled else stepperActionColor
-            )
+                ContextCompat.getColor(
+                        context,
+                        if (count == maxValue) stepperActionColorDisabled else stepperActionColor
+                )
         )
     }
 
@@ -226,11 +227,11 @@ class StepperTouch : ConstraintLayout {
     }
 
     private fun add() {
-        if (count != maxValue) count += 1
+        if (count + difValue <= maxValue) count += difValue
     }
 
     private fun subtract() {
-        if (count != minValue) count--
+        if (count - difValue >= minValue) count -= difValue
     }
 
     override fun onDraw(canvas: Canvas) {

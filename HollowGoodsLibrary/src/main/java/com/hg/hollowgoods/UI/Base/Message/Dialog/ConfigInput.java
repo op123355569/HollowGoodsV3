@@ -17,6 +17,7 @@ public class ConfigInput {
     private int maxLines = 1;
     private int inputType = HGConstants.INPUT_TYPE_DEFAULT;
     private Validator[] validator;
+    private boolean autoShowKeyboard = false;
 
     /**** Set ****/
 
@@ -50,6 +51,11 @@ public class ConfigInput {
         return this;
     }
 
+    public ConfigInput setAutoShowKeyboard(boolean autoShowKeyboard) {
+        this.autoShowKeyboard = autoShowKeyboard;
+        return this;
+    }
+
     /**** Get ****/
 
     public Object getTitle() {
@@ -74,5 +80,9 @@ public class ConfigInput {
 
     public Validator[] getValidator() {
         return validator;
+    }
+
+    public boolean isAutoShowKeyboard() {
+        return autoShowKeyboard;
     }
 }

@@ -36,7 +36,6 @@ object ViewUtils {
      */
     @JvmStatic
     fun hideSoftInput(v: View, context: Context) {
-
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(v.windowToken, 0) //强制隐藏键盘
     }
@@ -52,10 +51,19 @@ object ViewUtils {
         val view = activity.window.peekDecorView()
 
         if (view != null) {
-            val inputmanger = activity
+            val inputManger = activity
                     .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputmanger.hideSoftInputFromWindow(view.windowToken, 0)
+            inputManger.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    /**
+     * 显示软键盘
+     */
+    @JvmStatic
+    fun showSoftInput(v: View, context: Context) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)
     }
 
 }

@@ -18,7 +18,7 @@ public class HGAlertDialog extends HGDialog {
     private String noButtonTxt = "";
     private String yesButtonTxt = "";
 
-    public HGAlertDialog(Context context, Object title, Object tip, Object noButtonTxt, Object yesButtonTxt, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGAlertDialog(Context context, Object title, Object tip, Object noButtonTxt, Object yesButtonTxt, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.code = code;

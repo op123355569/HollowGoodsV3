@@ -1,18 +1,22 @@
 package com.hg.hollowgoods.UI.MVP.Activity.Example;
 
+import android.content.Context;
+
 import com.hg.hollowgoods.UI.Base.MVP.BasePresenter;
 
 /**
- * @ClassName:管理层
- * @Description:
- * @author: HollowGoods
- * @date: 2019年01月16日
+ * 管理层
+ * Created by Hollow Goods on 2019-01-16.
  */
 public class MVPExamPresenter extends BasePresenter<MVPExamContract.View, MVPExamContract.Model> implements MVPExamContract.Presenter {
 
+    public MVPExamPresenter(Context mContext) {
+        super(mContext);
+    }
+
     @Override
     public void afterAttachView() {
-        mModel = new MVPExamModel(mView);
+        mModel = new MVPExamModel(mView, mContext);
     }
 
     @Override

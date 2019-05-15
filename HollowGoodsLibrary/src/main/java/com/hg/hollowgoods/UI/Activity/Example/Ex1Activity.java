@@ -87,7 +87,7 @@ public class Ex1Activity extends BaseActivity implements PopupWinHelper.PopupWin
         fab.setOnClickListener(new OnViewClickListener(false) {
             @Override
             public void onViewClick(View view, int id) {
-                baseUI.showShortSnackbar(R.string.tips, R.string.choose_sex, v -> helper.showPopupwin(v));
+                baseUI.showShortSnackbar(R.string.tips, R.string.choose_sex, v -> helper.showPopupWin(v));
             }
         });
     }
@@ -95,7 +95,7 @@ public class Ex1Activity extends BaseActivity implements PopupWinHelper.PopupWin
     @Override
     public void OnPopupWinClick(View v) {
 
-        helper.closePopupwin();
+        helper.closePopupWin();
 
         if (v.getId() == R.id.tv_male) {
             t.showShortToast(R.string.male);

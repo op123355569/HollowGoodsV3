@@ -15,10 +15,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 
 /**
- * @ClassName:
- * @Description:
- * @author: HollowGoods
- * @date: 2019年01月16日
+ * Created by Hollow Goods on 2019-01-16.
  */
 public class MVPExamActivity extends BaseMVPActivity<MVPExamPresenter> implements MVPExamContract.View {
 
@@ -61,7 +58,7 @@ public class MVPExamActivity extends BaseMVPActivity<MVPExamPresenter> implement
 
     @Override
     public MVPExamPresenter createPresenter() {
-        return new MVPExamPresenter();
+        return new MVPExamPresenter(baseUI.getBaseContext());
     }
 
     @Override

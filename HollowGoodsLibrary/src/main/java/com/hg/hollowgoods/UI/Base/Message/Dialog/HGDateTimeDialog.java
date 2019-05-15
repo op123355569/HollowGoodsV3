@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -62,7 +61,7 @@ public class HGDateTimeDialog extends HGDialog {
         YMD_HM
     }
 
-    public HGDateTimeDialog(Context context, long timeInMillis, DateTimeDialogType dateTimeDialogType, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGDateTimeDialog(Context context, long timeInMillis, DateTimeDialogType dateTimeDialogType, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.code = code;
@@ -81,12 +80,9 @@ public class HGDateTimeDialog extends HGDialog {
         this.hour = c.get(Calendar.HOUR_OF_DAY);
         this.minute = c.get(Calendar.MINUTE);
 
-        this.dialog = new AlertDialog.Builder(context).setView(R.layout.dialog_date_time).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (onDialogClickListener != null) {
-                    onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, false, null);
-                }
+        this.dialog = new AlertDialog.Builder(context).setView(R.layout.dialog_date_time).setNegativeButton(R.string.cancel, (dialog, which) -> {
+            if (onDialogClickListener != null) {
+                onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, false, null);
             }
         }).setPositiveButton(R.string.sure, (dialog, which) -> {
             if (onDialogClickListener != null) {
@@ -109,12 +105,8 @@ public class HGDateTimeDialog extends HGDialog {
                 onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, true, data);
             }
         }).create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGDateTimeDialog.this.onDialogDismissListener.onDialogDismiss(HGDateTimeDialog.this);
-            }
-        });
+
+        this.dialog.setOnDismissListener(dialog -> HGDateTimeDialog.this.onDialogDismissListener.onDialogDismiss(HGDateTimeDialog.this));
 
         this.dialog.show();
 
@@ -207,12 +199,7 @@ public class HGDateTimeDialog extends HGDialog {
     }
 
     private boolean isLeapYear(int year) {
-
-        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-            return true;
-        }
-
-        return false;
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 
     private void initDate() {
@@ -302,7 +289,7 @@ public class HGDateTimeDialog extends HGDialog {
     private void initYear() {
 
         List<String> items = new ArrayList<>();
-        int count = this.year + 20 - this.startYear;
+        int count = Calendar.getInstance().get(Calendar.YEAR) + 100 - this.startYear;
         String endStr = context.getString(R.string.year);
 
         for (int i = 0; i < count; i++) {

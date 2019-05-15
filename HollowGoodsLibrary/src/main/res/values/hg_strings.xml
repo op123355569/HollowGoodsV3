@@ -73,6 +73,7 @@
     <string name="please_other_content">%1$s为必填项</string>
     <string name="take_photo">拍照</string>
     <string name="open_album">相册</string>
+    <string name="open_file">文件</string>
     <string name="load_error">读取失败</string>
     <string name="is_sure_delete_image">是否确认删除？</string>
     <string name="is_had_max_count">数量已达上限，上限为%1$s</string>
@@ -102,6 +103,8 @@
     <string name="status_view_network_break_tips">连接失败\n请检查您的手机是否有网络</string>
     <string name="status_view_network_break_button">设置网络</string>
     <string name="status_view_search_result_tips">未找到相关数据</string>
+    <string name="hg_fast_adapter_word_single_choice_net_no_data">暂无数据</string>
+    <string name="hg_fast_adapter_word_single_choice_net_loading">加载中，请稍候……</string>
 
     <string name="submit_dialog_status_wait">等待中</string>
     <string name="submit_dialog_status_request">请求中</string>

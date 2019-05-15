@@ -19,7 +19,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
  * 输入对话框
  * Created by HG on 2018-01-17.
  */
-
+@Deprecated
 public class HGInputDialog extends HGDialog {
 
     private MaterialEditText inputView;

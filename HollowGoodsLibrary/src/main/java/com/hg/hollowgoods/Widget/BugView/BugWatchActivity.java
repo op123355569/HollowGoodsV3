@@ -140,7 +140,7 @@ public class BugWatchActivity extends BaseActivity implements OnDialogClickListe
     }
 
     @Override
-    public void onDialogClick(int code, boolean result, Bundle data) {
+    public void onDialogClick(int code, boolean result, Bundle backData) {
 
         if (result) {
             deleteBug();

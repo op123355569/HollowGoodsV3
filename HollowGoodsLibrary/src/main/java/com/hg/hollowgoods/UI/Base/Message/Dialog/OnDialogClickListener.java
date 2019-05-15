@@ -9,6 +9,6 @@ import android.os.Bundle;
 
 public interface OnDialogClickListener {
 
-    void onDialogClick(int code, boolean result, Bundle data);
+    void onDialogClick(int code, boolean result, Bundle backData);
 
 }

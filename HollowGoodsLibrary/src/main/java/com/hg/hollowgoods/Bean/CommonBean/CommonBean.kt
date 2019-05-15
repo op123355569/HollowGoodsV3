@@ -1,9 +1,8 @@
 package com.hg.hollowgoods.Bean.CommonBean
 
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media
+import com.hg.hollowgoods.UI.Base.Message.Dialog.ConfigInput
 import java.io.Serializable
-import java.util.*
-import kotlin.collections.HashMap
 
 /**
  * 通用基类
@@ -12,11 +11,16 @@ import kotlin.collections.HashMap
 open class CommonBean(itemType: Int) : Serializable {
 
     /**
+     * HGFastAdapter用的项id
+     */
+    var itemId: Int = 0
+    /**
      * 布局类型
      */
     var itemType: Int = 0
     /**
      * 是否只读
+     * HGFastAdapter用的项可读性
      */
     var isOnlyRead: Boolean = false
     /**
@@ -32,9 +36,33 @@ open class CommonBean(itemType: Int) : Serializable {
      */
     private var isOnlyReads: HashMap<String, Boolean>? = null
     /**
+     * 可读性
+     * HGFastAdapter用的
+     */
+    private var isItemOnlyReads: HashMap<Int, Boolean>? = null
+    /**
      * 多媒体附件
      */
     var media: HashMap<Int, ArrayList<Media>> = hashMapOf()
+    /**
+     * 多媒体附件
+     * HGFastAdapter用的
+     */
+    var itemMedia: ArrayList<Media>? = null
+    /**
+     * 输入配置
+     * HGFastAdapter用的
+     */
+    var configInputs: HashMap<Int, ConfigInput> = hashMapOf()
+    /**
+     * 输入配置
+     * HGFastAdapter用的
+     */
+    var configInput: ConfigInput? = null
+    /**
+     * 是否需要移除
+     */
+    var isNeedRemove: Boolean = false
 
     init {
         this.itemType = itemType
@@ -91,9 +119,9 @@ open class CommonBean(itemType: Int) : Serializable {
     /**
      * 添加字段的可读性
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key key
+     * @param value value
+     * @return CommonBean
      */
     fun addOnlyReadItem(key: String, value: Boolean): CommonBean {
 
@@ -108,8 +136,8 @@ open class CommonBean(itemType: Int) : Serializable {
     /**
      * 获取字段的可读性
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return Boolean
      */
     fun getOnlyReadItem(key: String): Boolean? {
 
@@ -123,6 +151,78 @@ open class CommonBean(itemType: Int) : Serializable {
      */
     fun removeOnlyReadItem(key: String): CommonBean {
         isOnlyReads!!.remove(key)
+        return this
+    }
+
+    /**
+     * 添加字段的可读性
+     *
+     * @param key
+     * @param value
+     * @return CommonBean
+     */
+    fun addOnlyReadItem(key: Int, value: Boolean): CommonBean {
+
+        if (isItemOnlyReads == null) {
+            isItemOnlyReads = HashMap()
+        }
+        isItemOnlyReads!![key] = value
+
+        return this
+    }
+
+    /**
+     * 获取字段的可读性
+     *
+     * @param key key
+     * @return Boolean
+     */
+    fun getOnlyReadItem(key: Int): Boolean {
+
+        if (isItemOnlyReads == null) {
+            return true
+        }
+
+        return isItemOnlyReads!![key] ?: return true
+    }
+
+    /**
+     * 移除字段的可读性
+     */
+    fun removeOnlyReadItem(key: Int): CommonBean {
+        isItemOnlyReads!!.remove(key)
+        return this
+    }
+
+    /**
+     * 添加输入配置
+     *
+     * @param key key
+     * @param value value
+     * @return CommonBean
+     */
+    fun addConfigInput(key: Int, value: ConfigInput): CommonBean {
+        configInputs[key] = value
+        return this
+    }
+
+    /**
+     * 获取输入配置
+     *
+     * @param key key
+     * @return ConfigInput
+     */
+    fun getConfigInput(key: Int): ConfigInput? {
+        return configInputs!![key]
+    }
+
+    /**
+     * 移除输入配置
+     * @param key key
+     * @return CommonBean
+     */
+    fun removeConfigInput(key: Int): CommonBean {
+        configInputs!!.remove(key)
         return this
     }
 

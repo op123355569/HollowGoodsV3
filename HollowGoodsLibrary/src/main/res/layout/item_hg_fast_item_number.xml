@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_marginView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_itemView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_sortNumber_id"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="0\n0"
+            android:textColor="@color/txt_color_dark"
+            android:textSize="8sp" />
+
+        <ImageView
+            android:id="@+id/iv_leftIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_android_green_24dp" />
+
+        <TextView
+            android:id="@+id/tv_notEmptyFlag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="*"
+            android:textColor="@color/color_wrong" />
+
+        <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:minWidth="60dp"
+            android:text="Label"
+            android:textColor="@color/txt_color_dark"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.hg.hollowgoods.Widget.StepperTouch.StepperTouch
+            android:id="@+id/stepperTouch"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:clipChildren="true"
+            android:orientation="horizontal"
+            app:stepperActionsColor="@color/colorAccent"
+            app:stepperActionsDisabledColor="@color/txt_color_light"
+            app:stepperBackgroundColor="@color/stepper_background_blue"
+            app:stepperTextColor="@color/colorAccent" />
+
+        <Space
+            android:id="@+id/contentMargin"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_rightIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_android_green_24dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+</LinearLayout>

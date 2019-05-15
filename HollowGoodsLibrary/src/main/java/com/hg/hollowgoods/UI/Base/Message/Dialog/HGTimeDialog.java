@@ -16,7 +16,7 @@ import java.util.Calendar;
  * 时间对话框
  * Created by HG on 2018-01-18.
  */
-
+@Deprecated
 public class HGTimeDialog extends HGDialog {
 
     private TimePicker timePicker;

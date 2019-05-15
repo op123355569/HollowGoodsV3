@@ -9,7 +9,7 @@ public interface IBaseMVPUI<P extends IBasePresenter> {
     /**
      * 创建Presenter
      *
-     * @return
+     * @return <P extends IBasePresenter>
      */
     @Nullable
     P createPresenter();

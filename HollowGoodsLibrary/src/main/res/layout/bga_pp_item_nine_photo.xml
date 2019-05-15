@@ -22,6 +22,6 @@
         android:padding="@dimen/bga_pp_size_delete_padding"
         android:src="@mipmap/bga_pp_ic_delete"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="visibleName" />
 
 </RelativeLayout>

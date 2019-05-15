@@ -109,10 +109,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     /**
      * 执行EventBus
      *
-     * @param item
+     * @param event
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventUI(Event item) {
+    public void onEventUI(Event event) {
 
     }
 

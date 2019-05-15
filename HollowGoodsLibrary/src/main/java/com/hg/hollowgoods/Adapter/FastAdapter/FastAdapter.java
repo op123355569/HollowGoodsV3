@@ -313,7 +313,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
                     }
                 }
 
-                helper.closePopupwin();
+                helper.closePopupWin();
             });
 
             helper.init(
@@ -327,7 +327,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
             );
         }
 
-        helper.showPopupwin(view);
+        helper.showPopupWin(view);
     }
 
     private SystemAppUtils systemAppUtils = new SystemAppUtils();

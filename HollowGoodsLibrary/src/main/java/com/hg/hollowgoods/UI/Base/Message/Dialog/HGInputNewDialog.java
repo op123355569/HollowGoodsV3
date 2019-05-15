@@ -2,9 +2,11 @@ package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.hg.hollowgoods.Constant.HGConstants;
@@ -22,17 +24,11 @@ import com.hg.hollowgoods.Widget.ValidatorInput.ValidatorInputView;
 public class HGInputNewDialog extends HGDialog {
 
     private ValidatorInputView inputView;
-    private TextView cancelView;
-    private TextView sureView;
-    private TextView titleView;
-
-    private ConfigInput configInput;
 
     public HGInputNewDialog(Context context, ConfigInput configInput, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.code = code;
-        this.configInput = configInput;
         this.onDialogDismissListener = onDialogDismissListener;
 
         this.dialog = new AlertDialog
@@ -43,13 +39,13 @@ public class HGInputNewDialog extends HGDialog {
         this.dialog.show();
 
         this.inputView = this.dialog.findViewById(R.id.et_input);
-        this.cancelView = this.dialog.findViewById(R.id.tv_cancel);
-        this.sureView = this.dialog.findViewById(R.id.tv_sure);
-        this.titleView = this.dialog.findViewById(R.id.tv_title);
+        TextView cancelView = this.dialog.findViewById(R.id.tv_cancel);
+        TextView sureView = this.dialog.findViewById(R.id.tv_sure);
+        TextView titleView = this.dialog.findViewById(R.id.tv_title);
 
         // 标题
         String titleValue = getValue(configInput.getTitle(), "");
-        if (!TextUtils.isEmpty(titleValue)) {
+        if (titleView != null && !TextUtils.isEmpty(titleValue)) {
             titleView.setVisibility(View.VISIBLE);
             titleView.setText(titleValue);
         }
@@ -90,18 +86,26 @@ public class HGInputNewDialog extends HGDialog {
         // 光标移至最后
         ViewUtils.setEditTextCursorLocation(inputView.getInputView());
 
-        this.cancelView.setOnClickListener(v -> dialog.dismiss());
+        if (cancelView != null) {
+            cancelView.setOnClickListener(v -> dialog.dismiss());
+        }
 
-        this.sureView.setOnClickListener(v -> {
+        if (sureView != null) {
+            sureView.setOnClickListener(v -> {
 
-            boolean result = inputView.isInputRight();
+                boolean result = inputView.isInputRight();
 
-            if (result) {
-                backInputData();
-            } else {
-                t.error(R.string.input_content_error);
-            }
-        });
+                if (result) {
+                    backInputData();
+                } else {
+                    t.error(R.string.input_content_error);
+                }
+            });
+        }
+
+        if (configInput.isAutoShowKeyboard()) {
+            new Handler().postDelayed(this::showKeyboard, 50);
+        }
     }
 
     private void backInputData() {
@@ -113,6 +117,21 @@ public class HGInputNewDialog extends HGDialog {
         }
 
         this.dialog.dismiss();
+    }
+
+    private void showKeyboard() {
+        if (inputView != null) {
+            // 设置可获得焦点
+            inputView.getInputView().setFocusable(true);
+            inputView.getInputView().setFocusableInTouchMode(true);
+            // 请求获得焦点
+            inputView.getInputView().requestFocus();
+            // 调用系统输入法
+            InputMethodManager inputManager = (InputMethodManager) inputView.getInputView().getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputManager != null) {
+                inputManager.showSoftInput(inputView.getInputView(), 0);
+            }
+        }
     }
 
 }

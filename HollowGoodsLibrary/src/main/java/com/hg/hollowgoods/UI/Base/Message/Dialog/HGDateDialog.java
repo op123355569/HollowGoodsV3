@@ -16,7 +16,7 @@ import java.util.Calendar;
  * 年月日对话框
  * Created by HG on 2018-01-18.
  */
-
+@Deprecated
 public class HGDateDialog extends HGDialog {
 
     private DatePicker datePicker;
@@ -25,7 +25,7 @@ public class HGDateDialog extends HGDialog {
     private int month;
     private int date;
 
-    public HGDateDialog(Context context, long timeInMillis, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGDateDialog(Context context, long timeInMillis, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.code = code;

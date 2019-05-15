@@ -117,8 +117,8 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
     /**
      * 创建公共标题右侧菜单
      *
-     * @param menu
-     * @return
+     * @param menu     menu
+     * @param inflater inflater
      */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -146,10 +146,10 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
     /**
      * 执行EventBus
      *
-     * @param item
+     * @param event
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventUI(Event item) {
+    public void onEventUI(Event event) {
 
     }
 

@@ -47,6 +47,7 @@ import com.hg.hollowgoods.UI.Base.Message.Dialog.BaseDialog;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.CircularAnimUtils;
 import com.hg.hollowgoods.Util.ExampleUpdateAPPUtils;
+import com.hg.hollowgoods.Util.ReflectUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchHistoryUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchKeys;
 import com.hg.hollowgoods.Util.SystemBarTintUtils;
@@ -372,55 +373,6 @@ public class BaseUI {
         t.showShortToast(R.string.press_again_to_exit);
 
         return false;
-    }
-
-    /**
-     * 反射获取属性
-     *
-     * @param obj       obj
-     * @param valueName valueName
-     * @return Object
-     */
-    public Object getObjValue(Object obj, String valueName) {
-
-        Object result = null;
-
-        if (obj != null) {
-            try {
-                Class clazz = obj.getClass();
-                Field field = clazz.getDeclaredField(valueName);
-
-                if (field != null) {
-                    //设置些属性是可以访问的
-                    field.setAccessible(true);
-                    //得到此属性的值
-                    result = field.get(obj);
-                }
-            } catch (Exception ignored) {
-
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * 反射设置属性
-     *
-     * @param obj       obj
-     * @param valueName valueName
-     * @param value     value
-     */
-    public void setObjValue(Object obj, String valueName, Object value) {
-        if (obj != null && value != null) {
-            try {
-                Field f = obj.getClass().getDeclaredField(valueName);
-                f.setAccessible(true);
-                f.set(obj, value);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     /**
@@ -1743,7 +1695,7 @@ public class BaseUI {
                     View view = item.getActionView();
 
                     if (view == null) {
-                        Object obj = getObjValue(commonTitle.getToolbar(), "mMenuView");
+                        Object obj = ReflectUtils.getObjValue(commonTitle.getToolbar(), "mMenuView");
                         if (obj != null) {
                             View parent = (View) obj;
                             view = parent.findViewById(item.getItemId());

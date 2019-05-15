@@ -3,10 +3,7 @@ package com.hg.hollowgoods.UI.Base;
 import android.view.View;
 
 /**
- * @ClassName:
- * @Description:
- * @author: HollowGoods
- * @date: 2018年12月19日
+ * Created by Hollow Goods on 2018-12-19.
  */
 public interface OnCommonTitleClickListener {
 

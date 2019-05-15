@@ -176,15 +176,8 @@ public class SystemAppUtils {
      * 扫描照片
      */
     private void updateGallery(Context context) {
-
-        MediaScannerConnection.scanFile(context, new String[]{cameraPhotoFile.getAbsolutePath()}, null,
-                new MediaScannerConnection.OnScanCompletedListener() {
-
-                    @Override
-                    public void onScanCompleted(String path, Uri uri) {
-
-                    }
-                });
+        MediaScannerConnection.scanFile(context, new String[]{cameraPhotoFile.getAbsolutePath()}, null, (path, uri) -> {
+        });
     }
 
     /**

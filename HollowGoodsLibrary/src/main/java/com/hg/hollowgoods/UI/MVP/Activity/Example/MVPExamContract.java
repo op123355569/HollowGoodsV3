@@ -5,10 +5,8 @@ import com.hg.hollowgoods.UI.Base.MVP.IBaseModel;
 import com.hg.hollowgoods.UI.Base.MVP.IBaseView;
 
 /**
- * @ClassName:协议层
- * @Description:
- * @author: HollowGoods
- * @date: 2019年01月16日
+ * 协议层
+ * Created by Hollow Goods on 2019-01-16.
  */
 public class MVPExamContract {
 

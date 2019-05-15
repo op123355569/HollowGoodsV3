@@ -181,14 +181,14 @@ public class PopupWinHelper {
      *
      * @param parent
      */
-    public void showPopupwin(View parent) {
+    public void showPopupWin(View parent) {
         popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 
     /**
      * 关闭弹窗
      */
-    public void closePopupwin() {
+    public void closePopupWin() {
 
         if (popupWindow != null) {
             popupWindow.dismiss();

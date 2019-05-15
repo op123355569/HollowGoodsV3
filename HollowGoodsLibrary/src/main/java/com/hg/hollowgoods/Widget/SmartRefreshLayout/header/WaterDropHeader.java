@@ -17,7 +17,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshHeader;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshLayout;
@@ -80,7 +79,7 @@ public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
         mProgress = new MaterialProgressDrawable(mImageView);
         mProgress.setBackgroundColor(0xffffffff);
         mProgress.setAlpha(255);
-        mProgress.setColorSchemeColors(0xffffffff,0xff0099cc,0xffff4444,0xff669900,0xffaa66cc,0xffff8800);
+        mProgress.setColorSchemeColors(0xffffffff, 0xff0099cc, 0xffff4444, 0xff669900, 0xffaa66cc, 0xffff8800);
         mImageView.setImageDrawable(mProgress);
         thisGroup.addView(mImageView, density.dip2px(30), density.dip2px(30));
     }
@@ -90,7 +89,7 @@ public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         final View imageView = mImageView;
         final View dropView = mWaterDropView;
-        RelativeLayout.LayoutParams lpImage = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+        LayoutParams lpImage = (LayoutParams) imageView.getLayoutParams();
         imageView.measure(
                 makeMeasureSpec(lpImage.width, EXACTLY),
                 makeMeasureSpec(lpImage.height, EXACTLY)
@@ -138,10 +137,10 @@ public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
         if (mState == RefreshState.Refreshing) {
             canvas.save();
             canvas.translate(
-                    thisView.getWidth()/2-progressDrawable.getBounds().width()/2,
+                    thisView.getWidth() / 2f - progressDrawable.getBounds().width() / 2f,
                     mWaterDropView.getMaxCircleRadius()
-                            +dropView.getPaddingTop()
-                            -progressDrawable.getBounds().height()/2
+                            + dropView.getPaddingTop()
+                            - progressDrawable.getBounds().height() / 2f
             );
             progressDrawable.draw(canvas);
             canvas.restore();
@@ -275,8 +274,9 @@ public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             mWaterDropView.setIndicatorColor(colors[0]);
         }

@@ -130,9 +130,9 @@ public class DeliveryHeader extends InternalAbstract implements RefreshHeader {
         if (thisView.isInEditMode()) {
             mState = RefreshState.Refreshing;
             mAppreciation = 100;
-            mCloudX1 = (int)(mCloudDrawable.getBounds().width()*3.5f);
-            mCloudX2 = (int)(mCloudDrawable.getBounds().width()*0.5f);
-            mCloudX3 = (int)(mCloudDrawable.getBounds().width()*2.0f);
+            mCloudX1 = (int) (mCloudDrawable.getBounds().width() * 3.5f);
+            mCloudX2 = (int) (mCloudDrawable.getBounds().width() * 0.5f);
+            mCloudX3 = (int) (mCloudDrawable.getBounds().width() * 2.0f);
         }
     }
 
@@ -155,7 +155,7 @@ public class DeliveryHeader extends InternalAbstract implements RefreshHeader {
             mCloudDrawable.draw(canvas);
             mCloudDrawable.getBounds().offsetTo(mCloudX3, mHeaderHeight * 2 / 3);
             mCloudDrawable.draw(canvas);
-            canvas.rotate(5 * (float) Math.sin(mAppreciation / 2), width / 2 , mHeaderHeight / 2 - mUmbrellaDrawable.getBounds().height());
+            canvas.rotate(5 * (float) Math.sin(mAppreciation / 2), width / 2f, mHeaderHeight / 2f - mUmbrellaDrawable.getBounds().height());
             calculateFrame(width);
         }
 
@@ -248,8 +248,9 @@ public class DeliveryHeader extends InternalAbstract implements RefreshHeader {
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             final View thisView = this;
             thisView.setBackgroundColor(colors[0]);

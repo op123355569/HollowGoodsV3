@@ -40,7 +40,7 @@ public class WaterDropView extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mPaint.setStrokeWidth(STROKE_WIDTH = DensityUtil.dp2px(1f));
-        mPaint.setShadowLayer(STROKE_WIDTH, STROKE_WIDTH/2, STROKE_WIDTH, 0x99000000);
+        mPaint.setShadowLayer(STROKE_WIDTH, STROKE_WIDTH / 2f, STROKE_WIDTH, 0x99000000);
         thisView.setLayerType(LAYER_TYPE_SOFTWARE, null);
 
         int padding = 4 * STROKE_WIDTH;
@@ -131,18 +131,19 @@ public class WaterDropView extends View {
 
             mPath.quadTo((bottomCircle.x - bottomCircle.radius),
                     (bottomCircle.y + topCircle.y) / 2,
-                    bottom_x1,bottom_y1);
+                    bottom_x1, bottom_y1);
             mPath.lineTo(bottom_x2, bottom_y2);
 
             mPath.quadTo((bottomCircle.x + bottomCircle.radius),
                     (bottomCircle.y + top_y2) / 2,
-                    top_x2,top_y2);
+                    top_x2, top_y2);
         }
         mPath.close();
     }
 
     /**
      * 获得两个圆切线与圆心连线的夹角
+     *
      * @return 夹角
      */
     private double getAngle() {
@@ -158,6 +159,7 @@ public class WaterDropView extends View {
      * 上圆半径减速恢复至最大半径
      * 下圆半径减速恢复至最大半径
      * 圆心距减速从最大值减到0(下圆Y从当前位置移动到上圆Y)。
+     *
      * @return Animator
      */
     public ValueAnimator createAnimator() {
@@ -176,7 +178,8 @@ public class WaterDropView extends View {
 
     /**
      * 完成的百分比
-     * @param offset 偏移量
+     *
+     * @param offset    偏移量
      * @param maxHeight 最大高度
      */
     public void updateCompleteState(int offset, int maxHeight) {
@@ -186,6 +189,7 @@ public class WaterDropView extends View {
 
     /**
      * 完成的百分比
+     *
      * @param percent 百分比
      */
     public void updateCompleteState(float percent) {
@@ -200,6 +204,7 @@ public class WaterDropView extends View {
 
     /**
      * 完成的百分比
+     *
      * @param height 高度
      */
     public void updateCompleteState(int height) {

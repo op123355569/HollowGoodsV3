@@ -11,7 +11,7 @@ import android.view.View;
  */
 public class PathsView extends View {
 
-    protected PathsDrawable mPathsDrawable = new PathsDrawable();
+    protected PathsDrawable mPathsDrawable;
 
     public PathsView(Context context) {
         this(context, null);
@@ -36,8 +36,8 @@ public class PathsView extends View {
         final View thisView = this;
         final Drawable drawable = mPathsDrawable;
         super.setMeasuredDimension(
-                View.resolveSize(drawable.getBounds().width()+thisView.getPaddingLeft()+thisView.getPaddingRight(), widthMeasureSpec),
-                View.resolveSize(drawable.getBounds().height()+thisView.getPaddingTop()+thisView.getPaddingBottom(), heightMeasureSpec));
+                View.resolveSize(drawable.getBounds().width() + thisView.getPaddingLeft() + thisView.getPaddingRight(), widthMeasureSpec),
+                View.resolveSize(drawable.getBounds().height() + thisView.getPaddingTop() + thisView.getPaddingBottom(), heightMeasureSpec));
     }
 
     @Override

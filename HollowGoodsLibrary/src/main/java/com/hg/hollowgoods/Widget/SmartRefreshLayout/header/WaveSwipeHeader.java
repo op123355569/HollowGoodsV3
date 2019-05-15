@@ -6,10 +6,10 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -107,7 +107,7 @@ public class WaveSwipeHeader extends InternalAbstract implements RefreshHeader {
         final View circleView = mCircleView;
         final Drawable progress = mProgress;
         final int circleDiameter = progress.getIntrinsicWidth();
-        final int spec = View.MeasureSpec.makeMeasureSpec(circleDiameter, View.MeasureSpec.EXACTLY);
+        final int spec = MeasureSpec.makeMeasureSpec(circleDiameter, MeasureSpec.EXACTLY);
         circleView.measure(spec, spec);
         waveView.measure(makeMeasureSpec(getSize(widthMeasureSpec), EXACTLY), makeMeasureSpec(getSize(heightMeasureSpec), EXACTLY));
     }
@@ -145,15 +145,11 @@ public class WaveSwipeHeader extends InternalAbstract implements RefreshHeader {
     @SuppressWarnings("deprecation")
     public void setColorSchemeColorIds(@IdRes int... resources) {
         final View thisView = this;
-        final Resources res = thisView.getResources();
+        final Context context = thisView.getContext();
         final int[] colorRes = new int[resources.length];
 
         for (int i = 0; i < resources.length; i++) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                colorRes[i] = res.getColor(resources[i], getContext().getTheme());
-            } else {
-                colorRes[i] = res.getColor(resources[i]);
-            }
+            colorRes[i] = ContextCompat.getColor(context, resources[1]);
         }
 
         mProgress.setColorSchemeColors(colorRes);

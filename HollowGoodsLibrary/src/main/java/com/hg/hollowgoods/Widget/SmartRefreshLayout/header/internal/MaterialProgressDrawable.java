@@ -56,7 +56,8 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({LARGE, DEFAULT})
-    public @interface ProgressDrawableSize {}
+    public @interface ProgressDrawableSize {
+    }
 
     // Maps to ProgressBar.Large style
     public static final byte LARGE = 0;
@@ -73,8 +74,8 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
     private static final float CENTER_RADIUS_LARGE = 12.5f;
     private static final float STROKE_WIDTH_LARGE = 3f;
 
-    private static final int[] COLORS = new int[] {
-        Color.BLACK
+    private static final int[] COLORS = new int[]{
+            Color.BLACK
     };
 
     /**
@@ -85,26 +86,40 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
     private static final float END_TRIM_START_DELAY_OFFSET = 0.5f;
     private static final float START_TRIM_DURATION_OFFSET = 0.5f;
 
-    /** The duration of a single progress spin in milliseconds. */
+    /**
+     * The duration of a single progress spin in milliseconds.
+     */
     private static final int ANIMATION_DURATION = 1332;
 
-    /** The number of points in the progress "star". */
+    /**
+     * The number of points in the progress "star".
+     */
     private static final byte NUM_POINTS = 5;
-    /** The list of animators operating on this drawable. */
+    /**
+     * The list of animators operating on this drawable.
+     */
     private final List<Animation> mAnimators = new ArrayList<>();
 
-    /** The indicator ring, used to manage animation state. */
+    /**
+     * The indicator ring, used to manage animation state.
+     */
     private final Ring mRing = new Ring();
 
-    /** Canvas rotation in degrees. */
+    /**
+     * Canvas rotation in degrees.
+     */
     private float mRotation;
 
-    /** Layout info for the arrowhead in dp */
+    /**
+     * Layout info for the arrowhead in dp
+     */
     private static final byte ARROW_WIDTH = 10;
     private static final byte ARROW_HEIGHT = 5;
     private static final float ARROW_OFFSET_ANGLE = 5;
 
-    /** Layout info for the arrowhead for the large spinner in dp */
+    /**
+     * Layout info for the arrowhead for the large spinner in dp
+     */
     private static final byte ARROW_WIDTH_LARGE = 12;
     private static final byte ARROW_HEIGHT_LARGE = 6;
     private static final float MAX_PROGRESS_ARC = .8f;
@@ -314,17 +329,15 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
     // Adapted from ArgbEvaluator.java
     @SuppressWarnings("RedundantCast")
     private int evaluateColorChange(float fraction, int startValue, int endValue) {
-        int startInt = (Integer) startValue;
-        int startA = (startInt >> 24) & 0xff;
-        int startR = (startInt >> 16) & 0xff;
-        int startG = (startInt >> 8) & 0xff;
-        int startB = startInt & 0xff;
+        int startA = (startValue >> 24) & 0xff;
+        int startR = (startValue >> 16) & 0xff;
+        int startG = (startValue >> 8) & 0xff;
+        int startB = startValue & 0xff;
 
-        int endInt = (Integer) endValue;
-        int endA = (endInt >> 24) & 0xff;
-        int endR = (endInt >> 16) & 0xff;
-        int endG = (endInt >> 8) & 0xff;
-        int endB = endInt & 0xff;
+        int endA = (endValue >> 24) & 0xff;
+        int endR = (endValue >> 16) & 0xff;
+        int endG = (endValue >> 8) & 0xff;
+        int endB = endValue & 0xff;
 
         return (int) ((startA + (int) (fraction * (endA - startA))) << 24)
                 | (int) ((startR + (int) (fraction * (endR - startR))) << 16)
@@ -343,7 +356,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
             // transformation from 0 - 1 takes place in the
             // remaining time
             ring.mCurrentColor = (evaluateColorChange((interpolatedTime - COLOR_START_DELAY_OFFSET)
-                    / (1.0f - COLOR_START_DELAY_OFFSET), ring.getStartingColor(),
+                            / (1.0f - COLOR_START_DELAY_OFFSET), ring.getStartingColor(),
                     ring.getNextColor()));
         }
     }
@@ -368,7 +381,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
     private void setupAnimators() {
         final Ring ring = mRing;
         final Animation animation = new Animation() {
-                @Override
+            @Override
             public void applyTransformation(float interpolatedTime, Transformation t) {
                 if (mFinishing) {
                     applyFinishTranslation(interpolatedTime, ring);
@@ -392,7 +405,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
                                 / (1.0f - START_TRIM_DURATION_OFFSET);
                         ring.mStartTrim = (startingTrim
                                 + ((MAX_PROGRESS_ARC - minProgressArc) * MATERIAL_INTERPOLATOR
-                                        .getInterpolation(scaledTime)));
+                                .getInterpolation(scaledTime)));
                     }
 
                     // Moving the end trim starts after 50% of a single ring
@@ -421,17 +434,17 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
         animation.setInterpolator(LINEAR_INTERPOLATOR);
         animation.setAnimationListener(new Animation.AnimationListener() {
 
-                @Override
+            @Override
             public void onAnimationStart(Animation animation) {
                 mRotationCount = 0;
             }
 
-                @Override
+            @Override
             public void onAnimationEnd(Animation animation) {
                 // do nothing
             }
 
-                @Override
+            @Override
             public void onAnimationRepeat(Animation animation) {
                 ring.storeOriginals();
                 ring.goToNextColor();
@@ -511,7 +524,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
             if (mAlpha < 255) {
                 mCirclePaint.setColor(mBackgroundColor);
                 mCirclePaint.setAlpha(255 - mAlpha);
-                c.drawCircle(bounds.exactCenterX(), bounds.exactCenterY(), bounds.width() / 2,
+                c.drawCircle(bounds.exactCenterX(), bounds.exactCenterY(), bounds.width() / 2f,
                         mCirclePaint);
             }
         }
@@ -527,7 +540,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
 
                 // Adjust the position of the triangle so that it is inset as
                 // much as the arc, but also centered on the arc.
-                float inset = (int) mStrokeInset / 2 * mArrowScale;
+                float inset = (float) ((int) mStrokeInset / 2) * mArrowScale;
                 float x = (float) (mRingCenterRadius * Math.cos(0) + bounds.exactCenterX());
                 float y = (float) (mRingCenterRadius * Math.sin(0) + bounds.exactCenterY());
 

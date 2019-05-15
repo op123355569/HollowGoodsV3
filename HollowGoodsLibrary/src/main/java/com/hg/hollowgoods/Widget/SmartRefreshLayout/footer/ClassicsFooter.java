@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.view.animation.LinearInterpolator;
 
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshFooter;
@@ -34,13 +34,13 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
     public static String REFRESH_FOOTER_FAILED = null;//"加载失败";
     public static String REFRESH_FOOTER_NOTHING = null;//"没有更多数据了";
 
-    protected String mTextPulling = null;//"上拉加载更多";
-    protected String mTextRelease = null;//"释放立即加载";
-    protected String mTextLoading = null;//"正在加载...";
-    protected String mTextRefreshing = null;//"正在刷新...";
-    protected String mTextFinish = null;//"加载完成";
-    protected String mTextFailed = null;//"加载失败";
-    protected String mTextNothing = null;//"没有更多数据了";
+    protected String mTextPulling;//"上拉加载更多";
+    protected String mTextRelease;//"释放立即加载";
+    protected String mTextLoading;//"正在加载...";
+    protected String mTextRefreshing;//"正在刷新...";
+    protected String mTextFinish;//"加载完成";
+    protected String mTextFailed;//"加载失败";
+    protected String mTextNothing;//"没有更多数据了";
 
     protected boolean mNoMoreData = false;
 
@@ -56,15 +56,19 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
     public ClassicsFooter(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        View.inflate(context, R.layout.srl_classics_footer, this);
+
         final View thisView = this;
-        final View arrowView = mArrowView;
-        final View progressView = mProgressView;
+        final View arrowView = mArrowView = thisView.findViewById(R.id.srl_classics_arrow);
+        final View progressView = mProgressView = thisView.findViewById(R.id.srl_classics_progress);
         final DensityUtil density = new DensityUtil();
+
+        mTitleText = thisView.findViewById(R.id.srl_classics_title);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ClassicsFooter);
 
-        RelativeLayout.LayoutParams lpArrow = (RelativeLayout.LayoutParams) arrowView.getLayoutParams();
-        RelativeLayout.LayoutParams lpProgress = (RelativeLayout.LayoutParams) progressView.getLayoutParams();
+        LayoutParams lpArrow = (LayoutParams) arrowView.getLayoutParams();
+        LayoutParams lpProgress = (LayoutParams) progressView.getLayoutParams();
         lpProgress.rightMargin = ta.getDimensionPixelSize(R.styleable.ClassicsFooter_srlDrawableMarginRight, density.dip2px(20));
         lpArrow.rightMargin = lpProgress.rightMargin;
 
@@ -83,7 +87,7 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
 
         if (ta.hasValue(R.styleable.ClassicsFooter_srlDrawableArrow)) {
             mArrowView.setImageDrawable(ta.getDrawable(R.styleable.ClassicsFooter_srlDrawableArrow));
-        } else {
+        } else if (mArrowView.getDrawable() == null) {
             mArrowDrawable = new ArrowDrawable();
             mArrowDrawable.setColor(0xff666666);
             mArrowView.setImageDrawable(mArrowDrawable);
@@ -91,7 +95,7 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
 
         if (ta.hasValue(R.styleable.ClassicsFooter_srlDrawableProgress)) {
             mProgressView.setImageDrawable(ta.getDrawable(R.styleable.ClassicsFooter_srlDrawableProgress));
-        } else {
+        } else if (mProgressView.getDrawable() == null) {
             mProgressDrawable = new ProgressDrawable();
             mProgressDrawable.setColor(0xff666666);
             mProgressView.setImageDrawable(mProgressDrawable);
@@ -99,8 +103,8 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
 
         if (ta.hasValue(R.styleable.ClassicsFooter_srlTextSizeTitle)) {
             mTitleText.setTextSize(TypedValue.COMPLEX_UNIT_PX, ta.getDimensionPixelSize(R.styleable.ClassicsFooter_srlTextSizeTitle, DensityUtil.dp2px(16)));
-        } else {
-            mTitleText.setTextSize(16);
+//        } else {
+//            mTitleText.setTextSize(16);
         }
 
         if (ta.hasValue(R.styleable.ClassicsFooter_srlPrimaryColor)) {
@@ -110,51 +114,51 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
             super.setAccentColor(ta.getColor(R.styleable.ClassicsFooter_srlAccentColor, 0));
         }
 
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextPulling)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextPulling)) {
             mTextPulling = ta.getString(R.styleable.ClassicsFooter_srlTextPulling);
-        } else if(REFRESH_FOOTER_PULLING != null) {
+        } else if (REFRESH_FOOTER_PULLING != null) {
             mTextPulling = REFRESH_FOOTER_PULLING;
         } else {
             mTextPulling = context.getString(R.string.srl_footer_pulling);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextRelease)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextRelease)) {
             mTextRelease = ta.getString(R.styleable.ClassicsFooter_srlTextRelease);
-        } else if(REFRESH_FOOTER_RELEASE != null) {
+        } else if (REFRESH_FOOTER_RELEASE != null) {
             mTextRelease = REFRESH_FOOTER_RELEASE;
         } else {
             mTextRelease = context.getString(R.string.srl_footer_release);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextLoading)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextLoading)) {
             mTextLoading = ta.getString(R.styleable.ClassicsFooter_srlTextLoading);
-        } else if(REFRESH_FOOTER_LOADING != null) {
+        } else if (REFRESH_FOOTER_LOADING != null) {
             mTextLoading = REFRESH_FOOTER_LOADING;
         } else {
             mTextLoading = context.getString(R.string.srl_footer_loading);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextRefreshing)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextRefreshing)) {
             mTextRefreshing = ta.getString(R.styleable.ClassicsFooter_srlTextRefreshing);
-        } else if(REFRESH_FOOTER_REFRESHING != null) {
+        } else if (REFRESH_FOOTER_REFRESHING != null) {
             mTextRefreshing = REFRESH_FOOTER_REFRESHING;
         } else {
             mTextRefreshing = context.getString(R.string.srl_footer_refreshing);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextFinish)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextFinish)) {
             mTextFinish = ta.getString(R.styleable.ClassicsFooter_srlTextFinish);
-        } else if(REFRESH_FOOTER_FINISH != null) {
+        } else if (REFRESH_FOOTER_FINISH != null) {
             mTextFinish = REFRESH_FOOTER_FINISH;
         } else {
             mTextFinish = context.getString(R.string.srl_footer_finish);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextFailed)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextFailed)) {
             mTextFailed = ta.getString(R.styleable.ClassicsFooter_srlTextFailed);
-        } else if(REFRESH_FOOTER_FAILED != null) {
+        } else if (REFRESH_FOOTER_FAILED != null) {
             mTextFailed = REFRESH_FOOTER_FAILED;
         } else {
             mTextFailed = context.getString(R.string.srl_footer_failed);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextNothing)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextNothing)) {
             mTextNothing = ta.getString(R.styleable.ClassicsFooter_srlTextNothing);
-        } else if(REFRESH_FOOTER_NOTHING != null) {
+        } else if (REFRESH_FOOTER_NOTHING != null) {
             mTextNothing = REFRESH_FOOTER_NOTHING;
         } else {
             mTextNothing = context.getString(R.string.srl_footer_nothing);
@@ -162,8 +166,15 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
 
         ta.recycle();
 
-        mTitleText.setTextColor(0xff666666);
+//        mTitleText.setTextColor(0xff666666);
+        progressView.animate().setInterpolator(new LinearInterpolator());
         mTitleText.setText(thisView.isInEditMode() ? mTextLoading : mTextPulling);
+
+        if (thisView.isInEditMode()) {
+            arrowView.setVisibility(GONE);
+        } else {
+            progressView.setVisibility(GONE);
+        }
     }
 
 //    @Override
@@ -194,8 +205,9 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
     /**
      * ClassicsFooter 在(SpinnerStyle.FixedBehind)时才有主题色
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (mSpinnerStyle == SpinnerStyle.FixedBehind) {
             super.setPrimaryColors(colors);
         }

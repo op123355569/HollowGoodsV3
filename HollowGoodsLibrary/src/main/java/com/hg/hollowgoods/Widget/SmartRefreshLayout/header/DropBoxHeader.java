@@ -35,7 +35,6 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.DensityUtil;
 
 public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
 
-
     protected static String[] drawable1Paths = new String[]{
             "M3 2h18v20h-18z",
             "m4,1c-1.105,0 -2,0.895 -2,2v3,11 3,1c0,1.105 0.895,2 2,2h2,12 2c1.105,0 2,-0.895 2,-2v-1,-3 -11,-3c0,-1.105 -0.895,-2 -2,-2h-2,-12 -2zM3.5,3h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM19.5,3h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM3.5,6h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM19.5,6h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM3.5,9h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM19.5,9h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM3.5,12h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM19.5,12h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM3.5,15h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM19.5,15h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM3.5,18h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5zM19.5,18h1c0.276,0 0.5,0.224 0.5,0.5v1c0,0.276 -0.224,0.5 -0.5,0.5h-1c-0.276,0 -0.5,-0.224 -0.5,-0.5v-1c0,-0.276 0.224,-0.5 0.5,-0.5z"
@@ -238,12 +237,12 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
 
             final float percent1 = Math.min(mDropOutPercent, 1);
             Rect bounds1 = mDrawable1.getBounds();
-            bounds1.offsetTo(width / 2 - bounds1.width() / 2, (int)((body.boxCenterY - bounds1.height() / 2 + bounds1.height()) * percent1) - bounds1.height());
+            bounds1.offsetTo(width / 2 - bounds1.width() / 2, (int) ((body.boxCenterY - bounds1.height() / 2 + bounds1.height()) * percent1) - bounds1.height());
             mDrawable1.draw(canvas);
 
             final float percent2 = Math.min(Math.max(mDropOutPercent - 1, 0), 1);
             Rect bounds2 = mDrawable2.getBounds();
-            bounds2.offsetTo(width / 2 - bounds2.width() / 2, (int)((body.boxCenterY - bounds2.height() / 2 + bounds2.height()) * percent2) - bounds2.height());
+            bounds2.offsetTo(width / 2 - bounds2.width() / 2, (int) ((body.boxCenterY - bounds2.height() / 2 + bounds2.height()) * percent2) - bounds2.height());
             mDrawable2.draw(canvas);
 
             final float percent3 = Math.min(Math.max(mDropOutPercent - 2, 0), 1);
@@ -316,8 +315,8 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
         final float offsetLeftBottomX = sideLength * (float) Math.sin(Math.PI / 3 + offsetAngle);
         final float offsetLeftBottomY = sideLength * (float) Math.cos(Math.PI / 3 + offsetAngle);
         mPath.moveTo(body.boxLeft, body.boxCenterTop);
-        mPath.lineTo(body.boxCenterX, (body.boxBottom + body.boxTop) / 2);
-        mPath.lineTo(body.boxCenterX - offsetLeftBottomX, (body.boxBottom + body.boxTop) / 2 + offsetLeftBottomY);
+        mPath.lineTo(body.boxCenterX, (body.boxBottom + body.boxTop) / 2f);
+        mPath.lineTo(body.boxCenterX - offsetLeftBottomX, (body.boxBottom + body.boxTop) / 2f + offsetLeftBottomY);
         mPath.lineTo(body.boxLeft - offsetLeftBottomX, body.boxCenterTop + offsetLeftBottomY);
         mPath.close();
 
@@ -338,8 +337,8 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
         final float offsetRightBottomX = sideLength * (float) Math.sin(Math.PI / 3 + offsetAngle);
         final float offsetRightBottomY = sideLength * (float) Math.cos(Math.PI / 3 + offsetAngle);
         mPath.moveTo(body.boxRight, body.boxCenterTop);
-        mPath.lineTo(body.boxCenterX, (body.boxBottom + body.boxTop) / 2);
-        mPath.lineTo(body.boxCenterX + offsetRightBottomX, (body.boxBottom + body.boxTop) / 2 + offsetRightBottomY);
+        mPath.lineTo(body.boxCenterX, (body.boxBottom + body.boxTop) / 2f);
+        mPath.lineTo(body.boxCenterX + offsetRightBottomX, (body.boxBottom + body.boxTop) / 2f + offsetRightBottomY);
         mPath.lineTo(body.boxRight + offsetRightBottomX, body.boxCenterTop + offsetRightBottomY);
         mPath.close();
 
@@ -353,10 +352,10 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
         mPath.moveTo(body.boxLeft, body.boxCenterBottom);
         mPath.lineTo(body.boxCenterX, body.boxBottom);
         mPath.lineTo(body.boxRight, body.boxCenterBottom);
-        mPath.quadTo(body.boxRight + body.boxSideLength / 2 * mReboundPercent, body.boxCenterY, body.boxRight, body.boxCenterTop);
+        mPath.quadTo(body.boxRight + body.boxSideLength / 2f * mReboundPercent, body.boxCenterY, body.boxRight, body.boxCenterTop);
         mPath.lineTo(body.boxCenterX, body.boxTop);
         mPath.lineTo(body.boxLeft, body.boxCenterTop);
-        mPath.quadTo(body.boxLeft - body.boxSideLength / 2 * mReboundPercent, body.boxCenterY, body.boxLeft, body.boxCenterBottom);
+        mPath.quadTo(body.boxLeft - body.boxSideLength / 2f * mReboundPercent, body.boxCenterY, body.boxLeft, body.boxCenterBottom);
 
         mPath.close();
         return mPath;
@@ -403,8 +402,9 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             final View thisView = this;
             thisView.setBackgroundColor(colors[0]);

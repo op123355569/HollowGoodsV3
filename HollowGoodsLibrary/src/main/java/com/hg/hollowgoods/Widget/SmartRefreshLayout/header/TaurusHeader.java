@@ -47,7 +47,7 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
             "m424.05,36.88a53.46,53.46 0,0 0,-40.89 19.02,53.46 53.46,0 0,0 -1.34,1.76 62.6,62.6 0,0 0,-5.39 -0.27,62.6 62.6,0 0,0 -61.36,50.17 62.6,62.6 0,0 0,-0.53 3.51,15.83 15.83,0 0,0 -10.33,-3.84 15.83,15.83 0,0 0,-8.06 2.23,21.1 21.1,0 0,0 -18.31,-10.67 21.1,21.1 0,0 0,-19.47 12.97,21.81 21.81,0 0,0 -6.56,-1.01 21.81,21.81 0,0 0,-19.09 11.32L522.84,122.07a43.61,43.61 0,0 0,-43.11 -37.35,43.61 43.61,0 0,0 -2.57,0.09 53.46,53.46 0,0 0,-53.11 -47.93zM129.08,38.4a50.29,50.29 0,0 0,-50.29 50.29,50.29 50.29,0 0,0 2.37,15.06 15.48,15.83 0,0 0,-5.87 1.68,15.48 15.83,0 0,0 -0.98,0.58 16.53,16.18 0,0 0,-0.19 -0.21,16.53 16.18,0 0,0 -11.86,-4.91 16.53,16.18 0,0 0,-16.38 14.13,20.05 16.18,0 0,0 -14.97,7.04L223.95,122.07a42.56,42.56 0,0 0,1.14 -9.56,42.56 42.56,0 0,0 -42.56,-42.56 42.56,42.56 0,0 0,-6.58 0.54,50.29 50.29,0 0,0 -0,-0.01 50.29,50.29 0,0 0,-46.88 -32.07zM631.67,82.61a64.01,64.01 0,0 0,-44.9 18.42,26.73 26.73,0 0,0 -10.67,-2.24 26.73,26.73 0,0 0,-22.72 12.71,16.88 16.88,0 0,0 -0.25,-0.12 16.88,16.88 0,0 0,-6.57 -1.33,16.88 16.88,0 0,0 -16.15,12.03h160.36a64.01,64.01 0,0 0,-59.1 -39.46z"
     };
     protected static int[] cloudColors = new int[]{
-            0xaac7dcf1,0xdde8f3fd,0xfffdfdfd
+            0xaac7dcf1, 0xdde8f3fd, 0xfffdfdfd
     };
     //</editor-fold>
 
@@ -158,7 +158,7 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
         airplane.parserColors(airplaneColors);
 
         PathsDrawable cloudCenter = new PathsDrawable();
-        if(!cloudCenter.parserPaths(cloudPaths)) {
+        if (!cloudCenter.parserPaths(cloudPaths)) {
             cloudCenter.declareOriginal(-1, 1, 761, 121);
         }
 //        cloudCenter.printOriginal("cloudCenter");
@@ -222,10 +222,12 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
         final View thisView = this;
         thisView.clearAnimation();
         if (success) {
-            thisView.startAnimation(new Animation() {{
-                super.setDuration(100);
-                super.setInterpolator(new AccelerateInterpolator());
-            }
+            thisView.startAnimation(new Animation() {
+                {
+                    super.setDuration(100);
+                    super.setInterpolator(new AccelerateInterpolator());
+                }
+
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
                     if (interpolatedTime == 1) {
@@ -246,8 +248,9 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         final View thisView = this;
         thisView.setBackgroundColor(colors[0]);
     }
@@ -331,14 +334,14 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
         Removing slowing of animation with dividing on {@LINK #SLOW_DOWN_ANIMATION_COEFFICIENT}
         And we should don't forget about distance that should "fly" line that depend on screen of device and x offset
         */
-        float cof = (width + xOffset) / (LOADING_ANIMATION_COEFFICIENT / SLOW_DOWN_ANIMATION_COEFFICIENT);
+        float cof = (width + xOffset) / (1f * LOADING_ANIMATION_COEFFICIENT / SLOW_DOWN_ANIMATION_COEFFICIENT);
         float time = mLoadingAnimationTime;
 
         // HORRIBLE HACK FOR REVERS ANIMATION THAT SHOULD WORK LIKE RESTART ANIMATION
         if (mLastAnimationTime - mLoadingAnimationTime > 0) {
             mInverseDirection = true;
             // take time from 0 to end of animation time
-            time = (LOADING_ANIMATION_COEFFICIENT / SLOW_DOWN_ANIMATION_COEFFICIENT) - mLoadingAnimationTime;
+            time = (1f * LOADING_ANIMATION_COEFFICIENT / SLOW_DOWN_ANIMATION_COEFFICIENT) - mLoadingAnimationTime;
         } else {
             mNewWindSet = true;
             mInverseDirection = false;
@@ -388,12 +391,12 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
 //            needMoveCloudsWithContent = true;
 //        }
 
-        float offsetLeftX = 0 - mCloudLeft.getBounds().width() / 2;
+        float offsetLeftX = 0 - mCloudLeft.getBounds().width() / 2f;
         float offsetLeftY = (//needMoveCloudsWithContent
                 //? mHeaderHeight * dragPercent - mCloudLeftgetBounds().height() :
                 dragYOffset);
 
-        float offsetRightX = width - mCloudRight.getBounds().width() / 2;
+        float offsetRightX = width - mCloudRight.getBounds().width() / 2f;
         float offsetRightY = (//needMoveCloudsWithContent
                 //? mHeaderHeight * dragPercent - mCloudRightgetBounds().height() :
                 dragYOffset);
@@ -401,17 +404,17 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
         // Magic with animation on loading process
         if (isRefreshing) {
             if (checkCurrentAnimationPart(AnimationPart.FIRST)) {
-                offsetLeftX -= 2*getAnimationPartValue(AnimationPart.FIRST) / Y_SIDE_CLOUDS_SLOW_DOWN_COF;
+                offsetLeftX -= 2 * getAnimationPartValue(AnimationPart.FIRST) / Y_SIDE_CLOUDS_SLOW_DOWN_COF;
                 offsetRightX += getAnimationPartValue(AnimationPart.FIRST) / X_SIDE_CLOUDS_SLOW_DOWN_COF;
             } else if (checkCurrentAnimationPart(AnimationPart.SECOND)) {
-                offsetLeftX -= 2*getAnimationPartValue(AnimationPart.SECOND) / Y_SIDE_CLOUDS_SLOW_DOWN_COF;
+                offsetLeftX -= 2 * getAnimationPartValue(AnimationPart.SECOND) / Y_SIDE_CLOUDS_SLOW_DOWN_COF;
                 offsetRightX += getAnimationPartValue(AnimationPart.SECOND) / X_SIDE_CLOUDS_SLOW_DOWN_COF;
             } else if (checkCurrentAnimationPart(AnimationPart.THIRD)) {
                 offsetLeftX -= getAnimationPartValue(AnimationPart.THIRD) / Y_SIDE_CLOUDS_SLOW_DOWN_COF;
-                offsetRightX += 2*getAnimationPartValue(AnimationPart.THIRD) / X_SIDE_CLOUDS_SLOW_DOWN_COF;
+                offsetRightX += 2 * getAnimationPartValue(AnimationPart.THIRD) / X_SIDE_CLOUDS_SLOW_DOWN_COF;
             } else if (checkCurrentAnimationPart(AnimationPart.FOURTH)) {
                 offsetLeftX -= getAnimationPartValue(AnimationPart.FOURTH) / X_SIDE_CLOUDS_SLOW_DOWN_COF;
-                offsetRightX += 2*getAnimationPartValue(AnimationPart.FOURTH) / Y_SIDE_CLOUDS_SLOW_DOWN_COF;
+                offsetRightX += 2 * getAnimationPartValue(AnimationPart.FOURTH) / Y_SIDE_CLOUDS_SLOW_DOWN_COF;
             }
         }
 
@@ -425,7 +428,7 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
         final int saveCount = canvas.getSaveCount();
         canvas.save();
         canvas.translate(offsetLeftX, offsetLeftY);
-        matrix.postScale(scale, scale, mCloudLeft.getBounds().width() * 3 / 4, mCloudLeft.getBounds().height());
+        matrix.postScale(scale, scale, mCloudLeft.getBounds().width() * 3 / 4f, mCloudLeft.getBounds().height());
         canvas.concat(matrix);
         mCloudLeft.setAlpha(100);
         mCloudLeft.draw(canvas);
@@ -475,16 +478,16 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
         // Current y position of clouds
         float dragYOffset = mHeaderHeight * dragPercent;
         // Position when should start parallax scrolling
-        int startParallaxHeight = mHeaderHeight - mCloudCenter.getBounds().height()/2;
+        int startParallaxHeight = mHeaderHeight - mCloudCenter.getBounds().height() / 2;
 
         if (dragYOffset > startParallaxHeight) {
             parallax = true;
             parallaxPercent = dragYOffset - startParallaxHeight;
         }
 
-        float offsetX = (width / 2) - mCloudCenter.getBounds().width() / 2;
+        float offsetX = (width / 2f) - mCloudCenter.getBounds().width() / 2f;
         float offsetY = dragYOffset
-                - (parallax ? mCloudCenter.getBounds().height()/2 + parallaxPercent : mCloudCenter.getBounds().height()/2);
+                - (parallax ? mCloudCenter.getBounds().height() / 2f + parallaxPercent : mCloudCenter.getBounds().height() / 2f);
 
         float sx = overDrag ? scale + overDragPercent / 4 : scale;
         float sy = overDrag ? scale + overDragPercent / 2 : scale;
@@ -503,7 +506,7 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
         }
 
 
-        matrix.postScale(sx, sy, mCloudCenter.getBounds().width() / 2, 0);
+        matrix.postScale(sx, sy, mCloudCenter.getBounds().width() / 2f, 0);
 
         if (offsetY + sy * mCloudCenter.getBounds().height() < height + 2) {
             offsetY = height + 2 - sy * mCloudCenter.getBounds().height();
@@ -536,8 +539,8 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
             dragPercent = 1.0f;
         }
 
-        float offsetX = ((width * dragPercent) / 2) - mAirplane.getBounds().width() / 2;
-        float offsetY = mHeaderHeight * (1 - dragPercent/2) - mAirplane.getBounds().height() / 2;
+        float offsetX = ((width * dragPercent) / 2) - mAirplane.getBounds().width() / 2f;
+        float offsetY = mHeaderHeight * (1 - dragPercent / 2) - mAirplane.getBounds().height() / 2f;
 
         if (mFinishTransformation > 0) {
             offsetY += (0 - offsetY) * mFinishTransformation;
@@ -558,8 +561,8 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
 
         if (rotateAngle > 0) {
             matrix.postRotate(rotateAngle,
-                    mAirplane.getBounds().width() / 2,
-                    mAirplane.getBounds().height() / 2);
+                    mAirplane.getBounds().width() / 2f,
+                    mAirplane.getBounds().height() / 2f);
         }
 
         final int saveCount = canvas.getSaveCount();

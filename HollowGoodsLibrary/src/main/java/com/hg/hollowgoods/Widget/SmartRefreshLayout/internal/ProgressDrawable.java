@@ -1,6 +1,5 @@
 package com.hg.hollowgoods.Widget.SmartRefreshLayout.internal;
 
-import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Path;
@@ -45,22 +44,22 @@ public class ProgressDrawable extends PaintDrawable implements Animatable , Valu
         final Rect bounds = drawable.getBounds();
         final int width = bounds.width();
         final int height = bounds.height();
-        final float r = Math.max(1f, width / 22f);
+        final int r = Math.max(1, width / 20);
 
         if (mWidth != width || mHeight != height) {
             mPath.reset();
-            mPath.addCircle(width - r, height / 2f, r, Path.Direction.CW);
-            mPath.addRect(width - 5 * r, height / 2f - r, width - r, height / 2f + r, Path.Direction.CW);
-            mPath.addCircle(width - 5 * r, height / 2f, r, Path.Direction.CW);
+            mPath.addCircle(width - r, height / 2, r, Path.Direction.CW);
+            mPath.addRect(width - 5 * r, height / 2 - r, width - r, height / 2 + r, Path.Direction.CW);
+            mPath.addCircle(width - 5 * r, height / 2, r, Path.Direction.CW);
             mWidth = width;
             mHeight = height;
         }
 
         canvas.save();
-        canvas.rotate(mProgressDegree, (width) / 2f, (height) / 2f);
+        canvas.rotate(mProgressDegree, (width) / 2, (height) / 2);
         for (int i = 0; i < 12; i++) {
             mPaint.setAlpha((i+5) * 0x11);
-            canvas.rotate(30, (width) / 2f, (height) / 2f);
+            canvas.rotate(30, (width) / 2, (height) / 2);
             canvas.drawPath(mPath, mPaint);
         }
         canvas.restore();
@@ -79,8 +78,7 @@ public class ProgressDrawable extends PaintDrawable implements Animatable , Valu
     @Override
     public void stop() {
         if (mValueAnimator.isRunning()) {
-            Animator animator = mValueAnimator;
-            animator.removeAllListeners();
+            mValueAnimator.removeAllListeners();
             mValueAnimator.removeAllUpdateListeners();
             mValueAnimator.cancel();
         }

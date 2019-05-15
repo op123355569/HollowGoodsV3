@@ -9,7 +9,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -27,6 +26,7 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.header.internal.MaterialProg
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.header.material.CircleImageView;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.internal.InternalAbstract;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.DensityUtil;
+import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.SmartUtil;
 
 import static android.view.View.MeasureSpec.getSize;
 
@@ -114,8 +114,8 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.setMeasuredDimension(getSize(widthMeasureSpec), getSize(heightMeasureSpec));
         final View circleView = mCircleView;
-        circleView.measure(MeasureSpec.makeMeasureSpec(mCircleDiameter, MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(mCircleDiameter, MeasureSpec.EXACTLY));
+        circleView.measure(View.MeasureSpec.makeMeasureSpec(mCircleDiameter, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(mCircleDiameter, View.MeasureSpec.EXACTLY));
 //        setMeasuredDimension(resolveSize(getSuggestedMinimumWidth(), widthMeasureSpec),
 //                resolveSize(getSuggestedMinimumHeight(), heightMeasureSpec));
     }
@@ -156,7 +156,7 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
             mBezierPath.lineTo(0, mHeadHeight);
             //绘制贝塞尔曲线
             final View thisView = this;
-            mBezierPath.quadTo(thisView.getMeasuredWidth() / 2f, mHeadHeight + mWaveHeight * 1.9f, thisView.getMeasuredWidth(), mHeadHeight);
+            mBezierPath.quadTo(thisView.getMeasuredWidth() / 2, mHeadHeight + mWaveHeight * 1.9f, thisView.getMeasuredWidth(), mHeadHeight);
             mBezierPath.lineTo(thisView.getMeasuredWidth(), 0);
             canvas.drawPath(mBezierPath, mBezierPaint);
         }
@@ -210,7 +210,7 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
             }
 
             final View circleView = mCircleView;
-            float targetY = offset / 2f + mCircleDiameter / 2f;
+            float targetY = offset / 2 + mCircleDiameter / 2;
             circleView.setTranslationY(Math.min(offset, targetY));
             circleView.setAlpha(Math.min(1f, 4f * offset / mCircleDiameter));
         }
@@ -344,7 +344,7 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
         final Context context = thisView.getContext();
         int[] colors = new int[colorIds.length];
         for (int i = 0; i < colorIds.length; i++) {
-            colors[i] = ContextCompat.getColor(context, colorIds[i]);
+            colors[i] = SmartUtil.getColor(context, colorIds[i]);
         }
         return setColorSchemeColors(colors);
     }

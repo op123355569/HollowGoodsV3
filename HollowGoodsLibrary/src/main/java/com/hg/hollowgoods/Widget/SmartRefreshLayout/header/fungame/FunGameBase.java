@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshContent;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshHeader;
@@ -68,7 +69,7 @@ public abstract class FunGameBase extends InternalAbstract implements RefreshHea
                     float dy = event.getRawY() - mTouchY;
                     if (dy >= 0) {
                         final double M = mHeaderHeight * 2;
-                        final double H = mScreenHeightPixels * 2 / 3f;
+                        final double H = mScreenHeightPixels * 2 / 3;
                         final double x = Math.max(0, dy * 0.5);
                         final double y = Math.min(M * (1 - Math.pow(100, -x / H)), x);// 公式 y = M(1-40^(-x/H))
                         mRefreshKernel.moveSpinner(Math.max(1, (int) y), false);
@@ -109,7 +110,7 @@ public abstract class FunGameBase extends InternalAbstract implements RefreshHea
 //            enableLoadMore = mRefreshKernel.getRefreshLayout().isEnableLoadMore();
 //            mRefreshKernel.getRefreshLayout().setEnableLoadMore(false);
             View contentView = mRefreshContent.getView();
-            MarginLayoutParams params = (MarginLayoutParams) contentView.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)contentView.getLayoutParams();
             params.topMargin += mHeaderHeight;
             contentView.setLayoutParams(params);
         }
@@ -132,7 +133,7 @@ public abstract class FunGameBase extends InternalAbstract implements RefreshHea
                 mRefreshKernel.moveSpinner(mHeaderHeight, true);
             }
             View contentView = mRefreshContent.getView();
-            MarginLayoutParams params = (MarginLayoutParams) contentView.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)contentView.getLayoutParams();
             params.topMargin -= mHeaderHeight;
             contentView.setLayoutParams(params);
         } else {

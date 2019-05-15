@@ -856,7 +856,6 @@ public class BaseUI {
      *
      * @param view view
      */
-    @Deprecated
     public void addNoDataView(View view) {
         noDataView.addView(view);
     }

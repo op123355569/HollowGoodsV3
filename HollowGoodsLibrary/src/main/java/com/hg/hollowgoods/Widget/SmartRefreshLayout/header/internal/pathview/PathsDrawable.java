@@ -21,14 +21,14 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 public class PathsDrawable extends PaintDrawable {
 
-    //    protected Paint mPaint;
-    protected int mWidth = 1, mHeight = 1;
-    protected int mStartX = 0, mStartY = 0;
+//    protected Paint mPaint;
+    protected int mWidth = 1,mHeight = 1;
+    protected int mStartX = 0,mStartY = 0;
     protected int mOriginWidth;
     protected int mOriginHeight;
     protected static final Region REGION = new Region();
     protected static final Region MAX_CLIP = new Region(Integer.MIN_VALUE,
-            Integer.MIN_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+            Integer.MIN_VALUE,Integer.MAX_VALUE, Integer.MAX_VALUE);
 
     protected List<Path> mPaths;
     protected List<Integer> mColors;
@@ -43,7 +43,7 @@ public class PathsDrawable extends PaintDrawable {
 //    }
 
     protected boolean onMeasure() {
-        Integer top = null, left = null, right = null, bottom = null;
+        Integer top = null,left = null,right = null,bottom = null;
         if (mPaths != null) {
             for (Path path : mPaths) {
                 REGION.setPath(path, MAX_CLIP);
@@ -151,7 +151,7 @@ public class PathsDrawable extends PaintDrawable {
         final int height = bounds.height();
         if (mPaint.getAlpha() == 0xFF) {
             canvas.save();
-            canvas.translate(bounds.left - mStartX, bounds.top - mStartY);
+            canvas.translate(bounds.left-mStartX, bounds.top-mStartY);
             if (mPaths != null) {
                 for (int i = 0; i < mPaths.size(); i++) {
                     if (mColors != null && i < mColors.size()) {

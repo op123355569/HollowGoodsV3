@@ -117,7 +117,7 @@ public class FunGameHitBlockHeader extends FunGameView {
     public void onInitialized(@NonNull RefreshKernel kernel, int height, int maxDragHeight) {
         final View thisView = this;
         final int measuredWidth = thisView.getMeasuredWidth();
-        blockHeight = 1f * height / BLOCK_VERTICAL_NUM - DIVIDING_LINE_SIZE;
+        blockHeight = height / BLOCK_VERTICAL_NUM - DIVIDING_LINE_SIZE;
         blockWidth = measuredWidth * BLOCK_WIDTH_RATIO;
 
         blockLeft = measuredWidth * BLOCK_POSITION_RATIO;
@@ -145,7 +145,6 @@ public class FunGameHitBlockHeader extends FunGameView {
             pointList.clear();
         }
     }
-
     /**
      * 检查小球是否撞击到挡板
      *

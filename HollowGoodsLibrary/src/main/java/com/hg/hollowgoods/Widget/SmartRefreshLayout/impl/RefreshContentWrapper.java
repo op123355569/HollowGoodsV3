@@ -21,8 +21,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.ScrollBoundaryDecider;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.listener.CoordinatorLayoutListener;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.DesignUtil;
 
+import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -82,21 +82,18 @@ public class RefreshContentWrapper implements RefreshContent, CoordinatorLayoutL
         mEnableLoadMore = enableLoadMore;
     }
 
-    protected View findScrollableViewInternal(View content, boolean selfAble) {
+    protected View findScrollableViewInternal(View content, boolean selfable) {
         View scrollableView = null;
-        Queue<View> views = new LinkedList<>();
-        //noinspection unchecked
-        List<View> list = (List<View>) views;
-        list.add(content);
-        while (list.size() > 0 && scrollableView == null) {
+        Queue<View> views = new LinkedList<>(Collections.singletonList(content));
+        while (!views.isEmpty() && scrollableView == null) {
             View view = views.poll();
             if (view != null) {
-                if ((selfAble || view != content) && isContentView(view)) {
+                if ((selfable || view != content) && isContentView(view)) {
                     scrollableView = view;
                 } else if (view instanceof ViewGroup) {
                     ViewGroup group = (ViewGroup) view;
                     for (int j = 0; j < group.getChildCount(); j++) {
-                        list.add(group.getChildAt(j));
+                        views.add(group.getChildAt(j));
                     }
                 }
             }

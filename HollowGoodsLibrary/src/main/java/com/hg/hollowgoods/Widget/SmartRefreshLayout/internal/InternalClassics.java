@@ -9,14 +9,16 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshInternal;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshKernel;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshLayout;
@@ -24,6 +26,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.constant.SpinnerStyle;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.DensityUtil;
 
 import static android.view.View.MeasureSpec.EXACTLY;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static com.hg.hollowgoods.Widget.SmartRefreshLayout.util.SmartUtil.getColor;
 
 /**
  * 经典组件
@@ -31,20 +35,20 @@ import static android.view.View.MeasureSpec.EXACTLY;
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public abstract class InternalClassics<T extends InternalClassics> extends InternalAbstract implements RefreshInternal {
 
-    public static final int ID_TEXT_TITLE = R.id.srl_classics_title;
-    public static final int ID_IMAGE_ARROW = R.id.srl_classics_arrow;
-    public static final int ID_IMAGE_PROGRESS = R.id.srl_classics_progress;
+    public static final byte ID_TEXT_TITLE = 1;
+    public static final byte ID_IMAGE_ARROW = 2;
+    public static final byte ID_IMAGE_PROGRESS = 3;
 
     protected TextView mTitleText;
     protected ImageView mArrowView;
     protected ImageView mProgressView;
-
+    protected LinearLayout mCenterLayout;
     protected RefreshKernel mRefreshKernel;
     protected PaintDrawable mArrowDrawable;
     protected PaintDrawable mProgressDrawable;
-
-    protected boolean mSetAccentColor;
-    protected boolean mSetPrimaryColor;
+    //    protected SpinnerStyle mSpinnerStyle = SpinnerStyle.Translate;
+    protected Integer mAccentColor;
+    protected Integer mPrimaryColor;
     protected int mBackgroundColor;
     protected int mFinishDuration = 500;
     protected int mPaddingTop = 20;
@@ -57,102 +61,73 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
         super(context, attrs, defStyleAttr);
 
         mSpinnerStyle = SpinnerStyle.Translate;
-//        mArrowView = new ImageView(context);
-//        mProgressView = new ImageView(context);
-//        mTitleText = new TextView(context);
-//        mTitleText.setTextColor(0xff666666);
-//        mCenterLayout = new LinearLayout(context);
-//        mCenterLayout.setGravity(Gravity.CENTER_HORIZONTAL);
-//        mCenterLayout.setOrientation(LinearLayout.VERTICAL);
-//
-//        final View thisView = this;
-//        final ViewGroup thisGroup = this;
-//        final View arrowView = mArrowView;
-//        final View titleView = mTitleText;
-//        final View progressView = mProgressView;
-//        final ViewGroup centerLayout = mCenterLayout;
-//        final DensityUtil density = new DensityUtil();
-//
-//        titleView.setId(ID_TEXT_TITLE);
-//        arrowView.setId(ID_IMAGE_ARROW);
-//        progressView.setId(ID_IMAGE_PROGRESS);
-//        centerLayout.setId(android.R.id.widget_frame);
-//
-//        LinearLayout.LayoutParams lpHeaderText = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-//        centerLayout.addView(titleView, lpHeaderText);
-//
-//        LayoutParams lpHeaderLayout = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-//        lpHeaderLayout.addRule(CENTER_IN_PARENT);
-//        thisGroup.addView(centerLayout, lpHeaderLayout);
-//
-//        LayoutParams lpArrow = new LayoutParams(density.dip2px(20), density.dip2px(20));
-//        lpArrow.addRule(CENTER_VERTICAL);
-//        lpArrow.addRule(LEFT_OF, android.R.id.widget_frame);
-//        thisGroup.addView(arrowView, lpArrow);
-//
-//        LayoutParams lpProgress = new LayoutParams((ViewGroup.LayoutParams)lpArrow);
-//        lpProgress.addRule(CENTER_VERTICAL);
-//        lpProgress.addRule(LEFT_OF, android.R.id.widget_frame);
-//        progressView.animate().setInterpolator(new LinearInterpolator());
-//        thisGroup.addView(progressView, lpProgress);
-//
-//        mPaddingTop = thisView.getPaddingTop();
-//        mPaddingBottom = thisView.getPaddingBottom();
-//        if (mPaddingTop == 0 || mPaddingBottom == 0) {
-//            int paddingLeft = thisView.getPaddingLeft();
-//            int paddingRight = thisView.getPaddingRight();
-//            mPaddingTop = mPaddingTop == 0 ? density.dip2px(20) : mPaddingTop;
-//            mPaddingBottom = mPaddingBottom == 0 ? density.dip2px(20) : mPaddingBottom;
-//            thisView.setPadding(paddingLeft, mPaddingTop, paddingRight, mPaddingBottom);
-//        }
+        mArrowView = new ImageView(context);
+        mProgressView = new ImageView(context);
+        mTitleText = new TextView(context);
+        mTitleText.setTextColor(0xff666666);
+        mCenterLayout = new LinearLayout(context);
+        mCenterLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+        mCenterLayout.setOrientation(LinearLayout.VERTICAL);
 
-//        if (thisView.getPaddingTop() == 0) {
-//            if (thisView.getPaddingBottom() == 0) {
-//                mPaddingTop = density.dip2px(20);
-//                mPaddingBottom = density.dip2px(20);
-//                thisView.setPadding(thisView.getPaddingLeft(), mPaddingTop, thisView.getPaddingRight(), mPaddingBottom);
-//            } else {
-//                mPaddingTop = density.dip2px(20);
-//                mPaddingBottom = thisView.getPaddingBottom();
-//                thisView.setPadding(thisView.getPaddingLeft(), mPaddingTop, thisView.getPaddingRight(), mPaddingBottom);
-//            }
-//        } else {
-//            if (thisView.getPaddingBottom() == 0) {
-//                mPaddingTop = thisView.getPaddingTop();
-//                mPaddingBottom = density.dip2px(20);
-//                thisView.setPadding(thisView.getPaddingLeft(), mPaddingTop, thisView.getPaddingRight(), mPaddingBottom);
-//            } else {
-//                mPaddingTop = thisView.getPaddingTop();
-//                mPaddingBottom = thisView.getPaddingBottom();
-//            }
-//        }
+        final View thisView = this;
+        final ViewGroup thisGroup = this;
+        final View arrowView = mArrowView;
+        final View titleView = mTitleText;
+        final View progressView = mProgressView;
+        final ViewGroup centerLayout = mCenterLayout;
+        final DensityUtil density = new DensityUtil();
 
-//        if (thisView.isInEditMode()) {
-//            arrowView.setVisibility(GONE);
-//        } else {
-//            progressView.setVisibility(GONE);
-//        }
+        titleView.setId(ID_TEXT_TITLE);
+        arrowView.setId(ID_IMAGE_ARROW);
+        progressView.setId(ID_IMAGE_PROGRESS);
+        centerLayout.setId(android.R.id.widget_frame);
+
+        LinearLayout.LayoutParams lpHeaderText = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+        centerLayout.addView(titleView, lpHeaderText);
+
+        RelativeLayout.LayoutParams lpHeaderLayout = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+        lpHeaderLayout.addRule(CENTER_IN_PARENT);
+        thisGroup.addView(centerLayout, lpHeaderLayout);
+
+        RelativeLayout.LayoutParams lpArrow = new RelativeLayout.LayoutParams(density.dip2px(20), density.dip2px(20));
+        lpArrow.addRule(CENTER_VERTICAL);
+        lpArrow.addRule(LEFT_OF, android.R.id.widget_frame);
+        thisGroup.addView(arrowView, lpArrow);
+
+        RelativeLayout.LayoutParams lpProgress = new RelativeLayout.LayoutParams((ViewGroup.LayoutParams) lpArrow);
+        lpProgress.addRule(CENTER_VERTICAL);
+        lpProgress.addRule(LEFT_OF, android.R.id.widget_frame);
+        progressView.animate().setInterpolator(new LinearInterpolator());
+        thisGroup.addView(progressView, lpProgress);
+
+        if (thisView.getPaddingTop() == 0) {
+            if (thisView.getPaddingBottom() == 0) {
+                thisView.setPadding(thisView.getPaddingLeft(), mPaddingTop = density.dip2px(20), thisView.getPaddingRight(), mPaddingBottom = density.dip2px(20));
+            } else {
+                thisView.setPadding(thisView.getPaddingLeft(), mPaddingTop = density.dip2px(20), thisView.getPaddingRight(), mPaddingBottom = thisView.getPaddingBottom());
+            }
+        } else {
+            if (thisView.getPaddingBottom() == 0) {
+                thisView.setPadding(thisView.getPaddingLeft(), mPaddingTop = thisView.getPaddingTop(), thisView.getPaddingRight(), mPaddingBottom = density.dip2px(20));
+            } else {
+                mPaddingTop = thisView.getPaddingTop();
+                mPaddingBottom = thisView.getPaddingBottom();
+            }
+        }
+
+        if (thisView.isInEditMode()) {
+            arrowView.setVisibility(GONE);
+        } else {
+            progressView.setVisibility(GONE);
+        }
 
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         final View thisView = this;
-        if (mMinHeightOfContent == 0) {
-            mPaddingTop = thisView.getPaddingTop();
-            mPaddingBottom = thisView.getPaddingBottom();
-            if (mPaddingTop == 0 || mPaddingBottom == 0) {
-                int paddingLeft = thisView.getPaddingLeft();
-                int paddingRight = thisView.getPaddingRight();
-                mPaddingTop = mPaddingTop == 0 ? DensityUtil.dp2px(20) : mPaddingTop;
-                mPaddingBottom = mPaddingBottom == 0 ? DensityUtil.dp2px(20) : mPaddingBottom;
-                thisView.setPadding(paddingLeft, mPaddingTop, paddingRight, mPaddingBottom);
-            }
-            ViewGroup thisGroup = this;
-            thisGroup.setClipToPadding(false);
-        }
-        if (MeasureSpec.getMode(heightMeasureSpec) == EXACTLY) {
-            final int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
+        if (View.MeasureSpec.getMode(heightMeasureSpec) == EXACTLY) {
+            final int parentHeight = View.MeasureSpec.getSize(heightMeasureSpec);
             if (parentHeight < mMinHeightOfContent) {
                 final int padding = (parentHeight - mMinHeightOfContent) / 2;
                 thisView.setPadding(thisView.getPaddingLeft(), padding, thisView.getPaddingRight(), padding);
@@ -204,6 +179,11 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
     public void onInitialized(@NonNull RefreshKernel kernel, int height, int maxDragHeight) {
         mRefreshKernel = kernel;
         mRefreshKernel.requestDrawBackgroundFor(this, mBackgroundColor);
+//        if (this instanceof RefreshHeader) {
+//            mRefreshKernel.requestDrawBackgroundForHeader(mBackgroundColor);
+//        } else if (this instanceof RefreshFooter) {
+//            mRefreshKernel.requestDrawBackgroundForFooter(mBackgroundColor);
+//        }
     }
 
     @Override
@@ -244,17 +224,17 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
     public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             final View thisView = this;
-            if (!(thisView.getBackground() instanceof BitmapDrawable) && !mSetPrimaryColor) {
+            if (!(thisView.getBackground() instanceof BitmapDrawable) && mPrimaryColor == null) {
                 setPrimaryColor(colors[0]);
-                mSetPrimaryColor = false;
+                mPrimaryColor = null;
             }
-            if (!mSetAccentColor) {
+            if (mAccentColor == null) {
                 if (colors.length > 1) {
                     setAccentColor(colors[1]);
 //                } else {
 //                    setAccentColor(colors[0] == 0xffffffff ? 0xff666666 : 0xffffffff);
                 }
-                mSetAccentColor = false;
+                mAccentColor = null;
             }
         }
     }
@@ -310,16 +290,20 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
     }
 
     public T setPrimaryColor(@ColorInt int primaryColor) {
-        mSetPrimaryColor = true;
-        mBackgroundColor = primaryColor;
+        mBackgroundColor = mPrimaryColor = primaryColor;
         if (mRefreshKernel != null) {
-            mRefreshKernel.requestDrawBackgroundFor(this, primaryColor);
+            mRefreshKernel.requestDrawBackgroundFor(this, mPrimaryColor);
+//            if (this instanceof RefreshHeader) {
+//                mRefreshKernel.requestDrawBackgroundForHeader(mPrimaryColor);
+//            } else if (this instanceof RefreshFooter) {
+//                mRefreshKernel.requestDrawBackgroundForFooter(mPrimaryColor);
+//            }
         }
         return self();
     }
 
     public T setAccentColor(@ColorInt int accentColor) {
-        mSetAccentColor = true;
+        mAccentColor = accentColor;
         mTitleText.setTextColor(accentColor);
         if (mArrowDrawable != null) {
             mArrowDrawable.setColor(accentColor);
@@ -334,13 +318,13 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
 
     public T setPrimaryColorId(@ColorRes int colorId) {
         final View thisView = this;
-        setPrimaryColor(ContextCompat.getColor(thisView.getContext(), colorId));
+        setPrimaryColor(getColor(thisView.getContext(), colorId));
         return self();
     }
 
     public T setAccentColorId(@ColorRes int colorId) {
         final View thisView = this;
-        setAccentColor(ContextCompat.getColor(thisView.getContext(), colorId));
+        setAccentColor(getColor(thisView.getContext(), colorId));
         return self();
     }
 
@@ -372,8 +356,8 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
     public T setDrawableMarginRight(float dp) {
         final View arrowView = mArrowView;
         final View progressView = mProgressView;
-        MarginLayoutParams lpArrow = (MarginLayoutParams) arrowView.getLayoutParams();
-        MarginLayoutParams lpProgress = (MarginLayoutParams) progressView.getLayoutParams();
+        ViewGroup.MarginLayoutParams lpArrow = (ViewGroup.MarginLayoutParams) arrowView.getLayoutParams();
+        ViewGroup.MarginLayoutParams lpProgress = (ViewGroup.MarginLayoutParams) progressView.getLayoutParams();
         lpArrow.rightMargin = lpProgress.rightMargin = DensityUtil.dp2px(dp);
         arrowView.setLayoutParams(lpArrow);
         progressView.setLayoutParams(lpProgress);

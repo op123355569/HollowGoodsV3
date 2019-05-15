@@ -37,11 +37,11 @@ public class StoreHouseHeader extends InternalAbstract implements RefreshHeader 
     //<editor-fold desc="Field">
     public List<StoreHouseBarItem> mItemList = new ArrayList<>();
 
-    protected float mScale = 1;
     protected int mLineWidth = -1;
+    protected float mScale = 1;
     protected int mDropHeight = -1;
-    protected int mHorizontalRandomness = -1;
     protected static final float mInternalAnimationFactor = 0.7f;
+    protected int mHorizontalRandomness = -1;
 
     protected float mProgress = 0;
 
@@ -311,12 +311,10 @@ public class StoreHouseHeader extends InternalAbstract implements RefreshHeader 
         mAniController.stop();
         if (success && mEnableFadeAnimation) {
             final View thisView = this;
-            thisView.startAnimation(new Animation() {
-                {
-                    super.setDuration(250);
-                    super.setInterpolator(new AccelerateInterpolator());
-                }
-
+            thisView.startAnimation(new Animation() {{
+                super.setDuration(250);
+                super.setInterpolator(new AccelerateInterpolator());
+            }
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
                     final View thisView = StoreHouseHeader.this;
@@ -342,9 +340,8 @@ public class StoreHouseHeader extends InternalAbstract implements RefreshHeader 
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override
-    @Deprecated
-    public void setPrimaryColors(@ColorInt int... colors) {
+    @Override@Deprecated
+    public void setPrimaryColors(@ColorInt int ... colors) {
         if (colors.length > 0) {
             mBackgroundColor = colors[0];
             if (mRefreshKernel != null) {

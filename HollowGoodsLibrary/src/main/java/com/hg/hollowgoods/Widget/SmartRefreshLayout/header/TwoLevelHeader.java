@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.OnTwoLevelListener;
@@ -38,7 +39,7 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
     protected boolean mEnablePullToCloseTwoLevel = true;
     protected int mFloorDuration = 1000;
     protected int mHeaderHeight;
-    //    protected int mPaintAlpha;
+//    protected int mPaintAlpha;
 //    protected Paint mPaint;
     protected RefreshInternal mRefreshHeader;
     protected RefreshKernel mRefreshKernel;
@@ -114,8 +115,8 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         final RefreshInternal refreshHeader = mRefreshHeader;
         if (refreshHeader != null) {
-            int mode = MeasureSpec.getMode(heightMeasureSpec);
-            if (mode == MeasureSpec.AT_MOST) {
+            int mode = View.MeasureSpec.getMode(heightMeasureSpec);
+            if (mode == View.MeasureSpec.AT_MOST) {
                 refreshHeader.getView().measure(widthMeasureSpec, heightMeasureSpec);
                 int height = refreshHeader.getView().getMeasuredHeight();
                 super.setMeasuredDimension(View.resolveSize(super.getSuggestedMinimumWidth(), widthMeasureSpec), height);
@@ -149,7 +150,7 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
         if (mRefreshKernel == null //第一次初始化
                 && refreshHeader.getSpinnerStyle() == SpinnerStyle.Translate
                 && !thisView.isInEditMode()) {
-            MarginLayoutParams params = (MarginLayoutParams) refreshHeader.getView().getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) refreshHeader.getView().getLayoutParams();
             params.topMargin -= height;
             refreshHeader.getView().setLayoutParams(params);
         }
@@ -223,7 +224,7 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
                 case Translate:
                     refreshHeader.getView().setTranslationY(spinner);
                     break;
-                case Scale: {
+                case Scale:{
                     View view = refreshHeader.getView();
                     view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getTop() + Math.max(0, spinner));
                     break;
@@ -237,7 +238,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 设置指定的 Header
-     *
      * @param header RefreshHeader
      * @return TwoLevelHeader
      */
@@ -247,9 +247,8 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 设置指定的 Header
-     *
      * @param header RefreshHeader
-     * @param width  指定宽度
+     * @param width 指定宽度
      * @param height 指定高度
      * @return TwoLevelHeader
      */
@@ -262,7 +261,7 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
             }
             refreshHeader = header;
             if (refreshHeader.getSpinnerStyle() == SpinnerStyle.FixedBehind) {
-                thisGroup.addView(refreshHeader.getView(), 0, new LayoutParams(width, height));
+                thisGroup.addView(refreshHeader.getView(), 0, new RelativeLayout.LayoutParams(width, height));
             } else {
                 thisGroup.addView(refreshHeader.getView(), width, height);
             }
@@ -274,7 +273,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 设置下拉 Header 的最大高度比值
-     *
      * @param rate MaxDragHeight/HeaderHeight
      * @return TwoLevelHeader
      */
@@ -292,7 +290,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 是否禁止在二极状态是上滑关闭状态回到初态
-     *
      * @param enabled 是否启用
      * @return TwoLevelHeader
      */
@@ -301,13 +298,13 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
         this.mEnablePullToCloseTwoLevel = enabled;
         if (refreshKernel != null) {
             refreshKernel.requestNeedTouchEventFor(this, !enabled);
+//            refreshKernel.requestNeedTouchEventWhenRefreshing(disable);
         }
         return this;
     }
 
     /**
      * 设置触发二楼的白百分比
-     *
      * @param rate 比率 要求大于 RefreshRage
      * @return TwoLevelHeader
      */
@@ -318,7 +315,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 设置触发刷新的百分比
-     *
      * @param rate 比率 要求小于 FloorRage
      * @return TwoLevelHeader
      */
@@ -329,7 +325,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 设置是否开启二级刷新
-     *
      * @param enabled 是否开启
      * @return TwoLevelHeader
      */
@@ -340,7 +335,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 设置二楼展开动画持续的时间
-     *
      * @param duration 毫秒
      * @return TwoLevelHeader
      */
@@ -351,7 +345,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 设置二级刷新监听器
-     *
      * @param listener 监听器
      * @return TwoLevelHeader
      */
@@ -362,7 +355,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
 
     /**
      * 结束二级刷新
-     *
      * @return TwoLevelHeader
      */
     public TwoLevelHeader finishTwoLevel() {
@@ -376,7 +368,6 @@ public class TwoLevelHeader extends InternalAbstract implements RefreshHeader/*,
     /**
      * Open the second floor voluntarily
      * 主动打开二楼
-     *
      * @param widthOnTwoLevelListener 是否触发 OnTwoLevelListener 监听器
      * @return TwoLevelHeader
      */

@@ -3022,7 +3022,6 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                 });
                 reboundAnimator.start();
             };
-            setViceState(RefreshState.Refreshing);
             if (delayed > 0) {
                 postDelayed(runnable, delayed);
             } else {

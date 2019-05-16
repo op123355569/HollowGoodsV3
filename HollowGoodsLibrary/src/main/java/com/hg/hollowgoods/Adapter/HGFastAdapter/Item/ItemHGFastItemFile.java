@@ -31,8 +31,8 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
 
     private BaseUI baseUI;
     private OnHGFastItemClickListener onHGFastItemClickListener;
-    public HGFastFileSelectorUtils hgFastFileSelectorUtils = new HGFastFileSelectorUtils();
-    public int clickItemId;
+    HGFastFileSelectorUtils hgFastFileSelectorUtils = new HGFastFileSelectorUtils();
+    int clickItemId;
 
     @Override
     public int getItemViewLayoutId() {

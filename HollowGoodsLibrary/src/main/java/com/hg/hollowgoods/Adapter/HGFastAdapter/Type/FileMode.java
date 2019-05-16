@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.Adapter.HGFastAdapter.Type;
 
 /**
+ * 文件模板模式
  * Created by Hollow Goods on 2019-05-09.
  */
 public enum FileMode {

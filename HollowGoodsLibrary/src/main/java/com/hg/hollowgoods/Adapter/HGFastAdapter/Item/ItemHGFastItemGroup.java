@@ -25,10 +25,12 @@ public class ItemHGFastItemGroup extends BaseItemHGFastItem<CommonBean> {
     private CommonBean bean;
     private HashMap<Integer, String> fieldTag;
     private HashMap<Integer, Boolean> initTag = new HashMap<>();
+    private ItemHGFastItemFile itemHGFastItemFile;
 
-    ItemHGFastItemGroup(CommonBean bean, HashMap<Integer, String> fieldTag) {
+    ItemHGFastItemGroup(CommonBean bean, HashMap<Integer, String> fieldTag, ItemHGFastItemFile itemHGFastItemFile) {
         this.bean = bean;
         this.fieldTag = fieldTag;
+        this.itemHGFastItemFile = itemHGFastItemFile;
     }
 
     @Override
@@ -68,6 +70,7 @@ public class ItemHGFastItemGroup extends BaseItemHGFastItem<CommonBean> {
                 refreshLayout.getRecyclerView().setAdapter(adapter);
             }
 
+            adapter.initFileItem(itemHGFastItemFile);
             adapter.initData(data.getGroupData(), fieldTag);
             adapter.setBaseUI(baseUI);
             adapter.setOnHGFastItemClickListener(onHGFastItemClickListener);

@@ -6,6 +6,12 @@ package com.hg.hollowgoods.Adapter.HGFastAdapter.CallBack;
  */
 public interface OnHGFastItemNumberChangeListener {
 
+    /**
+     * 数字变化
+     *
+     * @param id    id
+     * @param value 值
+     */
     void onNumberChange(int id, int value);
 
 }

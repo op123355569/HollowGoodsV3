@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<template
+    format="3"
+    revision="4"
+    name="HG MVP Base Fragment"
+    minApi="21"
+    minBuildApi="21"
+    description="Creates a new HG MVP Base Fragment">
+
+    <category value="HG Base UI" />
+	
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Fragment Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="MainFragment"
+        help="The name of the fragment class to create" />
+		
+	<parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_${classToResource(activityClass)}"
+        default="fragment_main"
+        help="The name of the layout to create for the fragment" />
+
+    <parameter
+        id="activityTitle"
+        name="Title"
+        type="string"
+        constraints="nonempty"
+        default="MainFragment"
+        suggest="${activityClass}"
+        help="The name of the fragment. For launcher fragments, the application title." />
+    
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_fragment.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.Adapter.HGFastAdapter.Type;
 
 /**
+ * 模板类型
  * Created by Hollow Goods on 2019-05-07.
  */
 public enum ItemType {

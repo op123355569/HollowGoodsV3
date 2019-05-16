@@ -58,6 +58,8 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
     private ItemHGFastItemNumber itemHGFastItemNumber;
     private ItemHGFastItemGroup itemHGFastItemGroup;
 
+    private HashMap<Class<?>, Object> customizeItemViewDelegateTag = new HashMap<>();
+
     public HGFastAdapter(Context context, CommonBean data) {
         super(context, new ArrayList<>());
         bean = data;
@@ -85,25 +87,28 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
         refreshData(temp);
     }
 
+    /**
+     * 刷新模板
+     */
     private void refreshItemViewDelegate() {
 
         Boolean hasItem = hgFastDataUtils.getAnnotationTag().get(HGFastItemWord.class);
-        if (hasItem != null && hasItem) {
+        if (hasItem != null && hasItem && itemHGFastItemWord == null) {
             addItemViewDelegate(ItemType.ItemWord.getValue(), itemHGFastItemWord = new ItemHGFastItemWord());
         }
 
         hasItem = hgFastDataUtils.getAnnotationTag().get(HGFastItemFile.class);
-        if (hasItem != null && hasItem) {
+        if (hasItem != null && hasItem && itemHGFastItemFile == null) {
             addItemViewDelegate(ItemType.ItemFile.getValue(), itemHGFastItemFile = new ItemHGFastItemFile());
         }
 
         hasItem = hgFastDataUtils.getAnnotationTag().get(HGFastItemDate.class);
-        if (hasItem != null && hasItem) {
+        if (hasItem != null && hasItem && itemHGFastItemDate == null) {
             addItemViewDelegate(ItemType.ItemDate.getValue(), itemHGFastItemDate = new ItemHGFastItemDate());
         }
 
         hasItem = hgFastDataUtils.getAnnotationTag().get(HGFastItemNumber.class);
-        if (hasItem != null && hasItem) {
+        if (hasItem != null && hasItem && itemHGFastItemNumber == null) {
             addItemViewDelegate(ItemType.ItemNumber.getValue(), itemHGFastItemNumber = new ItemHGFastItemNumber());
             itemHGFastItemNumber.setOnHGFastItemNumberChangeListener((id, value) -> {
 
@@ -118,7 +123,10 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
         if (hasItem != null && hasItem) {
             for (HGFastItemCustomizeData t : hgFastDataUtils.getCustomizeItemTag()) {
                 try {
-                    addItemViewDelegate(t.getItemType(), t.getItemClass().newInstance());
+                    if (customizeItemViewDelegateTag.get(t.getItemClass()) == null) {
+                        addItemViewDelegate(t.getItemType(), t.getItemClass().newInstance());
+                        customizeItemViewDelegateTag.put(t.getItemClass(), true);
+                    }
                 } catch (Exception ignored) {
 
                 }
@@ -126,13 +134,29 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
         }
 
         hasItem = hgFastDataUtils.getAnnotationTag().get(HGFastItemGroup.class);
-        if (hasItem != null && hasItem) {
-            addItemViewDelegate(ItemType.ItemGroup.getValue(), itemHGFastItemGroup = new ItemHGFastItemGroup(bean, hgFastDataUtils.getFieldTag()));
+        if (hasItem != null && hasItem && itemHGFastItemGroup == null) {
+            if (itemHGFastItemFile == null) {
+                addItemViewDelegate(ItemType.ItemFile.getValue(), itemHGFastItemFile = new ItemHGFastItemFile());
+            }
+            addItemViewDelegate(ItemType.ItemGroup.getValue(), itemHGFastItemGroup = new ItemHGFastItemGroup(bean, hgFastDataUtils.getFieldTag(), itemHGFastItemFile));
         }
     }
 
     /**
+     * 初始化文件模板
+     * 分组模板自动调用
+     * 内部调用，用户禁止调用
+     *
+     * @param itemHGFastItemFile itemHGFastItemFile
+     */
+    void initFileItem(ItemHGFastItemFile itemHGFastItemFile) {
+        this.itemHGFastItemFile = itemHGFastItemFile;
+        addItemViewDelegate(ItemType.ItemFile.getValue(), this.itemHGFastItemFile);
+    }
+
+    /**
      * 初始化数据
+     * 分组模板自动调用
      * 内部调用，用户禁止调用
      *
      * @param temp temp

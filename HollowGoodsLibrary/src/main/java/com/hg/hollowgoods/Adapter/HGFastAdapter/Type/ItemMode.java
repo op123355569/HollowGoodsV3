@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.Adapter.HGFastAdapter.Type;
 
 /**
+ * 模板内容模式
  * Created by Hollow Goods on 2019-05-07.
  */
 public enum ItemMode {

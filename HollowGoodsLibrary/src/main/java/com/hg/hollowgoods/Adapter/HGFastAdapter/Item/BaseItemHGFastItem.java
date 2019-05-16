@@ -11,6 +11,7 @@ import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 
 /**
+ * 模板基类
  * Created by Hollow Goods on 2019-05-07.
  */
 abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<CommonBean> {
@@ -114,6 +115,9 @@ abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<Common
         }
     }
 
+    /**
+     * 设置四周间距
+     */
     void setMargin(ViewHolder viewHolder, int viewId, int topMargin, int leftMargin, int bottomMargin, int rightMargin) {
         View marginView = viewHolder.getView(viewId);
         RecyclerView.LayoutParams flp = (RecyclerView.LayoutParams) marginView.getLayoutParams();

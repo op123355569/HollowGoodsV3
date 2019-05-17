@@ -31,7 +31,7 @@ import java.io.File;
 
 public class ExampleUpdateAPPUtils {
 
-    private static boolean isAbout = false;
+    private static boolean isFromUser = false;
     private static String URL = "";
     private static BaseActivity baseActivity;
     private static File apkFile;
@@ -39,30 +39,27 @@ public class ExampleUpdateAPPUtils {
     /**
      * 检查更新
      *
-     * @param activity
-     * @param isAbout
+     * @param activity   activity
+     * @param isFromUser 是否是用户手动点击
      */
-    public static void checkUpdate(BaseActivity activity, boolean isAbout) {
+    public static void checkUpdate(BaseActivity activity, boolean isFromUser) {
 
         baseActivity = activity;
 
-        if (isAbout) {
+        if (ExampleUpdateAPPUtils.isFromUser) {
             baseActivity.baseUI.baseDialog.showProgressDialog(R.string.update_app, HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
         } else {
             BaseApplication baseApplication = BaseApplication.create();
 
-            if (!baseApplication.isAutoCheckUpdateApp()) {
-                baseApplication.setAutoCheckUpdateAppDate(StringUtils.getDateTimeString(System.currentTimeMillis(), StringUtils.DateFormatMode.LINE_YMD));
-                baseApplication.setAutoCheckUpdateApp(true);
-            } else {
-                String date = StringUtils.getDateTimeString(System.currentTimeMillis(), StringUtils.DateFormatMode.LINE_YMD);
-                if (TextUtils.equals(baseApplication.getAutoCheckUpdateAppDate(), date)) {
-                    return;
-                }
+            String date = StringUtils.getDateTimeString(baseApplication.getNowTime(), StringUtils.DateFormatMode.LINE_YMD);
+            if (TextUtils.equals(baseApplication.getAutoCheckUpdateAppDate(), date)) {
+                return;
             }
+
+            baseApplication.setAutoCheckUpdateAppDate(StringUtils.getDateTimeString(baseApplication.getNowTime(), StringUtils.DateFormatMode.LINE_YMD));
         }
 
-        ExampleUpdateAPPUtils.isAbout = isAbout;
+        ExampleUpdateAPPUtils.isFromUser = isFromUser;
 
         doCheck();
     }
@@ -99,7 +96,7 @@ public class ExampleUpdateAPPUtils {
 
                     showDialog(tip.toString());
                 } else {
-                    if (isAbout) {
+                    if (isFromUser) {
                         t.showShortToast(R.string.update_app_already_new);
                     }
                 }
@@ -107,7 +104,7 @@ public class ExampleUpdateAPPUtils {
 
             @Override
             public void onGetError(Throwable ex) {
-                if (isAbout) {
+                if (isFromUser) {
                     t.showShortToast(R.string.network_error);
                 }
             }
@@ -119,7 +116,7 @@ public class ExampleUpdateAPPUtils {
 
             @Override
             public void onGetFinish() {
-                if (isAbout) {
+                if (isFromUser) {
                     baseActivity.baseUI.baseDialog.closeDialog(HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
                 }
             }

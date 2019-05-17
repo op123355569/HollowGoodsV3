@@ -20,7 +20,6 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
@@ -386,8 +385,8 @@ public class BaseUI {
         return (T) rootView.findViewById(id);
     }
 
-    public AppCompatActivity getBaseContext() {
-        return (AppCompatActivity) context;
+    public BaseActivity getBaseContext() {
+        return (BaseActivity) context;
     }
 
     /**

@@ -15,6 +15,7 @@ import com.hg.hollowgoods.Exception.CrashHandler;
 import com.hg.hollowgoods.Service.Time.TimeService;
 import com.hg.hollowgoods.Service.Time.TimeThread;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
+import com.hg.hollowgoods.Util.CacheUtils;
 import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.XUtils.XUtils;
 import com.hg.hollowgoods.Widget.HGStatusLayout;
@@ -44,10 +45,6 @@ public abstract class BaseApplication extends Application implements IBaseApplic
      * activity堆
      */
     private ArrayList<Activity> activityAllList = new ArrayList<>();
-    /**
-     * 今天是否自动检查过APP更新
-     */
-    private boolean isAutoCheckUpdateApp = false;
     /**
      * 最近一次自动检查APP更新的时间
      */
@@ -128,8 +125,17 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         if (HGSystemConfig.IS_NEED_READ_OFFICE_FILE) {
             initFileView();
         }
+        initAppAutoCheckDate();
 
         super.onCreate();
+    }
+
+    /**
+     * 初始化APP自动检查更新日期
+     */
+    private void initAppAutoCheckDate() {
+        BaseApplication baseApplication = create();
+        baseApplication.setAutoCheckUpdateAppDate(CacheUtils.create().load("AppAutoCheckDate", String.class));
     }
 
     /**
@@ -264,20 +270,13 @@ public abstract class BaseApplication extends Application implements IBaseApplic
         MultiDex.install(create());
     }
 
-    public boolean isAutoCheckUpdateApp() {
-        return isAutoCheckUpdateApp;
-    }
-
-    public void setAutoCheckUpdateApp(boolean autoCheckUpdateApp) {
-        isAutoCheckUpdateApp = autoCheckUpdateApp;
-    }
-
     public String getAutoCheckUpdateAppDate() {
         return autoCheckUpdateAppDate;
     }
 
     public void setAutoCheckUpdateAppDate(String autoCheckUpdateAppDate) {
         this.autoCheckUpdateAppDate = autoCheckUpdateAppDate;
+        CacheUtils.create().save("AppAutoCheckDate", this.autoCheckUpdateAppDate);
     }
 
     public long getNowTime() {

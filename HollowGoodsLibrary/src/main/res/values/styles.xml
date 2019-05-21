@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="spbStyle">@style/GNowProgressBar</item>
         <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle.White</item>
-        <item name="android:textIsSelectable">true</item>
     </style>
 
     <!-- 水平进度条 -->

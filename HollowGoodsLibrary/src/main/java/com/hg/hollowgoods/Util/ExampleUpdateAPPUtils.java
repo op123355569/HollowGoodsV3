@@ -1,5 +1,6 @@
 package com.hg.hollowgoods.Util;
 
+import android.app.Activity;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -187,7 +188,7 @@ public class ExampleUpdateAPPUtils {
     }
 
     public static void onInstallRequestActivityResult(int requestCode, int resultCode) {
-        if (requestCode == HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == baseActivity.RESULT_OK) {
+        if (requestCode == HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == Activity.RESULT_OK) {
             new SystemAppUtils().installAPK(baseActivity, apkFile);
         }
     }

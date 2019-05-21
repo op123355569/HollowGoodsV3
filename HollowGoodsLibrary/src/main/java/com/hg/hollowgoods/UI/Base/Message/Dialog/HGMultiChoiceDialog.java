@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -24,19 +23,18 @@ import java.util.ArrayList;
  * Created by HG on 2018-01-17.
  */
 
-public class HGMultiChoiceDialog extends HGDialog {
+class HGMultiChoiceDialog extends HGDialog {
 
     private String title;
-    private Object items;
     private ArrayList<Integer> checkedPositions;
     private int maxCount;
 
     private RecyclerView result;
     private TextView count;
     private MultiChoiceDialogAdapter adapter;
-    private ArrayList<Object> data = new ArrayList<>();
+    private ArrayList<ChoiceItem> data = new ArrayList<>();
 
-    public HGMultiChoiceDialog(final Context context, Object title, Object items, ArrayList<Integer> checkedPositions, int maxCount, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGMultiChoiceDialog(final Context context, Object title, ArrayList<ChoiceItem> items, ArrayList<Integer> checkedPositions, int maxCount, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.onDialogDismissListener = onDialogDismissListener;
@@ -44,7 +42,6 @@ public class HGMultiChoiceDialog extends HGDialog {
         this.maxCount = maxCount;
 
         this.title = getValue(title, "");
-        this.items = items;
         this.checkedPositions = checkedPositions;
 
         if (this.checkedPositions == null) {
@@ -54,30 +51,19 @@ public class HGMultiChoiceDialog extends HGDialog {
         this.dialog = new AlertDialog
                 .Builder(context)
                 .setView(R.layout.dialog_multi_choice)
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (onDialogClickListener != null) {
-                            onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, false, null);
-                        }
+                .setNegativeButton(R.string.cancel, (dialog, which) -> {
+                    if (onDialogClickListener != null) {
+                        onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, false, null);
                     }
-                }).setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (onDialogClickListener != null) {
-                            Bundle data = new Bundle();
-                            data.putSerializable(HGParamKey.Positions.getValue(), HGMultiChoiceDialog.this.checkedPositions);
-                            onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, true, data);
-                        }
+                }).setPositiveButton(R.string.sure, (dialog, which) -> {
+                    if (onDialogClickListener != null) {
+                        Bundle data = new Bundle();
+                        data.putSerializable(HGParamKey.Positions.getValue(), HGMultiChoiceDialog.this.checkedPositions);
+                        onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, true, data);
                     }
                 })
                 .create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGMultiChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGMultiChoiceDialog.this);
-            }
-        });
+        this.dialog.setOnDismissListener(dialog -> HGMultiChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGMultiChoiceDialog.this));
 
         if (!TextUtils.isEmpty(this.title)) {
             this.dialog.setTitle(this.title);
@@ -92,7 +78,9 @@ public class HGMultiChoiceDialog extends HGDialog {
         result.setItemAnimator(new DefaultItemAnimator());
         result.setLayoutManager(new LinearLayoutManager(this.context));
 
-        data.addAll(getData());
+        if (items != null) {
+            data.addAll(items);
+        }
 
         adapter = new MultiChoiceDialogAdapter(this.context, R.layout.item_choice_dialog, data);
         result.setAdapter(adapter);
@@ -129,6 +117,12 @@ public class HGMultiChoiceDialog extends HGDialog {
                 }
             }
         });
+        adapter.setOnDescribeClickListener(new OnRecyclerViewItemClickListener(false) {
+            @Override
+            public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+                showDescribe(view, data.get(position).getItem().toString(), data.get(position).getDescribe());
+            }
+        });
 
         setCount();
     }
@@ -140,27 +134,6 @@ public class HGMultiChoiceDialog extends HGDialog {
         } else {
             count.setText(HGMultiChoiceDialog.this.checkedPositions.size() + "/" + maxCount);
         }
-    }
-
-    private ArrayList<Object> getData() {
-
-        ArrayList<Object> result = new ArrayList<>();
-
-        if (items != null) {
-            if (items instanceof String[]) {
-                String[] temp = (String[]) items;
-                for (String t : temp) {
-                    result.add(t);
-                }
-            } else if (items instanceof Integer[]) {
-                Integer[] temp = (Integer[]) items;
-                for (Integer t : temp) {
-                    result.add(t);
-                }
-            }
-        }
-
-        return result;
     }
 
 }

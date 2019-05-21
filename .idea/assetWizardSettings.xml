@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/D:/Software/AndroidStudio/AS/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_downward_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/D:/Software/AndroidStudio/AS/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_drop_up_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_fast_open_file" />
+                            <entry key="outputName" value="ic_arrow_up" />
                             <entry key="sourceFile" value="D:\Download\文件.svg" />
                           </map>
                         </option>

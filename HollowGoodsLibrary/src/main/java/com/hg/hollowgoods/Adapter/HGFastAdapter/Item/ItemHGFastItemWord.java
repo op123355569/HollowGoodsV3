@@ -15,6 +15,7 @@ import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseUI;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
+import com.hg.hollowgoods.UI.Base.Message.Dialog.ChoiceItem;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.ConfigInput;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.ReflectUtils;
@@ -38,7 +39,7 @@ public class ItemHGFastItemWord extends BaseItemHGFastItem<CommonBean> {
 
     private BaseUI baseUI;
     private OnHGFastItemClickListener onHGFastItemClickListener;
-    private HashMap<Integer, String[]> singleChoiceItemsTag = new HashMap<>();
+    private HashMap<Integer, ArrayList<ChoiceItem>> singleChoiceItemsTag = new HashMap<>();
     private HashMap<Integer, ArrayList<Object>> singleChoiceSourceTag = new HashMap<>();
     public int clickId;
 
@@ -203,10 +204,10 @@ public class ItemHGFastItemWord extends BaseItemHGFastItem<CommonBean> {
     private void check2ShowDialog(HGFastItemWordData data) {
 
         String title = "请选择" + data.getLabel();
-        Object items;
+        ArrayList<ChoiceItem> items;
 
         if (data.getSingleChoiceMode() == SingleChoiceMode.Local) {
-            items = data.getSingleChoiceItem();
+            items = (ArrayList<ChoiceItem>) data.getSingleChoiceItem();
 
             int checkedPosition = HGFastDataUtils.getSingleChoiceItemCheckedPosition(items, data.getContent());
             baseUI.baseDialog.showSingleDialog(title, items, checkedPosition, data.getItemId());
@@ -246,12 +247,17 @@ public class ItemHGFastItemWord extends BaseItemHGFastItem<CommonBean> {
                         if (temp2 != null) {
                             singleChoiceSourceTag.put(data.getItemId(), temp2);
 
-                            String[] items = new String[temp2.size()];
-                            String fieldName = data.getSingleChoiceNetDataValueName();
-                            int i = 0;
+                            ArrayList<ChoiceItem> items = new ArrayList<>();
+                            String valueFieldName = data.getSingleChoiceNetDataValueName();
+                            String describeFieldName = data.getSingleChoiceNetDataValueDescribeName();
 
                             for (Object t : temp2) {
-                                items[i++] = ReflectUtils.getObjValue(t, fieldName) + "";
+                                Object value = ReflectUtils.getObjValue(t, valueFieldName);
+                                Object describe = ReflectUtils.getObjValue(t, describeFieldName);
+                                items.add(new ChoiceItem(
+                                        value == null ? "" : value,
+                                        describe == null ? null : describe.toString()
+                                ));
                             }
 
                             singleChoiceItemsTag.put(data.getItemId(), items);

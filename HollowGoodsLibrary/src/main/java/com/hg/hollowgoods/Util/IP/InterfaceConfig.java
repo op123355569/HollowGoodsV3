@@ -12,6 +12,7 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.BaseDialog;
+import com.hg.hollowgoods.UI.Base.Message.Dialog.ChoiceItem;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 
 import java.util.ArrayList;
@@ -248,12 +249,12 @@ public class InterfaceConfig {
         }
 
         BaseDialog baseDialog = new BaseDialog(baseActivity);
-        final String[] items = new String[IP.size()];
+        ArrayList<ChoiceItem> items = new ArrayList<>();
         int checkedPosition = -1;
         boolean isShowAll = isShowAll();
 
-        for (int i = 0; i < items.length; i++) {
-            items[i] = isShowAll ? IP.get(i).getRequestUrl() : IP.get(i).getRequestHead();
+        for (int i = 0; i < IP.size(); i++) {
+            items.add(new ChoiceItem(isShowAll ? IP.get(i).getRequestUrl() : IP.get(i).getRequestHead()));
             if (IP.get(i).isChecked()) {
                 checkedPosition = i;
             }

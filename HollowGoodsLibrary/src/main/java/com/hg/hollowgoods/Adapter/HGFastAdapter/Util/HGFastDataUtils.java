@@ -17,6 +17,7 @@ import com.hg.hollowgoods.Adapter.HGFastAdapter.Bean.HGFastItemWordData;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.UI.Base.Message.Dialog.ChoiceItem;
 import com.hg.hollowgoods.Util.ReflectUtils;
 
 import java.lang.reflect.Field;
@@ -99,6 +100,7 @@ public class HGFastDataUtils {
         result.setSingleChoiceNetRequestParamName(annotation.singleChoiceNetRequestParamName());
         result.setSingleChoiceNetDataKeyName(annotation.singleChoiceNetDataKeyName());
         result.setSingleChoiceNetDataValueName(annotation.singleChoiceNetDataValueName());
+        result.setSingleChoiceNetDataValueDescribeName(annotation.singleChoiceNetDataValueDescribeName());
         if (!TextUtils.isEmpty(result.getSingleChoiceNetRequestParamName())) {
             result.setSingleChoiceNetRequestParam(ReflectUtils.getObjValue(data, result.getSingleChoiceNetRequestParamName()));
         }
@@ -587,30 +589,15 @@ public class HGFastDataUtils {
 
     public static int getSingleChoiceItemCheckedPosition(Object singleChoiceItem, String content) {
 
-        if (singleChoiceItem instanceof String[]) {
-            String[] items = (String[]) singleChoiceItem;
-            int i = 0;
+        ArrayList<ChoiceItem> items = (ArrayList<ChoiceItem>) singleChoiceItem;
+        int i = 0;
 
-            for (String t : items) {
-                if (TextUtils.equals(t, content)) {
-                    return i;
-                }
-
-                i++;
+        for (ChoiceItem t : items) {
+            if (TextUtils.equals(t.getItem() + "", content)) {
+                return i;
             }
-        } else if (singleChoiceItem instanceof Integer[]) {
-            Integer[] items = (Integer[]) singleChoiceItem;
-            int i = 0;
 
-            if (!TextUtils.isEmpty(content)) {
-                for (Integer t : items) {
-                    if (t.intValue() == Integer.valueOf(content).intValue()) {
-                        return i;
-                    }
-
-                    i++;
-                }
-            }
+            i++;
         }
 
         return -1;
@@ -622,15 +609,7 @@ public class HGFastDataUtils {
             return "";
         }
 
-        if (singleChoiceItem instanceof String[]) {
-            String[] items = (String[]) singleChoiceItem;
-            return items[checkedPosition];
-        } else if (singleChoiceItem instanceof Integer[]) {
-            Integer[] items = (Integer[]) singleChoiceItem;
-            return items[checkedPosition];
-        }
-
-        return "";
+        return ((ArrayList<ChoiceItem>) singleChoiceItem).get(checkedPosition).getItem();
     }
 
 }

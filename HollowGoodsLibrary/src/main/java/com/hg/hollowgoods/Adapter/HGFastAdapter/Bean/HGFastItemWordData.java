@@ -27,6 +27,7 @@ public class HGFastItemWordData extends BaseHGFastItemData {
     private String singleChoiceNetRequestParamName;
     private String singleChoiceNetDataKeyName;
     private String singleChoiceNetDataValueName;
+    private String singleChoiceNetDataValueDescribeName;
     private Object singleChoiceNetRequestParam;
     private String singleChoiceNetDataTypeName;
     private Type singleChoiceNetDataType;
@@ -133,6 +134,14 @@ public class HGFastItemWordData extends BaseHGFastItemData {
 
     public void setSingleChoiceNetDataValueName(String singleChoiceNetDataValueName) {
         this.singleChoiceNetDataValueName = singleChoiceNetDataValueName;
+    }
+
+    public String getSingleChoiceNetDataValueDescribeName() {
+        return singleChoiceNetDataValueDescribeName;
+    }
+
+    public void setSingleChoiceNetDataValueDescribeName(String singleChoiceNetDataValueDescribeName) {
+        this.singleChoiceNetDataValueDescribeName = singleChoiceNetDataValueDescribeName;
     }
 
     public Object getSingleChoiceNetRequestParam() {

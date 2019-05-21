@@ -179,7 +179,7 @@ public class PopupWinHelper {
     /**
      * 弹窗，在init之后调用
      *
-     * @param parent
+     * @param parent parent
      */
     public void showPopupWin(View parent) {
         popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
@@ -198,7 +198,7 @@ public class PopupWinHelper {
     /**
      * 在init前调用
      *
-     * @param popupWinOnClickListener
+     * @param popupWinOnClickListener popupWinOnClickListener
      */
     public void setPopupWinOnClickListener(PopupWinOnClickListener popupWinOnClickListener) {
         this.popupWinOnClickListener = popupWinOnClickListener;
@@ -207,7 +207,7 @@ public class PopupWinHelper {
     /**
      * 在init前调用
      *
-     * @param popupWinOnItemClickListener
+     * @param popupWinOnItemClickListener popupWinOnItemClickListener
      */
     public void setPopupWinOnItemClickListener(PopupWinOnItemClickListener popupWinOnItemClickListener) {
         this.popupWinOnItemClickListener = popupWinOnItemClickListener;
@@ -216,7 +216,7 @@ public class PopupWinHelper {
     /**
      * 设置文字
      *
-     * @param id
+     * @param id  id
      * @param txt 可以是string资源id，可以直接是字符串
      */
     public void setText(int id, Object txt) {
@@ -236,7 +236,7 @@ public class PopupWinHelper {
     /**
      * 设置文字颜色
      *
-     * @param id
+     * @param id    id
      * @param color 可以是color资源id，可以直接是颜色字符串
      */
     public void setTextColor(int id, Object color) {

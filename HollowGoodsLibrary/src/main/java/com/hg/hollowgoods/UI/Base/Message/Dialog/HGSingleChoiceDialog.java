@@ -21,24 +21,22 @@ import java.util.ArrayList;
  * Created by HG on 2018-01-17.
  */
 
-public class HGSingleChoiceDialog extends HGDialog {
+class HGSingleChoiceDialog extends HGDialog {
 
     private String title;
-    private Object items;
     private int checkedPosition;
 
     private RecyclerView result;
     private SingleChoiceDialogAdapter adapter;
-    private ArrayList<Object> data = new ArrayList<>();
+    private ArrayList<ChoiceItem> data = new ArrayList<>();
 
-    public HGSingleChoiceDialog(Context context, Object title, Object items, int checkedPosition, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGSingleChoiceDialog(Context context, Object title, ArrayList<ChoiceItem> items, int checkedPosition, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.onDialogDismissListener = onDialogDismissListener;
         this.code = code;
 
         this.title = getValue(title, "");
-        this.items = items;
         this.checkedPosition = checkedPosition;
 
         this.dialog = new AlertDialog
@@ -65,11 +63,14 @@ public class HGSingleChoiceDialog extends HGDialog {
         this.dialog.show();
 
         result = this.dialog.findViewById(R.id.rv_result);
+
         result.setHasFixedSize(true);
         result.setItemAnimator(new DefaultItemAnimator());
         result.setLayoutManager(new LinearLayoutManager(this.context));
 
-        data.addAll(getData());
+        if (items != null) {
+            data.addAll(items);
+        }
 
         adapter = new SingleChoiceDialogAdapter(this.context, R.layout.item_choice_dialog, data);
         result.setAdapter(adapter);
@@ -83,27 +84,12 @@ public class HGSingleChoiceDialog extends HGDialog {
                 adapter.setCheckedPosition(position);
             }
         });
-    }
-
-    private ArrayList<Object> getData() {
-
-        ArrayList<Object> result = new ArrayList<>();
-
-        if (items != null) {
-            if (items instanceof String[]) {
-                String[] temp = (String[]) items;
-                for (String t : temp) {
-                    result.add(t);
-                }
-            } else if (items instanceof Integer[]) {
-                Integer[] temp = (Integer[]) items;
-                for (Integer t : temp) {
-                    result.add(t);
-                }
+        adapter.setOnDescribeClickListener(new OnRecyclerViewItemClickListener(false) {
+            @Override
+            public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+                showDescribe(view, data.get(position).getItem().toString(), data.get(position).getDescribe());
             }
-        }
-
-        return result;
+        });
     }
 
 }

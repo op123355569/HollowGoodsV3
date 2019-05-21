@@ -278,7 +278,7 @@ public class Ex28_2Activity extends BaseActivity {
                 break;
             case 3:
                 // 性别
-                baseUI.baseDialog.showSingleDialog("请选择性别", ParamItem.SEX, parentData.getSex(), sortNumber);
+                baseUI.baseDialog.showSingleDialog("请选择性别", ParamItem.SEX_LIST, parentData.getSex(), sortNumber);
                 break;
             case 4:
                 // 爱好

@@ -191,6 +191,14 @@ public @interface HGFastItemWord {
     String singleChoiceNetDataValueName() default "";
 
     /**
+     * 网络请求数据值的描述名称
+     * 例如：{"data":[{"describe":"他是个好人"}]},此时应填 describe
+     *
+     * @return String
+     */
+    String singleChoiceNetDataValueDescribeName() default "";
+
+    /**
      * 网络数据接收封装类类型变量名称
      *
      * @return String

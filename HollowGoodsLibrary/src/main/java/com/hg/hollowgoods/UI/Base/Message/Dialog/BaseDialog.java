@@ -323,7 +323,7 @@ public class BaseDialog {
         hgDialogs.add(0, dialog);
     }
 
-    public void showSingleDialog(Object title, Object items, int checkedPosition, int code) {
+    public void showSingleDialog(Object title, ArrayList<ChoiceItem> items, int checkedPosition, int code) {
 
         if (hgDialogs == null) {
             hgDialogs = new ArrayList<>();
@@ -342,7 +342,7 @@ public class BaseDialog {
         hgDialogs.add(0, dialog);
     }
 
-    public void showMultiDialog(Object title, Object items, ArrayList<Integer> checkedPositions, int maxCount, int code) {
+    public void showMultiDialog(Object title, ArrayList<ChoiceItem> items, ArrayList<Integer> checkedPositions, int maxCount, int code) {
 
         if (hgDialogs == null) {
             hgDialogs = new ArrayList<>();

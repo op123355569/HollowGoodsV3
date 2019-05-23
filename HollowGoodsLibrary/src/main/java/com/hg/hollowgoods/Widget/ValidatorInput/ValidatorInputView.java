@@ -30,10 +30,8 @@ import com.nineoldandroids.animation.ObjectAnimator;
 import java.util.ArrayList;
 
 /**
- * @ClassName:验证输入控件
- * @Description:
- * @author: HollowGoods
- * @date: 2018年08月15日
+ * 验证输入控件
+ * Created by HollowGoods on 2018-08-15.
  */
 public class ValidatorInputView extends LinearLayout {
 

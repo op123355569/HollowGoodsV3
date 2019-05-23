@@ -19,10 +19,8 @@ import com.hg.hollowgoods.Util.RecyclerViewAnim.animators.LandingAnimator;
 import java.util.ArrayList;
 
 /**
- * @ClassName:列表菜单特效示例
- * @Description:
- * @author: HollowGoods
- * @date: 2019年2月22日
+ * 列表菜单特效示例
+ * Created by HG on 2019-02-22.
  */
 public class Ex38Activity extends BaseActivity {
 

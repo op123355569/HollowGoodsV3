@@ -11,10 +11,8 @@ import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 
 /**
- * @ClassName:自动动画示例
- * @Description:
- * @author: HollowGoods
- * @date: 2018年12月10日
+ * 自动动画示例
+ * Created by HG on 2018-12-10.
  */
 public class Ex37Activity extends BaseActivity {
 

@@ -39,6 +39,8 @@ public class ValidatorFactory {
                 return MaxValueChecker(type, error, Double.valueOf(item.toString()));
             case ValidatorType.CONTAINS:
                 return ContainsChecker(type, error, (String) item);
+            case ValidatorType.NOT_ALL_NUMBER:
+                return notAllNumberChecker(type, error, (String) item);
         }
     }
 
@@ -158,6 +160,20 @@ public class ValidatorFactory {
                     return false;
                 }
                 return true;
+            }
+        };
+    }
+
+    private static Validator notAllNumberChecker(@ValidatorType.VType int type, String error, final String fullText) {
+        return new Validator(type, error, fullText) {
+            @Override
+            public boolean isValid(@NonNull CharSequence text) {
+
+                if (TextUtils.isEmpty(text)) {
+                    return true;
+                }
+
+                return !RegexUtils.isRealNumber1(text.toString());
             }
         };
     }

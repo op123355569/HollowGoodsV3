@@ -18,6 +18,7 @@ public class ValidatorType {
     public final static int END = 109;
     public final static int EQUAL = 110;
     public final static int PHONE = 111;
+    public final static int NOT_ALL_NUMBER = 112;
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({
@@ -32,6 +33,7 @@ public class ValidatorType {
             END,
             EQUAL,
             PHONE,
+            NOT_ALL_NUMBER,
     })
     public @interface VType {
     }

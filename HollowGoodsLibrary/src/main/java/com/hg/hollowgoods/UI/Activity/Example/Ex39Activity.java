@@ -15,10 +15,8 @@ import com.hg.hollowgoods.Widget.ArrowDownloadButton;
 import com.hg.hollowgoods.Widget.SubmitButton;
 
 /**
- * @ClassName:动画按钮示例
- * @Description:
- * @author: HollowGoods
- * @date: 2019年2月25日
+ * 动画按钮示例
+ * Created by HG on 2019-02-25.
  */
 public class Ex39Activity extends BaseActivity {
 

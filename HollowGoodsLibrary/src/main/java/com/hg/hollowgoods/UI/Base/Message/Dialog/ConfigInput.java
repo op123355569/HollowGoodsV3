@@ -4,10 +4,8 @@ import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.Validator;
 
 /**
- * @ClassName:输入配置
- * @Description:
- * @author: HollowGoods
- * @date: 2018年08月10日
+ * 输入配置
+ * Created by HG on 2018-08-10.
  */
 public class ConfigInput {
 
@@ -17,7 +15,7 @@ public class ConfigInput {
     private int maxLines = 1;
     private int inputType = HGConstants.INPUT_TYPE_DEFAULT;
     private Validator[] validator;
-    private boolean autoShowKeyboard = false;
+    private boolean autoShowKeyboard = true;
 
     /**** Set ****/
 

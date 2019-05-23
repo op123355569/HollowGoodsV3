@@ -46,6 +46,7 @@ public class ExampleUpdateAPPUtils {
     public static void checkUpdate(BaseActivity activity, boolean isFromUser) {
 
         baseActivity = activity;
+        ExampleUpdateAPPUtils.isFromUser = isFromUser;
 
         if (ExampleUpdateAPPUtils.isFromUser) {
             baseActivity.baseUI.baseDialog.showProgressDialog(R.string.update_app, HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
@@ -59,8 +60,6 @@ public class ExampleUpdateAPPUtils {
 
             baseApplication.setAutoCheckUpdateAppDate(StringUtils.getDateTimeString(baseApplication.getNowTime(), StringUtils.DateFormatMode.LINE_YMD));
         }
-
-        ExampleUpdateAPPUtils.isFromUser = isFromUser;
 
         doCheck();
     }

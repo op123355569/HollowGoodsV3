@@ -9,20 +9,16 @@ import com.hg.hollowgoods.Util.FileUtils;
 
 import java.util.Locale;
 
-import kotlin.jvm.JvmStatic;
-
 /**
- * @ClassName:
- * @Description:
- * @author: HollowGoods
- * @date: 2019年01月22日
+ * 系统配置
+ * Created by Hollow Goods on 2015-11-18.
  */
 public class HGSystemConfig {
 
     /**
      * 初始化
      *
-     * @param context
+     * @param context context
      */
     public static void init(Context context, String... rootDirectory) {
         APP_NAME = context.getString(R.string.app_name);
@@ -36,7 +32,7 @@ public class HGSystemConfig {
         IS_DEBUG_MODEL = APPUtils.isDebug(context);
     }
 
-    /**** APP模式切换 ****/
+    // /**** APP模式切换 ****/
     /**
      * 是否是开发模式 true:debug模式 ;false:release模式
      */
@@ -46,7 +42,7 @@ public class HGSystemConfig {
      */
     public static boolean IMMERSE_MODE = true;
 
-    /**** 应用名称 ****/
+    // /**** 应用名称 ****/
     /**
      * 应用名称
      */
@@ -56,7 +52,7 @@ public class HGSystemConfig {
      */
     public static String APP_NAME_EN = "MyApplication";
 
-    /**** APP缓存目录 ****/
+    // /**** APP缓存目录 ****/
     /**
      * APP根目录
      */
@@ -65,47 +61,81 @@ public class HGSystemConfig {
     /**
      * 图片缓存目录
      */
-    @JvmStatic
     public static String getPhotoCachePath() {
-        return APP_BASE_PATH + "/ImageCache/";
+
+        String path = APP_BASE_PATH + "/ImageCache/";
+        FileUtils.checkFileExist(path);
+
+        return path;
     }
 
     /**
      * 视频缓存目录
      */
     public static String getVideoCachePath() {
-        return APP_BASE_PATH + "/VideoCache/";
+
+        String path = APP_BASE_PATH + "/VideoCache/";
+        FileUtils.checkFileExist(path);
+
+        return path;
+    }
+
+    /**
+     * 音频缓存目录
+     */
+    public static String getAudioCachePath() {
+
+        String path = APP_BASE_PATH + "/AudioCache/";
+        FileUtils.checkFileExist(path);
+
+        return path;
     }
 
     /**
      * 数据缓存目录
      */
     public static String getDataCachePath() {
-        return APP_BASE_PATH + "/DataCache/";
+
+        String path = APP_BASE_PATH + "/DataCache/";
+        FileUtils.checkFileExist(path);
+
+        return path;
     }
 
     /**
      * 文件下载目录
      */
     public static String getDownloadFilePath() {
-        return APP_BASE_PATH + "/Download/";
+
+        String path = APP_BASE_PATH + "/Download/";
+        FileUtils.checkFileExist(path);
+
+        return path;
     }
 
     /**
      * BUG缓存目录
      */
     public static String getBugPath() {
-        return APP_BASE_PATH + "/BUG/";
+
+        String path = APP_BASE_PATH + "/BUG/";
+        FileUtils.checkFileExist(path);
+
+        return path;
     }
 
     /**
      * 搜索历史记录目录
      */
     public static String getSearchHistoryPath() {
-        return APP_BASE_PATH + "/SearchHistory/";
+
+        String path = APP_BASE_PATH + "/SearchHistory/";
+        FileUtils.checkFileExist(path);
+
+        return path;
     }
 
-    /**** 网络请求 ****/
+    // /**** 网络请求 ****/
     /**
      * xUtils超时重连时间数 单位：ms
      */
@@ -113,9 +143,9 @@ public class HGSystemConfig {
     /**
      * xUtils Get请求缓存时间
      */
-    public static int CACHE_TIME = 0 * 1000;
+    public static int CACHE_TIME = 0;
 
-    /**** 本地数据库 ****/
+    // /**** 本地数据库 ****/
     /**
      * 当前数据库DB的版本 初始是2
      */
@@ -125,7 +155,7 @@ public class HGSystemConfig {
      */
     public static String DATABASE_NAME = "data_base";
 
-    /**** 其他配置 ****/
+    // /**** 其他配置 ****/
     /**
      * Activity切换动画
      * 00 01 淡入淡出效果

@@ -82,7 +82,7 @@ public class ExampleUpdateAPPUtils {
                     StringBuilder tip = new StringBuilder();
                     tip.append("V");
                     tip.append(APPUtils.getVersionName(baseActivity));
-                    tip.append("→");
+                    tip.append(" → ");
                     tip.append("V");
                     char[] chars = String.valueOf(requestInfo.getData()).toCharArray();
                     for (int i = 0; i < chars.length; i++) {

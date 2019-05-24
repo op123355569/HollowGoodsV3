@@ -1,6 +1,8 @@
 package com.hg.hollowgoods.Util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by Hollow Goods on 2019-05-07.
@@ -77,6 +79,54 @@ public class ReflectUtils {
         try {
             return clazz.getDeclaredField(valueName).get(null);
         } catch (Exception ignored) {
+
+        }
+
+        return null;
+    }
+
+    public static Object invokeMethod(Object obj, Method method, Object... param) {
+
+        try {
+            return method.invoke(obj, param);
+        } catch (IllegalAccessException ignored) {
+
+        } catch (InvocationTargetException ignored) {
+
+        }
+
+        return null;
+    }
+
+    public static Object invokeStaticMethod(Method method, Object... param) {
+
+        try {
+            return method.invoke(null, param);
+        } catch (IllegalAccessException ignored) {
+
+        } catch (InvocationTargetException ignored) {
+
+        }
+
+        return null;
+    }
+
+    public static Class<?> getClassByPackageName(String packageName) {
+
+        try {
+            return Class.forName(packageName);
+        } catch (ClassNotFoundException ignored) {
+
+        }
+
+        return null;
+    }
+
+    public static Method getMethodByName(Class<?> clazz, String methodName, Class<?>... paramClass) {
+
+        try {
+            return clazz.getDeclaredMethod(methodName, paramClass);
+        } catch (NoSuchMethodException ignored) {
 
         }
 

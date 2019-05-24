@@ -1,5 +1,6 @@
 package com.hg.hollowgoods.Util;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -29,6 +30,7 @@ import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPreviewActivity;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +76,9 @@ public class SystemAppUtils {
     }
 
     private final String photoSavePath = HGSystemConfig.getPhotoCachePath();
+    public final String[] cameraPermissions = {
+            Manifest.permission.CAMERA,
+    };
 
     private String cameraPhotoName = "";
     private File cameraPhotoFile = null;
@@ -199,7 +204,7 @@ public class SystemAppUtils {
     }
 
     /**
-     * 打开相册
+     * 打开系统相册
      *
      * @param activity    activity
      * @param requestCode requestCode
@@ -640,6 +645,159 @@ public class SystemAppUtils {
         Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    private final String audioSavePath = HGSystemConfig.getAudioCachePath();
+    private String audioName = "";
+    public final String[] recordAudioPermissions = {
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
+
+    /**
+     * 打开录音界面
+     *
+     * @param activity    activity
+     * @param bgColor     录音界面背景颜色
+     * @param requestCode requestCode
+     * @param sampleRate  采样频率 请使用枚举 AudioSampleRate
+     * @param isAutoStart 是否自动开始录音
+     */
+    public void recordAudio(Activity activity,
+                            int bgColor,
+                            int requestCode,
+                            Object sampleRate,
+                            boolean isAutoStart
+    ) {
+
+        Class<?> androidAudioRecorderClass = ReflectUtils.getClassByPackageName("com.hg.hollowgoods.recorder.AndroidAudioRecorder");
+        if (androidAudioRecorderClass == null) {
+            t.error(R.string.not_implementation_recorder_module);
+            return;
+        }
+
+        audioName = System.currentTimeMillis() + ".wav";
+
+        Method withActivity = ReflectUtils.getMethodByName(
+                androidAudioRecorderClass,
+                "with",
+                Activity.class
+        );
+
+        if (withActivity != null) {
+            Object androidAudioRecorder = ReflectUtils.invokeStaticMethod(withActivity, activity);
+
+            if (androidAudioRecorder != null) {
+                // Required
+                Method setFilePath = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setFilePath",
+                        String.class
+                );
+                if (setFilePath != null) {
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setFilePath, audioSavePath + audioName);
+                }
+
+                Method setColor = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setColor",
+                        int.class
+                );
+                if (setColor != null) {
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setColor, bgColor);
+                }
+
+                Method setRequestCode = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setRequestCode",
+                        int.class
+                );
+                if (setRequestCode != null) {
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setRequestCode, requestCode);
+                }
+
+                // Optional
+                Class<?> audioSourceClass = ReflectUtils.getClassByPackageName("com.hg.hollowgoods.recorder.model.AudioSource");
+                Method setSource = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setSource",
+                        audioSourceClass
+                );
+                if (setSource != null) {
+                    Object value = ReflectUtils.getStaticObjValue(audioSourceClass, "MIC");
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setSource, value);
+                }
+
+                Class<?> audioChannelClass = ReflectUtils.getClassByPackageName("com.hg.hollowgoods.recorder.model.AudioChannel");
+                Method setChannel = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setChannel",
+                        audioChannelClass
+                );
+                if (setChannel != null) {
+                    Object value = ReflectUtils.getStaticObjValue(audioChannelClass, "STEREO");
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setChannel, value);
+                }
+
+                Class<?> audioSampleRateClass = ReflectUtils.getClassByPackageName("com.hg.hollowgoods.recorder.model.AudioSampleRate");
+                Method setSampleRate = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setSampleRate",
+                        audioSampleRateClass
+                );
+                if (setSampleRate != null) {
+                    Object value;
+                    if (sampleRate.getClass().getName().startsWith("com.hg.hollowgoods.recorder.model.AudioSampleRate")) {
+                        value = sampleRate;
+                    } else {
+                        value = ReflectUtils.getStaticObjValue(audioSampleRateClass, "HZ_48000");
+                    }
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setSampleRate, value);
+                }
+
+                Method setAutoStart = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setAutoStart",
+                        boolean.class
+                );
+                if (setAutoStart != null) {
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setAutoStart, isAutoStart);
+                }
+
+                Method setKeepDisplayOn = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "setKeepDisplayOn",
+                        boolean.class
+                );
+                if (setKeepDisplayOn != null) {
+                    ReflectUtils.invokeMethod(androidAudioRecorder, setKeepDisplayOn, true);
+                }
+
+                // Start recording
+                Method record = ReflectUtils.getMethodByName(
+                        androidAudioRecorderClass,
+                        "record"
+                );
+                if (record != null) {
+                    ReflectUtils.invokeMethod(androidAudioRecorder, record);
+                }
+            }
+        }
+    }
+
+    public String getAudioPath() {
+        return audioSavePath + audioName;
+    }
+
+    public boolean onActivityResultForRecordAudio(int resultCode) {
+
+        if (resultCode == Activity.RESULT_OK) {
+            return true;
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            return false;
+        }
+
+        return false;
     }
 
 }

@@ -133,6 +133,11 @@ allprojects {
     <uses-feature android:name="android.hardware.camera" /><!-- 许可调用相机硬件 -->
     <uses-feature android:name="android.hardware.camera.autofocus" /><!-- 许可调用相机自动对焦 -->
 
+    <!-- **** 录音模块 **** -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"

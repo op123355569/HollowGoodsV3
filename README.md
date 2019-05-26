@@ -20,9 +20,6 @@ dependencies {
 
 ## 2.拷贝Gradle
 ```
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
 android {
     buildToolsVersion '28.0.3'
     defaultConfig {
@@ -106,10 +103,11 @@ allprojects {
 
 ## 5.添加权限
 ```
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator,ProtectedPermissions"
+
     <!-- **** 本APP相关权限 **** -->
-    <uses-permission
-        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" /><!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /><!-- 在SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!-- 在SDCard中写入文件权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!-- 在SDCard中读取文件权限 -->
     <uses-permission android:name="android.permission.INTERNET" /><!-- 上网权限 -->

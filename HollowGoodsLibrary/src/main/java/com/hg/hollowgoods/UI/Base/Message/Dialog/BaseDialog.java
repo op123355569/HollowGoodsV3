@@ -3,6 +3,7 @@ package com.hg.hollowgoods.UI.Base.Message.Dialog;
 import android.content.Context;
 
 import com.hg.hollowgoods.Constant.HGConstants;
+import com.hg.hollowgoods.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -156,13 +157,13 @@ public class BaseDialog {
      * @param cancelable   是否可以用返回键关闭对话框
      * @param code         code
      */
-    public void showWarningDialog(Object tip, Object yesButtonTxt, boolean cancelable, int code) {
+    public void showWarningDialog(Object title, Object tip, Object yesButtonTxt, boolean cancelable, int code) {
 
         if (hgDialogs == null) {
             hgDialogs = new ArrayList<>();
         }
 
-        HGWarningDialog dialog = new HGWarningDialog(context, tip, yesButtonTxt, cancelable, code, dialog1 -> {
+        HGWarningDialog dialog = new HGWarningDialog(context, title, tip, yesButtonTxt, cancelable, code, dialog1 -> {
             hgDialogs.remove(dialog1);
             if (onDialogDismissListener != null) {
                 onDialogDismissListener.onDialogDismiss(dialog1);
@@ -183,7 +184,7 @@ public class BaseDialog {
      * @param code       code
      */
     public void showWarningDialog(Object tip, boolean cancelable, int code) {
-        showWarningDialog(tip, null, cancelable, code);
+        showWarningDialog(R.string.tips_best, tip, null, cancelable, code);
     }
 
     /**
@@ -193,7 +194,7 @@ public class BaseDialog {
      * @param code code
      */
     public void showWarningDialog(Object tip, int code) {
-        showWarningDialog(tip, null, true, code);
+        showWarningDialog(R.string.tips_best, tip, null, true, code);
     }
 
     /**

@@ -2,6 +2,7 @@ package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 
 import com.hg.hollowgoods.R;
 
@@ -12,26 +13,27 @@ import com.hg.hollowgoods.R;
 
 public class HGWarningDialog extends HGDialog {
 
-    private String tip = "";
-    private String yesButtonTxt = "";
-
-    public HGWarningDialog(Context context, Object tip, Object yesButtonTxt, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
+    public HGWarningDialog(Context context, Object title, Object tip, Object yesButtonTxt, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.onDialogDismissListener = onDialogDismissListener;
         this.code = code;
 
-        this.tip = getValue(tip, "");
-        this.yesButtonTxt = getValue(yesButtonTxt, context.getString(R.string.sure));
+        String titleValue = getValue(title, "");
+        String tipValue = getValue(tip, "");
+        String yesButtonTxtValue = getValue(yesButtonTxt, context.getString(R.string.sure));
 
         this.dialog = new AlertDialog.Builder(context)
-                .setPositiveButton(this.yesButtonTxt, (dialog, which) -> {
+                .setPositiveButton(yesButtonTxtValue, (dialog, which) -> {
 
                 })
                 .create();
         this.dialog.setOnDismissListener(dialog -> HGWarningDialog.this.onDialogDismissListener.onDialogDismiss(HGWarningDialog.this));
 
-        this.dialog.setMessage(this.tip);
+        if (!TextUtils.isEmpty(titleValue)) {
+            this.dialog.setTitle(titleValue);
+        }
+        this.dialog.setMessage(tipValue);
         this.dialog.setCancelable(cancelable);
         this.dialog.show();
     }

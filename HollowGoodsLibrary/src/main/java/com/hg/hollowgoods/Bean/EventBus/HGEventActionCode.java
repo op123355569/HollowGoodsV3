@@ -16,5 +16,7 @@ public class HGEventActionCode {
     public static final int NETWORK_STATUS_BREAK = -1005;
     /**** 网络状态——联网 ****/
     public static final int NETWORK_STATUS_LINK = -1006;
+    /**** 修改了IP配置 ****/
+    public static final int IP_CONFIG_CHANGED = -1007;
 
 }

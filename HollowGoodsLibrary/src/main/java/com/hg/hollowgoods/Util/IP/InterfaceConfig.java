@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hg.hollowgoods.Bean.EventBus.Event;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -14,6 +16,8 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.BaseDialog;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.ChoiceItem;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +51,7 @@ public class InterfaceConfig {
     /**
      * 添加IP配置信息
      *
-     * @param ipConfig
+     * @param ipConfig ipConfig
      */
     private static void addIP(IPConfig ipConfig) {
         if (!isExist(ipConfig)) {
@@ -145,6 +149,9 @@ public class InterfaceConfig {
             baseActivity.baseUI.showLongSnackbar("当前地址："
                     + ipConfig.getRequestUrl()
             );
+
+            Event event = new Event(HGEventActionCode.IP_CONFIG_CHANGED);
+            EventBus.getDefault().post(event);
         });
 
         ipDialog = builder.create();

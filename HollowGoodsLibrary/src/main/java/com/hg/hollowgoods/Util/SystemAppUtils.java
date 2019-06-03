@@ -635,7 +635,7 @@ public class SystemAppUtils {
     public void requestInstallPermission(Activity activity, int requestCode, OnProxyActivityResult onProxyActivityResult) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
 
             if (onProxyActivityResult != null) {
                 ProxyHelper.create((BaseActivity) activity).requestProxy(

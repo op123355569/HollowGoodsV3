@@ -19,7 +19,7 @@ public abstract class ProxyBaseFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        baseUI.initUI(getActivity());
+        baseUI.initUI(this);
     }
 
     @Override

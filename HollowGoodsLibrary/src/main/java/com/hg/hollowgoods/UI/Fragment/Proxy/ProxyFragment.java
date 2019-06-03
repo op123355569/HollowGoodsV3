@@ -61,21 +61,10 @@ public class ProxyFragment extends ProxyBaseFragment {
         detachFragment();
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//
-//        if (proxyConfig.getOnProxyRequestPermissionsResult() != null) {
-//            proxyConfig.getOnProxyRequestPermissionsResult().onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        }
-//
-//        detachFragment();
-//    }
-
     private void detachFragment() {
         if (isAdded()) {
             Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().detach(this).commitAllowingStateLoss();
         }
     }
+
 }

@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.Util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
+import com.hg.hollowgoods.UI.Fragment.Proxy.OnProxyActivityResult;
 import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 import com.hg.hollowgoods.Util.XUtils.DownloadListener;
 import com.hg.hollowgoods.Util.XUtils.GetHttpDataListener;
@@ -159,7 +161,12 @@ public class ExampleUpdateAPPUtils {
                 if (new SystemAppUtils().canInstallAPK(baseActivity)) {
                     new SystemAppUtils().installAPK(baseActivity, apkFile);
                 } else {
-                    new SystemAppUtils().requestInstallPermission(baseActivity, HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL);
+                    new SystemAppUtils().requestInstallPermission(baseActivity, HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL, new OnProxyActivityResult() {
+                        @Override
+                        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                            onInstallRequestActivityResult(requestCode, resultCode);
+                        }
+                    });
                 }
             }
 
@@ -186,7 +193,7 @@ public class ExampleUpdateAPPUtils {
         xUtils.downloadFile(HttpMethod.POST, params, path + name);
     }
 
-    public static void onInstallRequestActivityResult(int requestCode, int resultCode) {
+    private static void onInstallRequestActivityResult(int requestCode, int resultCode) {
         if (requestCode == HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == Activity.RESULT_OK) {
             new SystemAppUtils().installAPK(baseActivity, apkFile);
         }

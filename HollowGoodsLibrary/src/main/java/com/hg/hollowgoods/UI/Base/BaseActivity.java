@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -16,6 +15,7 @@ import com.hg.hollowgoods.Constant.HGSystemConfig;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 基Activity<p>
@@ -60,8 +60,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     /**
      * 创建公共标题右侧菜单
      *
-     * @param menu
-     * @return
+     * @param menu menu
+     * @return boolean
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,21 +95,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
         baseUI.onRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        baseUI.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
      * 执行EventBus
      *
-     * @param event
+     * @param event event
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventUI(Event event) {
@@ -151,7 +145,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     /**
      * 点击了历史记录列表或者按了回车
      *
-     * @param searchKey
+     * @param searchKey searchKey
      */
     @Override
     public void onSearched(String searchKey) {
@@ -161,7 +155,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     /**
      * 搜索框输入内容有变化
      *
-     * @param searchKey
+     * @param searchKey searchKey
      */
     @Override
     public void onSearchKeyChanging(String searchKey) {
@@ -171,7 +165,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     /**
      * 搜索框菜单点击
      *
-     * @param id
+     * @param id id
      */
     @Override
     public void onSearchMenuItemClick(int id) {

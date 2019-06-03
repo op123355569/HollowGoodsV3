@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import com.hg.hollowgoods.UI.Base.MVP.IBasePresenter;
 import com.hg.hollowgoods.UI.Base.MVP.IBaseView;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 基Activity<p>
  * 如需开启沉浸式，在SystemConfig中修改IMMERSE_MODE为true<p>
@@ -25,7 +27,7 @@ public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFrag
     protected P mPresenter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mPresenter = createPresenter();
         if (mPresenter != null) {
             mPresenter.attachView(this);

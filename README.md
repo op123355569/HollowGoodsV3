@@ -167,3 +167,13 @@ allprojects {
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 ```
+
+## SO兼容性问题
+### 在defaultConfig里面加入以下代码
+
+```
+ndk {
+    // 设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+    abiFilters "armeabi"/*, "armeabi-v7a", "arm64-v8a", "x86","x86_64"*/
+}
+```

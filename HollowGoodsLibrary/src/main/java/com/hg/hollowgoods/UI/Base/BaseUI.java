@@ -36,7 +36,6 @@ import android.widget.LinearLayout;
 
 import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Constant.HGCommonResource;
-import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnFloatingSearchMenuItemClickListener;
@@ -45,7 +44,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.BaseDialog;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.CircularAnimUtils;
-import com.hg.hollowgoods.Util.ExampleUpdateAPPUtils;
+import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.ReflectUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchHistoryUtils;
 import com.hg.hollowgoods.Util.SearchHistory.SearchKeys;
@@ -126,7 +125,11 @@ public class BaseUI {
 
     /**** 暴露的方法 ****/
 
-    public void initUI(Object initUI, View rootView) {
+    void initUI(Object initUI) {
+        initUI(initUI, null);
+    }
+
+    void initUI(Object initUI, View rootView) {
 
         this.initUI = initUI;
 
@@ -146,42 +149,44 @@ public class BaseUI {
         }
 
         // 加载Root Layout
-        this.rootView = rootView;
+        if (rootView != null) {
+            this.rootView = rootView;
 
-        if (isActivity) {
-            getBaseContext().setContentView(this.rootView);
-            x.view().inject(getBaseContext());
-        } else {
-            x.view().inject(this.initUI, this.rootView);
-        }
+            if (isActivity) {
+                getBaseContext().setContentView(this.rootView);
+                x.view().inject(getBaseContext());
+            } else {
+                x.view().inject(this.initUI, this.rootView);
+            }
 
-        // 创建基础对话框
-        baseDialog = new BaseDialog(getBaseContext());
-        // 初始化搜索提示
-        searchHint = getBaseContext().getString(R.string.search);
-        // 获取是否有共享控件
-        hasSharedElement = getBaseContext().getIntent().getBooleanExtra("hasSharedElement", false);
+            // 创建基础对话框
+            baseDialog = new BaseDialog(getBaseContext());
+            // 初始化搜索提示
+            searchHint = getBaseContext().getString(R.string.search);
+            // 获取是否有共享控件
+            hasSharedElement = getBaseContext().getIntent().getBooleanExtra("hasSharedElement", false);
 
-        // 初始化公共标题
-        initCommonTitle();
+            // 初始化公共标题
+            initCommonTitle();
 
-        // 找到主体内容控件
-        contentView = findViewById(R.id.view_content);
-        // 找到无数据控件
-        noDataView = findViewById(R.id.view_common_no_data);
-        loadDataViewCenter = findViewById(R.id.view_common_load_data_center);
-        loadDataViewBottom = findViewById(R.id.view_common_load_data_bottom);
-        bottomProgressBar = loadDataViewBottom == null ? null : (SmoothProgressBar) ((LinearLayout) loadDataViewBottom).getChildAt(0);
-        floatingSearchView = findViewById(R.id.floating_search_view);
-        statusLayout = findViewById(R.id.hgStatusLayout);
+            // 找到主体内容控件
+            contentView = findViewById(R.id.view_content);
+            // 找到无数据控件
+            noDataView = findViewById(R.id.view_common_no_data);
+            loadDataViewCenter = findViewById(R.id.view_common_load_data_center);
+            loadDataViewBottom = findViewById(R.id.view_common_load_data_bottom);
+            bottomProgressBar = loadDataViewBottom == null ? null : (SmoothProgressBar) ((LinearLayout) loadDataViewBottom).getChildAt(0);
+            floatingSearchView = findViewById(R.id.floating_search_view);
+            statusLayout = findViewById(R.id.hgStatusLayout);
 
-        if (noDataView != null) {
-            noDataView.setOnClickListener(new OnViewClickListener(false) {
-                @Override
-                public void onViewClick(View view, int id) {
-                    iCommonTitleClickListener.onNoDataViewClick(view);
-                }
-            });
+            if (noDataView != null) {
+                noDataView.setOnClickListener(new OnViewClickListener(false) {
+                    @Override
+                    public void onViewClick(View view, int id) {
+                        iCommonTitleClickListener.onNoDataViewClick(view);
+                    }
+                });
+            }
         }
     }
 
@@ -190,7 +195,7 @@ public class BaseUI {
      *
      * @param eventBusObj eventBusObj
      */
-    public void bindEventBus(Object eventBusObj) {
+    void bindEventBus(Object eventBusObj) {
 
         registerEventBusObj = eventBusObj;
 
@@ -247,7 +252,7 @@ public class BaseUI {
         }
     }
 
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
         if (iPermissionsListener != null && grantResults != null && grantResults.length > 0) {
             boolean[] isAgree = new boolean[grantResults.length];
@@ -263,12 +268,6 @@ public class BaseUI {
             }
 
             iPermissionsListener.onPermissionsResult(isAgreeAll, requestCode, permissions, isAgree);
-        }
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == HGConstants.UPDATE_APP_UTILS_REQUEST_CODE_INSTALL && resultCode == Activity.RESULT_OK) {
-            ExampleUpdateAPPUtils.onInstallRequestActivityResult(requestCode, resultCode);
         }
     }
 
@@ -338,7 +337,7 @@ public class BaseUI {
         String[] result = null;
         ArrayList<String> temp = new ArrayList<>();
 
-        if (permission != null || permission.length > 0) {
+        if (permission != null && permission.length > 0) {
             for (String t : permission) {
                 if (ActivityCompat.checkSelfPermission(getBaseContext(), t) != PackageManager.PERMISSION_GRANTED) {
                     temp.add(t);
@@ -468,7 +467,7 @@ public class BaseUI {
     /**
      * 设置公共标题左侧图标
      *
-     * @param leftIcon
+     * @param leftIcon leftIcon
      */
     public void setCommonTitleLeftIcon(Object leftIcon) {
 
@@ -1641,6 +1640,7 @@ public class BaseUI {
                             }
                         } else {
                             // 不合法的参数
+                            LogUtils.Log(R.string.illegal_parameter);
                         }
                     } else {
                         intent.putExtra(key[i], (Serializable) values[i]);
@@ -1649,10 +1649,11 @@ public class BaseUI {
                     intent.putExtra(key[i], (Parcelable) values[i]);
                 } else {
                     // 不合法的参数
+                    LogUtils.Log(R.string.illegal_parameter);
                 }
             }
         } else {
-            t.showShortToast(R.string.length_different);
+            LogUtils.Log(R.string.length_different);
         }
 
         return intent;

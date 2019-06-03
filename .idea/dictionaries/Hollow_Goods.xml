@@ -6,6 +6,7 @@
       <w>gson</w>
       <w>mifare</w>
       <w>popupwin</w>
+      <w>snackbar</w>
     </words>
   </dictionary>
 </component>

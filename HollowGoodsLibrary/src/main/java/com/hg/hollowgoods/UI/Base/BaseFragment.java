@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -16,10 +15,11 @@ import android.view.ViewGroup;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
-import com.hg.hollowgoods.UI.Base.Message.Toast.t;
+import com.hg.hollowgoods.Util.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
     public BaseUI baseUI = new BaseUI();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // 初始化界面
         baseUI.initUI(this, inflater.inflate(bindLayout(), container, false));
@@ -57,9 +57,8 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
     /**
      * 设置Fragment的携带参数
      *
-     * @param key
-     * @param values
-     * @return
+     * @param key    key
+     * @param values values
      */
     public void setFragmentArguments(String[] key, Object[] values) {
 
@@ -97,6 +96,7 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
                             b.putSerializable(key[i], (Serializable) values[i]);
                         } else {
                             // 不合法的参数
+                            LogUtils.Log(R.string.illegal_parameter);
                         }
                     } else {
                         b.putSerializable(key[i], (Serializable) values[i]);
@@ -105,10 +105,11 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
                     b.putParcelable(key[i], (Parcelable) values[i]);
                 } else {
                     // 不合法的参数
+                    LogUtils.Log(R.string.illegal_parameter);
                 }
             }
         } else {
-            t.showShortToast(getString(R.string.length_different));
+            LogUtils.Log(getString(R.string.length_different));
         }
 
         setArguments(b);
@@ -137,16 +138,10 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        baseUI.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     /**
      * 执行EventBus
      *
-     * @param event
+     * @param event event
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventUI(Event event) {
@@ -193,7 +188,7 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
     /**
      * 点击了历史记录列表或者按了回车
      *
-     * @param searchKey
+     * @param searchKey searchKey
      */
     @Override
     public void onSearched(String searchKey) {
@@ -203,13 +198,18 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
     /**
      * 搜索框输入内容有变化
      *
-     * @param searchKey
+     * @param searchKey searchKey
      */
     @Override
     public void onSearchKeyChanging(String searchKey) {
 
     }
 
+    /**
+     * 搜索框菜单点击
+     *
+     * @param id id
+     */
     @Override
     public void onSearchMenuItemClick(int id) {
 

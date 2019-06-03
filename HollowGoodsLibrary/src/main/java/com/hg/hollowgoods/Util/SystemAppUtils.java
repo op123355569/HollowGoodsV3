@@ -24,7 +24,11 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Plugin.FileReadActivity;
 import com.hg.hollowgoods.UI.Activity.Plugin.FileSelectorActivity;
 import com.hg.hollowgoods.UI.Activity.Plugin.ImagePreActivity;
+import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
+import com.hg.hollowgoods.UI.Fragment.Proxy.OnProxyActivityResult;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyConfig;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyHelper;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPickerActivity;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPreviewActivity;
 import com.yalantis.ucrop.UCrop;
@@ -628,12 +632,26 @@ public class SystemAppUtils {
      * 请求安装权限</br>
      * 8.0以上需要使用
      */
-    public void requestInstallPermission(Activity activity, int requestCode) {
+    public void requestInstallPermission(Activity activity, int requestCode, OnProxyActivityResult onProxyActivityResult) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            activity.startActivityForResult(intent, requestCode);
+
+            if (onProxyActivityResult != null) {
+                ProxyHelper.create((BaseActivity) activity).requestProxy(
+                        new ProxyConfig()
+                                .setIntent(intent)
+                                .setRequestCode(requestCode)
+                                .setOnProxyActivityResult(onProxyActivityResult)
+                );
+            } else {
+                activity.startActivityForResult(intent, requestCode);
+            }
         }
+    }
+
+    public void requestInstallPermission(Activity activity, int requestCode) {
+        requestInstallPermission(activity, requestCode, null);
     }
 
     /**

@@ -11,12 +11,7 @@ import com.hg.hollowgoods.R;
  * Created by HG on 2018-01-17.
  */
 
-public class HGAlertDialog extends HGDialog {
-
-    private String title = "";
-    private String tip = "";
-    private String noButtonTxt = "";
-    private String yesButtonTxt = "";
+class HGAlertDialog extends HGDialog {
 
     HGAlertDialog(Context context, Object title, Object tip, Object noButtonTxt, Object yesButtonTxt, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
 
@@ -24,18 +19,18 @@ public class HGAlertDialog extends HGDialog {
         this.code = code;
         this.onDialogDismissListener = onDialogDismissListener;
 
-        this.title = getValue(title, "");
-        this.tip = getValue(tip, "");
-        this.noButtonTxt = getValue(noButtonTxt, context.getString(R.string.cancel));
-        this.yesButtonTxt = getValue(yesButtonTxt, context.getString(R.string.sure));
+        CharSequence title1 = getValue(title, "");
+        CharSequence tip1 = getValue(tip, "");
+        CharSequence noButtonTxt1 = getValue(noButtonTxt, context.getString(R.string.cancel));
+        CharSequence yesButtonTxt1 = getValue(yesButtonTxt, context.getString(R.string.sure));
 
         this.dialog = new AlertDialog.Builder(context)
-                .setPositiveButton(this.yesButtonTxt, (dialog, which) -> {
+                .setPositiveButton(yesButtonTxt1, (dialog, which) -> {
                     if (onDialogClickListener != null) {
                         onDialogClickListener.onDialogClick(HGAlertDialog.this.code, true, null);
                     }
                 })
-                .setNegativeButton(this.noButtonTxt, (dialog, which) -> {
+                .setNegativeButton(noButtonTxt1, (dialog, which) -> {
                     if (onDialogClickListener != null) {
                         onDialogClickListener.onDialogClick(HGAlertDialog.this.code, false, null);
                     }
@@ -43,59 +38,12 @@ public class HGAlertDialog extends HGDialog {
                 .create();
         this.dialog.setOnDismissListener(dialog -> HGAlertDialog.this.onDialogDismissListener.onDialogDismiss(HGAlertDialog.this));
 
-        if (!TextUtils.isEmpty(this.title)) {
-            this.dialog.setTitle(this.title);
+        if (!TextUtils.isEmpty(title1)) {
+            this.dialog.setTitle(title1);
         }
-        this.dialog.setMessage(this.tip);
+        this.dialog.setMessage(tip1);
         this.dialog.setCancelable(cancelable);
         this.dialog.show();
     }
 
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTip() {
-        return tip;
-    }
-
-    public void setTip(String tip) {
-        this.tip = tip;
-    }
-
-    public String getNoButtonTxt() {
-        return noButtonTxt;
-    }
-
-    public void setNoButtonTxt(String noButtonTxt) {
-        this.noButtonTxt = noButtonTxt;
-    }
-
-    public String getYesButtonTxt() {
-        return yesButtonTxt;
-    }
-
-    public void setYesButtonTxt(String yesButtonTxt) {
-        this.yesButtonTxt = yesButtonTxt;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
 }

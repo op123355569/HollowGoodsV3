@@ -24,11 +24,11 @@ public class HGProgressDialog extends HGDialog {
     private RingProgressBar progressBar;
     private TextView progressContentView;
 
-    private String content;
-    private String title;
+    private CharSequence content;
+    private CharSequence title;
     private boolean isIndefinite;
 
-    public HGProgressDialog(Context context, Object title, Object content, boolean cancelable, boolean isIndefinite, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGProgressDialog(Context context, Object title, Object content, boolean cancelable, boolean isIndefinite, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.onDialogDismissListener = onDialogDismissListener;
@@ -133,60 +133,8 @@ public class HGProgressDialog extends HGDialog {
         }
     }
 
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    public boolean isIndefinite() {
+    boolean isIndefinite() {
         return isIndefinite;
-    }
-
-    public void setIndefinite(boolean indefinite) {
-        isIndefinite = indefinite;
-    }
-
-    public AlertDialog getDialog() {
-        return dialog;
-    }
-
-    public void setDialog(AlertDialog dialog) {
-        this.dialog = dialog;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public ImageView getProgressImageView() {
-        return progressImageView;
-    }
-
-    public void setProgressImageView(ImageView progressImageView) {
-        this.progressImageView = progressImageView;
-    }
-
-    public TextView getProgressContentView() {
-        return progressContentView;
-    }
-
-    public void setProgressContentView(TextView progressContentView) {
-        this.progressContentView = progressContentView;
     }
 
 }

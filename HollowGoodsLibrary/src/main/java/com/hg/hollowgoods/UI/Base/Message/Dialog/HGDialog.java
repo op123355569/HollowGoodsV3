@@ -2,6 +2,7 @@ package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 
@@ -19,14 +20,14 @@ public class HGDialog {
     public OnDialogDismissListener onDialogDismissListener;
     public OnDialogClickListener onDialogClickListener;
     public int code;
-    public boolean isCloseAll = false;
+    boolean isCloseAll = false;
     private PopupWinHelper popupWinHelper;
 
-    public void closeDialog() {
+    void closeDialog() {
         this.dialog.dismiss();
     }
 
-    public void closeAllDialog() {
+    void closeAllDialog() {
         isCloseAll = true;
         this.dialog.dismiss();
     }
@@ -35,12 +36,12 @@ public class HGDialog {
         this.onDialogClickListener = onDialogClickListener;
     }
 
-    public String getValue(Object source, String defaultValue) {
+    public CharSequence getValue(Object source, String defaultValue) {
 
         if (source == null) {
             return defaultValue;
         } else if (source instanceof String) {
-            return (String) source;
+            return Html.fromHtml((String) source);
         } else if (source instanceof Integer) {
             return context.getString((Integer) source);
         }
@@ -62,12 +63,6 @@ public class HGDialog {
                     false
             );
         }
-
-//        TextView titleView = popupWinHelper.getView(R.id.tv_title);
-//        TextView describeView = popupWinHelper.getView(R.id.tv_describe);
-//
-//        titleView.setText(title);
-//        describeView.setText(describe);
 
         popupWinHelper.showPopupWin(view);
 

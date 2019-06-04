@@ -21,11 +21,11 @@ import com.hg.hollowgoods.Widget.ValidatorInput.ValidatorInputView;
  * Created by HG on 2018-01-17.
  */
 
-public class HGInputNewDialog extends HGDialog {
+class HGInputNewDialog extends HGDialog {
 
     private ValidatorInputView inputView;
 
-    public HGInputNewDialog(Context context, ConfigInput configInput, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGInputNewDialog(Context context, ConfigInput configInput, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.code = code;
@@ -44,18 +44,18 @@ public class HGInputNewDialog extends HGDialog {
         TextView titleView = this.dialog.findViewById(R.id.tv_title);
 
         // 标题
-        String titleValue = getValue(configInput.getTitle(), "");
+        CharSequence titleValue = getValue(configInput.getTitle(), "");
         if (titleView != null && !TextUtils.isEmpty(titleValue)) {
             titleView.setVisibility(View.VISIBLE);
             titleView.setText(titleValue);
         }
 
         // 默认字符
-        String hintValue = getValue(configInput.getHint(), this.context.getString(R.string.input_dialog_hint));
+        CharSequence hintValue = getValue(configInput.getHint(), this.context.getString(R.string.input_dialog_hint));
         this.inputView.setHint(hintValue);
 
         // 填写字符
-        String textValue = getValue(configInput.getText(), "");
+        CharSequence textValue = getValue(configInput.getText(), "");
         inputView.setText(textValue);
 
         // 行数

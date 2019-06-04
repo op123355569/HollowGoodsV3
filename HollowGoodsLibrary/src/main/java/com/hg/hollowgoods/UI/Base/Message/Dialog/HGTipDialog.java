@@ -9,27 +9,24 @@ import android.text.TextUtils;
  * Created by HG on 2018-01-17.
  */
 
-public class HGTipDialog extends HGDialog {
+class HGTipDialog extends HGDialog {
 
-    private String title;
-    private String tip;
-
-    public HGTipDialog(Context context, Object title, Object tip, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGTipDialog(Context context, Object title, Object tip, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.onDialogDismissListener = onDialogDismissListener;
         this.code = code;
 
-        this.title = getValue(title, "");
-        this.tip = getValue(tip, "");
+        CharSequence title1 = getValue(title, "");
+        CharSequence tip1 = getValue(tip, "");
 
         this.dialog = new AlertDialog.Builder(context).create();
         this.dialog.setOnDismissListener(dialog -> HGTipDialog.this.onDialogDismissListener.onDialogDismiss(HGTipDialog.this));
 
-        if (!TextUtils.isEmpty(this.title)) {
-            this.dialog.setTitle(this.title);
+        if (!TextUtils.isEmpty(title1)) {
+            this.dialog.setTitle(title1);
         }
-        this.dialog.setMessage(this.tip);
+        this.dialog.setMessage(tip1);
         this.dialog.setCancelable(cancelable);
         this.dialog.show();
     }

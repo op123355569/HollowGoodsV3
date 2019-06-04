@@ -23,10 +23,8 @@ import java.util.ArrayList;
 
 class HGSingleChoiceDialog extends HGDialog {
 
-    private String title;
     private int checkedPosition;
 
-    private RecyclerView result;
     private SingleChoiceDialogAdapter adapter;
     private ArrayList<ChoiceItem> data = new ArrayList<>();
 
@@ -36,7 +34,7 @@ class HGSingleChoiceDialog extends HGDialog {
         this.onDialogDismissListener = onDialogDismissListener;
         this.code = code;
 
-        this.title = getValue(title, "");
+        CharSequence title1 = getValue(title, "");
         this.checkedPosition = checkedPosition;
 
         this.dialog = new AlertDialog
@@ -56,40 +54,42 @@ class HGSingleChoiceDialog extends HGDialog {
                 .create();
         this.dialog.setOnDismissListener(dialog -> HGSingleChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGSingleChoiceDialog.this));
 
-        if (!TextUtils.isEmpty(this.title)) {
-            this.dialog.setTitle(this.title);
+        if (!TextUtils.isEmpty(title1)) {
+            this.dialog.setTitle(title1);
         }
         this.dialog.setCancelable(true);
         this.dialog.show();
 
-        result = this.dialog.findViewById(R.id.rv_result);
+        RecyclerView result = this.dialog.findViewById(R.id.rv_result);
 
-        result.setHasFixedSize(true);
-        result.setItemAnimator(new DefaultItemAnimator());
-        result.setLayoutManager(new LinearLayoutManager(this.context));
+        if (result != null) {
+            result.setHasFixedSize(true);
+            result.setItemAnimator(new DefaultItemAnimator());
+            result.setLayoutManager(new LinearLayoutManager(this.context));
 
-        if (items != null) {
-            data.addAll(items);
+            if (items != null) {
+                data.addAll(items);
+            }
+
+            adapter = new SingleChoiceDialogAdapter(this.context, R.layout.item_choice_dialog, data);
+            result.setAdapter(adapter);
+
+            adapter.setCheckedPosition(checkedPosition);
+
+            adapter.setOnItemClickListener(new OnRecyclerViewItemClickListener(false, true, false) {
+                @Override
+                public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+                    HGSingleChoiceDialog.this.checkedPosition = position;
+                    adapter.setCheckedPosition(position);
+                }
+            });
+            adapter.setOnDescribeClickListener(new OnRecyclerViewItemClickListener(false) {
+                @Override
+                public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+                    showDescribe(view, data.get(position).getItem().toString(), data.get(position).getDescribe());
+                }
+            });
         }
-
-        adapter = new SingleChoiceDialogAdapter(this.context, R.layout.item_choice_dialog, data);
-        result.setAdapter(adapter);
-
-        adapter.setCheckedPosition(checkedPosition);
-
-        adapter.setOnItemClickListener(new OnRecyclerViewItemClickListener(false, true, false) {
-            @Override
-            public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
-                HGSingleChoiceDialog.this.checkedPosition = position;
-                adapter.setCheckedPosition(position);
-            }
-        });
-        adapter.setOnDescribeClickListener(new OnRecyclerViewItemClickListener(false) {
-            @Override
-            public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
-                showDescribe(view, data.get(position).getItem().toString(), data.get(position).getDescribe());
-            }
-        });
     }
 
 }

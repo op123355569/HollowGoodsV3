@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.widget.TimePicker;
@@ -19,13 +18,11 @@ import java.util.Calendar;
 @Deprecated
 public class HGTimeDialog extends HGDialog {
 
-    private TimePicker timePicker;
-
     private int hour;
     private int minute;
     private OnDialogDismissListener onDialogDismissListener;
 
-    public HGTimeDialog(Context context, long timeInMillis, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGTimeDialog(Context context, long timeInMillis, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.code = code;
@@ -38,12 +35,9 @@ public class HGTimeDialog extends HGDialog {
         this.hour = c.get(Calendar.HOUR_OF_DAY);
         this.minute = c.get(Calendar.MINUTE);
 
-        this.dialog = new AlertDialog.Builder(context).setView(R.layout.dialog_time).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (onDialogClickListener != null) {
-                    onDialogClickListener.onDialogClick(HGTimeDialog.this.code, false, null);
-                }
+        this.dialog = new AlertDialog.Builder(context).setView(R.layout.dialog_time).setNegativeButton(R.string.cancel, (dialog, which) -> {
+            if (onDialogClickListener != null) {
+                onDialogClickListener.onDialogClick(HGTimeDialog.this.code, false, null);
             }
         }).setPositiveButton(R.string.sure, (dialog, which) -> {
             if (onDialogClickListener != null) {
@@ -61,14 +55,16 @@ public class HGTimeDialog extends HGDialog {
 
         this.dialog.show();
 
-        timePicker = this.dialog.findViewById(R.id.timePicker);
-        timePicker.setIs24HourView(true);
-        timePicker.setCurrentHour(hour);
-        timePicker.setCurrentMinute(minute);
+        TimePicker timePicker = this.dialog.findViewById(R.id.timePicker);
+        if (timePicker != null) {
+            timePicker.setIs24HourView(true);
+            timePicker.setCurrentHour(hour);
+            timePicker.setCurrentMinute(minute);
 
-        timePicker.setOnTimeChangedListener((view, mHour, mMinute) -> {
-            HGTimeDialog.this.hour = mHour;
-            HGTimeDialog.this.minute = mMinute;
-        });
+            timePicker.setOnTimeChangedListener((view, mHour, mMinute) -> {
+                HGTimeDialog.this.hour = mHour;
+                HGTimeDialog.this.minute = mMinute;
+            });
+        }
     }
 }

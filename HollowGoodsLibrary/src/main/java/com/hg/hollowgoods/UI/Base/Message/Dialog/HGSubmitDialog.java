@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Created by HG on 2019-04-10.
  */
 
-public class HGSubmitDialog extends HGDialog {
+class HGSubmitDialog extends HGDialog {
 
     private DiscreteScrollView result;
     private TextView tips;
@@ -32,11 +32,10 @@ public class HGSubmitDialog extends HGDialog {
     private View allFlag;
 
     private InfiniteScrollAdapter infiniteScrollAdapter;
-    private SubmitDialogAdapter adapter;
     private ArrayList<ConfigSubmit> data = new ArrayList<>();
     private int nowPosition = 0;
 
-    public HGSubmitDialog(Context context, ArrayList<ConfigSubmit> configSubmits, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGSubmitDialog(Context context, ArrayList<ConfigSubmit> configSubmits, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.onDialogDismissListener = onDialogDismissListener;
@@ -73,7 +72,7 @@ public class HGSubmitDialog extends HGDialog {
             });
 
             // 创建普通适配器
-            adapter = new SubmitDialogAdapter(this.context, R.layout.item_submit_dialog, data);
+            SubmitDialogAdapter adapter = new SubmitDialogAdapter(this.context, R.layout.item_submit_dialog, data);
             // 生成无限滚动适配器
             infiniteScrollAdapter = InfiniteScrollAdapter.wrap(adapter);
             // 把无限滚动适配器放入普通适配器，为了获取真实的Position
@@ -117,7 +116,7 @@ public class HGSubmitDialog extends HGDialog {
         nowPosition = position;
     }
 
-    public void refreshDialog(ArrayList<ConfigSubmit> configSubmits) {
+    void refreshDialog(ArrayList<ConfigSubmit> configSubmits) {
 
         if (configSubmits != null) {
             data.clear();
@@ -139,7 +138,8 @@ public class HGSubmitDialog extends HGDialog {
                     case Request:
                     case Wait:
                     case Error:
-                        tips.setText("当前正在提交第" + (i + 1) + "步，共" + data.size() + "步");
+                        String str = "当前正在提交第" + (i + 1) + "步，共" + data.size() + "步";
+                        tips.setText(str);
                         allFlag.setVisibility(View.GONE);
                         result.setVisibility(View.VISIBLE);
 
@@ -153,7 +153,8 @@ public class HGSubmitDialog extends HGDialog {
                 i++;
             }
 
-            tips.setText("已全部提交完成，共" + data.size() + "步");
+            String str = "已全部提交完成，共" + data.size() + "步";
+            tips.setText(str);
             allFlag.setVisibility(View.VISIBLE);
             result.setVisibility(View.INVISIBLE);
         }

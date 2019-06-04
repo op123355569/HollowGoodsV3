@@ -19,8 +19,6 @@ import java.util.Calendar;
 @Deprecated
 public class HGDateDialog extends HGDialog {
 
-    private DatePicker datePicker;
-
     private int year;
     private int month;
     private int date;
@@ -63,7 +61,7 @@ public class HGDateDialog extends HGDialog {
 
         this.dialog.show();
 
-        datePicker = this.dialog.findViewById(R.id.datePicker);
+        DatePicker datePicker = this.dialog.findViewById(R.id.datePicker);
         datePicker.init(this.year, this.month, this.date, (view, mYear, mMonth, mDate) -> {
             HGDateDialog.this.year = mYear;
             HGDateDialog.this.month = mMonth;

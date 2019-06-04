@@ -1,11 +1,9 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,42 +21,31 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class HGInputDialog extends HGDialog {
 
     private MaterialEditText inputView;
-    private TextView cancelView;
-    private TextView sureView;
 
-    private String hint = "";
-    private String value = "";
-    private int inputType;
     private int minSize;
     private int maxSize;
 
-    public HGInputDialog(final Context context, Object hint, Object value, int inputType, int code, int minSize, int maxSize, OnDialogDismissListener onDialogDismissListener) {
+    HGInputDialog(final Context context, Object hint, Object value, int inputType, int code, int minSize, int maxSize, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
-        this.inputType = inputType;
         this.code = code;
         this.minSize = minSize;
         this.maxSize = maxSize;
         this.onDialogDismissListener = onDialogDismissListener;
 
-        this.hint = getValue(hint, "");
-        this.value = getValue(value, "");
+        CharSequence hint1 = getValue(hint, "");
+        CharSequence value1 = getValue(value, "");
 
         this.dialog = new AlertDialog
                 .Builder(context)
                 .setView(R.layout.dialog_input)
                 .create();
-        this.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                HGInputDialog.this.onDialogDismissListener.onDialogDismiss(HGInputDialog.this);
-            }
-        });
+        this.dialog.setOnDismissListener(dialog -> HGInputDialog.this.onDialogDismissListener.onDialogDismiss(HGInputDialog.this));
         this.dialog.show();
 
         this.inputView = this.dialog.findViewById(R.id.et_input);
-        this.cancelView = this.dialog.findViewById(R.id.tv_cancel);
-        this.sureView = this.dialog.findViewById(R.id.tv_sure);
+        TextView cancelView = this.dialog.findViewById(R.id.tv_cancel);
+        TextView sureView = this.dialog.findViewById(R.id.tv_sure);
 
         if (minSize != HGConstants.INPUT_SIZE_DEFAULT) {
             this.inputView.setMinCharacters(minSize);
@@ -68,16 +55,12 @@ public class HGInputDialog extends HGDialog {
             this.inputView.setMaxCharacters(maxSize);
         }
 
-        this.cancelView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        if (cancelView != null) {
+            cancelView.setOnClickListener(v -> dialog.dismiss());
+        }
 
-        this.sureView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if (sureView != null) {
+            sureView.setOnClickListener(v -> {
 
                 int size = inputView.getText().toString().length();
                 String inputTip;
@@ -124,21 +107,21 @@ public class HGInputDialog extends HGDialog {
                         Toast.makeText(HGInputDialog.this.context, inputTip, Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
-        });
-
-        if (!TextUtils.isEmpty(this.hint)) {
-            this.inputView.setHint(this.hint);
-            this.inputView.setFloatingLabelText(this.hint);
+            });
         }
 
-        if (!TextUtils.isEmpty(this.value)) {
-            this.inputView.setText(this.value);
+        if (!TextUtils.isEmpty(hint1)) {
+            this.inputView.setHint(hint1);
+            this.inputView.setFloatingLabelText(hint1);
+        }
+
+        if (!TextUtils.isEmpty(value1)) {
+            this.inputView.setText(value1);
             ViewUtils.setEditTextCursorLocation(this.inputView);
         }
 
         if (inputType != HGConstants.INPUT_TYPE_DEFAULT) {
-            this.inputView.setInputType(this.inputType);
+            this.inputView.setInputType(inputType);
         }
     }
 

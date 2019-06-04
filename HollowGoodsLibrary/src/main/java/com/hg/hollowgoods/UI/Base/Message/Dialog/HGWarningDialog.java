@@ -11,17 +11,17 @@ import com.hg.hollowgoods.R;
  * Created by HG on 2018-01-17.
  */
 
-public class HGWarningDialog extends HGDialog {
+class HGWarningDialog extends HGDialog {
 
-    public HGWarningDialog(Context context, Object title, Object tip, Object yesButtonTxt, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGWarningDialog(Context context, Object title, Object tip, Object yesButtonTxt, boolean cancelable, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.onDialogDismissListener = onDialogDismissListener;
         this.code = code;
 
-        String titleValue = getValue(title, "");
-        String tipValue = getValue(tip, "");
-        String yesButtonTxtValue = getValue(yesButtonTxt, context.getString(R.string.sure));
+        CharSequence titleValue = getValue(title, "");
+        CharSequence tipValue = getValue(tip, "");
+        CharSequence yesButtonTxtValue = getValue(yesButtonTxt, context.getString(R.string.sure));
 
         this.dialog = new AlertDialog.Builder(context)
                 .setPositiveButton(yesButtonTxtValue, (dialog, which) -> {

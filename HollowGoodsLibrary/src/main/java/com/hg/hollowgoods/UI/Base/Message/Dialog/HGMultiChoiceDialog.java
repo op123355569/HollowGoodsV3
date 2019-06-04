@@ -25,11 +25,9 @@ import java.util.ArrayList;
 
 class HGMultiChoiceDialog extends HGDialog {
 
-    private String title;
     private ArrayList<Integer> checkedPositions;
     private int maxCount;
 
-    private RecyclerView result;
     private TextView count;
     private MultiChoiceDialogAdapter adapter;
     private ArrayList<ChoiceItem> data = new ArrayList<>();
@@ -41,7 +39,7 @@ class HGMultiChoiceDialog extends HGDialog {
         this.code = code;
         this.maxCount = maxCount;
 
-        this.title = getValue(title, "");
+        CharSequence title1 = getValue(title, "");
         this.checkedPositions = checkedPositions;
 
         if (this.checkedPositions == null) {
@@ -65,74 +63,77 @@ class HGMultiChoiceDialog extends HGDialog {
                 .create();
         this.dialog.setOnDismissListener(dialog -> HGMultiChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGMultiChoiceDialog.this));
 
-        if (!TextUtils.isEmpty(this.title)) {
-            this.dialog.setTitle(this.title);
+        if (!TextUtils.isEmpty(title1)) {
+            this.dialog.setTitle(title1);
         }
         this.dialog.setCancelable(true);
         this.dialog.show();
 
-        result = this.dialog.findViewById(R.id.rv_result);
+        RecyclerView result = this.dialog.findViewById(R.id.rv_result);
         count = this.dialog.findViewById(R.id.tv_count);
 
-        result.setHasFixedSize(true);
-        result.setItemAnimator(new DefaultItemAnimator());
-        result.setLayoutManager(new LinearLayoutManager(this.context));
+        if (result != null) {
+            result.setHasFixedSize(true);
+            result.setItemAnimator(new DefaultItemAnimator());
+            result.setLayoutManager(new LinearLayoutManager(this.context));
 
-        if (items != null) {
-            data.addAll(items);
-        }
+            if (items != null) {
+                data.addAll(items);
+            }
 
-        adapter = new MultiChoiceDialogAdapter(this.context, R.layout.item_choice_dialog, data);
-        result.setAdapter(adapter);
+            adapter = new MultiChoiceDialogAdapter(this.context, R.layout.item_choice_dialog, data);
+            result.setAdapter(adapter);
 
-        adapter.setCheckedPositions(checkedPositions);
+            adapter.setCheckedPositions(checkedPositions);
 
-        adapter.setOnItemClickListener(new OnRecyclerViewItemClickListener(false, true, false) {
-            @Override
-            public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+            adapter.setOnItemClickListener(new OnRecyclerViewItemClickListener(false, true, false) {
+                @Override
+                public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
 
-                if (adapter.isChecked(position)) {
-                    HGMultiChoiceDialog.this.checkedPositions.remove(Integer.valueOf(position));
-                    adapter.removeCheckedPosition(position);
-
-                    setCount();
-                } else {
-                    if (HGMultiChoiceDialog.this.maxCount < 1) {
-                        HGMultiChoiceDialog.this.checkedPositions.add(position);
-                        adapter.addCheckedPosition(position);
+                    if (adapter.isChecked(position)) {
+                        HGMultiChoiceDialog.this.checkedPositions.remove(Integer.valueOf(position));
+                        adapter.removeCheckedPosition(position);
 
                         setCount();
                     } else {
-                        if (HGMultiChoiceDialog.this.checkedPositions.size() < HGMultiChoiceDialog.this.maxCount) {
+                        if (HGMultiChoiceDialog.this.maxCount < 1) {
                             HGMultiChoiceDialog.this.checkedPositions.add(position);
                             adapter.addCheckedPosition(position);
 
                             setCount();
                         } else {
-                            String tips = context.getString(R.string.is_had_max_count);
-                            tips = String.format(tips, HGMultiChoiceDialog.this.maxCount + "");
-                            t.error(tips);
+                            if (HGMultiChoiceDialog.this.checkedPositions.size() < HGMultiChoiceDialog.this.maxCount) {
+                                HGMultiChoiceDialog.this.checkedPositions.add(position);
+                                adapter.addCheckedPosition(position);
+
+                                setCount();
+                            } else {
+                                String tips = context.getString(R.string.is_had_max_count);
+                                tips = String.format(tips, HGMultiChoiceDialog.this.maxCount + "");
+                                t.error(tips);
+                            }
                         }
                     }
                 }
-            }
-        });
-        adapter.setOnDescribeClickListener(new OnRecyclerViewItemClickListener(false) {
-            @Override
-            public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
-                showDescribe(view, data.get(position).getItem().toString(), data.get(position).getDescribe());
-            }
-        });
+            });
+            adapter.setOnDescribeClickListener(new OnRecyclerViewItemClickListener(false) {
+                @Override
+                public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
+                    showDescribe(view, data.get(position).getItem().toString(), data.get(position).getDescribe());
+                }
+            });
 
-        setCount();
+            setCount();
+        }
     }
 
     private void setCount() {
 
         if (maxCount < 1) {
-            count.setText(HGMultiChoiceDialog.this.checkedPositions.size() + "");
+            count.setText(String.valueOf(HGMultiChoiceDialog.this.checkedPositions.size()));
         } else {
-            count.setText(HGMultiChoiceDialog.this.checkedPositions.size() + "/" + maxCount);
+            String str = HGMultiChoiceDialog.this.checkedPositions.size() + "/" + maxCount;
+            count.setText(str);
         }
     }
 

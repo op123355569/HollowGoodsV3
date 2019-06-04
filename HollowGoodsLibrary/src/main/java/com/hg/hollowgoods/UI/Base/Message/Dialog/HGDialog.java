@@ -55,7 +55,7 @@ public class HGDialog {
 
     private boolean isHtml(String str) {
 
-        if (str.contains("<font>") && str.contains("</font>")) {
+        if (str.contains("<font") && str.contains("</font>")) {
             return true;
         }
 

@@ -41,12 +41,25 @@ public class HGDialog {
         if (source == null) {
             return defaultValue;
         } else if (source instanceof String) {
-            return Html.fromHtml((String) source);
+            if (isHtml((String) source)) {
+                return Html.fromHtml((String) source);
+            } else {
+                return (String) source;
+            }
         } else if (source instanceof Integer) {
             return context.getString((Integer) source);
         }
 
         return defaultValue;
+    }
+
+    private boolean isHtml(String str) {
+
+        if (str.contains("<font>") && str.contains("</font>")) {
+            return true;
+        }
+
+        return false;
     }
 
     void showDescribe(View view, String title, String describe) {

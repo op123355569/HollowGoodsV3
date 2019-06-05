@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
+import android.os.Handler;
 import android.support.multidex.MultiDex;
 
 import com.hg.hollowgoods.Bean.EventBus.Event;
@@ -65,6 +66,10 @@ public abstract class BaseApplication extends Application implements IBaseApplic
      * 服务器校验时间间隔（单位：秒）
      */
     private int testSystemTime = 300;
+    /**
+     * X5内核初始化次数
+     */
+    private int X5InitTimes = 0;
 
     /**
      * 每个Activity都必须加入的list
@@ -237,7 +242,17 @@ public abstract class BaseApplication extends Application implements IBaseApplic
 
             @Override
             public void onViewInitFinished(boolean isSuccess) {
-                LogUtils.Log("加载X5内核是否成功:", isSuccess);
+
+                X5InitTimes++;
+
+                LogUtils.Log("加载X5内核是否成功:", isSuccess, "加载次数:", X5InitTimes);
+
+                if (!isSuccess && X5InitTimes < 10) {
+                    new Handler().postDelayed(() -> {
+                        BaseApplication baseApplication = create();
+                        baseApplication.initFileView();
+                    }, 500);
+                }
             }
         });
     }

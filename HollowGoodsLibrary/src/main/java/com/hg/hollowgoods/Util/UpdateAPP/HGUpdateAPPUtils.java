@@ -205,4 +205,8 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
     public void setURL(String URL) {
         this.URL = URL;
     }
+
+    public BaseActivity getBaseActivity() {
+        return baseActivity;
+    }
 }

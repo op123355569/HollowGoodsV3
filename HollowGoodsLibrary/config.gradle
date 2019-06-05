@@ -4,8 +4,8 @@ ext {
             buildToolsVersion: '28.0.3',
             minSdkVersion    : 21,
             targetSdkVersion : 27,
-            versionCode      : 324,
-            versionName      : '3.2.4',
+            versionCode      : 325,
+            versionName      : '3.2.5',
     ]
 
     // 基础Android Support控件

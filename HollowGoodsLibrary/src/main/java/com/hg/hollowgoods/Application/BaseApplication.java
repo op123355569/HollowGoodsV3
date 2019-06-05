@@ -236,8 +236,8 @@ public abstract class BaseApplication extends Application implements IBaseApplic
             }
 
             @Override
-            public void onViewInitFinished(boolean b) {
-                LogUtils.Log("initFileView onViewInitFinished", b);
+            public void onViewInitFinished(boolean isSuccess) {
+                LogUtils.Log("加载X5内核是否成功:", isSuccess);
             }
         });
     }

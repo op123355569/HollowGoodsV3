@@ -12,16 +12,21 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyConfig;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyHelper;
 import com.hg.hollowgoods.Util.RegexUtils;
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.Validator;
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.ValidatorType;
+import com.hg.hollowgoods.voice.VoiceListener;
+import com.hg.hollowgoods.voice.VoiceUtils;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.AnimatorSet;
@@ -35,7 +40,7 @@ import java.util.ArrayList;
  */
 public class ValidatorInputView extends LinearLayout {
 
-    private FrameLayout topView;
+    private LinearLayout topView;
     private LinearLayout bottomView;
 
     private EditText input;
@@ -54,6 +59,9 @@ public class ValidatorInputView extends LinearLayout {
     private TextView maxLength;
     private TextView labelLength;
     private TextView tips;
+    private View voiceView;
+    private ImageView voice;
+    private ProgressBar progressBar;
 
     private ArrayList<Validator> validator = new ArrayList<>();
     private Long lMinLength = null;
@@ -68,6 +76,9 @@ public class ValidatorInputView extends LinearLayout {
     private int inputLineFocusNoColor;
     private int inputLineRightColor;
     private int inputLineWrongColor;
+
+    private VoiceUtils voiceUtils;
+    private BaseActivity baseActivity;
 
     public ValidatorInputView(@NonNull Context context) {
         this(context, null);
@@ -102,12 +113,15 @@ public class ValidatorInputView extends LinearLayout {
 
     private void init() {
 
-        topView = (FrameLayout) View.inflate(getContext(), R.layout.validator_input_view_top, null);
+        topView = (LinearLayout) View.inflate(getContext(), R.layout.validator_input_view_top, null);
         bottomView = (LinearLayout) View.inflate(getContext(), R.layout.validator_input_view_bottom, null);
 
         input = topView.findViewById(R.id.et_input);
         clearButton = topView.findViewById(R.id.iv_delete);
         line = topView.findViewById(R.id.line);
+        voiceView = topView.findViewById(R.id.fl_voice);
+        voice = topView.findViewById(R.id.iv_voice);
+        progressBar = topView.findViewById(R.id.progressBar);
 
         valueView = bottomView.findViewById(R.id.ll_valueView);
         minValue = bottomView.findViewById(R.id.tv_minValue);
@@ -126,10 +140,58 @@ public class ValidatorInputView extends LinearLayout {
         this.addView(topView);
         this.addView(bottomView);
 
+        initVoice();
         initViewStyle();
         setClearButtonColor();
         initValidator();
         setListener();
+    }
+
+    private void initVoice() {
+
+        voiceUtils = new VoiceUtils(getContext());
+
+        if (VoiceUtils.isIncludeSDK()) {
+            voiceView.setVisibility(VISIBLE);
+            voiceUtils.setVoiceListener(new VoiceListener() {
+                @Override
+                public void onStart() {
+                    voice.setVisibility(GONE);
+                    progressBar.setVisibility(VISIBLE);
+                }
+
+                @Override
+                public void onEnd() {
+                    voice.setVisibility(VISIBLE);
+                    progressBar.setVisibility(GONE);
+                }
+
+                @Override
+                public void onResult(String text) {
+                    input.append(text);
+                }
+            });
+            voice.setOnClickListener(new OnViewClickListener(false) {
+                @Override
+                public void onViewClick(View view, int id) {
+                    if (baseActivity != null) {
+                        ProxyHelper.create(baseActivity).requestProxy(
+                                new ProxyConfig()
+                                        .setPermissions(voiceUtils.permissions)
+                                        .setRequestCode(12000)
+                                        .setOnProxyRequestPermissionsResult((isAgreeAll, requestCode, permissions, isAgree) -> {
+                                            if (isAgreeAll) {
+                                                voiceUtils.setParam(false);
+                                                voiceUtils.start();
+                                            }
+                                        })
+                        );
+                    }
+                }
+            });
+        } else {
+            voiceView.setVisibility(GONE);
+        }
     }
 
     private void initViewStyle() {
@@ -247,7 +309,7 @@ public class ValidatorInputView extends LinearLayout {
         }
 
         checkLength(getText().length());
-        checkValue(getText().toString());
+        checkValue(getText());
         if (isInputRight()) {
             updateUIMode(UIMode.NormalNoFocus, "");
         }
@@ -542,4 +604,7 @@ public class ValidatorInputView extends LinearLayout {
         return input;
     }
 
+    public void setBaseActivity(BaseActivity baseActivity) {
+        this.baseActivity = baseActivity;
+    }
 }

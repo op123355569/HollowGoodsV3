@@ -1,9 +1,8 @@
 package com.hg.hollowgoods.UI.Base.Message.Dialog;
 
-import android.content.Context;
-
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.UI.Base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,7 +14,7 @@ import java.util.Calendar;
 
 public class BaseDialog {
 
-    private Context context;
+    private BaseActivity context;
     private OnDialogClickListener onDialogClickListener;
     private OnDialogDismissListener onDialogDismissListener;
 
@@ -24,7 +23,7 @@ public class BaseDialog {
      */
     private ArrayList<HGDialog> hgDialogs;
 
-    public BaseDialog(Context context) {
+    public BaseDialog(BaseActivity context) {
         this.context = context;
     }
 

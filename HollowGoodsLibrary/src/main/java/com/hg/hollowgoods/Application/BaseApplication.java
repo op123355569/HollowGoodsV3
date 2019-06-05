@@ -20,6 +20,7 @@ import com.hg.hollowgoods.Util.CacheUtils;
 import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.XUtils.XUtils;
 import com.hg.hollowgoods.Widget.HGStatusLayout;
+import com.hg.hollowgoods.voice.VoiceUtils;
 import com.tencent.smtt.sdk.QbSdk;
 
 import org.greenrobot.eventbus.EventBus;
@@ -131,6 +132,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
             initFileView();
         }
         initAppAutoCheckDate();
+        VoiceUtils.init(create());
 
         super.onCreate();
     }

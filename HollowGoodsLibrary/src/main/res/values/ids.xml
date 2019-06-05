@@ -15,4 +15,6 @@
 
     <item name="hgStatusLayout" type="id" />
 
+    <item name="action_hg_voice" type="id" />
+
 </resources>

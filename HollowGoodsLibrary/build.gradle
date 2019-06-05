@@ -143,6 +143,11 @@ dependencies {
     // 照片墙
     api libs.DiscreteScrollview
 
+    // 语音听写
+    api('com.github.op123355569:HollowGoodsV3-Voice:1.1.3') {
+        exclude group: 'com.github.op123355569', module: 'HollowGoodsV3'
+    }
+
     ////////////////////////////////////Jar包/////////////////////////////////////////
 
     // WebService接口

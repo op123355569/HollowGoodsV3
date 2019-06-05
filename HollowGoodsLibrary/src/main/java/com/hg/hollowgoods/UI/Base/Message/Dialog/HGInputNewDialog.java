@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.ViewUtils;
 import com.hg.hollowgoods.Widget.ValidatorInput.ValidatorInputView;
@@ -25,7 +26,7 @@ class HGInputNewDialog extends HGDialog {
 
     private ValidatorInputView inputView;
 
-    HGInputNewDialog(Context context, ConfigInput configInput, int code, OnDialogDismissListener onDialogDismissListener) {
+    HGInputNewDialog(BaseActivity context, ConfigInput configInput, int code, OnDialogDismissListener onDialogDismissListener) {
 
         this.context = context;
         this.code = code;
@@ -39,6 +40,9 @@ class HGInputNewDialog extends HGDialog {
         this.dialog.show();
 
         this.inputView = this.dialog.findViewById(R.id.et_input);
+        if (inputView != null) {
+            inputView.setBaseActivity(context);
+        }
         TextView cancelView = this.dialog.findViewById(R.id.tv_cancel);
         TextView sureView = this.dialog.findViewById(R.id.tv_sure);
         TextView titleView = this.dialog.findViewById(R.id.tv_title);

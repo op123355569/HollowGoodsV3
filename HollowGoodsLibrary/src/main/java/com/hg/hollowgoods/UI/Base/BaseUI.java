@@ -43,6 +43,8 @@ import com.hg.hollowgoods.UI.Base.Click.OnToolbarMenuItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.BaseDialog;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyConfig;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyHelper;
 import com.hg.hollowgoods.Util.CircularAnimUtils;
 import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Util.ReflectUtils;
@@ -54,6 +56,8 @@ import com.hg.hollowgoods.Widget.FloatingSearchView.FloatingSearchView;
 import com.hg.hollowgoods.Widget.FloatingSearchView.suggestions.model.SearchSuggestion;
 import com.hg.hollowgoods.Widget.FloatingSearchView.util.Util;
 import com.hg.hollowgoods.Widget.HGStatusLayout;
+import com.hg.hollowgoods.voice.VoiceListener;
+import com.hg.hollowgoods.voice.VoiceUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
@@ -122,6 +126,8 @@ public class BaseUI {
     private SmoothProgressBar bottomProgressBar;
     private FloatingSearchView floatingSearchView;
     private HGStatusLayout statusLayout;
+
+    private VoiceUtils voiceUtils;
 
     /**** 暴露的方法 ****/
 
@@ -885,6 +891,30 @@ public class BaseUI {
         this.mIsNeedHistory = isNeedHistory;
 
         if (floatingSearchView != null) {
+            if (VoiceUtils.isIncludeSDK()) {
+                voiceUtils = new VoiceUtils(getBaseContext());
+
+                voiceUtils.setVoiceListener(new VoiceListener() {
+                    @Override
+                    public void onStart() {
+                        floatingSearchView.showProgress();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        floatingSearchView.hideProgress();
+                    }
+
+                    @Override
+                    public void onResult(String text) {
+                        if (!floatingSearchView.isSearchBarFocused()) {
+                            floatingSearchView.setSearchFocused(true);
+                        }
+                        setSearchText(floatingSearchView.getQuery() + text);
+                    }
+                });
+            }
+
             if (isNeedHistory) {
                 if (historyCode == null || historyCode.length == 0) {
                     keys = SearchHistoryUtils.getKeys(initUI.getClass());
@@ -1018,7 +1048,23 @@ public class BaseUI {
             floatingSearchView.setOnMenuItemClickListener(new OnFloatingSearchMenuItemClickListener(getBaseContext(), false) {
                 @Override
                 public void onFloatingSearchMenuItemClick(MenuItem item) {
-                    iSearchViewClickListener.onSearchMenuItemClick(item.getItemId());
+                    if (item.getItemId() == R.id.action_hg_voice) {
+                        if (VoiceUtils.isIncludeSDK()) {
+                            ProxyHelper.create(getBaseContext()).requestProxy(
+                                    new ProxyConfig()
+                                            .setPermissions(voiceUtils.permissions)
+                                            .setRequestCode(12000)
+                                            .setOnProxyRequestPermissionsResult((isAgreeAll, requestCode, permissions, isAgree) -> {
+                                                if (isAgreeAll) {
+                                                    voiceUtils.setParam(false);
+                                                    voiceUtils.start();
+                                                }
+                                            })
+                            );
+                        }
+                    } else {
+                        iSearchViewClickListener.onSearchMenuItemClick(item.getItemId());
+                    }
                 }
             });
         }

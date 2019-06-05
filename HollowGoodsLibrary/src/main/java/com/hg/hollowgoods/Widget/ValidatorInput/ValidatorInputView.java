@@ -86,15 +86,15 @@ public class ValidatorInputView extends LinearLayout {
     private void initAttr(AttributeSet attrs) {
 
         if (attrs != null) {
-            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ValidatorInput);
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ValidatorInputView);
 
-            inputTextColor = a.getColor(R.styleable.ValidatorInput_input_textColor, ContextCompat.getColor(getContext(), R.color.txt_color_dark));
-            inputTextColorHint = a.getColor(R.styleable.ValidatorInput_input_textColorHint, ContextCompat.getColor(getContext(), R.color.txt_color_light));
-            inputTextSize = a.getDimensionPixelSize(R.styleable.ValidatorInput_input_textSize, 14);
-            inputLineFocusColor = a.getColor(R.styleable.ValidatorInput_input_lineFocusColor, ContextCompat.getColor(getContext(), R.color.colorAccent));
-            inputLineFocusNoColor = a.getColor(R.styleable.ValidatorInput_input_lineFocusNoColor, ContextCompat.getColor(getContext(), R.color.txt_color_light));
-            inputLineRightColor = a.getColor(R.styleable.ValidatorInput_input_lineRightColor, ContextCompat.getColor(getContext(), R.color.google_green));
-            inputLineWrongColor = a.getColor(R.styleable.ValidatorInput_input_lineWrongColor, ContextCompat.getColor(getContext(), R.color.google_red));
+            inputTextColor = a.getColor(R.styleable.ValidatorInputView_input_textColor, ContextCompat.getColor(getContext(), R.color.txt_color_dark));
+            inputTextColorHint = a.getColor(R.styleable.ValidatorInputView_input_textColorHint, ContextCompat.getColor(getContext(), R.color.txt_color_light));
+            inputTextSize = a.getDimensionPixelSize(R.styleable.ValidatorInputView_input_textSize, 14);
+            inputLineFocusColor = a.getColor(R.styleable.ValidatorInputView_input_lineFocusColor, ContextCompat.getColor(getContext(), R.color.colorAccent));
+            inputLineFocusNoColor = a.getColor(R.styleable.ValidatorInputView_input_lineFocusNoColor, ContextCompat.getColor(getContext(), R.color.txt_color_light));
+            inputLineRightColor = a.getColor(R.styleable.ValidatorInputView_input_lineRightColor, ContextCompat.getColor(getContext(), R.color.google_green));
+            inputLineWrongColor = a.getColor(R.styleable.ValidatorInputView_input_lineWrongColor, ContextCompat.getColor(getContext(), R.color.google_red));
 
             a.recycle();
         }

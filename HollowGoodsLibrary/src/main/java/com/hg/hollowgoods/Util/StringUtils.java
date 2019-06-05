@@ -21,7 +21,7 @@ public class StringUtils {
      *
      * @param str       需要拆分的字符串
      * @param separator 拆分间隔符
-     * @return
+     * @return ArrayList<String>
      */
     public static ArrayList<String> getStringArray(String str, String separator) {
 
@@ -181,7 +181,7 @@ public class StringUtils {
      *
      * @param time           时间戳
      * @param dateFormatMode 分隔符
-     * @return
+     * @return String
      */
     @SuppressLint("SimpleDateFormat")
     public static String getDateTimeString(Object time, DateFormatMode dateFormatMode) {
@@ -194,7 +194,7 @@ public class StringUtils {
         try {
             longTime = Long.valueOf(time + "");
         } catch (Exception e) {
-            longTime = 0l;
+            longTime = 0L;
         }
 
         SimpleDateFormat sDateFormat = new SimpleDateFormat(dateFormatMode.format);
@@ -236,7 +236,7 @@ public class StringUtils {
     /**
      * 获取UUID
      *
-     * @return
+     * @return String
      */
     public static String getUUID() {
         return java.util.UUID.randomUUID().toString();
@@ -247,7 +247,7 @@ public class StringUtils {
     /**
      * 以当前时间作为文件名
      *
-     * @return
+     * @return String
      */
     @SuppressLint("SimpleDateFormat")
     public static String getTimeForFilename() {
@@ -259,23 +259,50 @@ public class StringUtils {
     /**
      * 将文件名转成时间戳
      *
-     * @param str
-     * @return
+     * @param str str
+     * @return long
      */
     public static long getFilenameFormTime(String str) {
 
-        long result = 0l;
+        long result = 0L;
         SimpleDateFormat sdf = new SimpleDateFormat(TIME_FOR_FILENAME);
         Date d;
 
         try {
             d = sdf.parse(str);
             result = d.getTime();
-        } catch (ParseException e) {
+        } catch (ParseException ignored) {
 
         }
 
         return result;
+    }
+
+    public static boolean isHtml(String str) {
+
+        if (str.contains("<font") && str.contains("</font>")) {
+            return true;
+        } else if (str.contains("<br>")) {
+            return true;
+        } else if (str.contains("<u>") && str.contains("</u>")) {
+            return true;
+        } else if (str.contains("<big>") && str.contains("</big>")) {
+            return true;
+        } else if (str.contains("<small>") && str.contains("</small>")) {
+            return true;
+        } else if (str.contains("<p>") && str.contains("</p>")) {
+            return true;
+        } else if (str.contains("<strong>") && str.contains("</strong>")) {
+            return true;
+        } else if (str.contains("<sup>") && str.contains("</sup>")) {
+            return true;
+        } else if (str.contains("<sub>") && str.contains("</sub>")) {
+            return true;
+        } else if (str.contains("<i>") && str.contains("</i>")) {
+            return true;
+        }
+
+        return false;
     }
 
 }

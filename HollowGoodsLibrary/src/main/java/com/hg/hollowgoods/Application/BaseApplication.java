@@ -229,7 +229,17 @@ public abstract class BaseApplication extends Application implements IBaseApplic
      * 初始化文件查看控件
      */
     private void initFileView() {
-        QbSdk.initX5Environment(create(), null);
+        QbSdk.initX5Environment(create(), new QbSdk.PreInitCallback() {
+            @Override
+            public void onCoreInitFinished() {
+                LogUtils.Log("initFileView onCoreInitFinished");
+            }
+
+            @Override
+            public void onViewInitFinished(boolean b) {
+                LogUtils.Log("initFileView onViewInitFinished", b);
+            }
+        });
     }
 
     /**

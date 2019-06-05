@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.PopupWinHelper;
+import com.hg.hollowgoods.Util.StringUtils;
 
 /**
  * Created by HG on 2018-01-17.
@@ -41,7 +42,7 @@ public class HGDialog {
         if (source == null) {
             return defaultValue;
         } else if (source instanceof String) {
-            if (isHtml((String) source)) {
+            if (StringUtils.isHtml((String) source)) {
                 return Html.fromHtml((String) source);
             } else {
                 return (String) source;
@@ -51,15 +52,6 @@ public class HGDialog {
         }
 
         return defaultValue;
-    }
-
-    private boolean isHtml(String str) {
-
-        if (str.contains("<font") && str.contains("</font>")) {
-            return true;
-        }
-
-        return false;
     }
 
     void showDescribe(View view, String title, String describe) {

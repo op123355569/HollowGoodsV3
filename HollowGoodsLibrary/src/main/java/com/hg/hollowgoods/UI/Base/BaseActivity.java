@@ -72,11 +72,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 
     @Override
     public void onBackPressed() {
-        if (baseUI.hasSharedElement) {
-            super.onBackPressed();
-        } else {
-            finishMyActivity();
-        }
+//        if (baseUI.hasSharedElement) {
+//            super.onBackPressed();
+//        } else {
+        finishMyActivity();
+//        }
     }
 
     public void finishMyActivity() {

@@ -1,15 +1,14 @@
 package com.hg.hollowgoods.UI.Base;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
 /**
- * 基Fragment<br>
- * 特殊接口：DialogClickListener
- * <p>
- * Created by HG
+ * 代理基础碎片
  */
 @SuppressLint("NewApi")
 public abstract class ProxyBaseFragment extends Fragment {
@@ -20,6 +19,14 @@ public abstract class ProxyBaseFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         baseUI.initUI(this);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            baseUI.initUI(this);
+        }
     }
 
     @Override

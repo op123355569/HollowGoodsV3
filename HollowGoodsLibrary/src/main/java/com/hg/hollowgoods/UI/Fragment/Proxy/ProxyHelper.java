@@ -3,11 +3,13 @@ package com.hg.hollowgoods.UI.Fragment.Proxy;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * 代理助手
  * Created by Hollow Goods on 2019-06-03.
  */
 public class ProxyHelper {
@@ -18,8 +20,9 @@ public class ProxyHelper {
 
         if (proxyHelper == null) {
             proxyHelper = new ProxyHelper();
-            proxyHelper.baseActivity = baseActivity;
         }
+
+        proxyHelper.baseActivity = baseActivity;
 
         return proxyHelper;
     }
@@ -30,14 +33,22 @@ public class ProxyHelper {
 
     private BaseActivity baseActivity;
 
+    /**
+     * 请求代理
+     * 1. startActivityForResult
+     * 2. requestPermissions
+     *
+     * @param proxyConfig 代理配置
+     */
     public void requestProxy(@NotNull ProxyConfig proxyConfig) {
+
+        FragmentManager fm = baseActivity.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
         ProxyFragment proxyFragment = new ProxyFragment();
         proxyFragment.setProxyConfig(proxyConfig);
 
-        FragmentManager fm = baseActivity.getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(android.R.id.content, proxyFragment);
+        ft.replace(R.id.view_content, proxyFragment);
         ft.commitAllowingStateLoss();
     }
 

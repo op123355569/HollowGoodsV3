@@ -1,13 +1,16 @@
 package com.hg.hollowgoods.UI.Fragment.Proxy;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Handler;
 
 import com.hg.hollowgoods.UI.Base.ProxyBaseFragment;
+import com.hg.hollowgoods.Util.LogUtils;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 /**
  * 代理碎片
@@ -21,10 +24,22 @@ public class ProxyFragment extends ProxyBaseFragment {
         this.proxyConfig = proxyConfig;
     }
 
+    @TargetApi(23)
     @Override
     public void onAttach(Context context) {
-
         super.onAttach(context);
+        onStartFragment();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            onStartFragment();
+        }
+    }
+
+    private void onStartFragment() {
 
         if (proxyConfig.getPermissions() != null) {
             if (proxyConfig.getOnProxyRequestPermissionsResult() != null) {
@@ -41,7 +56,7 @@ public class ProxyFragment extends ProxyBaseFragment {
                     }
 
                     proxyConfig.getOnProxyRequestPermissionsResult().onPermissionsResult(true, proxyConfig.getRequestCode(), proxyConfig.getPermissions(), agree);
-                    detachFragment();
+                    new Handler().postDelayed(this::detachFragment, 100);
                 }
             }
         } else if (proxyConfig.getIntent() != null) {
@@ -62,8 +77,10 @@ public class ProxyFragment extends ProxyBaseFragment {
     }
 
     private void detachFragment() {
+        LogUtils.Log("是否绑定", isAdded());
         if (isAdded()) {
-            Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().detach(this).commitAllowingStateLoss();
+            baseUI.getBaseContext().getSupportFragmentManager().beginTransaction().detach(this).commitAllowingStateLoss();
+            LogUtils.Log("解绑");
         }
     }
 

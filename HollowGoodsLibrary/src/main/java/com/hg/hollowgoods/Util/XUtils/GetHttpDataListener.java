@@ -13,10 +13,14 @@ public interface GetHttpDataListener {
 
     void onGetError(Throwable ex);
 
-    void onGetLoading(long total, long current);
+    default void onGetLoading(long total, long current) {
+
+    }
 
     void onGetFinish();
 
-    void onGetCancel(Callback.CancelledException cex);
+    default void onGetCancel(Callback.CancelledException cex) {
+
+    }
 
 }

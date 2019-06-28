@@ -16,13 +16,6 @@ public interface IBaseFragment {
     int bindLayout();
 
     /**
-     * 初始化意图传递的数据
-     */
-    default void initArgumentsData(Bundle bundle) {
-
-    }
-
-    /**
      * 初始化界面
      *
      * @param view               view
@@ -36,5 +29,20 @@ public interface IBaseFragment {
      * 设置监听
      */
     void setListener();
+
+    /**
+     * 初始化意图传递的数据
+     */
+    @Deprecated
+    default void initArgumentsData(Bundle bundle) {
+
+    }
+
+    /**
+     * 初始化传递的数据
+     */
+    default void initParamData() {
+
+    }
 
 }

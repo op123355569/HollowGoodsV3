@@ -17,6 +17,8 @@ public interface UploadListener {
 
     void onUploadFinish();
 
-    void onUploadCancel(Callback.CancelledException cex);
+    default void onUploadCancel(Callback.CancelledException cex) {
+
+    }
 
 }

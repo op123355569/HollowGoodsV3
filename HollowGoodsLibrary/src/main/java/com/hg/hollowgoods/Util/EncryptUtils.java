@@ -359,7 +359,7 @@ public class EncryptUtils {
      * MD5加密 可用于所有字符，不可解密
      *
      * @param text 内容
-     * @return
+     * @return String
      */
     public final static String md5Encrypt(String text) {
 
@@ -384,8 +384,8 @@ public class EncryptUtils {
             }
             return new String(str);
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            LogUtils.Log(e.getMessage());
+            return "";
         }
     }
 
@@ -706,12 +706,12 @@ public class EncryptUtils {
     private static void setKey(byte[] key) {
         /*
          * - comments are from _Applied Crypto_, Schneier, p338 please be
-		 * careful comparing the two, AC numbers the arrays from 1, the enclosed
-		 * code from 0.
-		 *
-		 * (1) Initialise the S-boxes and the P-array, with a fixed string This
-		 * string contains the hexadecimal digits of pi (3.141...)
-		 */
+         * careful comparing the two, AC numbers the arrays from 1, the enclosed
+         * code from 0.
+         *
+         * (1) Initialise the S-boxes and the P-array, with a fixed string This
+         * string contains the hexadecimal digits of pi (3.141...)
+         */
         System.arraycopy(KS0, 0, S0, 0, SBOX_SK);
         System.arraycopy(KS1, 0, S1, 0, SBOX_SK);
         System.arraycopy(KS2, 0, S2, 0, SBOX_SK);
@@ -719,12 +719,12 @@ public class EncryptUtils {
 
         System.arraycopy(KP, 0, P, 0, P_SZ);
 
-		/*
-		 * (2) Now, XOR P[0] with the first 32 bits of the key, XOR P[1] with
-		 * the second 32-bits of the key, and so on for all bits of the key (up
-		 * to P[17]). Repeatedly cycle through the key bits until the entire
-		 * P-array has been XOR-ed with the key bits
-		 */
+        /*
+         * (2) Now, XOR P[0] with the first 32 bits of the key, XOR P[1] with
+         * the second 32-bits of the key, and so on for all bits of the key (up
+         * to P[17]). Repeatedly cycle through the key bits until the entire
+         * P-array has been XOR-ed with the key bits
+         */
         int keyLength = key.length;
         int keyIndex = 0;
 
@@ -744,21 +744,21 @@ public class EncryptUtils {
             P[i] ^= data;
         }
 
-		/*
-		 * (3) Encrypt the all-zero string with the Blowfish algorithm, using
-		 * the subkeys described in (1) and (2)
-		 *
-		 * (4) Replace P1 and P2 with the output of step (3)
-		 *
-		 * (5) Encrypt the output of step(3) using the Blowfish algorithm, with
-		 * the modified subkeys.
-		 *
-		 * (6) Replace P3 and P4 with the output of step (5)
-		 *
-		 * (7) Continue the process, replacing all elements of the P-array and
-		 * then all four S-boxes in order, with the output of the continuously
-		 * changing Blowfish algorithm
-		 */
+        /*
+         * (3) Encrypt the all-zero string with the Blowfish algorithm, using
+         * the subkeys described in (1) and (2)
+         *
+         * (4) Replace P1 and P2 with the output of step (3)
+         *
+         * (5) Encrypt the output of step(3) using the Blowfish algorithm, with
+         * the modified subkeys.
+         *
+         * (6) Replace P3 and P4 with the output of step (5)
+         *
+         * (7) Continue the process, replacing all elements of the P-array and
+         * then all four S-boxes in order, with the output of the continuously
+         * changing Blowfish algorithm
+         */
 
         processTable(0, 0, P);
         processTable(P[P_SZ - 2], P[P_SZ - 1], S0);

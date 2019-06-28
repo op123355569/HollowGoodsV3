@@ -46,6 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         // 初始化界面
         baseUI.initUI(addToExitGroup(), LayoutInflater.from(this).inflate(bindLayout(), null));
         // 初始化意图传递的数据
+        initParamData();
         initIntentData(getIntent());
         // 绑定EventBus
         baseUI.bindEventBus(initView(baseUI.rootView, savedInstanceState));

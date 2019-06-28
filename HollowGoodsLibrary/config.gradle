@@ -1,7 +1,7 @@
 ext {
     configs = [
             compileSdkVersion: 27,
-            buildToolsVersion: '28.0.3',
+            buildToolsVersion: '29.0.0',
             minSdkVersion    : 21,
             targetSdkVersion : 27,
             versionCode      : 328,
@@ -47,7 +47,7 @@ ext {
     // Gson
     Gson = '2.8.5'
     // XUtils
-    XUtils = '3.5.0'
+    XUtils = '3.5.1'
     // 二维码/条形码识别
     QRCode = "3.3.3"
     // SVG动画控件

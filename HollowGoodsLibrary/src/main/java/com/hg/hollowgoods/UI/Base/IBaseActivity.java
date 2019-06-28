@@ -15,6 +15,7 @@ public interface IBaseActivity extends IBaseFragment {
     /**
      * 初始化意图传递的数据
      */
+    @Deprecated
     default void initIntentData(Intent intent) {
 
     }

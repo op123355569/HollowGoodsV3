@@ -17,4 +17,7 @@
 
     <item name="action_hg_voice" type="id" />
 
+    <item name="view_tag_key_on_click" type="id" />
+    <item name="view_tag_key_image_url" type="id" />
+
 </resources>

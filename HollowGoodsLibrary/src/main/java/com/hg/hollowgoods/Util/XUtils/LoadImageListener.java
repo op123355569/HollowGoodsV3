@@ -16,10 +16,14 @@ public interface LoadImageListener {
 
     void onLoadError(View view, Throwable ex);
 
-    void onLoadLoading(View view, long total, long current);
+    default void onLoadLoading(View view, long total, long current) {
+
+    }
 
     void onLoadFinish(View view);
 
-    void onLoadCancel(View view, Callback.CancelledException cex);
+    default void onLoadCancel(View view, Callback.CancelledException cex) {
+
+    }
 
 }

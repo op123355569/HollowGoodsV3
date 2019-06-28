@@ -2,6 +2,7 @@ package com.hg.hollowgoods.Adapter.BaseRecyclerView.Base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,6 +119,15 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public ViewHolder setViewBackgroundTint(int viewId, int color) {
+
+        View view = getView(viewId);
+        ColorStateList colorStateList = ColorStateList.valueOf(color);
+        view.setBackgroundTintList(colorStateList);
+
+        return this;
+    }
+
     /**
      * 设置TextView的值
      *
@@ -151,6 +162,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv = getView(viewId);
         tv.setText(res);
+
+        return this;
+    }
+
+    public ViewHolder setTextSize(int viewId, float size) {
+
+        TextView tv = getView(viewId);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 
         return this;
     }

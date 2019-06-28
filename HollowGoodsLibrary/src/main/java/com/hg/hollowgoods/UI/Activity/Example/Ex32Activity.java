@@ -51,7 +51,7 @@ public class Ex32Activity extends BaseActivity {
         result.setItemAnimator(new DefaultItemAnimator());
         result.setLayoutManager(new LinearLayoutManager(this));
 
-        initData();
+        initMenuData();
 
         adapter = new Ex32Adapter(this, data);
         result.setAdapter(adapter);
@@ -70,7 +70,7 @@ public class Ex32Activity extends BaseActivity {
         });
     }
 
-    private void initData() {
+    private void initMenuData() {
 
         for (int i = 0; i < 120; i++) {
             switch (i % 3) {

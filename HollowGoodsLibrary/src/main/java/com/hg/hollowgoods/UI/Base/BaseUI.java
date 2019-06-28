@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.support.annotation.IdRes;
 import android.support.annotation.MenuRes;
 import android.support.design.widget.CoordinatorLayout;
@@ -34,8 +33,12 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnFloatingSearchMenuItemClickListener;
@@ -62,9 +65,11 @@ import com.hg.hollowgoods.voice.VoiceUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
 
-import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -107,6 +112,7 @@ public class BaseUI {
     private boolean mIsAutoClearSearch = true;
     private int menuRes = -1;
     private long exitTime = 0l;
+    private Map<String, Object> params;
 
     /**** 基础对话框 ****/
     public BaseDialog baseDialog;
@@ -194,6 +200,8 @@ public class BaseUI {
                 });
             }
         }
+
+        initParams();
     }
 
     /**
@@ -1315,7 +1323,7 @@ public class BaseUI {
             Object[] values) {
 
         Intent intent = new Intent(getBaseContext(), clazz);
-        intent = setIntentKeys(intent, key, values);
+        setIntentKeys(intent, key, values);
         intent.putExtra("hasSharedElement", false);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -1341,7 +1349,7 @@ public class BaseUI {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Intent intent = new Intent(getBaseContext(), clazz);
-            intent = setIntentKeys(intent, key, values);
+            setIntentKeys(intent, key, values);
             intent.putExtra("hasSharedElement", true);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -1438,7 +1446,7 @@ public class BaseUI {
             Object[] values) {
 
         Intent intent = new Intent(getBaseContext(), clazz);
-        intent = setIntentKeys(intent, key, values);
+        setIntentKeys(intent, key, values);
         intent.putExtra("hasSharedElement", false);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -1470,7 +1478,7 @@ public class BaseUI {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Intent intent = new Intent(getBaseContext(), clazz);
-            intent = setIntentKeys(intent, key, values);
+            setIntentKeys(intent, key, values);
             intent.putExtra("hasSharedElement", true);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -1545,7 +1553,7 @@ public class BaseUI {
             CircularAnimUtils.fullActivity(getBaseContext(), triggerView).colorOrImageRes(rippleRes).go(() -> {
 
                 Intent intent = new Intent(getBaseContext(), clazz);
-                intent = setIntentKeys(intent, key, values);
+                setIntentKeys(intent, key, values);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getBaseContext().startActivity(intent);
 
@@ -1618,7 +1626,7 @@ public class BaseUI {
             CircularAnimUtils.fullActivity(getBaseContext(), triggerView).colorOrImageRes(rippleRes).go(() -> {
 
                 Intent intent = new Intent(getBaseContext(), clazz);
-                intent = setIntentKeys(intent, key, values);
+                setIntentKeys(intent, key, values);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 if (isActivity) {
                     getBaseContext().startActivityForResult(intent, requestCode);
@@ -1626,12 +1634,9 @@ public class BaseUI {
                     ((Fragment) initUI).startActivityForResult(intent, requestCode);
                 }
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (activity != null) {
-                            activity.finish();
-                        }
+                new Handler().postDelayed(() -> {
+                    if (activity != null) {
+                        activity.finish();
                     }
                 }, 500);
             });
@@ -1649,60 +1654,19 @@ public class BaseUI {
      *
      * @param intent intent
      * @param key    key
-     * @param values values
-     * @return Intent
+     * @param value  values
      */
-    private Intent setIntentKeys(Intent intent, String[] key, Object[] values) {
+    private void setIntentKeys(Intent intent, String[] key, Object[] value) {
 
-        if (key.length == values.length) {
+        if (key.length == value.length) {
+            Map<String, Object> params = new HashMap<>();
             for (int i = 0; i < key.length; i++) {
-                if (values[i] instanceof String) {
-                    intent.putExtra(key[i], (String) values[i]);
-                } else if (values[i] instanceof Integer) {
-                    intent.putExtra(key[i], (Integer) values[i]);
-                } else if (values[i] instanceof Boolean) {
-                    intent.putExtra(key[i], (Boolean) values[i]);
-                } else if (values[i] instanceof Float) {
-                    intent.putExtra(key[i], (Float) values[i]);
-                } else if (values[i] instanceof Double) {
-                    intent.putExtra(key[i], (Double) values[i]);
-                } else if (values[i] instanceof Character) {
-                    intent.putExtra(key[i], (Character) values[i]);
-                } else if (values[i] instanceof Long) {
-                    intent.putExtra(key[i], (Long) values[i]);
-                } else if (values[i] instanceof Short) {
-                    intent.putExtra(key[i], (Short) values[i]);
-                } else if (values[i] instanceof Byte) {
-                    intent.putExtra(key[i], (Byte) values[i]);
-                } else if (values[i] instanceof Bundle) {
-                    intent.putExtra(key[i], (Bundle) values[i]);
-                } else if (values[i] instanceof Serializable) {
-                    if (values[i] instanceof ArrayList<?>) {
-                        if (values[i] != null && ((ArrayList) (values[i])).size() != 0) {
-                            if (((ArrayList) (values[i])).get(0) instanceof String) {
-                                intent.putStringArrayListExtra(key[i], (ArrayList<String>) values[i]);
-                            } else if (((ArrayList) (values[i])).get(0) instanceof Serializable) {
-                                intent.putExtra(key[i], (Serializable) values[i]);
-                            }
-                        } else {
-                            // 不合法的参数
-                            LogUtils.Log(R.string.illegal_parameter);
-                        }
-                    } else {
-                        intent.putExtra(key[i], (Serializable) values[i]);
-                    }
-                } else if (values[i] instanceof Parcelable) {
-                    intent.putExtra(key[i], (Parcelable) values[i]);
-                } else {
-                    // 不合法的参数
-                    LogUtils.Log(R.string.illegal_parameter);
-                }
+                params.put(key[i], value[i]);
             }
+            intent.putExtra(HGParamKey.MapData.getValue(), new Gson().toJson(params));
         } else {
             LogUtils.Log(R.string.length_different);
         }
-
-        return intent;
     }
 
     public View getContentView() {
@@ -1770,6 +1734,39 @@ public class BaseUI {
         if (statusLayout != null) {
             statusLayout.setStatus(status);
         }
+    }
+
+    private void initParams() {
+
+        String str = "";
+
+        if (isActivity) {
+            str = getBaseContext().getIntent().getStringExtra(HGParamKey.MapData.getValue());
+        } else {
+            Bundle bundle = ((Fragment) initUI).getArguments();
+            if (bundle != null) {
+                str = bundle.getString(HGParamKey.MapData.getValue(), "");
+            }
+        }
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(new TypeToken<Map<String, Object>>() {
+                }.getType(), new MapTypeAdapter()).create();
+        params = gson.fromJson(str, new TypeToken<Map<String, Object>>() {
+        }.getType());
+
+        if (params == null) {
+            params = new HashMap<>();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getParam(String key) {
+        return (T) params.get(key);
+    }
+
+    public <T> T getParam(String key, Type type) {
+        return new Gson().fromJson(new Gson().toJson(params.get(key)), type);
     }
 
 }

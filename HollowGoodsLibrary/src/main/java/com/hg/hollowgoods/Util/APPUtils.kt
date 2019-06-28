@@ -101,4 +101,9 @@ object APPUtils {
         return Looper.myLooper() == Looper.getMainLooper()
     }
 
+    @JvmStatic
+    fun getPackageName(context: Context): String {
+        return context.packageName
+    }
+
 }

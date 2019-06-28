@@ -143,13 +143,13 @@ public class FileSelectorActivity extends BaseActivity {
         baseUI.setOnPermissionsListener((isAgreeAll, requestCode, permissions, isAgree) -> {
             if (isAgreeAll) {
                 if (requestCode == baseUI.PERMISSION_CODE_IO) {
-                    initData();
+                    initFileData();
                 }
             }
         });
 
         if (baseUI.requestIOPermission()) {
-            initData();
+            initFileData();
         }
 
         labelAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener(false, true, false) {
@@ -179,7 +179,7 @@ public class FileSelectorActivity extends BaseActivity {
         });
     }
 
-    private void initData() {
+    private void initFileData() {
 
         loadData();
 

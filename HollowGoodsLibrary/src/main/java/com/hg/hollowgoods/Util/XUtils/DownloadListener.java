@@ -19,6 +19,8 @@ public interface DownloadListener {
 
     void onDownloadFinish();
 
-    void onDownloadCancel(Callback.CancelledException cex);
+    default void onDownloadCancel(Callback.CancelledException cex) {
+
+    }
 
 }

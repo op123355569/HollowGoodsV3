@@ -8,7 +8,9 @@ public enum HGParamKey {
     /**** 列表数据 ****/
     ListData("param.key.list.data"),
     /**** Obj数据 ****/
-    ObjData("param.key.data"),
+    ObjData("param.key.obj.data"),
+    /**** Map数据 ****/
+    MapData("param.key.map.data"),
     /**** URL ****/
     URL("param.key.url"),
     /**** 位置 ****/

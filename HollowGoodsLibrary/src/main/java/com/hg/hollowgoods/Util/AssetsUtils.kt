@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.Util
 
 import android.content.Context
+import android.text.TextUtils
 import java.io.*
 
 /**
@@ -28,13 +29,30 @@ object AssetsUtils {
      */
     @JvmStatic
     fun getString(path: String, context: Context): String {
+        return getString(path, context, null)
+    }
+
+    /**
+     * 获取Assets文件中的txt文件内容
+     *
+     * @param path
+     * @param context
+     * @param textCode
+     * @return
+     */
+    @JvmStatic
+    fun getString(path: String, context: Context, textCode: String?): String {
 
         var result = ""
 
         try {
             var `is` = getInputStream(path, context)
 
-            val code = getCode(`is`)
+            val code = if (TextUtils.isEmpty(textCode)) {
+                getCode(`is`)
+            } else {
+                textCode
+            }
             `is` = getInputStream(path, context)
             val br = BufferedReader(InputStreamReader(`is`!!, code!!))
 

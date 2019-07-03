@@ -21,7 +21,7 @@ dependencies {
 ## 2.拷贝Gradle
 ```
 android {
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '29.0.0'
     defaultConfig {
         ...
         /**** 拷贝S 1/4 ****/

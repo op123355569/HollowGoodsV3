@@ -40,8 +40,11 @@ public class ExampleApplication extends BaseApplication {
                 .setIp("218.93.5.74")
                 .setPort("4500")
         );
-        BaseApplication baseApplication = create();
-        baseApplication.setCrashHandlerUsername("HollowGoods");
+        createApplication().setCrashHandlerUsername("HollowGoods");
+    }
+
+    public static ExampleApplication createApplication() {
+        return create();
     }
 
     /**

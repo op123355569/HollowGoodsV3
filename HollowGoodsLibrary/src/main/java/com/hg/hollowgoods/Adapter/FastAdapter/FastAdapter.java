@@ -27,7 +27,7 @@ import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.DensityUtils;
 import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.PopupWinHelper;
-import com.hg.hollowgoods.Util.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.AnimatorSet;
@@ -344,7 +344,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
     public void openAlbum(Activity activity, int clickPosition, int clickSortNumber) {
         this.clickPosition = clickPosition;
         this.clickSortNumber = clickSortNumber;
-        systemAppUtils.openAlbum(activity, REQUEST_CODE_OPEN_ALBUM);
+        systemAppUtils.openAlbum(activity, REQUEST_CODE_OPEN_ALBUM, 100);
     }
 
     public void openAlbum(Activity activity, CommonBean bean, int maxCount, int clickPosition, int clickSortNumber) {
@@ -373,19 +373,32 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CODE_OPEN_ALBUM:
-                    if (systemAppUtils.onActivityResultForOpenAlbum(context, backData)) {
-                        Media media = new Media();
-                        media.setFile(new File(systemAppUtils.getAlbumPhotoPath()));
+                    systemAppUtils.onActivityResultForOpenAlbum(context, backData, new SystemAppUtils.OnCompressListener() {
+                        @Override
+                        public void onCompressSuccess() {
+                            Media media = new Media();
+                            media.setFile(new File(systemAppUtils.getAlbumPhotoPath()));
 
-                        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
-                        if (medias == null) {
-                            medias = new ArrayList<>();
+                            ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+                            if (medias == null) {
+                                medias = new ArrayList<>();
+                            }
+                            medias.add(media);
+
+                            bean.getMedia().put(clickSortNumber, medias);
+                            refreshFastItem(bean, clickPosition);
                         }
-                        medias.add(media);
 
-                        bean.getMedia().put(clickSortNumber, medias);
-                        refreshFastItem(bean, clickPosition);
-                    }
+                        @Override
+                        public void onCompressError() {
+
+                        }
+
+                        @Override
+                        public void onCompressFinish() {
+
+                        }
+                    });
                     break;
                 case REQUEST_CODE_OPEN_ALBUM_2:
                     ArrayList<String> photos = systemAppUtils.onActivityResultForCheckPhotos(backData);

@@ -14,7 +14,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 import com.hg.hollowgoods.Util.Glide.GlideUtils;
-import com.hg.hollowgoods.Util.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
 
 /**
  * 裁剪图片示例界面
@@ -54,7 +54,7 @@ public class Ex18Activity extends BaseActivity {
         img.setOnClickListener(new OnViewClickListener(false) {
             @Override
             public void onViewClick(View view, int id) {
-                systemAppUtils.openAlbum(Ex18Activity.this, 1111);
+                systemAppUtils.openAlbum(Ex18Activity.this, 1111, 100);
             }
         });
     }
@@ -65,11 +65,22 @@ public class Ex18Activity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 1111:// 相册选图
-                    if (systemAppUtils.onActivityResultForOpenAlbum(this, data)) {
-                        systemAppUtils.cropImage(this, systemAppUtils.getAlbumPhotoPath(), 1, 1, 600, 600, 2222, 100);
-                    } else {
-                        t.showShortToast(R.string.photo_error);
-                    }
+                    systemAppUtils.onActivityResultForOpenAlbum(baseUI.getBaseContext(), data, new SystemAppUtils.OnCompressListener() {
+                        @Override
+                        public void onCompressSuccess() {
+                            systemAppUtils.cropImage(baseUI.getBaseContext(), systemAppUtils.getAlbumPhotoPath(), 1, 1, 600, 600, 2222, 100);
+                        }
+
+                        @Override
+                        public void onCompressError() {
+                            t.showShortToast(R.string.photo_error);
+                        }
+
+                        @Override
+                        public void onCompressFinish() {
+
+                        }
+                    });
                     break;
                 case 2222:// 裁剪图片
                     systemAppUtils.onActivityResultForCropImage(this);

@@ -106,6 +106,7 @@
     <string name="hg_fast_adapter_word_single_choice_net_no_data">暂无数据</string>
     <string name="hg_fast_adapter_word_single_choice_net_loading">加载中，请稍候……</string>
     <string name="not_implementation_recorder_module">未引用音频录制模块</string>
+    <string name="compressing_please_wait">压缩中，请稍候……</string>
 
     <string name="submit_dialog_status_wait">等待中</string>
     <string name="submit_dialog_status_request">请求中</string>

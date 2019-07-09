@@ -1,4 +1,4 @@
-package com.hg.hollowgoods.Util;
+package com.hg.hollowgoods.Util.SystemAppUtils;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,8 +13,12 @@ import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.annotation.FloatRange;
+import android.support.annotation.IntRange;
 import android.text.TextUtils;
 
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
@@ -29,8 +33,11 @@ import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.UI.Fragment.Proxy.OnProxyActivityResult;
 import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyConfig;
 import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyHelper;
+import com.hg.hollowgoods.Util.FileUtils;
+import com.hg.hollowgoods.Util.FormatUtils;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPickerActivity;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPreviewActivity;
+import com.hg.hollowgoods.Util.ReflectUtils;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -86,7 +93,17 @@ public class SystemAppUtils {
 
     private String cameraPhotoName = "";
     private File cameraPhotoFile = null;
-    private int cameraPhotoQuality;
+    private int cameraPhotoQuality = 100;
+
+    /**
+     * 获取照片Uri
+     *
+     * @param context context
+     * @return Uri
+     */
+    public Uri getCameraPhotoUri(Context context) {
+        return getFileUri(context, cameraPhotoFile);
+    }
 
     /**
      * 获取照片名称
@@ -123,7 +140,20 @@ public class SystemAppUtils {
      * @param quality     压缩质量 0-100
      * @param isFront     是否默认打开前置摄像头
      */
-    public void takePhoto(Activity activity, int requestCode, int quality, boolean isFront) {
+    public void takePhoto(Activity activity, int requestCode, @IntRange(from = 0, to = 100) int quality, boolean isFront) {
+        takePhoto(activity, requestCode, quality, isFront, null);
+    }
+
+    /**
+     * 调用系统相机拍摄照片
+     *
+     * @param activity              activity
+     * @param requestCode           requestCode
+     * @param quality               压缩质量 0-100
+     * @param isFront               是否默认打开前置摄像头
+     * @param onProxyActivityResult 代理回调
+     */
+    public void takePhoto(Activity activity, int requestCode, @IntRange(from = 0, to = 100) int quality, boolean isFront, OnProxyActivityResult onProxyActivityResult) {
 
         cameraPhotoQuality = quality;
         if (cameraPhotoQuality < 0) {
@@ -146,7 +176,29 @@ public class SystemAppUtils {
             // 调用前置摄像头
             takePhotoIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
         }
-        activity.startActivityForResult(takePhotoIntent, requestCode);
+
+        if (onProxyActivityResult != null && activity instanceof BaseActivity) {
+            // 代理相机权限
+            ProxyHelper.create((BaseActivity) activity)
+                    .requestProxy(
+                            new ProxyConfig()
+                                    .setPermissions(cameraPermissions)
+                                    .setRequestCode(requestCode)
+                                    .setOnProxyRequestPermissionsResult((isAgreeAll, requestCode1, permissions, isAgree) -> {
+                                        if (requestCode1 == requestCode && isAgreeAll) {
+                                            // 代理数据回调
+                                            ProxyHelper.create((BaseActivity) activity)
+                                                    .requestProxy(new ProxyConfig()
+                                                            .setIntent(takePhotoIntent)
+                                                            .setRequestCode(requestCode1)
+                                                            .setOnProxyActivityResult(onProxyActivityResult)
+                                                    );
+                                        }
+                                    })
+                    );
+        } else {
+            activity.startActivityForResult(takePhotoIntent, requestCode);
+        }
     }
 
     /**
@@ -176,7 +228,7 @@ public class SystemAppUtils {
         options.inJustDecodeBounds = false;
         img = BitmapFactory.decodeFile(fileSrc, options);
 
-        compressPhoto(img);
+        compressPhoto(img, photoSavePath, cameraPhotoName, cameraPhotoQuality, false);
 
         return true;
     }
@@ -192,12 +244,30 @@ public class SystemAppUtils {
     /**
      * 压缩图片
      */
-    private void compressPhoto(Bitmap b) {
-        FormatUtils.savePhoto(b, photoSavePath, cameraPhotoName, cameraPhotoQuality, false);
+    private void compressPhoto(Bitmap b, String path, String name, int quality, boolean isPng) {
+        FormatUtils.savePhoto(b, path, name, quality, isPng);
+    }
+
+    public interface OnCompressListener {
+        /**
+         * 压缩成功
+         */
+        void onCompressSuccess();
+
+        /**
+         * 压缩失败
+         */
+        void onCompressError();
+
+        /**
+         * 压缩完成（最后调用）
+         */
+        void onCompressFinish();
     }
 
     private Uri albumPhotoUri = null;
     private String albumPhotoPath = "";
+    private int albumQuality = 100;
 
     public Uri getAlbumPhotoUri() {
         return albumPhotoUri;
@@ -207,6 +277,14 @@ public class SystemAppUtils {
         return albumPhotoPath;
     }
 
+    public File getAlbumPhotoFile() {
+        return new File(albumPhotoPath);
+    }
+
+    public int getAlbumQuality() {
+        return albumQuality;
+    }
+
     /**
      * 打开系统相册
      *
@@ -214,30 +292,110 @@ public class SystemAppUtils {
      * @param requestCode requestCode
      */
     public void openAlbum(Activity activity, int requestCode) {
+        openAlbum(activity, requestCode, 100, null);
+    }
+
+    /**
+     * 打开系统相册
+     *
+     * @param activity    activity
+     * @param requestCode requestCode
+     * @param quality     压缩质量0-100
+     */
+    public void openAlbum(Activity activity, int requestCode, @IntRange(from = 0, to = 100) int quality) {
+        openAlbum(activity, requestCode, quality, null);
+    }
+
+    /**
+     * 打开系统相册
+     *
+     * @param activity              Activity
+     * @param requestCode           int
+     * @param quality               int
+     * @param onProxyActivityResult OnProxyActivityResult
+     */
+    public void openAlbum(Activity activity, int requestCode, @IntRange(from = 0, to = 100) int quality, OnProxyActivityResult onProxyActivityResult) {
 
         FileUtils.checkFileExist(photoSavePath);
 
+        albumQuality = quality;
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        activity.startActivityForResult(intent, requestCode);
+
+        if (onProxyActivityResult != null && activity instanceof BaseActivity) {
+            // 代理数据回调
+            ProxyHelper.create((BaseActivity) activity)
+                    .requestProxy(new ProxyConfig()
+                            .setIntent(intent)
+                            .setRequestCode(requestCode)
+                            .setOnProxyActivityResult(onProxyActivityResult)
+                    );
+        } else {
+            activity.startActivityForResult(intent, requestCode);
+        }
     }
 
     /**
      * 打开相册返回处理
      *
-     * @param context context
-     * @param data    data
-     * @return boolean
+     * @param context Context
+     * @param data    Intent
      */
+    @Deprecated
     public boolean onActivityResultForOpenAlbum(Context context, Intent data) {
 
         albumPhotoUri = data.getData();
         albumPhotoPath = getRealFilePath(context, albumPhotoUri);
 
-        if (albumPhotoUri == null || albumPhotoPath == null) {
-            return false;
-        }
+        return albumPhotoUri != null && albumPhotoPath != null;
+    }
 
-        return true;
+    /**
+     * 打开相册返回处理
+     *
+     * @param context            Context
+     * @param data               Intent
+     * @param onCompressListener OnCompressListener
+     */
+    public void onActivityResultForOpenAlbum(Context context, Intent data, OnCompressListener onCompressListener) {
+
+        albumPhotoUri = data.getData();
+        albumPhotoPath = getRealFilePath(context, albumPhotoUri);
+
+        if (albumPhotoUri == null || albumPhotoPath == null) {
+            if (onCompressListener != null) {
+                onCompressListener.onCompressError();
+                onCompressListener.onCompressFinish();
+            }
+        } else {
+            if (albumQuality == 100) {
+                if (onCompressListener != null) {
+                    onCompressListener.onCompressSuccess();
+                    onCompressListener.onCompressFinish();
+                }
+            } else {
+                new Thread(() -> {
+                    String newName = System.currentTimeMillis() + FileUtils.getFileFormat(albumPhotoPath);
+                    compressPhoto(
+                            BitmapFactory.decodeFile(albumPhotoPath),
+                            photoSavePath,
+                            newName,
+                            albumQuality,
+                            FileUtils.isImageFilePng(newName)
+                    );
+
+                    albumPhotoPath = photoSavePath + newName;
+                    albumPhotoUri = getFileUri(context, albumPhotoPath);
+
+                    if (onCompressListener != null) {
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(() -> {
+                            onCompressListener.onCompressSuccess();
+                            onCompressListener.onCompressFinish();
+                        });
+                    }
+                }).start();
+            }
+        }
     }
 
     /**
@@ -373,11 +531,10 @@ public class SystemAppUtils {
     }
 
     private final String videoSavePath = HGSystemConfig.getVideoCachePath();
-    private String videoName = "";
     private File videoFile = null;
 
-    public String getVideoName() {
-        return videoName;
+    public String getVideoPath() {
+        return videoFile.getAbsolutePath();
     }
 
     public File getVideoFile() {
@@ -391,7 +548,19 @@ public class SystemAppUtils {
      * @param requestCode requestCode
      * @param quality     质量0f-1f
      */
-    public void takeVideo(Activity activity, int requestCode, float quality) {
+    public void takeVideo(Activity activity, int requestCode, @FloatRange(from = 0F, to = 1F) float quality) {
+        takeVideo(activity, requestCode, quality, null);
+    }
+
+    /**
+     * 调用系统相机拍摄视频
+     *
+     * @param activity              activity
+     * @param requestCode           requestCode
+     * @param quality               质量0f-1f
+     * @param onProxyActivityResult OnProxyActivityResult
+     */
+    public void takeVideo(Activity activity, int requestCode, @FloatRange(from = 0F, to = 1F) float quality, OnProxyActivityResult onProxyActivityResult) {
 
         if (quality < 0f) {
             quality = 0f;
@@ -400,7 +569,7 @@ public class SystemAppUtils {
             quality = 1f;
         }
 
-        videoName = System.currentTimeMillis() + ".mp4";
+        String videoName = System.currentTimeMillis() + ".mp4";
         videoFile = new File(videoSavePath + videoName);
 
         FileUtils.checkFileExist(videoSavePath);
@@ -411,7 +580,28 @@ public class SystemAppUtils {
         mIntent.putExtra(MediaStore.EXTRA_OUTPUT, getFileUri(activity, videoFile));
         mIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, quality);
 
-        activity.startActivityForResult(mIntent, requestCode);
+        if (onProxyActivityResult != null && activity instanceof BaseActivity) {
+            // 代理相机权限
+            ProxyHelper.create((BaseActivity) activity)
+                    .requestProxy(
+                            new ProxyConfig()
+                                    .setPermissions(cameraPermissions)
+                                    .setRequestCode(requestCode)
+                                    .setOnProxyRequestPermissionsResult((isAgreeAll, requestCode1, permissions, isAgree) -> {
+                                        if (requestCode1 == requestCode && isAgreeAll) {
+                                            // 代理数据回调
+                                            ProxyHelper.create((BaseActivity) activity)
+                                                    .requestProxy(new ProxyConfig()
+                                                            .setIntent(mIntent)
+                                                            .setRequestCode(requestCode1)
+                                                            .setOnProxyActivityResult(onProxyActivityResult)
+                                                    );
+                                        }
+                                    })
+                    );
+        } else {
+            activity.startActivityForResult(mIntent, requestCode);
+        }
     }
 
     /**
@@ -437,6 +627,19 @@ public class SystemAppUtils {
      * @param selectedPhotos 已选择的照片
      */
     public void checkPhotos(Activity activity, int requestCode, int maxCount, ArrayList<String> selectedPhotos) {
+        checkPhotos(activity, requestCode, maxCount, selectedPhotos, null);
+    }
+
+    /**
+     * 选择多张照片
+     *
+     * @param activity              activity
+     * @param requestCode           requestCode
+     * @param maxCount              最多选择的照片张数
+     * @param selectedPhotos        已选择的照片
+     * @param onProxyActivityResult OnProxyActivityResult
+     */
+    public void checkPhotos(Activity activity, int requestCode, int maxCount, ArrayList<String> selectedPhotos, OnProxyActivityResult onProxyActivityResult) {
 
         Intent photoPickerIntent = new BGAPhotoPickerActivity.IntentBuilder(activity)
                 .cameraFileDir(null) // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话则不开启图库里的拍照功能
@@ -445,17 +648,37 @@ public class SystemAppUtils {
                 .pauseOnScroll(false) // 滚动列表时是否暂停加载图片
                 .build();
 
-        activity.startActivityForResult(photoPickerIntent, requestCode);
+        if (onProxyActivityResult != null && activity instanceof BaseActivity) {
+            ProxyHelper.create((BaseActivity) activity)
+                    .requestProxy(
+                            new ProxyConfig()
+                                    .setIntent(photoPickerIntent)
+                                    .setRequestCode(requestCode)
+                                    .setOnProxyActivityResult(onProxyActivityResult)
+                    );
+        } else {
+            activity.startActivityForResult(photoPickerIntent, requestCode);
+        }
     }
 
     /**
      * 选择多张照片返回处理
      *
-     * @param data data
-     * @return ArrayList<String>
+     * @param data Intent
      */
     public ArrayList<String> onActivityResultForCheckPhotos(Intent data) {
-        return BGAPhotoPickerActivity.getSelectedPhotos(data);
+
+        ArrayList<String> result = new ArrayList<>();
+
+        if (data != null) {
+            result = BGAPhotoPickerActivity.getSelectedPhotos(data);
+        }
+
+        if (result == null) {
+            result = new ArrayList<>();
+        }
+
+        return result;
     }
 
     /**
@@ -637,7 +860,7 @@ public class SystemAppUtils {
             Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + activity.getPackageName()));
             intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
 
-            if (onProxyActivityResult != null) {
+            if (onProxyActivityResult != null && activity instanceof BaseActivity) {
                 ProxyHelper.create((BaseActivity) activity).requestProxy(
                         new ProxyConfig()
                                 .setIntent(intent)
@@ -686,6 +909,57 @@ public class SystemAppUtils {
                             int requestCode,
                             Object sampleRate,
                             boolean isAutoStart
+    ) {
+        recordAudio(activity, bgColor, requestCode, sampleRate, isAutoStart, null);
+    }
+
+    /**
+     * 打开录音界面
+     *
+     * @param activity    activity
+     * @param bgColor     录音界面背景颜色
+     * @param requestCode requestCode
+     * @param sampleRate  采样频率 请使用枚举 AudioSampleRate
+     * @param isAutoStart 是否自动开始录音
+     */
+    public void recordAudio(Activity activity,
+                            int bgColor,
+                            int requestCode,
+                            Object sampleRate,
+                            boolean isAutoStart,
+                            OnProxyActivityResult onProxyActivityResult
+    ) {
+        if (activity instanceof BaseActivity) {
+            ProxyHelper.create((BaseActivity) activity)
+                    .requestProxy(new ProxyConfig()
+                            .setPermissions(recordAudioPermissions)
+                            .setRequestCode(requestCode)
+                            .setOnProxyRequestPermissionsResult((isAgreeAll, requestCode1, permissions, isAgree) -> {
+                                if (isAgreeAll) {
+                                    recordAudioByHG(activity, bgColor, requestCode1, sampleRate, isAutoStart, onProxyActivityResult);
+                                }
+                            })
+                    );
+        } else {
+            recordAudioByHG(activity, bgColor, requestCode, sampleRate, isAutoStart, onProxyActivityResult);
+        }
+    }
+
+    /**
+     * 打开录音界面
+     *
+     * @param activity    activity
+     * @param bgColor     录音界面背景颜色
+     * @param requestCode requestCode
+     * @param sampleRate  采样频率 请使用枚举 AudioSampleRate
+     * @param isAutoStart 是否自动开始录音
+     */
+    private void recordAudioByHG(Activity activity,
+                                 int bgColor,
+                                 int requestCode,
+                                 Object sampleRate,
+                                 boolean isAutoStart,
+                                 OnProxyActivityResult onProxyActivityResult
     ) {
 
         Class<?> androidAudioRecorderClass = ReflectUtils.getClassByPackageName("com.hg.hollowgoods.recorder.AndroidAudioRecorder");
@@ -792,12 +1066,33 @@ public class SystemAppUtils {
                 }
 
                 // Start recording
-                Method record = ReflectUtils.getMethodByName(
-                        androidAudioRecorderClass,
-                        "record"
-                );
-                if (record != null) {
-                    ReflectUtils.invokeMethod(androidAudioRecorder, record);
+                if (onProxyActivityResult != null && activity instanceof BaseActivity) {
+                    Method getIntent = ReflectUtils.getMethodByName(
+                            androidAudioRecorderClass,
+                            "getIntent",
+                            Context.class
+                    );
+
+                    if (getIntent != null) {
+                        Intent intent = (Intent) ReflectUtils.invokeMethod(androidAudioRecorder, getIntent, activity);
+
+                        if (intent != null) {
+                            ProxyHelper.create((BaseActivity) activity)
+                                    .requestProxy(new ProxyConfig()
+                                            .setIntent(intent)
+                                            .setRequestCode(requestCode)
+                                            .setOnProxyActivityResult(onProxyActivityResult)
+                                    );
+                        }
+                    }
+                } else {
+                    Method record = ReflectUtils.getMethodByName(
+                            androidAudioRecorderClass,
+                            "record"
+                    );
+                    if (record != null) {
+                        ReflectUtils.invokeMethod(androidAudioRecorder, record);
+                    }
                 }
             }
         }

@@ -16,7 +16,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnAdapterViewItemClickListener;
 import com.hg.hollowgoods.Util.Glide.GlideCircleTransform;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 import com.hg.hollowgoods.Util.Glide.GlideUtils;
-import com.hg.hollowgoods.Util.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
 
 import java.util.ArrayList;
 

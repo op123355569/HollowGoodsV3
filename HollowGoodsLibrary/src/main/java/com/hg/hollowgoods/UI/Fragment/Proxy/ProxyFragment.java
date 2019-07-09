@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Handler;
 
 import com.hg.hollowgoods.UI.Base.ProxyBaseFragment;
-import com.hg.hollowgoods.Util.LogUtils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -77,10 +76,8 @@ public class ProxyFragment extends ProxyBaseFragment {
     }
 
     private void detachFragment() {
-        LogUtils.Log("是否绑定", isAdded());
         if (isAdded()) {
             baseUI.getBaseContext().getSupportFragmentManager().beginTransaction().detach(this).commitAllowingStateLoss();
-            LogUtils.Log("解绑");
         }
     }
 

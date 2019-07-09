@@ -28,7 +28,7 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.LogUtils;
-import com.hg.hollowgoods.Util.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
 import com.hg.hollowgoods.Widget.MultiChoicesCircleButton.MultiChoicesCircleButton;
 
 import java.util.ArrayList;

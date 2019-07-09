@@ -48,6 +48,8 @@ import java.util.Set;
  */
 public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
 
+    private final int DIALOG_CODE_COMPRESS = -6001;
+
     private CommonBean bean;
     private HGFastDataUtils hgFastDataUtils;
     private Context context;

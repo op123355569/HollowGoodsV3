@@ -105,27 +105,22 @@ public class FileUtils {
      * 获取文件格式
      *
      * @param filePath 文件路径
-     * @return
+     * @return dir 文件夹 unknown 未知 其他返回格式带.
      */
     public static String getFileFormat(String filePath) {
 
         File file = new File(filePath);
         if (file.isDirectory()) {
-            return "文件夹";
+            return "dir";
         }
 
         String fileName = file.getName();
         int index = fileName.lastIndexOf(".");
         if (index == -1) {
-            return "未知";
+            return "unknown";
         }
 
-        for (int i = 0; i < format.length; i++) {
-            if (fileName.endsWith(format[i])) {
-                return format[i];
-            }
-        }
-        return "未知";
+        return fileName.substring(index);
     }
 
     /**
@@ -170,7 +165,6 @@ public class FileUtils {
      *
      * @param path 如 sdcard/123.txt
      * @param text 文件内容
-     * @throws Exception
      */
     public static void saveToSD(String path, String text) {
 
@@ -180,7 +174,7 @@ public class FileUtils {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(text.getBytes());
             fos.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -406,6 +400,11 @@ public class FileUtils {
     public static boolean isImageFileGif(String file) {
         String str = file.toLowerCase();
         return str.endsWith(".gif");
+    }
+
+    public static boolean isImageFilePng(String file) {
+        String str = file.toLowerCase();
+        return str.endsWith(".png");
     }
 
     public static boolean isOfficeFile(String file) {

@@ -18,6 +18,7 @@ import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.provider.MediaStore;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IntRange;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -272,13 +273,13 @@ public class FormatUtils {
     /**
      * 保存图片到本地
      *
-     * @param bitmap
-     * @param path
-     * @param name
+     * @param bitmap  Bitmap
+     * @param path    String
+     * @param name    String
      * @param quality 质量 0-100
      * @param isPng   是否为PNG图片
      */
-    public static void savePhoto(Bitmap bitmap, String path, String name, int quality, boolean isPng) {
+    public static void savePhoto(Bitmap bitmap, String path, String name, @IntRange(from = 0, to = 100) int quality, boolean isPng) {
 
         FileOutputStream b = null;
 

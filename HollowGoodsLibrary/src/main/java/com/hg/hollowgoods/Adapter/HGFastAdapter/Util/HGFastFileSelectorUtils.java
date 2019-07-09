@@ -10,7 +10,7 @@ import com.hg.hollowgoods.Adapter.HGFastAdapter.Type.FileMode;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.PopupWinHelper;
-import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils;
 
 import java.io.File;
 import java.util.ArrayList;

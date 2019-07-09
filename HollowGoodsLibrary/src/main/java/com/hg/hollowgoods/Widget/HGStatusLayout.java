@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.NetWorkUtils;
-import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils;
 import com.hg.hollowgoods.Widget.DesertPlaceholder.DesertPlaceholder;
 import com.hg.hollowgoods.Widget.FloatingSearchView.FloatingSearchView;
 

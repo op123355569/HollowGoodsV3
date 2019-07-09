@@ -21,7 +21,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.FileUtils;
-import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils;
 
 import org.greenrobot.eventbus.EventBus;
 

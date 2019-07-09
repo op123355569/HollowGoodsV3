@@ -1,4 +1,4 @@
-package com.hg.hollowgoods.Util.SystemAppUtils;
+package com.hg.hollowgoods.Util;
 
 import android.Manifest;
 import android.app.Activity;
@@ -33,11 +33,8 @@ import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.UI.Fragment.Proxy.OnProxyActivityResult;
 import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyConfig;
 import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyHelper;
-import com.hg.hollowgoods.Util.FileUtils;
-import com.hg.hollowgoods.Util.FormatUtils;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPickerActivity;
 import com.hg.hollowgoods.Util.PhotoPicter.Activity.BGAPhotoPreviewActivity;
-import com.hg.hollowgoods.Util.ReflectUtils;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;

@@ -14,7 +14,7 @@ import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.UI.Fragment.Proxy.OnProxyActivityResult;
 import com.hg.hollowgoods.Util.StringUtils;
-import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils;
 import com.hg.hollowgoods.Util.XUtils.DownloadListener;
 import com.hg.hollowgoods.Util.XUtils.XUtils;
 

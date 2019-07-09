@@ -27,7 +27,7 @@ import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.DensityUtils;
 import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.PopupWinHelper;
-import com.hg.hollowgoods.Util.SystemAppUtils.SystemAppUtils;
+import com.hg.hollowgoods.Util.SystemAppUtils;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.AnimatorSet;

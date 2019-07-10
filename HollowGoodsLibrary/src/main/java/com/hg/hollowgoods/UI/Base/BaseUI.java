@@ -112,7 +112,7 @@ public class BaseUI {
     private boolean mIsAutoClearSearch = true;
     private int menuRes = -1;
     private long exitTime = 0l;
-    private Map<String, Object> params;
+    private Map<String, Object> params = new HashMap<>();
 
     /**** 基础对话框 ****/
     public BaseDialog baseDialog;
@@ -1761,8 +1761,9 @@ public class BaseUI {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T getParam(String key) {
-        return (T) params.get(key);
+    public <T> T getParam(String key, T defaultValue) {
+        Object obj = params.get(key);
+        return obj == null ? defaultValue : (T) params.get(key);
     }
 
     public <T> T getParam(String key, Type type) {

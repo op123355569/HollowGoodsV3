@@ -2,25 +2,20 @@ package com.hg.hollowgoods.Bean.EventBus;
 
 import android.os.Bundle;
 
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class Event {
 
-    /**
-     * 意图
-     */
+    /**** 意图 ****/
     private int eventActionCode;
-    /**
-     * 数据
-     */
+    /**** Bundle数据 ****/
     private Bundle data;
-    /**
-     * 其他数据(Bundle放不了的)
-     */
+    /**** 其他数据(Bundle放不了的) ****/
     private HashMap<String, Object> obj;
-    /**
-     * 来源类
-     */
+    /**** 来源类 ****/
     private Class<?> fromClass;
 
     /**
@@ -62,8 +57,40 @@ public class Event {
         this.eventActionCode = eventActionCode;
     }
 
+    /**
+     * 获取Bundle数据
+     *
+     * @return Bundle
+     */
+    @Deprecated
     public Bundle getData() {
         return data;
+    }
+
+    /**
+     * 获取Bundle数据
+     *
+     * @param key          键
+     * @param defaultValue 默认值
+     * @param <T>          根据接收类型定义返回类型
+     * @return <T>
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getData(String key, T defaultValue) {
+        Object o = data.get(key);
+        return o == null ? defaultValue : (T) o;
+    }
+
+    /**
+     * 获取Bundle数据
+     *
+     * @param key  键
+     * @param type 数据类型
+     * @param <T>  根据接收类型定义返回类型
+     * @return <T>
+     */
+    public <T> T getData(String key, Type type) {
+        return new Gson().fromJson(new Gson().toJson(data.get(key)), type);
     }
 
     public void setData(Bundle data) {
@@ -83,7 +110,7 @@ public class Event {
      *
      * @param key   键
      * @param value 值
-     * @return
+     * @return Event
      */
     public Event addObj(String key, Object value) {
 
@@ -99,8 +126,9 @@ public class Event {
      * 获取其他数据
      *
      * @param key 键
-     * @return
+     * @return Object
      */
+    @Deprecated
     public Object getObj(String key) {
 
         if (obj == null) {
@@ -111,10 +139,47 @@ public class Event {
     }
 
     /**
+     * 获取其他数据
+     *
+     * @param key          键
+     * @param defaultValue 默认值
+     * @param <T>          根据接收类型定义返回类型
+     * @return <T>
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getObj(String key, T defaultValue) {
+
+        if (obj == null) {
+            return defaultValue;
+        }
+
+        Object o = obj.get(key);
+
+        return o == null ? defaultValue : (T) o;
+    }
+
+    /**
+     * 获取其他数据
+     *
+     * @param key  键
+     * @param type 数据类型
+     * @param <T>  根据接收类型定义返回类型
+     * @return <T>
+     */
+    public <T> T getObj(String key, Type type) {
+
+        if (obj == null) {
+            return null;
+        }
+
+        return new Gson().fromJson(new Gson().toJson(obj.get(key)), type);
+    }
+
+    /**
      * 移除其他数据
      *
      * @param key 键
-     * @return
+     * @return Event
      */
     public Event removeObj(String key) {
 

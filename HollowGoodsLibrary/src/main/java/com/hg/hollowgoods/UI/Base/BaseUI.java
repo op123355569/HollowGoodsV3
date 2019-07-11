@@ -1726,16 +1726,29 @@ public class BaseUI {
         }
     }
 
+    /**
+     * 获取状态控件
+     *
+     * @return HGStatusLayout
+     */
     public HGStatusLayout getStatusLayout() {
         return statusLayout;
     }
 
+    /**
+     * 设置界面状态
+     *
+     * @param status {@link com.hg.hollowgoods.Widget.HGStatusLayout.Status}
+     */
     public void setStatus(HGStatusLayout.Status status) {
         if (statusLayout != null) {
             statusLayout.setStatus(status);
         }
     }
 
+    /**
+     * 初始化传递的参数
+     */
     private void initParams() {
 
         String str = "";
@@ -1760,12 +1773,28 @@ public class BaseUI {
         }
     }
 
+    /**
+     * 用于获取基本数据类型
+     *
+     * @param key          键
+     * @param defaultValue 默认值
+     * @param <T>          根据接收数据类型而定返回类型
+     * @return <T>
+     */
     @SuppressWarnings("unchecked")
     public <T> T getParam(String key, T defaultValue) {
         Object obj = params.get(key);
-        return obj == null ? defaultValue : (T) params.get(key);
+        return obj == null ? defaultValue : (T) obj;
     }
 
+    /**
+     * 用于获取封装类型数据
+     *
+     * @param key  键
+     * @param type 数据类型
+     * @param <T>  根据接收数据类型而定返回类型
+     * @return <T>
+     */
     public <T> T getParam(String key, Type type) {
         return new Gson().fromJson(new Gson().toJson(params.get(key)), type);
     }

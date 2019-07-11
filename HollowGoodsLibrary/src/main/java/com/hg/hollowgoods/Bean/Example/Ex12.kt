@@ -12,7 +12,7 @@ class Ex12(itemType: Int, res: Int, txt: String?) : CommonBean(itemType) {
     var m1: String? = null
 
     init {
-        super.itemType = itemType
+        super.setItemType(itemType)
         this.res = res
         this.m1 = txt
     }

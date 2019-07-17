@@ -8,6 +8,9 @@ import android.view.View;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Type.FileMode;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.UI.Base.BaseActivity;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyConfig;
+import com.hg.hollowgoods.UI.Fragment.Proxy.ProxyHelper;
 import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.PopupWinHelper;
 import com.hg.hollowgoods.Util.SystemAppUtils;
@@ -30,6 +33,10 @@ public class HGFastFileSelectorUtils {
     private ArrayList<Media> medias;
 
     /**
+     * 显示文件选择的选项的弹窗
+     * Activity是{@link BaseActivity}的话相机权限自动代理
+     * 否则请自行获取相机权限
+     *
      * @param activity   都要用
      * @param view       都要用
      * @param fileMode   都要用
@@ -100,7 +107,22 @@ public class HGFastFileSelectorUtils {
     }
 
     public void openCamera(Activity activity, int quality) {
-        systemAppUtils.takePhoto(activity, REQUEST_CODE_OPEN_CAMERA, quality, false);
+        // 代理相机权限
+        if (activity instanceof BaseActivity) {
+            ProxyHelper.create((BaseActivity) activity)
+                    .requestProxy(
+                            new ProxyConfig()
+                                    .setPermissions(systemAppUtils.cameraPermissions)
+                                    .setRequestCode(REQUEST_CODE_OPEN_CAMERA)
+                                    .setOnProxyRequestPermissionsResult((isAgreeAll, requestCode1, permissions, isAgree) -> {
+                                        if (requestCode1 == REQUEST_CODE_OPEN_CAMERA && isAgreeAll) {
+                                            systemAppUtils.takePhoto(activity, REQUEST_CODE_OPEN_CAMERA, quality, false);
+                                        }
+                                    })
+                    );
+        } else {
+            systemAppUtils.takePhoto(activity, REQUEST_CODE_OPEN_CAMERA, quality, false);
+        }
     }
 
     public void openAlbum(Activity activity, ArrayList<Media> medias, int maxCount, int quality) {

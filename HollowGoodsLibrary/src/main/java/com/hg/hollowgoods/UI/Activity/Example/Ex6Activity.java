@@ -118,4 +118,9 @@ public class Ex6Activity extends BaseActivity {
         });
     }
 
+    @Override
+    public boolean haveScroll() {
+        return true;
+    }
+
 }

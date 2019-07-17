@@ -71,17 +71,7 @@ public class HGFeedbackActivity extends BaseActivity {
     @Override
     public void setListener() {
 
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getData();
-                    }
-                }, 2 * 1000l);
-            }
-        });
+        refreshLayout.setOnRefreshListener(() -> new Handler().postDelayed(this::getData, 2 * 1000L));
 
         adapter.setOnItemClickListener(new OnRecyclerViewItemClickListener(false) {
             @Override
@@ -89,6 +79,11 @@ public class HGFeedbackActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean haveScroll() {
+        return true;
     }
 
     private String name = "Exception.txt";
@@ -139,16 +134,13 @@ public class HGFeedbackActivity extends BaseActivity {
 //        })
 //        xUtils.getHttpData(HttpMethod.POST, params)
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
 
-                baseUI.baseDialog.closeDialog(HGConstants.DEFAULT_CODE);
+            baseUI.baseDialog.closeDialog(HGConstants.DEFAULT_CODE);
 
-                data.get(position).setUploadStatus(true);
-                adapter.refreshData(data, position);
-            }
-        }, 3 * 1000l);
+            data.get(position).setUploadStatus(true);
+            adapter.refreshData(data, position);
+        }, 3 * 1000L);
     }
 
 }

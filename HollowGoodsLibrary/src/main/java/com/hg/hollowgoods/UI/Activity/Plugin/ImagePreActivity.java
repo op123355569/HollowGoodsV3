@@ -158,6 +158,11 @@ public class ImagePreActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public boolean haveScroll() {
+        return true;
+    }
+
     private void tipRemoveImage(int position) {
         if (data.get(position).isCanRemove()) {
             clickPosition = position;

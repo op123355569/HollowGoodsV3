@@ -21,18 +21,25 @@ public class ReflectUtils {
         Object result = null;
 
         if (obj != null) {
-            try {
-                Class clazz = obj.getClass();
-                Field field = clazz.getDeclaredField(valueName);
+            Class<?> clazz = obj.getClass();
 
-                if (field != null) {
-                    //设置些属性是可以访问的
-                    field.setAccessible(true);
-                    //得到此属性的值
-                    result = field.get(obj);
+            while (clazz != Object.class) {
+                try {
+                    Field field = clazz.getDeclaredField(valueName);
+
+                    if (field != null) {
+                        //设置些属性是可以访问的
+                        field.setAccessible(true);
+                        //得到此属性的值
+                        result = field.get(obj);
+
+                        break;
+                    } else {
+                        clazz = clazz.getSuperclass();
+                    }
+                } catch (Exception e) {
+                    clazz = clazz.getSuperclass();
                 }
-            } catch (Exception ignored) {
-
             }
         }
 
@@ -48,12 +55,18 @@ public class ReflectUtils {
      */
     public static void setObjValue(Object obj, String valueName, Object value) {
         if (obj != null && value != null) {
-            try {
-                Field f = obj.getClass().getDeclaredField(valueName);
-                f.setAccessible(true);
-                f.set(obj, value);
-            } catch (Exception ignored) {
+            Class<?> clazz = obj.getClass();
 
+            while (clazz != Object.class) {
+                try {
+                    Field f = clazz.getDeclaredField(valueName);
+                    f.setAccessible(true);
+                    f.set(obj, value);
+
+                    break;
+                } catch (Exception e) {
+                    clazz = clazz.getSuperclass();
+                }
             }
         }
     }

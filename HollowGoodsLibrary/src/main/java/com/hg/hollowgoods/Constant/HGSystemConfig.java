@@ -269,4 +269,9 @@ public class HGSystemConfig {
      */
     public static final int HG_PHOTO_MAX_COUNT = 9;
 
+    /**
+     * 是否开启侧滑返回
+     */
+    public static boolean IS_OPEN_SLIDEBACK = true;
+
 }

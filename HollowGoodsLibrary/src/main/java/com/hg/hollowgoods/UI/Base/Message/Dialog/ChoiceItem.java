@@ -8,7 +8,6 @@ public class ChoiceItem {
 
     private Object item;
     private String describe;
-    private boolean isOpen;
 
     public ChoiceItem(Object item) {
         this.item = item;
@@ -35,11 +34,4 @@ public class ChoiceItem {
         this.describe = describe;
     }
 
-    public boolean isOpen() {
-        return isOpen;
-    }
-
-    public void setOpen(boolean open) {
-        isOpen = open;
-    }
 }

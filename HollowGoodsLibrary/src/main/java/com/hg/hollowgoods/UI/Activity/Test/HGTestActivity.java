@@ -89,4 +89,9 @@ public class HGTestActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public boolean haveScroll() {
+        return true;
+    }
+
 }

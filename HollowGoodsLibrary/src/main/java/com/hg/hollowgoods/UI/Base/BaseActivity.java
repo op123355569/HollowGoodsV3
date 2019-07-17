@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
+import com.hg.hollowgoods.Widget.SlideBack.SlideBack;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -56,6 +57,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         baseUI.setOnSearchViewClickListener(this);
         // 设置监听
         setListener();
+
+        // 绑定侧滑返回
+        if (HGSystemConfig.IS_OPEN_SLIDEBACK && isOpenSlideBack()) {
+            // 在需要滑动返回的Activity中注册，最好但非必须在onCreate中
+            SlideBack.with(this)
+                    .callBack(this::finishMyActivity)
+                    .haveScroll(haveScroll())
+                    .register();
+        }
     }
 
     /**
@@ -92,6 +102,12 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     @Override
     protected void onDestroy() {
         baseUI.onDestroy();
+        // 解绑侧滑返回
+        if (HGSystemConfig.IS_OPEN_SLIDEBACK && isOpenSlideBack()) {
+            // onDestroy时解绑
+            // 内部使用WeakHashMap，理论上不解绑也行，但最好还是手动解绑一下
+            SlideBack.unregister(this);
+        }
         super.onDestroy();
     }
 

@@ -50,6 +50,8 @@ android {
             def version = "V${versionName}"
             def apkName = project.name
             def fileName = "${apkName}-${version}-${variant.buildType.name}-${releaseTime()}.apk"
+            // 修改打包路径
+            // variant.packageApplicationProvider.get().outputDirectory = new File("D:/APK/${project.name}/${variant.buildType.name}/")
             outputFileName = fileName
         }
     }

@@ -179,6 +179,11 @@ public class FileSelectorActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public boolean haveScroll() {
+        return true;
+    }
+
     private void initFileData() {
 
         loadData();

@@ -100,6 +100,11 @@ public class Ex2Activity extends BaseActivity {
         });
     }
 
+    @Override
+    public boolean haveScroll() {
+        return true;
+    }
+
     private void loadHeadImg() {
 
         XUtils xUtils = new XUtils();

@@ -74,6 +74,11 @@ public class FileReadActivity extends BaseActivity {
 
     }
 
+    @Override
+    public boolean haveScroll() {
+        return true;
+    }
+
     private void checkFilepath() {
         if (TextUtils.isEmpty(filepath)) {//网络地址要先下载
             downloadFile();

@@ -3,7 +3,9 @@ package com.hg.hollowgoods.Service.Time;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
@@ -116,8 +118,12 @@ public class TimeService extends Service {
     }
 
     public static void start(Context context) {
-        Intent intent = new Intent(context, TimeService.class);
-        context.startService(intent);
+        try {
+            Intent intent = new Intent(context, TimeService.class);
+            context.startService(intent);
+        } catch (Exception e) {
+            new Handler(Looper.getMainLooper()).postDelayed(() -> start(context), 3000);
+        }
     }
 
 }

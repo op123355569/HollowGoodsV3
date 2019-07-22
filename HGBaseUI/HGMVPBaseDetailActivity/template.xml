@@ -2,10 +2,10 @@
 <template
     format="3"
     revision="4"
-    name="HG MVP Base Activity"
+    name="HG MVP Base Detail Activity"
     minApi="21"
     minBuildApi="21"
-    description="Creates a new HG MVP Base activity">
+    description="Creates a new HG MVP Base detail activity">
 
     <category value="HG Base UI" />
 	

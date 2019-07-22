@@ -38,12 +38,12 @@ public class HGIndexActivity extends BaseActivity {
     @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
-        animatedSvgView = findViewById(R.id.animatedSvgView);
-        gotoNext = findViewById(R.id.gotoNext);
-
         baseUI.setCommonTitleViewVisibility(false);
         baseUI.hideActionBar();
         baseUI.setStatusBackgroundColor(R.color.main_body_color);
+
+        animatedSvgView = findViewById(R.id.animatedSvgView);
+        gotoNext = findViewById(R.id.gotoNext);
 
         return null;
     }

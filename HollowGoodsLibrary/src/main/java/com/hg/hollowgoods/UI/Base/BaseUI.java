@@ -715,7 +715,9 @@ public class BaseUI {
                 }
             }
 
-            rootView.setFitsSystemWindows(true);
+            if (isActivity) {
+                rootView.setFitsSystemWindows(true);
+            }
         }
     }
 

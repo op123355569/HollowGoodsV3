@@ -30,7 +30,11 @@ public class HGFastFileSelectorUtils {
 
     private PopupWinHelper helper;
     public SystemAppUtils systemAppUtils = new SystemAppUtils();
+    private Activity activity;
     private ArrayList<Media> medias;
+    private int maxCount;
+    private int quality;
+    private String fileFilter;
 
     /**
      * 显示文件选择的选项的弹窗
@@ -55,16 +59,30 @@ public class HGFastFileSelectorUtils {
             String fileFilter
     ) {
 
+        this.activity = activity;
         this.medias = medias;
+        this.maxCount = maxCount;
+        this.quality = quality;
+        this.fileFilter = fileFilter;
 
         if (helper == null) {
             helper = new PopupWinHelper(view.getContext(), v -> {
                 if (v.getId() == R.id.ll_openCamera) {
-                    openCamera(activity, quality);
+                    openCamera(HGFastFileSelectorUtils.this.activity,
+                            HGFastFileSelectorUtils.this.quality
+                    );
                 } else if (v.getId() == R.id.ll_openAlbum) {
-                    openAlbum(activity, this.medias, maxCount, quality);
+                    openAlbum(HGFastFileSelectorUtils.this.activity,
+                            HGFastFileSelectorUtils.this.medias,
+                            HGFastFileSelectorUtils.this.maxCount,
+                            HGFastFileSelectorUtils.this.quality
+                    );
                 } else if (v.getId() == R.id.ll_openFile) {
-                    openFile(activity, this.medias, maxCount, fileFilter);
+                    openFile(HGFastFileSelectorUtils.this.activity,
+                            HGFastFileSelectorUtils.this.medias,
+                            HGFastFileSelectorUtils.this.maxCount,
+                            HGFastFileSelectorUtils.this.fileFilter
+                    );
                 }
 
                 helper.closePopupWin();
@@ -83,13 +101,23 @@ public class HGFastFileSelectorUtils {
 
         switch (fileMode) {
             case OpenCamera:
-                openCamera(activity, quality);
+                openCamera(HGFastFileSelectorUtils.this.activity,
+                        HGFastFileSelectorUtils.this.quality
+                );
                 break;
             case OpenAlbum:
-                openAlbum(activity, medias, maxCount, quality);
+                openAlbum(HGFastFileSelectorUtils.this.activity,
+                        HGFastFileSelectorUtils.this.medias,
+                        HGFastFileSelectorUtils.this.maxCount,
+                        HGFastFileSelectorUtils.this.quality
+                );
                 break;
             case OpenFile:
-                openFile(activity, medias, maxCount, fileFilter);
+                openFile(HGFastFileSelectorUtils.this.activity,
+                        HGFastFileSelectorUtils.this.medias,
+                        HGFastFileSelectorUtils.this.maxCount,
+                        HGFastFileSelectorUtils.this.fileFilter
+                );
                 break;
             case OpenCameraOrAlbum:
                 View openFileView = helper.getView(R.id.ll_openFile);

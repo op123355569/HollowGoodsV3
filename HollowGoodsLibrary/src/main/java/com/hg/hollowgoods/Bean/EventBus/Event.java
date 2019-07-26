@@ -62,7 +62,6 @@ public class Event {
      *
      * @return Bundle
      */
-    @Deprecated
     public Bundle getData() {
         return data;
     }

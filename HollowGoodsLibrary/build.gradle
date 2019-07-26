@@ -148,6 +148,11 @@ dependencies {
         exclude group: 'com.github.op123355569', module: 'HollowGoodsV3'
     }
 
+    // Tinker热插件
+    api("com.tencent.tinker:tinker-android-lib:${TINKERPATCH_VERSION}") {
+        changing = true
+    }
+
     ////////////////////////////////////Jar包/////////////////////////////////////////
 
     // WebService接口

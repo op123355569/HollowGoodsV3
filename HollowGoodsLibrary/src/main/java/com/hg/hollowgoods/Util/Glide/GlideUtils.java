@@ -26,7 +26,7 @@ public class GlideUtils {
      * 加载图片
      *
      * @param context      Activity/Fragment/Context
-     * @param glideOptions
+     * @param glideOptions GlideOptions
      */
     public static void loadImg(Object context, GlideOptions glideOptions) {
 
@@ -99,7 +99,7 @@ public class GlideUtils {
     /**
      * 暂停加载图片(用于列表滑动进行时)
      *
-     * @param context
+     * @param context Activity/Fragment/Context
      */
     public static void pauseLoadImg(Object context) {
 
@@ -115,7 +115,7 @@ public class GlideUtils {
     /**
      * 恢复加载图片(用于列表滑动完成后)
      *
-     * @param context
+     * @param context Activity/Fragment/Context
      */
     public static void resumeLoadImg(Object context) {
 
@@ -131,8 +131,8 @@ public class GlideUtils {
     /**
      * 获取缓存图片的文件名
      *
-     * @param glideOptions
-     * @return
+     * @param glideOptions GlideOptions
+     * @return String
      */
     public static String getSaveName(GlideOptions glideOptions) {
 

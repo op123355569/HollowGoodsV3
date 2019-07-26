@@ -18,5 +18,9 @@ public class HGEventActionCode {
     public static final int NETWORK_STATUS_LINK = -1006;
     /**** 修改了IP配置 ****/
     public static final int IP_CONFIG_CHANGED = -1007;
+    /**** 热补丁安装失败 ****/
+    public static final int TINKER_NO_RESULT = -1008;
+    /**** 热补丁安装失败 ****/
+    public static final int TINKER_INSTALL_SUCCESS = -1009;
 
 }

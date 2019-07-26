@@ -22,6 +22,9 @@ import com.hg.hollowgoods.Util.XUtils.XUtils;
 import com.hg.hollowgoods.Widget.HGStatusLayout;
 import com.hg.hollowgoods.voice.VoiceUtils;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.tinker.loader.TinkerLoader;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -32,9 +35,13 @@ import java.util.List;
  * 基Application
  * Created by HG on 2018-03-22.
  */
-public abstract class BaseApplication extends Application implements IBaseApplication {
+public abstract class BaseApplication extends TinkerApplication implements IBaseApplication {
 
     private static Application instance = null;
+
+    public BaseApplication() {
+        super(ShareConstants.TINKER_ENABLE_ALL, MyLike.class.getName(), TinkerLoader.class.getName(), false);
+    }
 
     public static <T extends Application> T create() {
         if (instance == null) {

@@ -52,6 +52,7 @@ android {
     }
     
     // 打包APK重命名
+    // 如果使用热插件模块，此处请删除，否则无法正常打包
     applicationVariants.all { variant ->
         variant.outputs.all {
             def version = "V${versionName}"

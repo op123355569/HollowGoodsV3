@@ -75,15 +75,16 @@ static def releaseTime() {
 /**** 拷贝S 4/5 ****/
 // 这个目录是基于项目的目录：Tinker/app/build/bakApk目录下存放oldApk
 // def bakPath = file("${buildDir}/bakApk/")//指定基准文件(oldApk)存放位置
-def bakPath = new File("D:/APK/热补丁Demo/release/")//指定基准文件(oldApk)存放位置
+def bakPath = new File("D:/APK/HollowGoods/release/")//指定基准文件(oldApk)存放位置
 
 ext {
-    commonPath = "app-V1.0.2-release-2019.07.26 10.38.16"
+    commonPath = "Sample-V1.0-release-2019.07.26 13.50.08"
     tinkerEnabled = true  // 是否启用Tinker的标志位
     tinkerOldApkPath = "${bakPath}/${commonPath}.apk"// oldApk 文件路径
     tinkerID = "1.0"// 与版本号一致
     tinkerApplyMappingPath = "${bakPath}/" // 混淆文件路径
     tinkerApplyResourcePath = "${bakPath}/${commonPath}-R.txt" // 资源路径
+    tinkDexLoader = "com.hg.hollowgoods.sample.MyApplication" // 制定patch文件用到类
 }
 
 /*================================方法实现模块====================================*/
@@ -164,7 +165,7 @@ if (buildWithTinker()) {
             pattern = ["classes*.dex", "assets/secondary-dex-?.jar"]
 
             // 制定patch文件用到类
-            loader = ["com.hg.hollowgoods.tinkerdemo.MyApplication"]
+            loader = ["${tinkDexLoader}"]
         }
 
         /*================================Tinker关于jar与.so文件的替换相关配置====================================*/

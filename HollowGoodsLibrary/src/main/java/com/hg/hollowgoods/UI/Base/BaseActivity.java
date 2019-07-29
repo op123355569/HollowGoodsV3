@@ -70,6 +70,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
                     .haveScroll(haveScroll())
                     .register();
         }
+
+        onCreateFlag = true;
     }
 
     @Override

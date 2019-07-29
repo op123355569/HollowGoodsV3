@@ -3,6 +3,8 @@ package com.hg.hollowgoods.UI.Base;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -32,6 +34,8 @@ import org.jetbrains.annotations.NotNull;
 public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity, OnCommonTitleClickListener, OnSearchViewClickListener {
 
     public BaseUI baseUI = new BaseUI();
+    /**** OnCreate是否已调用 ****/
+    private boolean onCreateFlag = false;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -65,6 +69,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
                     .callBack(this::finishMyActivity)
                     .haveScroll(haveScroll())
                     .register();
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (onCreateFlag && hasFocus) {
+            onCreateFlag = false;
+            new Handler(Looper.getMainLooper()).post(this::initViewDelay);
         }
     }
 

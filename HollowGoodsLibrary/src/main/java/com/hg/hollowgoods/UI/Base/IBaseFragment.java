@@ -25,6 +25,10 @@ public interface IBaseFragment {
     @Nullable
     Object initView(View view, Bundle savedInstanceState);
 
+    default void initViewDelay() {
+        
+    }
+
     /**
      * 设置监听
      */

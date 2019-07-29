@@ -33,6 +33,7 @@ import java.util.Map;
 public abstract class BaseFragment extends Fragment implements IBaseFragment, OnCommonTitleClickListener, OnSearchViewClickListener {
 
     public BaseUI baseUI = new BaseUI();
+    private boolean hasRootViewLoaded = false;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +49,13 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
         baseUI.setOnCommonTitleClickListener(this);
         // 设置搜索框监听
         baseUI.setOnSearchViewClickListener(this);
+
+        baseUI.rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            if (!hasRootViewLoaded) {
+                hasRootViewLoaded = true;
+                initViewDelay();
+            }
+        });
         // 设置监听
         setListener();
 

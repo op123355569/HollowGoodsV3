@@ -212,37 +212,38 @@ if (buildWithTinker()) {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
+            if (variant.buildType.name == "release") {
+                /**
+                 * task type, you want to bak 备份你想备份的数据 可以是任意类型
+                 */
+                def taskName = variant.name
 
-            /**
-             * task type, you want to bak 备份你想备份的数据 可以是任意类型
-             */
-            def taskName = variant.name
+                tasks.all {
+                    if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
+                        it.doLast {
+                            copy {
+                                def fileNamePrefix = "${project.name}-${variant.baseName}"
 
-            tasks.all {
-                if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
-                    it.doLast {
-                        copy {
-                            def fileNamePrefix = "${project.name}-${variant.baseName}"
+                                def version = "V${versionName}"
+                                def apkName = project.name
+                                def newFileNamePrefix = "${apkName}-${version}-${variant.buildType.name}-${releaseTime()}"
 
-                            def version = "V${versionName}"
-                            def apkName = project.name
-                            def newFileNamePrefix = "${apkName}-${version}-${variant.buildType.name}-${releaseTime()}"
+                                // destPath为备份的目录 没有没有多渠道打包那么hasFlavors为false destPath=bakPath bakPath即最上面定义的基础目录
+                                def destPath = bakPath
 
-                            // destPath为备份的目录 没有没有多渠道打包那么hasFlavors为false destPath=bakPath bakPath即最上面定义的基础目录
-                            def destPath = bakPath
+                                from outputFile
+                                into destPath
+                                // 备份.apk文件
+                                rename { String fileName ->
+                                    fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+                                }
 
-                            from outputFile
-                            into destPath
-                            // 备份.apk文件
-                            rename { String fileName ->
-                                fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
-                            }
-
-                            from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
-                            into destPath
-                            // 备份R.txt文件 即用于映射的资源ID
-                            rename { String fileName ->
-                                fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+                                from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
+                                into destPath
+                                // 备份R.txt文件 即用于映射的资源ID
+                                rename { String fileName ->
+                                    fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+                                }
                             }
                         }
                     }

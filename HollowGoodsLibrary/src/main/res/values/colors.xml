@@ -63,4 +63,7 @@
 
     <color name="button_disable_color">#909090</color>
 
+    <color name="default_skeleton_shimmer_color">#A2878787</color>
+    <color name="default_skeleton_bg_color">#16000000</color>
+
 </resources>

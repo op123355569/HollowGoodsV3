@@ -153,6 +153,10 @@ dependencies {
         changing = true
     }
 
+    // Shimmer加载动画工具
+    api 'com.ethanhua:skeleton:1.1.2'
+    api 'io.supercharge:shimmerlayout:2.1.0'
+
     ////////////////////////////////////Jar包/////////////////////////////////////////
 
     // WebService接口

@@ -3,24 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_1"
-        android:icon="@drawable/ic_invert_colors_black_24dp"
+        android:id="@+id/action_hg_voice"
+        android:icon="@drawable/ic_input_voice"
         android:orderInCategory="80"
-        android:title="第1个"
+        android:title="语音听写"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/action_2"
-        android:icon="@drawable/ic_mic_black_24dp"
-        android:orderInCategory="90"
-        android:title="第2个"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_3"
-        android:icon="@drawable/ic_history_black_24dp"
-        android:orderInCategory="100"
-        android:title="第3个"
-        app:showAsAction="ifRoom" />
 
 </menu>

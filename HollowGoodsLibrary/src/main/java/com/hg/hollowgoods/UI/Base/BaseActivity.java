@@ -66,7 +66,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         if (HGSystemConfig.IS_OPEN_SLIDEBACK && isOpenSlideBack()) {
             // 在需要滑动返回的Activity中注册，最好但非必须在onCreate中
             SlideBack.with(this)
-                    .callBack(this::finishMyActivity)
+                    .callBack(this::onSlideBackWork)
                     .haveScroll(haveScroll())
                     .register();
         }
@@ -97,12 +97,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     }
 
     @Override
-    public void onBackPressed() {
-//        if (baseUI.hasSharedElement) {
-//            super.onBackPressed();
-//        } else {
+    public void onSlideBackWork() {
         finishMyActivity();
-//        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishMyActivity();
     }
 
     public void finishMyActivity() {

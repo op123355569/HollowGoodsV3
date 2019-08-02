@@ -20,4 +20,7 @@
     <item name="view_tag_key_on_click" type="id" />
     <item name="view_tag_key_image_url" type="id" />
 
+    <item name="banner_all" type="id" />
+    <item name="banner_img" type="id" />
+
 </resources>

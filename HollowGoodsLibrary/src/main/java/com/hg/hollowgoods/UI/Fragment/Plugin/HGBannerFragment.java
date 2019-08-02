@@ -56,11 +56,16 @@ public abstract class HGBannerFragment extends BaseFragment implements BannerHel
         banner = baseUI.findViewById(R.id.dsv_banner);
         label = baseUI.findViewById(R.id.rg_label);
 
-        banners = new int[4];
-        banners[0] = HGCommonResource.IMAGE_LOADING;
-        banners[1] = HGCommonResource.IMAGE_LOADING;
-        banners[2] = HGCommonResource.IMAGE_LOADING;
-        banners[3] = HGCommonResource.IMAGE_LOADING;
+        int[] temp = defaultBannerRes();
+        if (temp == null) {
+            banners = new int[4];
+            banners[0] = HGCommonResource.IMAGE_LOADING;
+            banners[1] = HGCommonResource.IMAGE_LOADING;
+            banners[2] = HGCommonResource.IMAGE_LOADING;
+            banners[3] = HGCommonResource.IMAGE_LOADING;
+        } else {
+            banners = temp;
+        }
 
         initBanner(null);
         doRefresh();

@@ -13,6 +13,16 @@ import android.view.View;
 public interface BannerHelper {
 
     /**
+     * 默认轮播图显示的资源组
+     * 默认null
+     *
+     * @return int[]
+     */
+    default int[] defaultBannerRes() {
+        return null;
+    }
+
+    /**
      * 绑定轮播图布局<p>
      * 在布局中，一定要申明以下两个id<p>
      * 1. banner_all 用于确定点击事件的范围<p>

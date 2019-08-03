@@ -95,6 +95,9 @@ public class CommonTitleLayout extends BaseCommonTitle {
 
         // 设置Toolbar
         getToolbar().setTitle("");
+        if (openHeader) {
+            getToolbar().setAlpha(0);
+        }
 
         Toolbar.LayoutParams lp = new Toolbar.LayoutParams(Gravity.CENTER);
         int maxTitleWidth = (int) (mContext.getResources().getDisplayMetrics().widthPixels * 0.5f);
@@ -120,7 +123,10 @@ public class CommonTitleLayout extends BaseCommonTitle {
         setRightTitleTextSize(DEFAULT_RIGHT_TEXT_SIZE);
         setRightTitleTextColor(DEFAULT_TEXT_COLOR);
 
-        addOnOffsetChangedListener((appBarLayout, verticalOffset) -> isHeaderExpanded = verticalOffset == 0);
+        addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            isHeaderExpanded = verticalOffset == 0;
+            getToolbar().setAlpha(Math.abs(verticalOffset) * 1F / appBarLayout.getTotalScrollRange());
+        });
     }
 
     @Override

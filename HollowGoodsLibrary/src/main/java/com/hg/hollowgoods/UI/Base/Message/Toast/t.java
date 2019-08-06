@@ -62,7 +62,13 @@ public class t {
      * @param obj 要显示的消息
      */
     public static void showShortToastByObj(Object obj) {
-        showShortToast(obj + "");
+        if (obj instanceof Integer) {
+            showShortToast((Integer) obj);
+        } else if (obj instanceof CharSequence) {
+            showShortToast((CharSequence) obj);
+        } else {
+            showShortToast(obj + "");
+        }
     }
 
     /**
@@ -89,7 +95,13 @@ public class t {
      * @param obj 要显示的消息
      */
     public static void showLongToastByObj(Object obj) {
-        showLongToast(obj + "");
+        if (obj instanceof Integer) {
+            showLongToast((Integer) obj);
+        } else if (obj instanceof CharSequence) {
+            showLongToast((CharSequence) obj);
+        } else {
+            showLongToast(obj + "");
+        }
     }
 
     /**** 新吐司 ****/
@@ -149,6 +161,16 @@ public class t {
      */
     private static Drawable successDrawable = tint9PatchDrawableFrame(SUCCESS_COLOR);
 
+    public static void normalByObj(Object obj) {
+        if (obj instanceof Integer) {
+            normal((Integer) obj);
+        } else if (obj instanceof CharSequence) {
+            normal((CharSequence) obj);
+        } else {
+            normal(obj + "");
+        }
+    }
+
     public static void normal(@NonNull CharSequence text) {
         normal(text, Toast.LENGTH_SHORT, null, false).show();
     }
@@ -181,6 +203,36 @@ public class t {
         return custom(text, ToastType.Warning, DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
     }
 
+    public static void warningByObj(Object obj) {
+        if (obj instanceof Integer) {
+            warning((Integer) obj, Toast.LENGTH_SHORT, true).show();
+        } else if (obj instanceof CharSequence) {
+            warning((CharSequence) obj, Toast.LENGTH_SHORT, true).show();
+        } else {
+            warning(obj + "", Toast.LENGTH_SHORT, true).show();
+        }
+    }
+
+    public static void warningByObj(Object obj, int duration) {
+        if (obj instanceof Integer) {
+            warning((Integer) obj, duration, true).show();
+        } else if (obj instanceof CharSequence) {
+            warning((CharSequence) obj, duration, true).show();
+        } else {
+            warning(obj + "", duration, true).show();
+        }
+    }
+
+    public static Toast warningByObj(Object obj, int duration, boolean withIcon) {
+        if (obj instanceof Integer) {
+            return custom((Integer) obj, ToastType.Warning, DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
+        } else if (obj instanceof CharSequence) {
+            return custom((CharSequence) obj, ToastType.Warning, DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
+        } else {
+            return custom(obj + "", ToastType.Warning, DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
+        }
+    }
+
     public static void info(@NonNull CharSequence text) {
         info(text, Toast.LENGTH_SHORT, true).show();
     }
@@ -191,6 +243,36 @@ public class t {
 
     public static Toast info(@NonNull CharSequence text, int duration, boolean withIcon) {
         return custom(text, ToastType.Info, DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
+    }
+
+    public static void infoByObj(Object obj) {
+        if (obj instanceof Integer) {
+            info((Integer) obj, Toast.LENGTH_SHORT, true).show();
+        } else if (obj instanceof CharSequence) {
+            info((CharSequence) obj, Toast.LENGTH_SHORT, true).show();
+        } else {
+            info(obj + "", Toast.LENGTH_SHORT, true).show();
+        }
+    }
+
+    public static void infoByObj(Object obj, int duration) {
+        if (obj instanceof Integer) {
+            info((Integer) obj, duration, true).show();
+        } else if (obj instanceof CharSequence) {
+            info((CharSequence) obj, duration, true).show();
+        } else {
+            info(obj + "", duration, true).show();
+        }
+    }
+
+    public static Toast infoByObj(Object obj, int duration, boolean withIcon) {
+        if (obj instanceof Integer) {
+            return custom((Integer) obj, ToastType.Info, DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
+        } else if (obj instanceof CharSequence) {
+            return custom((CharSequence) obj, ToastType.Info, DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
+        } else {
+            return custom(obj + "", ToastType.Info, DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
+        }
     }
 
     public static void success(@NonNull CharSequence text) {
@@ -205,6 +287,36 @@ public class t {
         return custom(text, ToastType.Success, DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
     }
 
+    public static void successByObj(Object obj) {
+        if (obj instanceof Integer) {
+            success((Integer) obj, Toast.LENGTH_SHORT, true).show();
+        } else if (obj instanceof CharSequence) {
+            success((CharSequence) obj, Toast.LENGTH_SHORT, true).show();
+        } else {
+            success(obj + "", Toast.LENGTH_SHORT, true).show();
+        }
+    }
+
+    public static void successByObj(Object obj, int duration) {
+        if (obj instanceof Integer) {
+            success((Integer) obj, duration, true).show();
+        } else if (obj instanceof CharSequence) {
+            success((CharSequence) obj, duration, true).show();
+        } else {
+            success(obj + "", duration, true).show();
+        }
+    }
+
+    public static Toast successByObj(Object obj, int duration, boolean withIcon) {
+        if (obj instanceof Integer) {
+            return custom((Integer) obj, ToastType.Success, DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
+        } else if (obj instanceof CharSequence) {
+            return custom((CharSequence) obj, ToastType.Success, DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
+        } else {
+            return custom(obj + "", ToastType.Success, DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
+        }
+    }
+
     public static void error(@NonNull CharSequence text) {
         error(text, Toast.LENGTH_SHORT, true).show();
     }
@@ -215,6 +327,36 @@ public class t {
 
     public static Toast error(@NonNull CharSequence text, int duration, boolean withIcon) {
         return custom(text, ToastType.Error, DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
+    }
+
+    public static void errorByObj(Object obj) {
+        if (obj instanceof Integer) {
+            error((Integer) obj, Toast.LENGTH_SHORT, true).show();
+        } else if (obj instanceof CharSequence) {
+            error((CharSequence) obj, Toast.LENGTH_SHORT, true).show();
+        } else {
+            error(obj + "", Toast.LENGTH_SHORT, true).show();
+        }
+    }
+
+    public static void errorByObj(Object obj, int duration) {
+        if (obj instanceof Integer) {
+            error((Integer) obj, duration, true).show();
+        } else if (obj instanceof CharSequence) {
+            error((CharSequence) obj, duration, true).show();
+        } else {
+            error(obj + "", duration, true).show();
+        }
+    }
+
+    public static Toast errorByObj(Object obj, int duration, boolean withIcon) {
+        if (obj instanceof Integer) {
+            return custom((Integer) obj, ToastType.Error, DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
+        } else if (obj instanceof CharSequence) {
+            return custom((CharSequence) obj, ToastType.Error, DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
+        } else {
+            return custom(obj + "", ToastType.Error, DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
+        }
     }
 
     public static void normal(@StringRes int textRes) {

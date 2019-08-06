@@ -22,7 +22,7 @@ public class ${contractName} {
 
         void getDataSuccess(ArrayList<Object> tempData);
 
-        void getDataError();
+        void getDataError(Object msg);
 
         void getDataFinish();
     }

@@ -65,7 +65,7 @@ public class ${modelName} implements ${contractName}.Model {
             @Override
             public void onGetError(Throwable ex) {
                 if (isViewAttached()) {
-                    mView.getDataError();
+                    mView.getDataError(R.string.network_error);
                     mView.getDataFinish();
                 }
             }

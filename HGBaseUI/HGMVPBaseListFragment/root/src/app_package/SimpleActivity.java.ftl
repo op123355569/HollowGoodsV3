@@ -147,8 +147,8 @@ public class ${activityClass} extends BaseMVPFragment<${presenterName}> implemen
     }
 
     @Override
-    public void getDataError() {
-        t.error(R.string.network_error);
+    public void getDataError(Object msg) {
+        t.errorByObj(msg);
     }
 
     @Override

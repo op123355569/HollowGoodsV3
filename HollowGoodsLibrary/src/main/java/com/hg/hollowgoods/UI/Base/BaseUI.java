@@ -214,7 +214,9 @@ public class BaseUI {
         registerEventBusObj = eventBusObj;
 
         if (registerEventBusObj != null) {
-            EventBus.getDefault().register(registerEventBusObj);
+            if (!EventBus.getDefault().isRegistered(registerEventBusObj)) {
+                EventBus.getDefault().register(registerEventBusObj);
+            }
         }
     }
 
@@ -247,7 +249,9 @@ public class BaseUI {
     public void onDestroy() {
 
         if (registerEventBusObj != null) {
-            EventBus.getDefault().unregister(registerEventBusObj);
+            if (EventBus.getDefault().isRegistered(registerEventBusObj)) {
+                EventBus.getDefault().unregister(registerEventBusObj);
+            }
         }
 
         baseDialog.closeAllDialog();

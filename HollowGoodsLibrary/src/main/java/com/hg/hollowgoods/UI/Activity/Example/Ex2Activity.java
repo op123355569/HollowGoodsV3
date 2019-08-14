@@ -117,27 +117,35 @@ public class Ex2Activity extends BaseActivity {
     private void initUrl() {
 
         data = new ArrayList<>();
+
         data.add("http://img5.duitang.com/uploads/item/201408/12/20140812133247_zcLCB.jpeg");
-        data.add("http://img1.gamersky.com/image2016/04/20160421_lc_40_5/gamersky_04small_08_20164211311765.jpg");
-        data.add("http://s.qdcdn.com/cl/10008521,800,450.jpg");
+        data.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565761348235&di=e1db2441f8956bfb0fe60c8aaeeefdcb&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201707%2F31%2F20170731200442_Wftk5.jpeg");
+        data.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=456225137,3332655719&fm=26&gp=0.jpg");
+
         data.add("http://d.hiphotos.baidu.com/zhidao/pic/item/d01373f082025aaf3f871852f9edab64024f1af5.jpg");
         data.add("http://img1.gamersky.com/image2016/04/20160428_zcq_252_1/gamersky_02small_04_20164281738B65.jpg");
         data.add("http://pic0.qiyipic.com/image/20160224/d2/b5/a_100012835_m_601_m2_480_270.jpg");
+
         data.add("http://pic.baike.soso.com/p/20100209/20100209194645-507652227.jpg");
         data.add("http://imgsrc.baidu.com/forum/pic/item/a6efce1b9d16fdfa3c950faeb48f8c5495ee7bf1.jpg");
         data.add("http://f.hiphotos.baidu.com/zhidao/pic/item/c2cec3fdfc0392458b23a4af8794a4c27c1e25ff.jpg");
-        data.add("http://tupian.enterdesk.com/2013/xll/008/06/8/12.jpg");
-        data.add("http://qn.18touch.com/uploads/20150529/v1_1-8_1432895095365102.jpg");
+
+        data.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565761536106&di=09eb0312a1772aea2a40575f3ac79e2c&imgtype=0&src=http%3A%2F%2Fimage.tianjimedia.com%2FuploadImages%2F2015%2F163%2F15%2FAV0KD0ABW9V9_153006f52ef01c.jpg");
+        data.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565761583526&di=d58baa78c27ea7e219e28498966e763d&imgtype=0&src=http%3A%2F%2Fimg.123renren.com%2Fupload%2F848%2F201111%2F20111122100418015_o.jpeg");
         data.add("http://img0.pcgames.com.cn/pcgames/1104/23/2193236_dmxinwen2011042214.jpg");
+
         data.add("http://news.u17i.com/comic_wallpaper/3166/comic_3166_1403147673_2560x1600.jpg");
         data.add("http://www.shouyoutv.com/images/20150109/1420797844552452.jpg");
         data.add("http://news.u17i.com/comic_wallpaper/3166/comic_3166_1403147632_2560x1600.jpg");
+
         data.add("http://img.zcool.cn/community/01d102576c77e90000018c1b72d82e.jpg");
         data.add("http://i1.hdslb.com/video/f9/f9a4348fdb86f3f677ef7b02df67c8e0.jpg");
         data.add("http://ww1.sinaimg.cn/large/005FDPhtgw1eyc2lyz7cbj30fk078417.jpg");
+
         data.add("http://i2.hunantv.com/p1/20151015/1508381359.jpg");
         data.add("http://life.southmoney.com/yule/UploadFiles_8402/201508/2015081716034099.png");
         data.add("http://imgsrc.baidu.com/forum/w%3D580%3Bcp%3Dtieba%2C10%2C348%3Bap%3D%D3%C9%C0%F2%BD%B4%B0%C9%2C90%2C356/sign=0e6e43ba8501a18bf0eb1247ae146478/9a27931373f08202df1554a949fbfbedaa641b09.jpg");
+
         data.add("http://i3.letvimg.com/cms/201404/11/7fefcb4a376e49b3980bcb9d42e2c794.jpg");
         data.add("http://e.hiphotos.baidu.com/zhidao/pic/item/377adab44aed2e73f7a9275e8701a18b87d6fa04.jpg");
         data.add("http://www.xwqnews.com/uploads/allimg/150913/114359CH-0.jpg");

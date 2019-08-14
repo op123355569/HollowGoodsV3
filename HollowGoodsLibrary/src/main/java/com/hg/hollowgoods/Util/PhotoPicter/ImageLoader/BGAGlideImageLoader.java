@@ -69,7 +69,13 @@ public class BGAGlideImageLoader extends BGAImageLoader {
                 }
             }).into(imageView);
         } else {
-            Glide.with(activity).load(finalPath).apply(new RequestOptions().placeholder(loadingResId).error(failResId).override(width, height).dontAnimate()).listener(new RequestListener<Drawable>() {
+            Glide.with(activity).load(finalPath).apply(
+                    new RequestOptions()
+                            .placeholder(loadingResId)
+                            .error(failResId)
+                            .fitCenter()
+                            .dontAnimate()
+            ).listener(new RequestListener<Drawable>() {
                 @Override
                 public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                     return false;
@@ -83,6 +89,20 @@ public class BGAGlideImageLoader extends BGAImageLoader {
                     return false;
                 }
             }).into(imageView);
+//            Glide.with(activity).load(finalPath).apply(new RequestOptions().placeholder(loadingResId).error(failResId).override(width, height).dontAnimate()).listener(new RequestListener<Drawable>() {
+//                @Override
+//                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+//                    if (delegate != null) {
+//                        delegate.onSuccess(imageView, finalPath);
+//                    }
+//                    return false;
+//                }
+//            }).into(imageView);
         }
     }
 

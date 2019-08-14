@@ -15,7 +15,6 @@
  */
 package com.hg.hollowgoods.Util.PhotoPicter.Adapter;
 
-import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,15 +52,12 @@ public class BGAPhotoPageAdapter extends PagerAdapter {
         container.addView(imageView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         final BGABrowserPhotoViewAttacher photoViewAttacher = new BGABrowserPhotoViewAttacher(imageView);
         photoViewAttacher.setOnViewTapListener(mOnViewTapListener);
-        imageView.setDelegate(new BGAImageView.Delegate() {
-            @Override
-            public void onDrawableChanged(Drawable drawable) {
-                if (drawable != null && drawable.getIntrinsicHeight() > drawable.getIntrinsicWidth() && drawable.getIntrinsicHeight() > BGAPhotoPickerUtil.getScreenHeight()) {
-                    photoViewAttacher.setIsSetTopCrop(true);
-                    photoViewAttacher.setUpdateBaseMatrix();
-                } else {
-                    photoViewAttacher.update();
-                }
+        imageView.setDelegate(drawable -> {
+            if (drawable != null && drawable.getIntrinsicHeight() > drawable.getIntrinsicWidth() && drawable.getIntrinsicHeight() > BGAPhotoPickerUtil.getScreenHeight()) {
+                photoViewAttacher.setIsSetTopCrop(true);
+                photoViewAttacher.setUpdateBaseMatrix();
+            } else {
+                photoViewAttacher.update();
             }
         });
 

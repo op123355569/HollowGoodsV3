@@ -583,6 +583,10 @@ public class ValidatorInputView extends LinearLayout {
                     case ValidatorType.END:
                     case ValidatorType.PHONE:
                     case ValidatorType.CONTAINS:
+                    case ValidatorType.NOT_ALL_NUMBER:
+                    case ValidatorType.ENGLISH_OR_NUMBER:
+                    case ValidatorType.ENGLISH:
+                    case ValidatorType.CHINESE:
                         isValid = true;
                         break;
                 }

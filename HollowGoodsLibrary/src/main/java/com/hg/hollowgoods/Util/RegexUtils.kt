@@ -50,6 +50,16 @@ object RegexUtils {
     private val REGEX_IP_ADDR = "(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)"
 
     /**
+     * 正则表达式：英文或数字
+     */
+    private val REGEX_ENGLISH_OR_NUMBER = "^[a-zA-Z0-9]*"
+
+    /**
+     * 正则表达式：英文
+     */
+    private val REGEX_ENGLISH = "^[a-zA-Z]*"
+
+    /**
      * 是否为匹配规则字符串
      *
      * @param regex
@@ -177,6 +187,34 @@ object RegexUtils {
         return if (TextUtils.isEmpty(orginal)) {
             false
         } else isMatch(REGEX_IP_ADDR, orginal)
+    }
+
+    /**
+     * 校验英文或数字
+     *
+     * @param orginal
+     * @return boolean
+     */
+    @JvmStatic
+    fun isEnglishOrNumber(orginal: String): Boolean {
+
+        return if (TextUtils.isEmpty(orginal)) {
+            false
+        } else isMatch(REGEX_ENGLISH_OR_NUMBER, orginal)
+    }
+
+    /**
+     * 校验英文
+     *
+     * @param orginal
+     * @return boolean
+     */
+    @JvmStatic
+    fun isEnglish(orginal: String): Boolean {
+
+        return if (TextUtils.isEmpty(orginal)) {
+            false
+        } else isMatch(REGEX_ENGLISH, orginal)
     }
 
     /**

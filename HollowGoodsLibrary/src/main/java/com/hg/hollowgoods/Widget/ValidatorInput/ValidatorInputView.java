@@ -68,6 +68,8 @@ public class ValidatorInputView extends LinearLayout {
     private Long lMaxLength = null;
     private Double dMinValue = null;
     private Double dMaxValue = null;
+    private boolean needMinEqual = false;
+    private boolean needMaxEqual = false;
 
     private int inputTextColor;
     private int inputTextColorHint;
@@ -218,7 +220,17 @@ public class ValidatorInputView extends LinearLayout {
             String strMaxLength = "";
 
             for (Validator t : validator) {
-                if (t.getType() == ValidatorType.MIN_VALUE) {
+                if (t.getType() == ValidatorType.MIN_EQUAL_VALUE) {
+                    // 最小值
+                    strMinValue = t.getItem().toString();
+                    dMinValue = Double.valueOf(strMinValue);
+                    needMinEqual = true;
+                } else if (t.getType() == ValidatorType.MAX_EQUAL_VALUE) {
+                    // 最大值
+                    strMaxValue = t.getItem().toString();
+                    dMaxValue = Double.valueOf(strMaxValue);
+                    needMaxEqual = true;
+                } else if (t.getType() == ValidatorType.MIN_VALUE) {
                     // 最小值
                     strMinValue = t.getItem().toString();
                     dMinValue = Double.valueOf(strMinValue);
@@ -410,6 +422,24 @@ public class ValidatorInputView extends LinearLayout {
         clearButton.setImageTintList(colorStateList);
     }
 
+    private boolean checkMinValue(double value, double minValue) {
+
+        if (needMinEqual) {
+            return value >= minValue;
+        }
+
+        return value > minValue;
+    }
+
+    private boolean checkMaxValue(double value, double maxValue) {
+
+        if (needMinEqual) {
+            return value <= maxValue;
+        }
+
+        return value < maxValue;
+    }
+
     private void checkValue(String value) {
 
         if (dMinValue != null && dMaxValue != null) {
@@ -417,7 +447,7 @@ public class ValidatorInputView extends LinearLayout {
                 setWrongValue();
             } else {
                 double dValue = Double.valueOf(value);
-                if (dValue >= dMinValue && dValue <= dMaxValue) {
+                if (checkMinValue(dValue, dMinValue) && checkMaxValue(dValue, dMaxValue)) {
                     setNormalValue();
                 } else {
                     setWrongValue();
@@ -428,7 +458,7 @@ public class ValidatorInputView extends LinearLayout {
                 setWrongValue();
             } else {
                 double dValue = Double.valueOf(value);
-                if (dValue >= dMinValue) {
+                if (checkMinValue(dValue, dMinValue)) {
                     setNormalValue();
                 } else {
                     setWrongValue();
@@ -439,7 +469,7 @@ public class ValidatorInputView extends LinearLayout {
                 setWrongValue();
             } else {
                 double dValue = Double.valueOf(value);
-                if (dValue <= dMaxValue) {
+                if (checkMaxValue(dValue, dMaxValue)) {
                     setNormalValue();
                 } else {
                     setWrongValue();

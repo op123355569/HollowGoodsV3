@@ -10,6 +10,7 @@ import com.hg.hollowgoods.Util.StringUtils;
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.RegexpValidator;
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.Validator;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class ValidatorFactory {
@@ -34,23 +35,73 @@ public class ValidatorFactory {
             case ValidatorType.MAX_LENGTH:
                 return MaxLengthChecker(type, error, (int) item);
             case ValidatorType.MIN_VALUE:
-                return MinValueChecker(type, error, Double.valueOf(item.toString()));
+                return MinValueChecker(type, error, item == null ? new BigDecimal(Integer.MIN_VALUE) : new BigDecimal(item.toString()));
             case ValidatorType.MAX_VALUE:
-                return MaxValueChecker(type, error, Double.valueOf(item.toString()));
+                return MaxValueChecker(type, error, item == null ? new BigDecimal(Integer.MAX_VALUE) : new BigDecimal(item.toString()));
             case ValidatorType.CONTAINS:
                 return ContainsChecker(type, error, (String) item);
             case ValidatorType.NOT_ALL_NUMBER:
                 return notAllNumberChecker(type, error, (String) item);
+            case ValidatorType.MIN_EQUAL_VALUE:
+                return MinEqualValueChecker(type, error, item == null ? new BigDecimal(Integer.MIN_VALUE) : new BigDecimal(item.toString()));
+            case ValidatorType.MAX_EQUAL_VALUE:
+                return MaxEqualValueChecker(type, error, item == null ? new BigDecimal(Integer.MAX_VALUE) : new BigDecimal(item.toString()));
+            case ValidatorType.ENGLISH_OR_NUMBER:
+                return EnglishOrNumberChecker(type, error, item);
+            case ValidatorType.ENGLISH:
+                return EnglishChecker(type, error, item);
+            case ValidatorType.CHINESE:
+                return ChineseChecker(type, error, item);
         }
+    }
+
+    private static Validator EnglishOrNumberChecker(int type, String error, Object item) {
+        return new Validator(type, error, item) {
+            @Override
+            public boolean isValid(@NonNull CharSequence text) {
+
+                if (TextUtils.isEmpty(text)) {
+                    return true;
+                }
+
+                return RegexUtils.isEnglishOrNumber(text.toString());
+            }
+        };
+    }
+
+    private static Validator EnglishChecker(int type, String error, Object item) {
+        return new Validator(type, error, item) {
+            @Override
+            public boolean isValid(@NonNull CharSequence text) {
+
+                if (TextUtils.isEmpty(text)) {
+                    return true;
+                }
+
+                return RegexUtils.isEnglish(text.toString());
+            }
+        };
+    }
+
+    private static Validator ChineseChecker(int type, String error, Object item) {
+        return new Validator(type, error, item) {
+            @Override
+            public boolean isValid(@NonNull CharSequence text) {
+
+                if (TextUtils.isEmpty(text)) {
+                    return true;
+                }
+
+                return RegexUtils.isChinese(text.toString());
+            }
+        };
     }
 
     private static Validator EmptyChecker(@ValidatorType.VType int type, final String errTxt, @Nullable Object item) {
         return new Validator(type, errTxt, item) {
             @Override
             public boolean isValid(@NonNull CharSequence text) {
-                if (text.toString().trim().equals(""))
-                    return false;
-                return true;
+                return !text.toString().trim().equals("");
             }
         };
     }
@@ -86,11 +137,7 @@ public class ValidatorFactory {
         return new Validator(type, error, item) {
             @Override
             public boolean isValid(@NonNull CharSequence text) {
-                Boolean isNumber = PhoneUtils.isPhoneNumber(text + "");
-                if (!isNumber) {
-                    return false;
-                }
-                return true;
+                return PhoneUtils.isPhoneNumber(text + "");
             }
         };
     }
@@ -101,7 +148,7 @@ public class ValidatorFactory {
             public boolean isValid(@NonNull CharSequence text) {
 
                 ArrayList<String> items = StringUtils.getStringArray(fullText, ",");
-                Boolean beginWith09 = false;
+                boolean beginWith09 = false;
 
                 for (String t : items) {
                     if (text.toString().startsWith(t)) {
@@ -110,10 +157,7 @@ public class ValidatorFactory {
                     }
                 }
 
-                if (!beginWith09) {
-                    return false;
-                }
-                return true;
+                return beginWith09;
             }
         };
     }
@@ -124,7 +168,7 @@ public class ValidatorFactory {
             public boolean isValid(@NonNull CharSequence text) {
 
                 ArrayList<String> items = StringUtils.getStringArray(fullText, ",");
-                Boolean endWith09 = false;
+                boolean endWith09 = false;
 
                 for (String t : items) {
                     if (text.toString().endsWith(t)) {
@@ -133,10 +177,7 @@ public class ValidatorFactory {
                     }
                 }
 
-                if (!endWith09) {
-                    return false;
-                }
-                return true;
+                return endWith09;
             }
         };
     }
@@ -147,7 +188,7 @@ public class ValidatorFactory {
             public boolean isValid(@NonNull CharSequence text) {
 
                 ArrayList<String> items = StringUtils.getStringArray(fullText, ",");
-                Boolean contains09 = false;
+                boolean contains09 = false;
 
                 for (String t : items) {
                     if (text.toString().contains(t)) {
@@ -156,10 +197,7 @@ public class ValidatorFactory {
                     }
                 }
 
-                if (!contains09) {
-                    return false;
-                }
-                return true;
+                return contains09;
             }
         };
     }
@@ -178,12 +216,12 @@ public class ValidatorFactory {
         };
     }
 
-    private static Validator EmailChecker(@ValidatorType.VType int type, final String error, @Nullable Object item) {
+    private static Validator EmailChecker(@ValidatorType.VType int type, String error, @Nullable Object item) {
         return new RegexpValidator(type, error, "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", item);
     }
 
-    private static Validator MinValueChecker(@ValidatorType.VType int type, final String errTxt, final double minValue) {
+    private static Validator MinValueChecker(@ValidatorType.VType int type, String errTxt, BigDecimal minValue) {
         return new Validator(type, errTxt, minValue) {
             @Override
             public boolean isValid(@NonNull CharSequence text) {
@@ -196,12 +234,14 @@ public class ValidatorFactory {
                     return false;
                 }
 
-                return !(Double.valueOf(text.toString()) < minValue);
+                BigDecimal inputValue = new BigDecimal(text.toString());
+
+                return inputValue.compareTo(minValue) > 0;
             }
         };
     }
 
-    private static Validator MaxValueChecker(@ValidatorType.VType int type, final String errTxt, final double maxValue) {
+    private static Validator MaxValueChecker(@ValidatorType.VType int type, String errTxt, BigDecimal maxValue) {
         return new Validator(type, errTxt, maxValue) {
             @Override
             public boolean isValid(@NonNull CharSequence text) {
@@ -214,7 +254,49 @@ public class ValidatorFactory {
                     return false;
                 }
 
-                return !(Double.valueOf(text.toString()) > maxValue);
+                BigDecimal inputValue = new BigDecimal(text.toString());
+
+                return inputValue.compareTo(maxValue) < 0;
+            }
+        };
+    }
+
+    private static Validator MinEqualValueChecker(@ValidatorType.VType int type, String errTxt, BigDecimal minValue) {
+        return new Validator(type, errTxt, minValue) {
+            @Override
+            public boolean isValid(@NonNull CharSequence text) {
+
+                if (TextUtils.isEmpty(text)) {
+                    return true;
+                }
+
+                if (!RegexUtils.isRealNumber1(text.toString())) {
+                    return false;
+                }
+
+                BigDecimal inputValue = new BigDecimal(text.toString());
+
+                return inputValue.compareTo(minValue) >= 0;
+            }
+        };
+    }
+
+    private static Validator MaxEqualValueChecker(@ValidatorType.VType int type, String errTxt, BigDecimal maxValue) {
+        return new Validator(type, errTxt, maxValue) {
+            @Override
+            public boolean isValid(@NonNull CharSequence text) {
+
+                if (TextUtils.isEmpty(text)) {
+                    return true;
+                }
+
+                if (!RegexUtils.isRealNumber1(text.toString())) {
+                    return false;
+                }
+
+                BigDecimal inputValue = new BigDecimal(text.toString());
+
+                return inputValue.compareTo(maxValue) <= 0;
             }
         };
     }

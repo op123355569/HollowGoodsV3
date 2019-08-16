@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -41,7 +42,7 @@ public class RunTextViewVertical extends TextSwitcher implements ViewSwitcher.Vi
     public RunTextViewVertical(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
-        textList = new ArrayList<String>();
+        textList = new ArrayList<>();
     }
 
     /**
@@ -125,14 +126,12 @@ public class RunTextViewVertical extends TextSwitcher implements ViewSwitcher.Vi
         t.setPadding(mPadding, mPadding, mPadding, mPadding);
         t.setTextColor(textColor);
         t.setTextSize(mTextSize);
+        t.setEllipsize(TextUtils.TruncateAt.END);
 
         t.setClickable(true);
-        t.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (itemClickListener != null && textList.size() > 0 && currentId != -1) {
-                    itemClickListener.onItemClick(currentId % textList.size());
-                }
+        t.setOnClickListener(v -> {
+            if (itemClickListener != null && textList.size() > 0 && currentId != -1) {
+                itemClickListener.onItemClick(currentId % textList.size());
             }
         });
         return t;

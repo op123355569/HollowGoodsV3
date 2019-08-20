@@ -13,6 +13,7 @@ public class ConfigInput {
     private Object hint = "";
     private Object text = "";
     private int maxLines = 1;
+    private int maxLength = -1;
     private int inputType = HGConstants.INPUT_TYPE_DEFAULT;
     private Validator[] validator;
     private boolean autoShowKeyboard = true;
@@ -36,6 +37,11 @@ public class ConfigInput {
 
     public ConfigInput setMaxLines(int maxLines) {
         this.maxLines = maxLines;
+        return this;
+    }
+
+    public ConfigInput setMaxLength(int maxLength) {
+        this.maxLength = maxLength;
         return this;
     }
 
@@ -70,6 +76,10 @@ public class ConfigInput {
 
     public int getMaxLines() {
         return maxLines;
+    }
+
+    public int getMaxLength() {
+        return maxLength;
     }
 
     public int getInputType() {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -77,6 +78,13 @@ class HGInputNewDialog extends HGDialog {
 //            ViewGroup.LayoutParams vlp = inputView.getLayoutParams();
 //            vlp.height = oneLineHeight * configInput.getMaxLines() + margin;
 //            inputView.setLayoutParams(vlp);
+        }
+
+        // 最大输入字符数
+        if (configInput.getMaxLength() > 0) {
+            inputView.getInputView().setFilters(
+                    new InputFilter[]{new InputFilter.LengthFilter(configInput.getMaxLength())}
+            );
         }
 
         // 输入类型

@@ -79,18 +79,18 @@ public class PopupWinHelper {
      * 弹窗控件单击监听
      */
     public interface PopupWinOnClickListener {
-        public void OnPopupWinClick(View v);
+        void OnPopupWinClick(View v);
     }
 
     /**
      * 弹窗控件列表项目单击监听
      */
     public interface PopupWinOnItemClickListener {
-        public void OnPopupWinItemClick(AdapterView<?> parent, View view, int position, long id);
+        void OnPopupWinItemClick(AdapterView<?> parent, View view, int position, long id);
     }
 
     public interface PopupWinOnAutoCancelListener {
-        public void OnAutoCancel();
+        void OnAutoCancel();
     }
 
     /**
@@ -211,6 +211,15 @@ public class PopupWinHelper {
      */
     public void setPopupWinOnItemClickListener(PopupWinOnItemClickListener popupWinOnItemClickListener) {
         this.popupWinOnItemClickListener = popupWinOnItemClickListener;
+    }
+
+    /**
+     * 在init前调用
+     *
+     * @param popupWinOnAutoCancelListener popupWinOnAutoCancelListener
+     */
+    public void setPopupWinOnAutoCancelListener(PopupWinOnAutoCancelListener popupWinOnAutoCancelListener) {
+        this.popupWinOnAutoCancelListener = popupWinOnAutoCancelListener;
     }
 
     /**

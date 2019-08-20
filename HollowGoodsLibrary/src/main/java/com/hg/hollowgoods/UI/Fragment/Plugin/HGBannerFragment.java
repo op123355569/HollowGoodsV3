@@ -117,6 +117,10 @@ public abstract class HGBannerFragment extends BaseFragment implements BannerHel
                 radioButton.setBackgroundResource(R.drawable.selector_banner_label);
                 label.addView(radioButton);
             }
+
+            if (banners.length < 1) {
+                label.setVisibility(View.GONE);
+            }
         } else {
             for (Banner t : webBanners) {
                 data.add(t);
@@ -126,6 +130,10 @@ public abstract class HGBannerFragment extends BaseFragment implements BannerHel
                 radioButton.setLayoutParams(rlp);
                 radioButton.setBackgroundResource(R.drawable.selector_banner_label);
                 label.addView(radioButton);
+            }
+
+            if (webBanners.size() < 1) {
+                label.setVisibility(View.GONE);
             }
         }
 

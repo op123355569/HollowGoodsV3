@@ -749,7 +749,9 @@ public class BaseUI {
                 tintManager.setStatusBarTintDrawable((Drawable) style);
             }
 
-            rootView.setFitsSystemWindows(true);
+            if (isActivity) {
+                rootView.setFitsSystemWindows(true);
+            }
         }
     }
 
@@ -792,6 +794,28 @@ public class BaseUI {
             getBaseContext().getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+            int colorInt = ContextCompat.getColor(getBaseContext(), R.color.black_transparent);
+
+            if (color instanceof String) {
+                colorInt = Color.parseColor((String) color);
+            } else if (color instanceof Integer) {
+                colorInt = ContextCompat.getColor(getBaseContext(), (Integer) color);
+            }
+
+            getBaseContext().getWindow().setStatusBarColor(colorInt);
+        }
+    }
+
+    /**
+     * 设置状态栏颜色
+     */
+    public void setStatusBackgroundColorWithoutFullscreen(Object color) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getBaseContext().getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            );
 
             int colorInt = ContextCompat.getColor(getBaseContext(), R.color.black_transparent);
 

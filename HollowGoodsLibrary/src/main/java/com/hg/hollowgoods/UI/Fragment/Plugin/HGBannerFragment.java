@@ -118,7 +118,7 @@ public abstract class HGBannerFragment extends BaseFragment implements BannerHel
                 label.addView(radioButton);
             }
 
-            if (banners.length < 1) {
+            if (banners.length < 2) {
                 label.setVisibility(View.GONE);
             }
         } else {
@@ -132,7 +132,7 @@ public abstract class HGBannerFragment extends BaseFragment implements BannerHel
                 label.addView(radioButton);
             }
 
-            if (webBanners.size() < 1) {
+            if (webBanners.size() < 2) {
                 label.setVisibility(View.GONE);
             }
         }

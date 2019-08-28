@@ -577,7 +577,7 @@ public class BaseUI {
 
         if (commonTitle != null && menuRes == -1) {
             if (color instanceof Integer) {
-                commonTitle.setRightTitleTextColor((Integer) color);
+                commonTitle.setRightTitleTextColorRes((Integer) color);
             } else if (color instanceof String) {
                 commonTitle.setRightTitleTextColor(Color.parseColor((String) color));
             }

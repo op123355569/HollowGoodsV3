@@ -175,7 +175,7 @@ public class CommonTitleLayout extends BaseCommonTitle {
 
     @Override
     public void setRightTitleTextColorRes(@ColorRes int resId) {
-        setCenterTitleTextColor(mRightTitle.getResources().getColor(resId));
+        setRightTitleTextColor(mRightTitle.getResources().getColor(resId));
     }
 
     @Override

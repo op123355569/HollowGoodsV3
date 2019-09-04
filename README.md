@@ -294,7 +294,7 @@ allprojects {
 ```
 
 ## 4.重写Application
-继承BaseApplication，参照ExampleApplication。
+继承BaseApplication，参照[ExampleApplication](https://github.com/op123355569/HollowGoodsV3/blob/master/HollowGoodsLibrary/src/main/java/com/hg/hollowgoods/Application/ExampleApplication.java)。
 
 ## 5.添加权限
 ```

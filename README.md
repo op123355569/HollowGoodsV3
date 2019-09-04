@@ -374,5 +374,5 @@ ndk {
 ```
 
 ## Application无法继承框架中的BaseApplication的情况
-复制[BaseApplication](https://github.com/op123355569/HollowGoodsV3/blob/master/HollowGoodsLibrary/src/main/java/com/hg/hollowgoods/Application/BaseApplication.java)到项目中，修改继承类即可，但Tinker插件将无法使用
+复制[BaseApplication](https://github.com/op123355569/HollowGoodsV3/blob/master/HollowGoodsLibrary/src/main/java/com/hg/hollowgoods/Application/BaseApplication.java)到项目中，修改继承类即可，但Tinker插件将无法使用  
 本方式从V3.5.3开始有效

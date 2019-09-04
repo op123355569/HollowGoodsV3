@@ -2,6 +2,7 @@ package ${packageName};
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 
@@ -130,7 +131,7 @@ public class ${activityClass} extends BaseMVPActivity<${presenterName}> implemen
             pageIndex = 1;
             this.searchKey = searchKey;
             refreshLayout.getRefreshLayout().autoRefreshAnimationOnly();
-            getData();
+            new Handler().postDelayed(this::getData, 500);
         }
     }
 

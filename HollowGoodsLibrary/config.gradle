@@ -47,7 +47,7 @@ ext {
     // Gson
     Gson = '2.8.5'
     // XUtils
-    XUtils = '3.5.1'
+    XUtils = '3.5.3'
     // 二维码/条形码识别
     QRCode = "3.3.3"
     // SVG动画控件

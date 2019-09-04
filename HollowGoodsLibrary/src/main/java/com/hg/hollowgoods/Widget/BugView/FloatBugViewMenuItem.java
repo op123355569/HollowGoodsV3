@@ -18,7 +18,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.APPUtils;
@@ -100,7 +101,7 @@ public class FloatBugViewMenuItem extends FrameLayout {
 
     private void startActivity(final Class<?> clazz) {
 
-        BaseApplication baseApplication = BaseApplication.create();
+        IBaseApplication baseApplication = ApplicationBuilder.create();
         if (APPUtils.getAndroidSDKVersion() >= 21
                 && baseApplication.getAllActivity() != null
                 && baseApplication.getAllActivity().size() > 0) {
@@ -135,7 +136,7 @@ public class FloatBugViewMenuItem extends FrameLayout {
 
     private void screenshot() {
 
-        BaseApplication baseApplication = BaseApplication.create();
+        IBaseApplication baseApplication = ApplicationBuilder.create();
         if (baseApplication.getAllActivity() != null && baseApplication.getAllActivity().size() > 0) {
             mImgName = System.currentTimeMillis() + ".jpg";
 

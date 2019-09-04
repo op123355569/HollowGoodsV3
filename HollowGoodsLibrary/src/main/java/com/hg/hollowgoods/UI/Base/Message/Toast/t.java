@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
 import com.hg.hollowgoods.R;
 
 /**
@@ -31,7 +31,7 @@ public class t {
     private static Context context;
 
     static {
-        context = BaseApplication.create();
+        context = ApplicationBuilder.create();
     }
 
     private static void showToast(CharSequence text, int duration) {

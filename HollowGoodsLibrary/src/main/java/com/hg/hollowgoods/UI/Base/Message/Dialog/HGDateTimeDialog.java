@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
@@ -71,7 +72,7 @@ public class HGDateTimeDialog extends HGDialog {
         if (timeInMillis != HGConstants.DEFAULT_TIME) {
             c.setTimeInMillis(timeInMillis);
         } else {
-            BaseApplication baseApplication = BaseApplication.create();
+            IBaseApplication baseApplication = ApplicationBuilder.create();
             c.setTimeInMillis(baseApplication.getNowTime());
         }
         this.year = c.get(Calendar.YEAR);

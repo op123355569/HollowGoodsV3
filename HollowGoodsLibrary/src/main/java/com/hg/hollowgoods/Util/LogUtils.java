@@ -1,9 +1,10 @@
 package com.hg.hollowgoods.Util;
 
+import android.app.Application;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 
 import java.util.ArrayList;
@@ -141,9 +142,11 @@ public class LogUtils {
             // 遍历任务栈信息，获取调用者信息并返回
             for (StackTraceElement stackTraceElement : stackTraceElements) {
                 stackClassName = stackTraceElement.getClassName() + "";
+
                 // 仅获取本项目下的非此类调用信息
+                Application application = ApplicationBuilder.create();
                 if (!stackClassName.contains(LogUtils.class.getSimpleName())
-                        && (stackClassName.contains(BaseApplication.create().getPackageName())
+                        && (stackClassName.contains(application.getPackageName())
                         || isIncludeModule(stackClassName))
                 ) {
                     return "(" + stackTraceElement.getFileName() + ":" + stackTraceElement.getLineNumber() + ")";

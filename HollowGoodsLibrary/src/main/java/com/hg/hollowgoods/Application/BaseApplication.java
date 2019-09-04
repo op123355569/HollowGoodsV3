@@ -79,39 +79,25 @@ public abstract class BaseApplication extends TinkerApplication implements IBase
      */
     private int X5InitTimes = 0;
 
-    /**
-     * 每个Activity都必须加入的list
-     *
-     * @param activity Activity
-     */
+    @Override
     public void addActivity(Activity activity) {
         if (!activityAllList.contains(activity)) {
             activityAllList.add(activity);
         }
     }
 
-    /**
-     * 退出
-     *
-     * @param activity Activity
-     */
+    @Override
     public void exit(Activity activity) {
         activityAllList.remove(activity);
     }
 
-    /**
-     * 退出
-     *
-     * @param activity Activity
-     */
+    @Override
     public void exitWithFinish(Activity activity) {
         activityAllList.remove(activity);
         activity.finish();
     }
 
-    /**
-     * 完整地遍历所有Activity并finish
-     */
+    @Override
     public void exitAll() {
         for (Activity activity : activityAllList) {
             activity.finish();
@@ -119,6 +105,7 @@ public abstract class BaseApplication extends TinkerApplication implements IBase
         activityAllList.clear();
     }
 
+    @Override
     public ArrayList<Activity> getAllActivity() {
         return activityAllList;
     }
@@ -127,6 +114,7 @@ public abstract class BaseApplication extends TinkerApplication implements IBase
     public void onCreate() {
 
         instance = initAppContext();
+        ApplicationBuilder.setApplication(instance);
         initCrashHandler();
         initAppDataBeforeDB();
         initXUtils();
@@ -208,11 +196,7 @@ public abstract class BaseApplication extends TinkerApplication implements IBase
         }
     }
 
-    /**
-     * 获取当前的Activity
-     *
-     * @return BaseActivity
-     */
+    @Override
     public BaseActivity getTopActivity() {
 
         BaseApplication application = BaseApplication.create();
@@ -282,11 +266,7 @@ public abstract class BaseApplication extends TinkerApplication implements IBase
         }
     }
 
-    /**
-     * 设置上报Bug的用户名
-     *
-     * @param username 用户名
-     */
+    @Override
     public void setCrashHandlerUsername(String username) {
         if (!HGSystemConfig.IS_DEBUG_MODEL) {
             CrashHandler.getInstance().setUsername(username);
@@ -304,15 +284,18 @@ public abstract class BaseApplication extends TinkerApplication implements IBase
         MultiDex.install(create());
     }
 
+    @Override
     public String getAutoCheckUpdateAppDate() {
         return autoCheckUpdateAppDate;
     }
 
+    @Override
     public void setAutoCheckUpdateAppDate(String autoCheckUpdateAppDate) {
         this.autoCheckUpdateAppDate = autoCheckUpdateAppDate;
         CacheUtils.create().save("AppAutoCheckDate", this.autoCheckUpdateAppDate);
     }
 
+    @Override
     public long getNowTime() {
 
         if (nowTime == 0L) {
@@ -322,32 +305,39 @@ public abstract class BaseApplication extends TinkerApplication implements IBase
         return nowTime;
     }
 
+    @Override
     public void setNowTime(long nowTime) {
         this.nowTime = nowTime;
     }
 
+    @Override
     public TimeThread getTimeThread() {
         return timeThread;
     }
 
+    @Override
     public void setTimeThread(TimeThread timeThread) {
         this.timeThread = timeThread;
     }
 
+    @Override
     public int getCountFlag() {
         return countFlag;
     }
 
+    @Override
     public void setCountFlag(int countFlag) {
         this.countFlag = countFlag;
     }
 
-    public void setTestSystemTime(int testSystemTime) {
-        this.testSystemTime = testSystemTime;
-    }
-
+    @Override
     public int getTestSystemTime() {
         return testSystemTime;
+    }
+
+    @Override
+    public void setTestSystemTime(int testSystemTime) {
+        this.testSystemTime = testSystemTime;
     }
 
 }

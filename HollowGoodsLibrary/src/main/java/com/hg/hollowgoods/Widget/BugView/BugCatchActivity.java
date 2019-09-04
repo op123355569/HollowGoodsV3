@@ -12,7 +12,8 @@ import android.widget.Spinner;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -78,7 +79,7 @@ public class BugCatchActivity extends BaseActivity {
         //第一步：添加一个下拉列表项的list，这里添加的项就是下拉列表的菜单项
         ArrayList<String> modules = Bug.getModuleNames();
         //第二步：为下拉列表定义一个适配器，这里就用到里前面定义的list。
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, modules);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, modules);
         //第三步：为适配器设置下拉列表下拉时的菜单样式。
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //第四步：将适配器添加到下拉列表上
@@ -105,11 +106,8 @@ public class BugCatchActivity extends BaseActivity {
 
                 }
             });
-            mCatchDialogImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            mCatchDialogImg.setOnClickListener(v -> {
 
-                }
             });
         }
     }
@@ -129,7 +127,7 @@ public class BugCatchActivity extends BaseActivity {
 
     private void getBugData() {
 
-        BaseApplication baseApplication = BaseApplication.create();
+        IBaseApplication baseApplication = ApplicationBuilder.create();
 
         if (baseApplication.getAllActivity() != null && baseApplication.getAllActivity().size() > 0) {
             hasActivity = true;

@@ -10,7 +10,8 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Util.XUtils.GetHttpDataListener;
 import com.hg.hollowgoods.Util.XUtils.XUtils;
 
@@ -21,14 +22,12 @@ import org.xutils.http.RequestParams;
 import java.util.ArrayList;
 
 /**
- * @ClassName:时间服务
- * @Description:
- * @author: HollowGoods
- * @date: 2018年11月07日
+ * 时间服务
+ * Created by Hollow Goods on 2018-11-07.
  */
 public class TimeService extends Service {
 
-    private BaseApplication baseApplication;
+    private IBaseApplication baseApplication;
 
     @Nullable
     @Override
@@ -38,7 +37,7 @@ public class TimeService extends Service {
 
     @Override
     public void onCreate() {
-        baseApplication = BaseApplication.create();
+        baseApplication = ApplicationBuilder.create();
         if (baseApplication.getTimeThread() == null) {
             baseApplication.setTimeThread(new TimeThread(getApplicationContext()));
             baseApplication.getTimeThread().start();

@@ -3,13 +3,13 @@ package com.hg.hollowgoods.Widget.BugView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -78,38 +78,29 @@ public class BugWatchActivity extends BaseActivity implements OnDialogClickListe
 
         if (hasActivity) {
             baseUI.baseDialog.setOnDialogClickListener(this);
-            mWatchExport.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            mWatchExport.setOnClickListener(v -> {
 
-                    if (mBugData.size() != 0) {
-                        doExport();
-                    } else {
-                        baseUI.baseDialog.showTipDialog(R.string.tips, "暂无Bug，无需导出", BUG_VIEW_DIALOG_CODE);
-                    }
+                if (mBugData.size() != 0) {
+                    doExport();
+                } else {
+                    baseUI.baseDialog.showTipDialog(R.string.tips, "暂无Bug，无需导出", BUG_VIEW_DIALOG_CODE);
                 }
             });
-            mWatchClear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mWatchCheckedPosition = -9999;
-                    baseUI.baseDialog.showAlertDialog("删除Bug信息", "是否要删除\"所有Bug信息\"？", BUG_VIEW_DIALOG_CODE);
-                }
+            mWatchClear.setOnClickListener(v -> {
+                mWatchCheckedPosition = -9999;
+                baseUI.baseDialog.showAlertDialog("删除Bug信息", "是否要删除\"所有Bug信息\"？", BUG_VIEW_DIALOG_CODE);
             });
-            mWatchResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            mWatchResult.setOnItemClickListener((parent, view, position, id) -> {
 
-                    mWatchCheckedPosition = position;
-                    baseUI.baseDialog.showAlertDialog("删除Bug信息", "是否要删除\"" + mBugData.get(position).getDescribe() + "\"？", BUG_VIEW_DIALOG_CODE);
-                }
+                mWatchCheckedPosition = position;
+                baseUI.baseDialog.showAlertDialog("删除Bug信息", "是否要删除\"" + mBugData.get(position).getDescribe() + "\"？", BUG_VIEW_DIALOG_CODE);
             });
         }
     }
 
     private void getBugData() {
 
-        BaseApplication baseApplication = BaseApplication.create();
+        IBaseApplication baseApplication = ApplicationBuilder.create();
 
         if (baseApplication.getAllActivity() != null && baseApplication.getAllActivity().size() > 0) {
             hasActivity = true;

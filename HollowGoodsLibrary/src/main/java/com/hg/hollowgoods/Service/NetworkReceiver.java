@@ -1,13 +1,13 @@
 package com.hg.hollowgoods.Service;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -15,8 +15,6 @@ import com.hg.hollowgoods.Util.LogUtils;
 import com.hg.hollowgoods.Widget.HGStatusLayout;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
 
 /**
  * 网络连接状态改变监听
@@ -81,19 +79,8 @@ public class NetworkReceiver extends BroadcastReceiver {
     }
 
     private BaseActivity getActivity() {
-
-        BaseApplication application = BaseApplication.create();
-        List<Activity> activities = application.getAllActivity();
-
-        if (activities != null && activities.size() > 0) {
-            Activity activity = activities.get(activities.size() - 1);
-
-            if (activity instanceof BaseActivity) {
-                return (BaseActivity) activity;
-            }
-        }
-
-        return null;
+        IBaseApplication application = ApplicationBuilder.create();
+        return application.getTopActivity();
     }
 
     private void sendMessage(int code) {

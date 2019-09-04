@@ -6,7 +6,8 @@ import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
 
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -52,7 +53,7 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
         if (this.isFromUser) {
             baseActivity.baseUI.baseDialog.showProgressDialog(R.string.update_app, HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
         } else {
-            BaseApplication baseApplication = BaseApplication.create();
+            IBaseApplication baseApplication = ApplicationBuilder.create();
 
             String date = StringUtils.getDateTimeString(baseApplication.getNowTime(), StringUtils.DateFormatMode.LINE_YMD);
             if (TextUtils.equals(baseApplication.getAutoCheckUpdateAppDate(), date)) {

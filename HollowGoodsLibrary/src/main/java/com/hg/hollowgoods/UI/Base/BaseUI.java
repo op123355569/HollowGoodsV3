@@ -36,7 +36,8 @@ import android.widget.LinearLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
@@ -156,7 +157,7 @@ public class BaseUI {
 
         // 加入全局退出队列
         if (getBaseContext() != null) {
-            BaseApplication baseApplication = BaseApplication.create();
+            IBaseApplication baseApplication = ApplicationBuilder.create();
             baseApplication.addActivity(getBaseContext());
         }
 
@@ -265,7 +266,7 @@ public class BaseUI {
         }
 
         if (getBaseContext() != null) {
-            BaseApplication baseApplication = BaseApplication.create();
+            IBaseApplication baseApplication = ApplicationBuilder.create();
             baseApplication.exit(getBaseContext());
         }
     }

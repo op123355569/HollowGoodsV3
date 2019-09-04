@@ -6,7 +6,8 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Bean.HGFastItemDateData;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.CallBack.OnHGFastItemClickListener;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Type.ItemType;
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseUI;
@@ -99,7 +100,7 @@ public class ItemHGFastItemDate extends BaseItemHGFastItem<CommonBean> {
                                     if (RegexUtils.isPositiveInteger(data.getContent())) {
                                         date = Long.valueOf(data.getContent());
                                     } else {
-                                        BaseApplication baseApplication = BaseApplication.create();
+                                        IBaseApplication baseApplication = ApplicationBuilder.create();
                                         date = baseApplication.getNowTime();
                                     }
 

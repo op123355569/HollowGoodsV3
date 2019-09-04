@@ -13,7 +13,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hg.hollowgoods.Application.BaseApplication;
+import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.APPUtils;
@@ -91,12 +92,12 @@ public class CrashHandler implements UncaughtExceptionHandler {
             // 来让线程停止一会是为了显示Toast信息给用户，然后Kill程序
             try {
                 Thread.sleep(3000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
 
             }
 
             // 全局推出
-            BaseApplication baseApplication = BaseApplication.create();
+            IBaseApplication baseApplication = ApplicationBuilder.create();
             baseApplication.exitAll();
             // 调用此方法整个Activity生命周期停止运行
             android.os.Process.killProcess(android.os.Process.myPid());
@@ -201,15 +202,14 @@ public class CrashHandler implements UncaughtExceptionHandler {
     /**
      * 保存错误信息到本地
      *
-     * @param exceptionLog
-     * @return
+     * @param exceptionLog ExceptionLog
      */
     private void saveCrashInfoToSDCard(ExceptionLog exceptionLog) {
 
         exceptionLog.setUsername(getUsername());
         exceptionLog.setAppName(HGSystemConfig.APP_NAME);
         Activity activity = null;
-        BaseApplication baseApplication = BaseApplication.create();
+        IBaseApplication baseApplication = ApplicationBuilder.create();
         if (baseApplication.getAllActivity() != null && baseApplication.getAllActivity().size() > 0) {
             activity = baseApplication.getAllActivity().get(baseApplication.getAllActivity().size() - 1);
         }

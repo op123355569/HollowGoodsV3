@@ -2,6 +2,7 @@ package com.hg.hollowgoods.Util;
 
 import android.annotation.SuppressLint;
 import android.os.Environment;
+import android.text.TextUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -58,6 +59,7 @@ public class FileUtils {
 
         File file = new File(path);
         File[] listFile = file.listFiles();
+
         for (File f : listFile) {
             fileName.add(f.getName());
             filePath.add(f.getPath());
@@ -75,11 +77,8 @@ public class FileUtils {
      * @param path 路径
      */
     public static File[] getPathFile(String path) {
-
         File file = new File(path);
-        File[] listFile = file.listFiles();
-
-        return listFile;
+        return file.listFiles();
     }
 
     /**
@@ -90,6 +89,7 @@ public class FileUtils {
     public static void sort(List<String> data) {
 
         String temp;
+
         for (int i = 1; i < data.size(); i++) {
             for (int j = 0; j < data.size() - i; j++) {
                 if (data.get(j).toLowerCase().compareTo(data.get(j + 1).toLowerCase()) < 0) {
@@ -110,12 +110,14 @@ public class FileUtils {
     public static String getFileFormat(String filePath) {
 
         File file = new File(filePath);
+
         if (file.isDirectory()) {
             return "dir";
         }
 
         String fileName = file.getName();
         int index = fileName.lastIndexOf(".");
+
         if (index == -1) {
             return "unknown";
         }
@@ -136,7 +138,6 @@ public class FileUtils {
         byte[] data = null;
 
         try {
-
             // 创建路径
             File myDiary = new File(path);
             // 创建文件输入流
@@ -144,20 +145,32 @@ public class FileUtils {
             byte[] buffer = new byte[1024];
             baos = new ByteArrayOutputStream();
             int count;
+
             while ((count = fis.read(buffer)) != -1) {
                 baos.write(buffer, 0, count);
             }
+
             data = baos.toByteArray();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             try {
-                fis.close();
-                baos.close();
-            } catch (IOException e) {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (baos != null) {
+                    baos.close();
+                }
+            } catch (IOException ignored) {
+
             }
         }
-        return new String(data);
+
+        if (data != null) {
+            return new String(data);
+        }
+
+        return null;
     }
 
     /**
@@ -170,11 +183,13 @@ public class FileUtils {
 
         // 写入txt文件
         File file = new File(path);
+
         try {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(text.getBytes());
             fos.close();
         } catch (Exception ignored) {
+
         }
     }
 
@@ -197,10 +212,11 @@ public class FileUtils {
             File srcFile = new File(copyPath.get(j));
 
             if (!srcFile.isDirectory()) {
-                FileInputStream in = null;
-                FileOutputStream out = null;
+                FileInputStream in;
+                FileOutputStream out;
                 BufferedInputStream buffIn = null;
                 BufferedOutputStream buffOut = null;
+
                 try {
                     in = new FileInputStream(srcFile);
 
@@ -218,15 +234,19 @@ public class FileUtils {
                     e.printStackTrace();
                 } finally {
                     try {
-                        buffIn.close();
-                        buffOut.close();
+                        if (buffIn != null) {
+                            buffIn.close();
+                        }
+                        if (buffOut != null) {
+                            buffOut.close();
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             } else {
-                List<String> filePath = new ArrayList<String>();
-                List<String> fileName = new ArrayList<String>();
+                List<String> filePath = new ArrayList<>();
+                List<String> fileName = new ArrayList<>();
                 getFilePathAndName(srcFile.getPath(), filePath, fileName);
                 String desPath = destinationFilePath + "/" + srcFile.getName();
                 copyFile(filePath, desPath, code);
@@ -252,8 +272,8 @@ public class FileUtils {
                 if (!file.isDirectory()) {
                     file.delete();
                 } else {
-                    List<String> filePath = new ArrayList<String>();
-                    List<String> fileName = new ArrayList<String>();
+                    List<String> filePath = new ArrayList<>();
+                    List<String> fileName = new ArrayList<>();
                     getFilePathAndName(file.getPath(), filePath, fileName);
                     deleteFile(filePath);
                     file.delete();
@@ -281,7 +301,8 @@ public class FileUtils {
             } else {
                 new File(path + "/" + name).mkdirs();
             }
-        } catch (IOException e) {
+        } catch (IOException ignored) {
+
         }
     }
 
@@ -297,6 +318,7 @@ public class FileUtils {
 
         File oldFile = new File(path + "/" + oldName);
         File newFile = new File(path + "/" + newName);
+
         return oldFile.renameTo(newFile);
     }
 
@@ -316,8 +338,8 @@ public class FileUtils {
             } else if (!file.isDirectory()) {
                 allSize += file.length();
             } else {
-                List<String> filePath = new ArrayList<String>();
-                List<String> fileName = new ArrayList<String>();
+                List<String> filePath = new ArrayList<>();
+                List<String> fileName = new ArrayList<>();
                 getFilePathAndName(file.getPath(), filePath, fileName);
                 getFileAllSize(filePath);
             }
@@ -350,7 +372,7 @@ public class FileUtils {
     /**
      * 检查文件是否存在，不存在则创建
      *
-     * @param path
+     * @param path String
      */
     public static void checkFileExist(String path) {
 
@@ -364,7 +386,7 @@ public class FileUtils {
     /**
      * 检查文件是否存在
      *
-     * @param path
+     * @param path String
      * @return 返回是否存在
      */
     public static boolean checkFileExist2(String path) {
@@ -374,7 +396,7 @@ public class FileUtils {
     /**
      * 获取路径
      *
-     * @return
+     * @return String
      */
     public static String getSDCardPath() {
 
@@ -389,6 +411,11 @@ public class FileUtils {
     }
 
     public static boolean isImageFile(String file) {
+
+        if (TextUtils.isEmpty(file)) {
+            return false;
+        }
+
         String str = file.toLowerCase();
         return str.endsWith(".png")
                 || str.endsWith(".jpg")
@@ -398,16 +425,31 @@ public class FileUtils {
     }
 
     public static boolean isImageFileGif(String file) {
+
+        if (TextUtils.isEmpty(file)) {
+            return false;
+        }
+
         String str = file.toLowerCase();
         return str.endsWith(".gif");
     }
 
     public static boolean isImageFilePng(String file) {
+
+        if (TextUtils.isEmpty(file)) {
+            return false;
+        }
+
         String str = file.toLowerCase();
         return str.endsWith(".png");
     }
 
     public static boolean isOfficeFile(String file) {
+
+        if (TextUtils.isEmpty(file)) {
+            return false;
+        }
+
         String str = file.toLowerCase();
         return str.endsWith(".doc")
                 || str.endsWith(".docx")

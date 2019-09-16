@@ -53,12 +53,6 @@ public class HGFastDataUtils {
         result.setLeftIconRes(annotation.leftIconRes());
         result.setRightIconRes(annotation.rightIconRes());
         result.setVisibleName(annotation.visibleName());
-        if (TextUtils.isEmpty(result.getVisibleName())) {
-            result.setShow(true);
-        } else {
-            Object value = ReflectUtils.getObjValue(data, result.getVisibleName());
-            result.setShow(Boolean.valueOf(value + ""));
-        }
         result.setLabelTextColorResName(annotation.labelTextColorResName());
         if (TextUtils.isEmpty(result.getLabelTextColorResName())) {
             result.setLabelTextColorRes(R.color.txt_color_dark);
@@ -418,98 +412,74 @@ public class HGFastDataUtils {
 
             if (t.isAnnotationPresent(HGFastItemWord.class)) {
                 fields.add(t);
-                sortNumbers.add(t.getAnnotation(HGFastItemWord.class).sortNumber());
-
                 item = getHGFastItemWordData(data, t);
 
                 if (item != null) {
-                    boolean isShow = (boolean) ReflectUtils.getObjValue(item, "isShow");
-                    if (isShow) {
-                        result.add(item);
-                        annotationTag.put(HGFastItemWord.class, true);
-                        fieldTag.put(item.getItemId(), t.getName());
-                        itemTag.put(item.getItemId(), item);
-                    }
+                    sortNumbers.add(t.getAnnotation(HGFastItemWord.class).sortNumber());
+                    result.add(item);
+                    annotationTag.put(HGFastItemWord.class, true);
+                    fieldTag.put(item.getItemId(), t.getName());
+                    itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemFile.class)) {
                 fields.add(t);
-                sortNumbers.add(t.getAnnotation(HGFastItemFile.class).sortNumber());
-
                 item = getHGFastItemFileData(data, t);
 
                 if (item != null) {
-                    boolean isShow = (boolean) ReflectUtils.getObjValue(item, "isShow");
-                    if (isShow) {
-                        result.add(item);
-                        annotationTag.put(HGFastItemFile.class, true);
-                        fieldTag.put(item.getItemId(), t.getName());
-                        itemTag.put(item.getItemId(), item);
-                    }
+                    sortNumbers.add(t.getAnnotation(HGFastItemFile.class).sortNumber());
+                    result.add(item);
+                    annotationTag.put(HGFastItemFile.class, true);
+                    fieldTag.put(item.getItemId(), t.getName());
+                    itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemDate.class)) {
                 fields.add(t);
-                sortNumbers.add(t.getAnnotation(HGFastItemDate.class).sortNumber());
-
                 item = getHGFastItemDateData(data, t);
 
                 if (item != null) {
-                    boolean isShow = (boolean) ReflectUtils.getObjValue(item, "isShow");
-                    if (isShow) {
-                        result.add(item);
-                        annotationTag.put(HGFastItemDate.class, true);
-                        fieldTag.put(item.getItemId(), t.getName());
-                        itemTag.put(item.getItemId(), item);
-                    }
+                    sortNumbers.add(t.getAnnotation(HGFastItemDate.class).sortNumber());
+                    result.add(item);
+                    annotationTag.put(HGFastItemDate.class, true);
+                    fieldTag.put(item.getItemId(), t.getName());
+                    itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemNumber.class)) {
                 fields.add(t);
-                sortNumbers.add(t.getAnnotation(HGFastItemNumber.class).sortNumber());
-
                 item = getHGFastItemNumberData(data, t);
 
                 if (item != null) {
-                    boolean isShow = (boolean) ReflectUtils.getObjValue(item, "isShow");
-                    if (isShow) {
-                        result.add(item);
-                        annotationTag.put(HGFastItemNumber.class, true);
-                        fieldTag.put(item.getItemId(), t.getName());
-                        itemTag.put(item.getItemId(), item);
-                    }
+                    sortNumbers.add(t.getAnnotation(HGFastItemNumber.class).sortNumber());
+                    result.add(item);
+                    annotationTag.put(HGFastItemNumber.class, true);
+                    fieldTag.put(item.getItemId(), t.getName());
+                    itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemCustomize.class)) {
                 fields.add(t);
-                sortNumbers.add(t.getAnnotation(HGFastItemCustomize.class).sortNumber());
-
                 item = getHGFastItemCustomizeData(data, t);
 
                 if (item != null) {
-                    boolean isShow = (boolean) ReflectUtils.getObjValue(item, "isShow");
-                    if (isShow) {
-                        item.addObj(HGParamKey.ObjData.getValue(), ReflectUtils.getObjValue(data, t.getName()));
-                        result.add(item);
-                        annotationTag.put(HGFastItemCustomize.class, true);
-                        fieldTag.put(item.getItemId(), t.getName());
-                        itemTag.put(item.getItemId(), item);
+                    sortNumbers.add(t.getAnnotation(HGFastItemCustomize.class).sortNumber());
+                    item.addObj(HGParamKey.ObjData.getValue(), ReflectUtils.getObjValue(data, t.getName()));
+                    result.add(item);
+                    annotationTag.put(HGFastItemCustomize.class, true);
+                    fieldTag.put(item.getItemId(), t.getName());
+                    itemTag.put(item.getItemId(), item);
 
-                        customizeItemTag.add(item.getData());
-                    }
+                    customizeItemTag.add(item.getData());
                 }
             } else if (t.isAnnotationPresent(HGFastItemGroup.class)) {
                 fields.add(t);
-                sortNumbers.add(t.getAnnotation(HGFastItemGroup.class).sortNumber());
-
                 item = getHGFastItemGroupData(data, t);
 
                 if (item != null) {
-                    boolean isShow = (boolean) ReflectUtils.getObjValue(item, "isShow");
-                    if (isShow) {
-                        result.add(item);
-                        annotationTag.put(HGFastItemGroup.class, true);
-                        fieldTag.put(item.getItemId(), t.getName());
-                        itemTag.put(item.getItemId(), item);
+                    sortNumbers.add(t.getAnnotation(HGFastItemGroup.class).sortNumber());
+                    result.add(item);
+                    annotationTag.put(HGFastItemGroup.class, true);
+                    fieldTag.put(item.getItemId(), t.getName());
+                    itemTag.put(item.getItemId(), item);
 
-                        groupItemTag.add(item.getData());
-                    }
+                    groupItemTag.add(item.getData());
                 }
             }
         }

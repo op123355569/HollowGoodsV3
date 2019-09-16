@@ -15,6 +15,7 @@ public class BaseHGFastItemData extends CommonBean {
     private int leftIconRes;
     private int rightIconRes;
     private String visibleName;
+    private boolean isShow;
     private String labelTextColorResName;
     private int labelTextColorRes;
     private int marginTop;
@@ -80,6 +81,14 @@ public class BaseHGFastItemData extends CommonBean {
 
     public void setVisibleName(String visibleName) {
         this.visibleName = visibleName;
+    }
+
+    public boolean isShow() {
+        return isShow;
+    }
+
+    public void setShow(boolean show) {
+        isShow = show;
     }
 
     public String getLabelTextColorResName() {

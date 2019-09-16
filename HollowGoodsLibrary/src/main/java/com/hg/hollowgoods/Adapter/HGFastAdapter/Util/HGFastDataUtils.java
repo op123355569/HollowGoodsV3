@@ -411,10 +411,10 @@ public class HGFastDataUtils {
         for (Field t : allField) {
 
             if (t.isAnnotationPresent(HGFastItemWord.class)) {
-                fields.add(t);
                 item = getHGFastItemWordData(data, t);
 
                 if (item != null) {
+                    fields.add(t);
                     sortNumbers.add(t.getAnnotation(HGFastItemWord.class).sortNumber());
                     result.add(item);
                     annotationTag.put(HGFastItemWord.class, true);
@@ -422,10 +422,10 @@ public class HGFastDataUtils {
                     itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemFile.class)) {
-                fields.add(t);
                 item = getHGFastItemFileData(data, t);
 
                 if (item != null) {
+                    fields.add(t);
                     sortNumbers.add(t.getAnnotation(HGFastItemFile.class).sortNumber());
                     result.add(item);
                     annotationTag.put(HGFastItemFile.class, true);
@@ -433,10 +433,10 @@ public class HGFastDataUtils {
                     itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemDate.class)) {
-                fields.add(t);
                 item = getHGFastItemDateData(data, t);
 
                 if (item != null) {
+                    fields.add(t);
                     sortNumbers.add(t.getAnnotation(HGFastItemDate.class).sortNumber());
                     result.add(item);
                     annotationTag.put(HGFastItemDate.class, true);
@@ -444,10 +444,10 @@ public class HGFastDataUtils {
                     itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemNumber.class)) {
-                fields.add(t);
                 item = getHGFastItemNumberData(data, t);
 
                 if (item != null) {
+                    fields.add(t);
                     sortNumbers.add(t.getAnnotation(HGFastItemNumber.class).sortNumber());
                     result.add(item);
                     annotationTag.put(HGFastItemNumber.class, true);
@@ -455,10 +455,10 @@ public class HGFastDataUtils {
                     itemTag.put(item.getItemId(), item);
                 }
             } else if (t.isAnnotationPresent(HGFastItemCustomize.class)) {
-                fields.add(t);
                 item = getHGFastItemCustomizeData(data, t);
 
                 if (item != null) {
+                    fields.add(t);
                     sortNumbers.add(t.getAnnotation(HGFastItemCustomize.class).sortNumber());
                     item.addObj(HGParamKey.ObjData.getValue(), ReflectUtils.getObjValue(data, t.getName()));
                     result.add(item);
@@ -469,10 +469,10 @@ public class HGFastDataUtils {
                     customizeItemTag.add(item.getData());
                 }
             } else if (t.isAnnotationPresent(HGFastItemGroup.class)) {
-                fields.add(t);
                 item = getHGFastItemGroupData(data, t);
 
                 if (item != null) {
+                    fields.add(t);
                     sortNumbers.add(t.getAnnotation(HGFastItemGroup.class).sortNumber());
                     result.add(item);
                     annotationTag.put(HGFastItemGroup.class, true);

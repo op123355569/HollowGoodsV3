@@ -2,6 +2,7 @@ package com.hg.hollowgoods.UI.Fragment.Proxy;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -48,7 +49,8 @@ public class ProxyHelper {
         ProxyFragment proxyFragment = new ProxyFragment();
         proxyFragment.setProxyConfig(proxyConfig);
 
-        ft.replace(R.id.view_content, proxyFragment);
+        View contentView = baseActivity.findViewById(R.id.view_content);
+        ft.replace(contentView != null ? R.id.view_content : baseActivity.baseUI.rootView.getId(), proxyFragment);
         ft.commitAllowingStateLoss();
     }
 

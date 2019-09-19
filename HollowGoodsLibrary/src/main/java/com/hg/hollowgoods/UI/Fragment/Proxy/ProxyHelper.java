@@ -49,8 +49,16 @@ public class ProxyHelper {
         ProxyFragment proxyFragment = new ProxyFragment();
         proxyFragment.setProxyConfig(proxyConfig);
 
-        View contentView = baseActivity.findViewById(R.id.view_content);
-        ft.replace(contentView != null ? R.id.view_content : baseActivity.baseUI.rootView.getId(), proxyFragment);
+        int contentViewId = R.id.view_content;
+        View contentView = baseActivity.findViewById(contentViewId);
+        if (contentView == null) {
+            if (baseActivity.baseUI.rootView.getId() == View.NO_ID) {
+                baseActivity.baseUI.rootView.setId(contentViewId);
+            } else {
+                contentViewId = baseActivity.baseUI.rootView.getId();
+            }
+        }
+        ft.replace(contentViewId, proxyFragment);
         ft.commitAllowingStateLoss();
     }
 

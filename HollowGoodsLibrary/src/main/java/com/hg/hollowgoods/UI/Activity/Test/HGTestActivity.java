@@ -1,18 +1,19 @@
 package com.hg.hollowgoods.UI.Activity.Test;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.google.gson.reflect.TypeToken;
 import com.hg.hollowgoods.Bean.Test.HGTest;
 import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
+import com.hg.hollowgoods.Util.ReflectUtils;
 
 import java.util.ArrayList;
 
@@ -39,8 +40,11 @@ public class HGTestActivity extends BaseActivity {
     }
 
     @Override
-    public void initIntentData(Intent intent) {
-        tests = (ArrayList<HGTest>) intent.getSerializableExtra(HGParamKey.ListData.getValue());
+    public void initParamData() {
+
+        tests = baseUI.getParam(HGParamKey.ListData.getValue(), new TypeToken<ArrayList<HGTest>>() {
+        }.getType());
+
         if (tests == null) {
             tests = new ArrayList<>();
         }
@@ -79,9 +83,9 @@ public class HGTestActivity extends BaseActivity {
                     HGTest t = tests.get(position);
 
                     if (t.getKeys() == null) {
-                        baseUI.startMyActivityRipple(t.getJumpClass(), v, HGSystemConfig.ACTIVITY_CHANGE_RES, null);
+                        baseUI.startMyActivityRipple(ReflectUtils.getClassByPackageName(t.getJumpClassName()), v, HGSystemConfig.ACTIVITY_CHANGE_RES, null);
                     } else {
-                        baseUI.startMyActivityRipple(t.getJumpClass(), v, HGSystemConfig.ACTIVITY_CHANGE_RES, t.getKeys(), t.getValues(), null);
+                        baseUI.startMyActivityRipple(ReflectUtils.getClassByPackageName(t.getJumpClassName()), v, HGSystemConfig.ACTIVITY_CHANGE_RES, t.getKeys(), t.getValues(), null);
                     }
                 }
             });

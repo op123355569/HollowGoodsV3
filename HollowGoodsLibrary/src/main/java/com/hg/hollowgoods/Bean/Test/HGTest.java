@@ -5,20 +5,20 @@ import java.io.Serializable;
 public class HGTest implements Serializable {
 
     private String btnName;
-    private Class<?> jumpClass;
+    private String jumpClassName;
     private String[] keys;
     private Object[] values;
 
-    public HGTest(String btnName, Class<?> jumpClass, String[] keys, Object[] values) {
+    public HGTest(String btnName, String jumpClassName, String[] keys, Object[] values) {
         this.btnName = btnName;
-        this.jumpClass = jumpClass;
+        this.jumpClassName = jumpClassName;
         this.keys = keys;
         this.values = values;
     }
 
-    public HGTest(String btnName, Class<?> jumpClass) {
+    public HGTest(String btnName, String jumpClassName) {
         this.btnName = btnName;
-        this.jumpClass = jumpClass;
+        this.jumpClassName = jumpClassName;
         this.keys = null;
         this.values = null;
     }
@@ -31,12 +31,12 @@ public class HGTest implements Serializable {
         this.btnName = btnName;
     }
 
-    public Class<?> getJumpClass() {
-        return jumpClass;
+    public String getJumpClassName() {
+        return jumpClassName;
     }
 
-    public void setJumpClass(Class<?> jumpClass) {
-        this.jumpClass = jumpClass;
+    public void setJumpClassName(String jumpClassName) {
+        this.jumpClassName = jumpClassName;
     }
 
     public String[] getKeys() {

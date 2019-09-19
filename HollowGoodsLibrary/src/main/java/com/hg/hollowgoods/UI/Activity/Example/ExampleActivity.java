@@ -7,10 +7,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.Toast;
 
 import com.hg.hollowgoods.Adapter.Example.ExampleAdapter;
+import com.hg.hollowgoods.Bean.EventBus.Event;
+import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
 import com.hg.hollowgoods.Bean.Example.Example;
 import com.hg.hollowgoods.Constant.HGCommonResource;
+import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Activity.Example.Ex33.Ex33Activity;
@@ -20,6 +24,7 @@ import com.hg.hollowgoods.UI.Activity.Plugin.PlayVideoActivity;
 import com.hg.hollowgoods.UI.Activity.Plugin.QRCodeScannerActivity;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
+import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 
 import java.util.ArrayList;
 
@@ -102,7 +107,7 @@ public class ExampleActivity extends BaseActivity {
         adapter = new ExampleAdapter(this, R.layout.item_activity_example, data);
         result.setAdapter(adapter);
 
-        return null;
+        return this;
     }
 
     @Override
@@ -131,4 +136,11 @@ public class ExampleActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onEventUI(Event event) {
+        if (event.getEventActionCode() == HGEventActionCode.QR_CODE_SCAN_RESULT) {
+            String str = event.getData(HGParamKey.ObjData.getValue(), "");
+            t.info(str, Toast.LENGTH_LONG);
+        }
+    }
 }

@@ -8,7 +8,7 @@ import com.hg.hollowgoods.Util.FileUtils;
 import java.util.ArrayList;
 
 /**
- * 上传文件工具类
+ * 文件类型转换工具类
  * Created by Hollow Goods on 2019-04-03.
  */
 public class FileChangeUtils {

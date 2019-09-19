@@ -1,7 +1,7 @@
 ext {
     configs = [
             compileSdkVersion: 27,
-            buildToolsVersion: '29.0.0',
+            buildToolsVersion: '29.0.2',
             minSdkVersion    : 21,
             targetSdkVersion : 27,
             versionCode      : 357,

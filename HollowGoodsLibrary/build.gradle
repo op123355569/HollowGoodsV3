@@ -148,10 +148,10 @@ dependencies {
         exclude group: 'com.github.op123355569', module: 'HollowGoodsV3'
     }
 
-    // Tinker热插件
-    api("com.tencent.tinker:tinker-android-lib:${TINKERPATCH_VERSION}") {
-        changing = true
-    }
+//    // Tinker热插件
+//    api("com.tencent.tinker:tinker-android-lib:${TINKERPATCH_VERSION}") {
+//        changing = true
+//    }
 
     // Shimmer加载动画工具
     api 'com.ethanhua:skeleton:1.1.2'

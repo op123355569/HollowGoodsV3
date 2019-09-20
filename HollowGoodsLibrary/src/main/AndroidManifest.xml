@@ -181,11 +181,11 @@
         <!-- **** 时间服务 **** -->
         <service android:name=".Service.Time.TimeService" /><!-- 计时服务 -->
 
-        <!-- **** 热插件服务 **** -->
-        <service
-            android:name=".Application.HGResultService"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+<!--        &lt;!&ndash; **** 热插件服务 **** &ndash;&gt;-->
+<!--        <service-->
+<!--            android:name=".Application.HGResultService"-->
+<!--            android:exported="false"-->
+<!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
 
         <!-- **** 本APP **** -->
         <activity android:name=".UI.Activity.Main.HollowGoodsActivity" /><!-- 主界面 -->

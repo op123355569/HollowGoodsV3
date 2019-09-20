@@ -13,7 +13,7 @@ import com.hg.hollowgoods.Util.IP.InterfaceConfig;
  * 需要使用Tinker插件则继承{@link BaseTinkerApplication}
  * Created by HG on 2018-03-22.
  */
-public class ExampleApplication extends BaseTinkerApplication {
+public class ExampleApplication extends BaseApplication {
 
     @Override
     public Application initAppContext() {

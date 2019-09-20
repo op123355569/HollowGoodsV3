@@ -1,6 +1,5 @@
 package com.hg.hollowgoods.UI.Base;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,7 +28,6 @@ import java.util.Map;
  * <p>
  * Created by HG
  */
-@SuppressLint("NewApi")
 public abstract class BaseFragment extends Fragment implements IBaseFragment, OnCommonTitleClickListener, OnSearchViewClickListener {
 
     public BaseUI baseUI = new BaseUI();

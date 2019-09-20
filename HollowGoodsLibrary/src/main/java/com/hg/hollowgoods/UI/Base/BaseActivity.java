@@ -1,6 +1,5 @@
 package com.hg.hollowgoods.UI.Base;
 
-import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * Created by HG
  */
-@SuppressLint("NewApi")
 public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity, OnCommonTitleClickListener, OnSearchViewClickListener {
 
     public BaseUI baseUI = new BaseUI();

@@ -22,6 +22,9 @@ import com.hg.hollowgoods.Util.XUtils.XUtils;
 import com.hg.hollowgoods.Widget.HGStatusLayout;
 import com.hg.hollowgoods.voice.VoiceUtils;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.tinker.loader.TinkerLoader;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,12 +32,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 基Application
- * Created by HG on 2018-03-22.
+ * 基 Tinker Application
+ * 使用Tinker时继承
+ * Created by HG on 2019-09-20.
  */
-public abstract class BaseApplication extends Application implements IBaseApplication {
+public abstract class BaseTinkerApplication extends TinkerApplication implements IBaseApplication {
 
     private static Application instance = null;
+
+    public BaseTinkerApplication() {
+        super(ShareConstants.TINKER_ENABLE_ALL, MyLike.class.getName(), TinkerLoader.class.getName(), false);
+    }
 
     public static <T extends Application> T create() {
         if (instance == null) {
@@ -129,7 +137,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
      * 初始化APP自动检查更新日期
      */
     private void initAppAutoCheckDate() {
-        BaseApplication baseApplication = create();
+        BaseTinkerApplication baseApplication = create();
         baseApplication.setAutoCheckUpdateAppDate(CacheUtils.create().load("AppAutoCheckDate", String.class));
     }
 
@@ -192,7 +200,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
     @Override
     public BaseActivity getTopActivity() {
 
-        BaseApplication application = BaseApplication.create();
+        BaseTinkerApplication application = BaseTinkerApplication.create();
         List<Activity> activities = application.getAllActivity();
 
         if (activities != null && activities.size() > 0) {
@@ -235,7 +243,7 @@ public abstract class BaseApplication extends Application implements IBaseApplic
 
                 if (!isSuccess && X5InitTimes < 10) {
                     new Handler().postDelayed(() -> {
-                        BaseApplication baseApplication = create();
+                        BaseTinkerApplication baseApplication = create();
                         baseApplication.initFileView();
                     }, 500);
                 }

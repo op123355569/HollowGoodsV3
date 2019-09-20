@@ -9,9 +9,11 @@ import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 
 /**
  * 示例Application
+ * 不需要使用Tinker插件则继承{@link BaseApplication}
+ * 需要使用Tinker插件则继承{@link BaseTinkerApplication}
  * Created by HG on 2018-03-22.
  */
-public class ExampleApplication extends BaseApplication {
+public class ExampleApplication extends BaseTinkerApplication {
 
     @Override
     public Application initAppContext() {

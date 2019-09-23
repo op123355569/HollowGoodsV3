@@ -191,7 +191,7 @@
         <activity android:name=".UI.Activity.Main.HollowGoodsActivity" /><!-- 主界面 -->
         <activity android:name=".UI.Activity.Login.HGLoginActivity" /><!-- 登录注册界面 -->
 
-        <activity android:name=".UI.Base.BaseActivity" /><!-- 基界面（测试RePlugin） -->
+<!--        <activity android:name=".UI.Base.BaseActivity" />&lt;!&ndash; 基界面（测试RePlugin） &ndash;&gt;-->
 
     </application>
 

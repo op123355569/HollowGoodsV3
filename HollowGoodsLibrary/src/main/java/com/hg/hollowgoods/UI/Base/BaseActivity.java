@@ -68,6 +68,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 //                    .callBack(this::onSlideBackWork)
 //                    .haveScroll(haveScroll())
 //                    .register();
+
+            // 为了配合RePlugin，不能使用lambda表达式
             SlideBack.with(this)
                     .callBack(new SlideBackCallBack() {
                         @Override
@@ -88,6 +90,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         if (onCreateFlag && hasFocus) {
             onCreateFlag = false;
 //            new Handler(Looper.getMainLooper()).post(this::initViewDelay);
+
+            // 为了配合RePlugin，不能使用lambda表达式
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {

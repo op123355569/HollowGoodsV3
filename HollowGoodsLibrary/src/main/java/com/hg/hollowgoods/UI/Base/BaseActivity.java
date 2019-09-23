@@ -14,6 +14,7 @@ import android.view.View;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Widget.SlideBack.SlideBack;
+import com.hg.hollowgoods.Widget.SlideBack.callback.SlideBackCallBack;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -63,8 +64,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         // 绑定侧滑返回
         if (HGSystemConfig.IS_OPEN_SLIDEBACK && isOpenSlideBack()) {
             // 在需要滑动返回的Activity中注册，最好但非必须在onCreate中
+//            SlideBack.with(this)
+//                    .callBack(this::onSlideBackWork)
+//                    .haveScroll(haveScroll())
+//                    .register();
             SlideBack.with(this)
-                    .callBack(this::onSlideBackWork)
+                    .callBack(new SlideBackCallBack() {
+                        @Override
+                        public void onSlideBack() {
+                            onSlideBackWork();
+                        }
+                    })
                     .haveScroll(haveScroll())
                     .register();
         }
@@ -77,7 +87,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         super.onWindowFocusChanged(hasFocus);
         if (onCreateFlag && hasFocus) {
             onCreateFlag = false;
-            new Handler(Looper.getMainLooper()).post(this::initViewDelay);
+//            new Handler(Looper.getMainLooper()).post(this::initViewDelay);
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    initViewDelay();
+                }
+            });
         }
     }
 

@@ -68,7 +68,9 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
 
             setLeftIcon(viewHolder,
                     R.id.iv_leftIcon,
-                    data.getLeftIconRes()
+                    data.getLeftIconRes(),
+                    data.getLeftIconResType(),
+                    data.getLeftIconResName()
             );
 
             // 文件数量标签
@@ -119,6 +121,8 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
                     R.id.iv_rightIcon,
                     R.id.contentMargin,
                     data.getRightIconRes(),
+                    data.getRightIconResType(),
+                    data.getRightIconResName(),
                     data.getItemMode(),
                     data.isOnlyRead()
             );

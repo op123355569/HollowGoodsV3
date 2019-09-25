@@ -75,7 +75,10 @@ public class SystemAppUtils {
     public Uri getOtherFileUri(Context context, File file) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return FileProvider.getUriForFile(context, "hgFileProvider", file);
+            return FileProvider.getUriForFile(context,
+                    context.getApplicationContext().getPackageName() + ".hgFileProvider",
+                    file
+            );
         }
 
         return Uri.fromFile(file);

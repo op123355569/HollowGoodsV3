@@ -76,7 +76,9 @@ public class ItemHGFastItemWord extends BaseItemHGFastItem<CommonBean> {
 
             setLeftIcon(viewHolder,
                     R.id.iv_leftIcon,
-                    data.getLeftIconRes()
+                    data.getLeftIconRes(),
+                    data.getLeftIconResType(),
+                    data.getLeftIconResName()
             );
 
             // 设置内容
@@ -88,6 +90,8 @@ public class ItemHGFastItemWord extends BaseItemHGFastItem<CommonBean> {
                     R.id.iv_rightIcon,
                     R.id.contentMargin,
                     data.getRightIconRes(),
+                    data.getRightIconResType(),
+                    data.getRightIconResName(),
                     data.getItemMode(),
                     data.isOnlyRead()
             );

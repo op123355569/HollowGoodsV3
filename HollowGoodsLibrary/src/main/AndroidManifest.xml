@@ -193,7 +193,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="hgFileProvider"
+            android:authorities="${applicationId}.hgFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

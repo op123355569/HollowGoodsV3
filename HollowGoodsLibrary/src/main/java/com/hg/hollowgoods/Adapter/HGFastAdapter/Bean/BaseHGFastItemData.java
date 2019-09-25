@@ -13,7 +13,11 @@ public class BaseHGFastItemData extends CommonBean {
     private boolean isNotEmpty;
     private String label;
     private int leftIconRes;
+    private String leftIconResType;
+    private String leftIconResName;
     private int rightIconRes;
+    private String rightIconResType;
+    private String rightIconResName;
     private String visibleName;
     private String labelTextColorResName;
     private int labelTextColorRes;
@@ -72,6 +76,38 @@ public class BaseHGFastItemData extends CommonBean {
 
     public void setRightIconRes(int rightIconRes) {
         this.rightIconRes = rightIconRes;
+    }
+
+    public String getLeftIconResType() {
+        return leftIconResType;
+    }
+
+    public void setLeftIconResType(String leftIconResType) {
+        this.leftIconResType = leftIconResType;
+    }
+
+    public String getLeftIconResName() {
+        return leftIconResName;
+    }
+
+    public void setLeftIconResName(String leftIconResName) {
+        this.leftIconResName = leftIconResName;
+    }
+
+    public String getRightIconResType() {
+        return rightIconResType;
+    }
+
+    public void setRightIconResType(String rightIconResType) {
+        this.rightIconResType = rightIconResType;
+    }
+
+    public String getRightIconResName() {
+        return rightIconResName;
+    }
+
+    public void setRightIconResName(String rightIconResName) {
+        this.rightIconResName = rightIconResName;
     }
 
     public String getVisibleName() {

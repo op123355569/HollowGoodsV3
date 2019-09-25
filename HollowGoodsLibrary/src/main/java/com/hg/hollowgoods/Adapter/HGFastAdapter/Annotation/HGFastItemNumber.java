@@ -65,12 +65,48 @@ public @interface HGFastItemNumber {
     int leftIconRes() default -1;
 
     /**
+     * 左侧图标资源类型
+     * 默认无图标
+     * leftIconRes不可用的情况下使用
+     *
+     * @return String
+     */
+    String leftIconResType() default "";
+
+    /**
+     * 左侧图标资源名称
+     * 默认无图标
+     * leftIconRes不可用的情况下使用
+     *
+     * @return String
+     */
+    String leftIconResName() default "";
+
+    /**
      * 右侧图标资源
      * 默认 根据mode自动填充
      *
      * @return int
      */
     int rightIconRes() default -1;
+
+    /**
+     * 右侧图标资源类型
+     * 默认无图标
+     * rightIconRes不可用的情况下使用
+     *
+     * @return String
+     */
+    String rightIconResType() default "";
+
+    /**
+     * 右侧图标资源名称
+     * 默认无图标
+     * rightIconRes不可用的情况下使用
+     *
+     * @return String
+     */
+    String rightIconResName() default "";
 
     /**
      * 绑定可见性控制的变量名

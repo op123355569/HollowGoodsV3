@@ -9,6 +9,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Type.ItemMode;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.Util.ResUtils;
 
 /**
  * 模板基类
@@ -62,21 +63,31 @@ abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<Common
     /**
      * 设置左侧图标
      */
-    void setLeftIcon(ViewHolder viewHolder, int viewId, int iconRes) {
-        if (iconRes == -1) {
+    void setLeftIcon(ViewHolder viewHolder, int viewId, int iconRes, String iconType, String iconName) {
+        if (iconRes == -1 && TextUtils.isEmpty(iconType)) {
             // 不显示左侧图标
             viewHolder.setVisible(viewId, false);
         } else {
             // 显示左侧图标
-            viewHolder.setVisible(viewId, true);
-            viewHolder.setImageResource(viewId, iconRes);
+            if (iconRes != -1) {
+                viewHolder.setVisible(viewId, true);
+                viewHolder.setImageResource(viewId, iconRes);
+            } else {
+                Integer res = ResUtils.getImageResources(viewHolder.getContext(), iconName, iconType);
+                if (res == null) {
+                    viewHolder.setVisible(viewId, false);
+                } else {
+                    viewHolder.setVisible(viewId, true);
+                    viewHolder.setImageResource(viewId, res);
+                }
+            }
         }
     }
 
     /**
      * 设置右侧图标
      */
-    void setRightIcon(ViewHolder viewHolder, int rightIconViewId, int contentMarginViewId, int iconRes, ItemMode itemMode, boolean isOnlyRead) {
+    void setRightIcon(ViewHolder viewHolder, int rightIconViewId, int contentMarginViewId, int iconRes, String iconType, String iconName, ItemMode itemMode, boolean isOnlyRead) {
 
         if (isOnlyRead) {
             // 只读
@@ -84,7 +95,7 @@ abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<Common
             viewHolder.setVisible(contentMarginViewId, true);
         } else {
             // 可编辑
-            if (iconRes == -1) {
+            if (iconRes == -1 && TextUtils.isEmpty(iconType)) {
                 switch (itemMode) {
                     case Input:
                         viewHolder.setVisible(rightIconViewId, true);
@@ -108,9 +119,21 @@ abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<Common
                         break;
                 }
             } else {
-                viewHolder.setVisible(rightIconViewId, true);
-                viewHolder.setVisible(contentMarginViewId, false);
-                viewHolder.setImageResource(rightIconViewId, iconRes);
+                if (iconRes != -1) {
+                    viewHolder.setVisible(rightIconViewId, true);
+                    viewHolder.setVisible(contentMarginViewId, false);
+                    viewHolder.setImageResource(rightIconViewId, iconRes);
+                } else {
+                    Integer res = ResUtils.getImageResources(viewHolder.getContext(), iconName, iconType);
+                    if (res == null) {
+                        viewHolder.setVisible(rightIconViewId, false);
+                        viewHolder.setVisible(contentMarginViewId, true);
+                    } else {
+                        viewHolder.setVisible(rightIconViewId, true);
+                        viewHolder.setVisible(contentMarginViewId, false);
+                        viewHolder.setImageResource(rightIconViewId, res);
+                    }
+                }
             }
         }
     }

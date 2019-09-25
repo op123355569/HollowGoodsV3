@@ -50,8 +50,15 @@ public class HGFastDataUtils {
         result.setItemMode(annotation.itemMode());
         result.setNotEmpty(annotation.isNotEmpty());
         result.setLabel(annotation.label());
+
         result.setLeftIconRes(annotation.leftIconRes());
+        result.setLeftIconResType(annotation.leftIconResType());
+        result.setLeftIconResName(annotation.leftIconResName());
+
         result.setRightIconRes(annotation.rightIconRes());
+        result.setRightIconResType(annotation.rightIconResType());
+        result.setRightIconResName(annotation.rightIconResName());
+
         result.setVisibleName(annotation.visibleName());
         result.setLabelTextColorResName(annotation.labelTextColorResName());
         if (TextUtils.isEmpty(result.getLabelTextColorResName())) {
@@ -137,8 +144,15 @@ public class HGFastDataUtils {
         result.setItemMode(annotation.itemMode());
         result.setNotEmpty(annotation.isNotEmpty());
         result.setLabel(annotation.label());
+
         result.setLeftIconRes(annotation.leftIconRes());
+        result.setLeftIconResType(annotation.leftIconResType());
+        result.setLeftIconResName(annotation.leftIconResName());
+
         result.setRightIconRes(annotation.rightIconRes());
+        result.setRightIconResType(annotation.rightIconResType());
+        result.setRightIconResName(annotation.rightIconResName());
+
         result.setVisibleName(annotation.visibleName());
         result.setLabelTextColorResName(annotation.labelTextColorResName());
         if (TextUtils.isEmpty(result.getLabelTextColorResName())) {
@@ -190,8 +204,15 @@ public class HGFastDataUtils {
         result.setItemMode(annotation.itemMode());
         result.setNotEmpty(annotation.isNotEmpty());
         result.setLabel(annotation.label());
+
         result.setLeftIconRes(annotation.leftIconRes());
+        result.setLeftIconResType(annotation.leftIconResType());
+        result.setLeftIconResName(annotation.leftIconResName());
+
         result.setRightIconRes(annotation.rightIconRes());
+        result.setRightIconResType(annotation.rightIconResType());
+        result.setRightIconResName(annotation.rightIconResName());
+
         result.setVisibleName(annotation.visibleName());
         result.setLabelTextColorResName(annotation.labelTextColorResName());
         if (TextUtils.isEmpty(result.getLabelTextColorResName())) {
@@ -267,8 +288,15 @@ public class HGFastDataUtils {
         result.setItemMode(annotation.itemMode());
         result.setNotEmpty(annotation.isNotEmpty());
         result.setLabel(annotation.label());
+
         result.setLeftIconRes(annotation.leftIconRes());
+        result.setLeftIconResType(annotation.leftIconResType());
+        result.setLeftIconResName(annotation.leftIconResName());
+
         result.setRightIconRes(annotation.rightIconRes());
+        result.setRightIconResType(annotation.rightIconResType());
+        result.setRightIconResName(annotation.rightIconResName());
+
         result.setVisibleName(annotation.visibleName());
         result.setLabelTextColorResName(annotation.labelTextColorResName());
         if (TextUtils.isEmpty(result.getLabelTextColorResName())) {

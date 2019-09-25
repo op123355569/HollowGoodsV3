@@ -8,10 +8,8 @@ import com.hg.hollowgoods.Constant.HGSystemConfig;
 import java.lang.reflect.Type;
 
 /**
- * @ClassName:
- * @Description:
- * @author: HollowGoods
- * @date: 2018年12月21日
+ * 缓存工具类
+ * Created by Hollow Goods on 2018-12-21.
  */
 public class CacheUtils {
 

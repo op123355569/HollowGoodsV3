@@ -22,7 +22,10 @@ allprojects {
         jcenter()
         mavenCentral()
 //        mavenCentral(url: "https://dl.bintray.com/ycjiang/ycjiang")
-        maven { url "https://jitpack.io" }
+        maven {
+            url "https://jitpack.io"
+            credentials { username authToken }
+        }
     }
 }
 

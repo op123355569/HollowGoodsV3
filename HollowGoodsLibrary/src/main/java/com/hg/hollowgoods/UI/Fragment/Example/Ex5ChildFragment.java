@@ -23,11 +23,15 @@ public class Ex5ChildFragment extends BaseFragment {
     }
 
     @Override
+    public void initParamData() {
+        strTitle = baseUI.getParam("title", "");
+    }
+
+    @Override
     public Object initView(View view, Bundle savedInstanceState) {
 
         title = baseUI.findViewById(R.id.tv_title);
 
-        strTitle = getArguments().getString("title");
         title.setText(strTitle);
 
         return null;

@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
@@ -54,24 +55,51 @@ import cn.bingoogolapple.baseadapter.BGABaseAdapterUtil;
 public class SystemAppUtils {
 
     /**
-     * 获取文件的URI
+     * 获取其他文件的URI
      *
-     * @param context  context
-     * @param filepath filepath
+     * @param context  Context
+     * @param filepath File
      * @return Uri
      */
-    public Uri getFileUri(Context context, String filepath) {
-        return getFileUri(context, new File(filepath));
+    public Uri getOtherFileUri(Context context, String filepath) {
+        return getOtherFileUri(context, new File(filepath));
     }
 
     /**
-     * 获取文件的URI
+     * 获取其他文件的URI
      *
-     * @param context context
-     * @param file    file
+     * @param context Context
+     * @param file    File
      * @return Uri
      */
-    public Uri getFileUri(Context context, File file) {
+    public Uri getOtherFileUri(Context context, File file) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return FileProvider.getUriForFile(context, "hgFileProvider", file);
+        }
+
+        return Uri.fromFile(file);
+    }
+
+    /**
+     * 获取图片文件的URI
+     *
+     * @param context  Context
+     * @param filepath Filepath
+     * @return Uri
+     */
+    public Uri getImageUri(Context context, String filepath) {
+        return getImageUri(context, new File(filepath));
+    }
+
+    /**
+     * 获取图片文件的URI
+     *
+     * @param context Context
+     * @param file    File
+     * @return Uri
+     */
+    public Uri getImageUri(Context context, File file) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             ContentValues contentValues = new ContentValues(1);
@@ -99,7 +127,7 @@ public class SystemAppUtils {
      * @return Uri
      */
     public Uri getCameraPhotoUri(Context context) {
-        return getFileUri(context, cameraPhotoFile);
+        return getImageUri(context, cameraPhotoFile);
     }
 
     /**
@@ -167,7 +195,7 @@ public class SystemAppUtils {
         // 启动拍照,并保存到临时文件
         Intent takePhotoIntent = new Intent();
         takePhotoIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, getFileUri(activity, cameraPhotoFile));
+        takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, getImageUri(activity, cameraPhotoFile));
         takePhotoIntent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
         if (isFront) {
             // 调用前置摄像头
@@ -381,7 +409,7 @@ public class SystemAppUtils {
                     );
 
                     albumPhotoPath = photoSavePath + newName;
-                    albumPhotoUri = getFileUri(context, albumPhotoPath);
+                    albumPhotoUri = getImageUri(context, albumPhotoPath);
 
                     if (onCompressListener != null) {
                         Handler handler = new Handler(Looper.getMainLooper());
@@ -522,7 +550,7 @@ public class SystemAppUtils {
     private void refreshGallery(Context context, String path) {
         if (!TextUtils.isEmpty(path)) {
             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            mediaScanIntent.setData(getFileUri(context, path));
+            mediaScanIntent.setData(getImageUri(context, path));
             BGABaseAdapterUtil.getApp().sendBroadcast(mediaScanIntent);
         }
     }
@@ -574,7 +602,7 @@ public class SystemAppUtils {
         // 启动视频,并保存到临时文件
         Intent mIntent = new Intent();
         mIntent.setAction(MediaStore.ACTION_VIDEO_CAPTURE);
-        mIntent.putExtra(MediaStore.EXTRA_OUTPUT, getFileUri(activity, videoFile));
+        mIntent.putExtra(MediaStore.EXTRA_OUTPUT, getImageUri(activity, videoFile));
         mIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, quality);
 
         if (onProxyActivityResult != null && activity instanceof BaseActivity) {
@@ -819,7 +847,7 @@ public class SystemAppUtils {
         Intent installAPKIntent = new Intent();
         installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         installAPKIntent.setAction(Intent.ACTION_VIEW);
-        installAPKIntent.setDataAndType(getFileUri(context, filePath), "application/vnd.android.package-archive");
+        installAPKIntent.setDataAndType(getImageUri(context, filePath), "application/vnd.android.package-archive");
         context.startActivity(installAPKIntent);
     }
 

@@ -15,7 +15,7 @@ import com.tencent.smtt.sdk.TbsReaderView;
 import java.io.File;
 
 /**
- * Created by 12457 on 2017/8/29.
+ * Created by HollowGoods on 2017-8-29.
  */
 
 public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCallback {

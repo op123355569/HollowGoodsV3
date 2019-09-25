@@ -191,6 +191,16 @@
         <activity android:name=".UI.Activity.Main.HollowGoodsActivity" /><!-- 主界面 -->
         <activity android:name=".UI.Activity.Login.HGLoginActivity" /><!-- 登录注册界面 -->
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="hgFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>

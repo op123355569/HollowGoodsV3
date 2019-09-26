@@ -9,6 +9,7 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.Settings;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -38,6 +39,7 @@ public abstract class TagScanActivity extends BaseActivity {
 
     @Nullable
     @Override
+    @CallSuper
     public Object initView(View view, Bundle savedInstanceState) {
 
         resolveIntent(getIntent());

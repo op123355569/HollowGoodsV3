@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.hg.hollowgoods.Bean.HGUser;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
+import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.IP.IPConfig;
 import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 
@@ -42,7 +43,7 @@ public class ExampleApplication extends BaseApplication {
                 .setIp("218.93.5.74")
                 .setPort("4500")
         );
-        createApplication().setCrashHandlerUsername("HollowGoods");
+        createApplication().setCrashHandlerUsername(getString(R.string.app_name));
     }
 
     public static ExampleApplication createApplication() {

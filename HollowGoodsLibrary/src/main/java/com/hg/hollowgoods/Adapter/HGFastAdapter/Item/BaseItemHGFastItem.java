@@ -9,6 +9,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Type.ItemMode;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.Util.DensityUtils;
 import com.hg.hollowgoods.Util.ResUtils;
 
 /**
@@ -143,8 +144,26 @@ abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<Common
      */
     void setMargin(ViewHolder viewHolder, int viewId, int topMargin, int leftMargin, int bottomMargin, int rightMargin) {
         View marginView = viewHolder.getView(viewId);
-        RecyclerView.LayoutParams flp = (RecyclerView.LayoutParams) marginView.getLayoutParams();
-        flp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+        RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) marginView.getLayoutParams();
+        lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+    }
+
+    /**
+     * 设置上下内间距
+     */
+    void setPaddingTopAndBottom(ViewHolder viewHolder, int viewId, int padding) {
+
+        View paddingView = viewHolder.getView(viewId);
+        int startPadding = DensityUtils.dp2px(viewHolder.getContext(), 16);
+        int endPadding = DensityUtils.dp2px(viewHolder.getContext(), 4);
+        int topAndBottomPadding = DensityUtils.dp2px(viewHolder.getContext(), padding);
+
+        paddingView.setPaddingRelative(
+                startPadding,
+                topAndBottomPadding,
+                endPadding,
+                topAndBottomPadding
+        );
     }
 
 }

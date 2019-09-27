@@ -135,6 +135,11 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
                     data.getMarginRight()
             );
 
+            setPaddingTopAndBottom(viewHolder,
+                    R.id.ll_itemView,
+                    data.getPaddingTopAndBottom()
+            );
+
             // 点击事件
             switch (data.getItemMode()) {
                 case File:

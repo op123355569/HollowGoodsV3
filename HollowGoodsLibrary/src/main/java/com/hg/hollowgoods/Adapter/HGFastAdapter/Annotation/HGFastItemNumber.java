@@ -155,6 +155,14 @@ public @interface HGFastItemNumber {
     int marginRight() default 0;
 
     /**
+     * 上下内间距 单位 dp
+     * 默认16
+     *
+     * @return int
+     */
+    int paddingTopAndBottom() default 16;
+
+    /**
      * 内容默认值
      *
      * @return String

@@ -75,6 +75,7 @@ public class HGFastDataUtils {
         result.setMarginLeft(annotation.marginLeft());
         result.setMarginBottom(annotation.marginBottom());
         result.setMarginRight(annotation.marginRight());
+        result.setPaddingTopAndBottom(annotation.paddingTopAndBottom());
 
         // 特有属性
         result.setContentHint(annotation.contentHint());
@@ -169,6 +170,7 @@ public class HGFastDataUtils {
         result.setMarginLeft(annotation.marginLeft());
         result.setMarginBottom(annotation.marginBottom());
         result.setMarginRight(annotation.marginRight());
+        result.setPaddingTopAndBottom(annotation.paddingTopAndBottom());
 
         // 特有属性
         result.setFileMode(annotation.fileMode());
@@ -229,6 +231,7 @@ public class HGFastDataUtils {
         result.setMarginLeft(annotation.marginLeft());
         result.setMarginBottom(annotation.marginBottom());
         result.setMarginRight(annotation.marginRight());
+        result.setPaddingTopAndBottom(annotation.paddingTopAndBottom());
 
         // 特有属性
         result.setDateFormatMode(annotation.dateFormatMode());
@@ -313,6 +316,7 @@ public class HGFastDataUtils {
         result.setMarginLeft(annotation.marginLeft());
         result.setMarginBottom(annotation.marginBottom());
         result.setMarginRight(annotation.marginRight());
+        result.setPaddingTopAndBottom(annotation.paddingTopAndBottom());
 
         // 特有属性
         result.setMinValue(annotation.minValue());

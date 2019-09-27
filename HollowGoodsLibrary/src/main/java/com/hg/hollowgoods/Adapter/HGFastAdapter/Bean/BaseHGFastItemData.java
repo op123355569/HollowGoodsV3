@@ -25,6 +25,7 @@ public class BaseHGFastItemData extends CommonBean {
     private int marginLeft;
     private int marginBottom;
     private int marginRight;
+    private int paddingTopAndBottom;
 
     BaseHGFastItemData(int itemType) {
         super(itemType);
@@ -164,5 +165,13 @@ public class BaseHGFastItemData extends CommonBean {
 
     public void setMarginRight(int marginRight) {
         this.marginRight = marginRight;
+    }
+
+    public int getPaddingTopAndBottom() {
+        return paddingTopAndBottom;
+    }
+
+    public void setPaddingTopAndBottom(int paddingTopAndBottom) {
+        this.paddingTopAndBottom = paddingTopAndBottom;
     }
 }

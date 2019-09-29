@@ -33,6 +33,7 @@ import java.io.File;
 public abstract class HGUpdateAPPUtils implements UpdateAPPController {
 
     private boolean isFromUser = false;
+    private boolean isMustUpdate = false;
     private String URL = "";
     private BaseActivity baseActivity;
     private File apkFile;
@@ -142,6 +143,8 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
      */
     public void showDialog(String tips, boolean isMustUpdate) {
 
+        this.isMustUpdate = isMustUpdate;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity);
         builder.setTitle(R.string.update_app_find_new_version)
                 .setMessage(StringUtils.isHtml(tips) ? Html.fromHtml(tips) : tips)
@@ -160,7 +163,7 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
 
     private void doDownloadAPK() {
 
-        baseActivity.baseUI.baseDialog.showProgressDialog(null, R.string.downloading, true, false, HGConstants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
+        baseActivity.baseUI.baseDialog.showProgressDialog(null, R.string.downloading, !isMustUpdate, false, HGConstants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
 
         String path = HGSystemConfig.getDownloadFilePath();
         String name = System.currentTimeMillis() + ".apk";

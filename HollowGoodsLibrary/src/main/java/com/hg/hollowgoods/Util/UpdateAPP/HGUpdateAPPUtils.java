@@ -68,79 +68,94 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
 
     private void doCheck() {
         checkServerData();
-//        RequestParams params = new RequestParams(InterfaceConfig.getNowIPConfig().getRequestUrl(HGInterfaceApi.UPDATE_APP));
-//        params.addParameter("nowVersion", Build.VERSION.SDK_INT);
+
+//        RequestParams params = new RequestParams(InterfaceConfig.getNowIPConfig().getRequestUrl(InterfaceApi.UpdateApp.getUrl()));
 //
 //        XUtils xUtils = new XUtils();
 //        xUtils.setGetHttpDataListener(new GetHttpDataListener() {
 //            @Override
 //            public void onGetSuccess(String result) {
 //
-//                HGResponseInfo requestInfo = new Gson().fromJson(result, HGResponseInfo.class);
+//                ResponseInfo responseInfo = new Gson().fromJson(result, ResponseInfo.class);
 //
-//                if ((TextUtils.equals(requestInfo.getStatus(), "true"))) {
-//                    URL = InterfaceConfig.getNowIPConfig().getRequestUrl(requestInfo.getUrl());
+//                if (responseInfo.getCode() == ResponseInfo.CODE_REQUEST_SUCCESS) {
+//                    // 请求成功
+//                    AppVersion appVersion = new Gson().fromJson(
+//                            new Gson().toJson(responseInfo.getData()),
+//                            AppVersion.class
+//                    );
+//
+//                    setURL(appVersion.getAndroidUrl());
 //
 //                    StringBuilder tip = new StringBuilder();
 //                    tip.append("V");
-//                    tip.append(APPUtils.getVersionName(baseActivity));
+//                    tip.append(APPUtils.getVersionName(getBaseActivity()));
 //                    tip.append(" → ");
 //                    tip.append("V");
-//                    char[] chars = String.valueOf(requestInfo.getData()).toCharArray();
-//                    for (int i = 0; i < chars.length; i++) {
-//                        tip.append(chars[i]);
-//                        if (i != chars.length - 1) {
-//                            tip.append(".");
-//                        }
-//                    }
+//                    tip.append(appVersion.getVersionName());
 //                    tip.append("\n\n");
-//                    tip.append(requestInfo.getResult());
+//                    tip.append(appVersion.getVersionDescribe());
 //
 //                    showDialog(tip.toString());
 //                } else {
-//                    if (isFromUser) {
+//                    if (isFromUser()) {
 //                        t.showShortToast(R.string.update_app_already_new);
 //                    }
 //                }
 //            }
 //
 //            @Override
-//            public void onGetError(Throwable ex) {
-//                if (isFromUser) {
+//            public void onGetError(Throwable throwable) {
+//                if (isFromUser()) {
 //                    t.showShortToast(R.string.network_error);
 //                }
 //            }
 //
 //            @Override
-//            public void onGetLoading(long total, long current) {
-//
-//            }
-//
-//            @Override
 //            public void onGetFinish() {
-//                if (isFromUser) {
-//                    baseActivity.baseUI.baseDialog.closeDialog(HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
+//                if (isFromUser()) {
+//                    closeCheckProgressDialog();
 //                }
 //            }
-//
-//            @Override
-//            public void onGetCancel(Callback.CancelledException cex) {
-//
-//            }
 //        });
-//        xUtils.getHttpData(HttpMethod.GET, params);
+//        xUtils.getHttpData(HttpMethod.POST, params);
     }
 
+    public void closeCheckProgressDialog() {
+        baseActivity.baseUI.baseDialog.closeDialog(HGConstants.UPDATE_APP_UTILS_CHECK_PROGRESS_DIALOG_CODE);
+    }
+
+    /**
+     * 显示版本信息对话框
+     *
+     * @param tips String
+     */
     public void showDialog(String tips) {
+        showDialog(tips, false);
+    }
+
+    /**
+     * 显示版本信息对话框
+     *
+     * @param tips         String
+     * @param isMustUpdate 是否强制更新
+     */
+    public void showDialog(String tips, boolean isMustUpdate) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity);
         builder.setTitle(R.string.update_app_find_new_version)
                 .setMessage(StringUtils.isHtml(tips) ? Html.fromHtml(tips) : tips)
                 .setPositiveButton(R.string.sure, (dialog, which) -> doDownloadAPK())
-                .setNegativeButton(R.string.cancel, (dialog, which) -> {
+                .setCancelable(!isMustUpdate);
 
-                })
-                .show();
+
+        if (!isMustUpdate) {
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
+
+            });
+        }
+
+        builder.show();
     }
 
     private void doDownloadAPK() {

@@ -5,7 +5,7 @@ import android.view.View;
 
 /**
  * ViewPager缩放效果
- * Created by HG on 2017-06-19.
+ * Created by Hollow Goods on 2017-06-19.
  */
 
 public class ScaleTransformer implements ViewPager.PageTransformer {

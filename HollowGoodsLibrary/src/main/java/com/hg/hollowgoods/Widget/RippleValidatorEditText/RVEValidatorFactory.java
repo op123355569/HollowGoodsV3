@@ -12,6 +12,9 @@ import com.hg.hollowgoods.Widget.RippleValidatorEditText.validator.RVEValidator;
 
 import java.util.ArrayList;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class RVEValidatorFactory {
 
     public static RVEValidator getValidator(@RVEValidatorType.VType int type, String error, @Nullable Object item) {

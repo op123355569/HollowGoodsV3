@@ -6,7 +6,7 @@ import android.widget.ListView;
 
 /**
  * 自定义ListView，用于嵌套ScrollView
- * Created by HG
+ * Created by Hollow Goods on 2015-12-12.
  */
 public class ListViewForScrollView extends ListView {
 

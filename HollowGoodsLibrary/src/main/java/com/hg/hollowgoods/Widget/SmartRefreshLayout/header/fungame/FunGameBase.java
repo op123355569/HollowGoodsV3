@@ -22,6 +22,8 @@ import static android.view.MotionEvent.ACTION_MASK;
 
 /**
  * 游戏 header
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("RestrictedApi")
 public abstract class FunGameBase extends InternalAbstract implements RefreshHeader {
@@ -110,7 +112,7 @@ public abstract class FunGameBase extends InternalAbstract implements RefreshHea
 //            enableLoadMore = mRefreshKernel.getRefreshLayout().isEnableLoadMore();
 //            mRefreshKernel.getRefreshLayout().setEnableLoadMore(false);
             View contentView = mRefreshContent.getView();
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)contentView.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) contentView.getLayoutParams();
             params.topMargin += mHeaderHeight;
             contentView.setLayoutParams(params);
         }
@@ -133,7 +135,7 @@ public abstract class FunGameBase extends InternalAbstract implements RefreshHea
                 mRefreshKernel.moveSpinner(mHeaderHeight, true);
             }
             View contentView = mRefreshContent.getView();
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)contentView.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) contentView.getLayoutParams();
             params.topMargin -= mHeaderHeight;
             contentView.setLayoutParams(params);
         } else {

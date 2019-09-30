@@ -22,6 +22,9 @@ import android.widget.RatingBar;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Widget.RatingBar.Internal.DrawableCompat;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 // AppCompatRatingBar will add undesired measuring behavior.
 @SuppressLint("AppCompatCustomView")
 public class MaterialRatingBar extends RatingBar {
@@ -631,7 +634,7 @@ public class MaterialRatingBar extends RatingBar {
          * {@link OnRatingBarChangeListener}.
          *
          * @param ratingBar The RatingBar whose rating has changed.
-         * @param rating The current rating. This will be in the range 0..numStars.
+         * @param rating    The current rating. This will be in the range 0..numStars.
          */
         void onRatingChanged(MaterialRatingBar ratingBar, float rating);
     }

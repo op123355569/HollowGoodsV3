@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Bean.HGFastItemFileData;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.CallBack.OnHGFastItemClickListener;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Type.ItemType;
@@ -56,7 +56,7 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
                     data.getItemId()
             );
 
-            ArrayList<Media> media = data.getItemMedia();
+            ArrayList<AppFile> media = data.getItemMedia();
             setLabel(viewHolder,
                     R.id.tv_notEmptyFlag,
                     R.id.tv_label,
@@ -86,7 +86,7 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
                 img.setPadding(0, 0, 0, 0);
                 viewHolder.setImageResource(R.id.iv_imgPre, R.color.transparent);
             } else {
-                Media m = media.get(media.size() - 1);
+                AppFile m = media.get(media.size() - 1);
                 if (m.getFile() == null && TextUtils.isEmpty(m.getUrl())) {
                     ImageView img = viewHolder.getView(R.id.iv_imgPre);
                     img.setPadding(0, 0, 0, 0);
@@ -148,10 +148,10 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
                         public void onViewClick(View view, int id) {
 
                             clickItemId = data.getItemId();
-                            ArrayList<Media> media = data.getItemMedia();
+                            ArrayList<AppFile> media = data.getItemMedia();
 
                             if (media != null) {
-                                for (Media t : media) {
+                                for (AppFile t : media) {
                                     t.setCanRemove(!data.isOnlyRead());
                                 }
                             }
@@ -170,7 +170,7 @@ public class ItemHGFastItemFile extends BaseItemHGFastItem<CommonBean> {
                                 public void onViewClick(View view, int id) {
 
                                     clickItemId = data.getItemId();
-                                    ArrayList<Media> media = data.getItemMedia();
+                                    ArrayList<AppFile> media = data.getItemMedia();
 
                                     if (media == null || data.getMaxCount() < 1 || media.size() < data.getMaxCount()) {
                                         hgFastFileSelectorUtils.showFileSelectorWindow(baseUI.getBaseContext(), view, data.getFileMode(), media, data.getMaxCount(), data.getQuality(), data.getFileFilter());

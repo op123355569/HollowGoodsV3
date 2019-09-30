@@ -18,6 +18,9 @@ package com.hg.hollowgoods.Widget.PhotoView.ScrollerProxy;
 import android.annotation.TargetApi;
 import android.content.Context;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 @TargetApi(14)
 public class IcsScroller extends GingerScroller {
 

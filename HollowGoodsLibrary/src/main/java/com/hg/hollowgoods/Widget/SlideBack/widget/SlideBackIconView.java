@@ -12,6 +12,7 @@ import android.view.View;
 
 /**
  * 边缘返回的图标View
+ * Created by Hollow Goods on unknown.
  */
 public class SlideBackIconView extends View {
     private Path bgPath, arrowPath; // 路径对象

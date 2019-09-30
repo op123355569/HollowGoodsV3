@@ -36,6 +36,8 @@ import static android.view.View.MeasureSpec.makeMeasureSpec;
 /**
  * 水滴下拉头
  * from https://github.com/recruit-lifestyle/WaveSwipeRefreshLayout
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("unused")
 public class WaveSwipeHeader extends InternalAbstract implements RefreshHeader {

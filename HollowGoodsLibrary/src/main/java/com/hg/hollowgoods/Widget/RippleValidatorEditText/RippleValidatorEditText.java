@@ -45,6 +45,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class RippleValidatorEditText extends LinearLayout {
 
     List<RVEValidator> mValidators = new ArrayList<>();

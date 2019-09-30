@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * 跑马灯文字控件-垂直滚动-扩展版
+ * Created by Hollow Goods on unknown.
  */
 public class RunTextViewVerticalMore extends ViewFlipper {
 

@@ -32,6 +32,8 @@ import static android.view.View.MeasureSpec.getSize;
 
 /**
  * Material 主题下拉头
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("unused")
 public class MaterialHeader extends InternalAbstract implements RefreshHeader {

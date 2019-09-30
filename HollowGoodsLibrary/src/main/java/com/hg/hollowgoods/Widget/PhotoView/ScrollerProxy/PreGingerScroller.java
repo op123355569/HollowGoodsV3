@@ -18,6 +18,9 @@ package com.hg.hollowgoods.Widget.PhotoView.ScrollerProxy;
 import android.content.Context;
 import android.widget.Scroller;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class PreGingerScroller extends ScrollerProxy {
 
     private final Scroller mScroller;

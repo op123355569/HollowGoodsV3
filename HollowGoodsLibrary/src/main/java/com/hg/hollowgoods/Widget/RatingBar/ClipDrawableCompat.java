@@ -13,6 +13,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 class ClipDrawableCompat extends ClipDrawable implements TintableDrawable {
 
     private static final String TAG = ClipDrawableCompat.class.getSimpleName();

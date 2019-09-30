@@ -5,6 +5,10 @@ import android.support.annotation.Nullable;
 
 import com.hg.hollowgoods.Widget.ValidatorInput.Validator.ValidatorType;
 
+/**
+ * 验证基类
+ * Created by Hollow Goods on unknown.
+ */
 public abstract class Validator {
     /**
      * Error message that the view will display if validation fails.

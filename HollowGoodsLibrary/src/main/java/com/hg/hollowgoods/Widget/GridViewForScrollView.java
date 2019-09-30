@@ -6,7 +6,7 @@ import android.widget.GridView;
 
 /**
  * 自定义GridView，用于嵌套ScrollView
- * Created by HG
+ * Created by Hollow Goods on 2015-12-12.
  */
 public class GridViewForScrollView extends GridView {
 

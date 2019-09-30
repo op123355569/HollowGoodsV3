@@ -20,6 +20,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.listener.SimpleMultiPurposeL
 /**
  * 刷新布局
  * interface of the refresh layout
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings({"UnusedReturnValue", "SameParameterValue", "unused"})
 public interface RefreshLayout {

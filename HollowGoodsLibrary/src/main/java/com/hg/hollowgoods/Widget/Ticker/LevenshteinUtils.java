@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.Widget.Ticker;
 
 /**
+ * SVG动画控件
  * https://en.wikipedia.org/wiki/Levenshtein_distance
  */
 public class LevenshteinUtils {
@@ -17,9 +18,9 @@ public class LevenshteinUtils {
      * @param source the source character array
      * @param target the target character array
      * @return an int array of size min(source.length, target.length) where each index
-     *         corresponds to one of {@link #ACTION_SAME}, {@link #ACTION_INSERT},
-     *         {@link #ACTION_DELETE} to represent if we update, insert, or delete a character
-     *         at the particular index.
+     * corresponds to one of {@link #ACTION_SAME}, {@link #ACTION_INSERT},
+     * {@link #ACTION_DELETE} to represent if we update, insert, or delete a character
+     * at the particular index.
      */
     public static int[] computeColumnActions(char[] source, char[] target) {
         final int sourceLength = source.length;
@@ -49,12 +50,12 @@ public class LevenshteinUtils {
         int cost;
         for (int j = 1; j < numCols; j++) {
             for (int i = 1; i < numRows; i++) {
-                cost = source[i-1] == target[j-1] ? 0 : 1;
+                cost = source[i - 1] == target[j - 1] ? 0 : 1;
 
                 matrix[i][j] = min(
-                        matrix[i-1][j] + 1,
-                        matrix[i][j-1] + 1,
-                        matrix[i-1][j-1] + cost);
+                        matrix[i - 1][j] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j - 1] + cost);
             }
         }
 
@@ -72,9 +73,9 @@ public class LevenshteinUtils {
                 result[resultIndex] = ACTION_DELETE;
                 i--;
             } else {
-                final int top = matrix[i-1][j];
-                final int left = matrix[i][j-1];
-                final int topLeft = matrix[i-1][j-1];
+                final int top = matrix[i - 1][j];
+                final int left = matrix[i][j - 1];
+                final int topLeft = matrix[i - 1][j - 1];
 
                 if (topLeft <= top && topLeft <= left) {
                     result[resultIndex] = ACTION_SAME;

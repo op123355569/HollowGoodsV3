@@ -19,6 +19,7 @@ import android.util.Log;
 
 /**
  * Helper class to redirect {@link LogManager#logger} to {@link Log}
+ * Created by Hollow Goods on unknown.
  */
 public class LoggerDefault implements Logger {
 

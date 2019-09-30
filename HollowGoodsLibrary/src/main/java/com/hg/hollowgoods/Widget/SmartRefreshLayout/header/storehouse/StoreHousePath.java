@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * StoreHouse 路径
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class StoreHousePath {
 
@@ -328,8 +330,9 @@ public class StoreHousePath {
 
     /**
      * 根据符号和自提获取路径
-     * @param str 字符串
-     * @param scale 缩放
+     *
+     * @param str              字符串
+     * @param scale            缩放
      * @param gapBetweenLetter 字符
      * @return ArrayList of float[] {x1, y1, x2, y2}
      */

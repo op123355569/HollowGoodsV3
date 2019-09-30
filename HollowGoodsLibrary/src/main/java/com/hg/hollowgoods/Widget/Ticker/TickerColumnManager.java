@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * SVG动画控件
  * In ticker, each character in the rendered text is represented by a {@link TickerColumn}. The
  * column can be seen as a column of text in which we can animate from one character to the next
  * by scrolling the column vertically. The {@link TickerColumnManager} is then a
  * manager/convenience class for handling a list of {@link TickerColumn} which then combines into
  * the entire string we are rendering.
- *
  */
 class TickerColumnManager {
     final ArrayList<TickerColumn> mRxTickerColumns = new ArrayList<>();
@@ -42,7 +42,7 @@ class TickerColumnManager {
 
     /**
      * @return whether or not {@param text} should be debounced because it's the same as the
-     *         current target text of this column manager.
+     * current target text of this column manager.
      */
     boolean shouldDebounceText(char[] text) {
         final int newTextSize = text.length;

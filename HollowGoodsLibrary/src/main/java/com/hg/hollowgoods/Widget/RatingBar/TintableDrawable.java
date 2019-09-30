@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 
 /**
  * A {@code Drawable} that is tintable.
+ * Created by Hollow Goods on unknown.
  */
 public interface TintableDrawable {
 
@@ -53,7 +54,7 @@ public interface TintableDrawable {
      * </p>
      *
      * @param tint Color state list to use for tinting this drawable, or
-     *            {@code null} to clear the tint
+     *             {@code null} to clear the tint
      * @see #setTint(int)
      * @see #setTintMode(PorterDuff.Mode)
      */

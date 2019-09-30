@@ -8,6 +8,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.internal.InternalAbstract;
 
 /**
  * 刷新头部包装
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("ViewConstructor")
 public class RefreshHeaderWrapper extends InternalAbstract implements RefreshHeader/*, InvocationHandler*/ {

@@ -22,6 +22,9 @@ import android.view.ViewConfiguration;
 
 import com.hg.hollowgoods.Widget.PhotoView.Log.LogManager;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class CupcakeGestureDetector implements GestureDetector {
 
     protected OnGestureListener mListener;

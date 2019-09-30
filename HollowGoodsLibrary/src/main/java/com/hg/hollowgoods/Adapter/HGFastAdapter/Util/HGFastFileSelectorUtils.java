@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Type.FileMode;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
@@ -31,7 +31,7 @@ public class HGFastFileSelectorUtils {
     private PopupWinHelper helper;
     public SystemAppUtils systemAppUtils = new SystemAppUtils();
     private Activity activity;
-    private ArrayList<Media> medias;
+    private ArrayList<AppFile> medias;
     private int maxCount;
     private int quality;
     private String fileFilter;
@@ -53,7 +53,7 @@ public class HGFastFileSelectorUtils {
             Activity activity,
             View view,
             FileMode fileMode,
-            ArrayList<Media> medias,
+            ArrayList<AppFile> medias,
             int maxCount,
             int quality,
             String fileFilter
@@ -153,13 +153,13 @@ public class HGFastFileSelectorUtils {
         }
     }
 
-    public void openAlbum(Activity activity, ArrayList<Media> medias, int maxCount, int quality) {
+    public void openAlbum(Activity activity, ArrayList<AppFile> medias, int maxCount, int quality) {
 
         ArrayList<String> photos = new ArrayList<>();
         int passCount = 0;
 
         if (medias != null) {
-            for (Media t : medias) {
+            for (AppFile t : medias) {
                 if (t.getFile() != null && FileUtils.isImageFile(t.getFile().getAbsolutePath())) {
                     photos.add(t.getFile().getAbsolutePath());
                 } else {
@@ -171,13 +171,13 @@ public class HGFastFileSelectorUtils {
         systemAppUtils.checkPhotos(activity, REQUEST_CODE_OPEN_ALBUM, maxCount - passCount, photos);
     }
 
-    public void openFile(Context context, ArrayList<Media> medias, int maxCount, String fileFilter) {
+    public void openFile(Context context, ArrayList<AppFile> medias, int maxCount, String fileFilter) {
 
         HashMap<String, File> temp = new HashMap<>();
         int passCount = 0;
 
         if (medias != null) {
-            for (Media t : medias) {
+            for (AppFile t : medias) {
                 if (t.getFile() != null) {
                     temp.put(t.getFile().getAbsolutePath(), t.getFile());
                 } else {

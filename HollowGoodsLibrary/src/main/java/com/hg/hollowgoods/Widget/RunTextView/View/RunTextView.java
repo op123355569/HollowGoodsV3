@@ -6,6 +6,7 @@ import android.view.ViewDebug;
 
 /**
  * 跑马灯文字控件-普通横向滚动
+ * Created by Hollow Goods on unknown.
  */
 public class RunTextView extends android.support.v7.widget.AppCompatTextView {
 

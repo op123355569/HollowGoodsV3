@@ -7,6 +7,9 @@ import com.hg.hollowgoods.Widget.RippleValidatorEditText.RVEValidatorType;
 
 import java.util.regex.Pattern;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class RVERegexpValidator extends RVEValidator {
 
     private Pattern pattern;

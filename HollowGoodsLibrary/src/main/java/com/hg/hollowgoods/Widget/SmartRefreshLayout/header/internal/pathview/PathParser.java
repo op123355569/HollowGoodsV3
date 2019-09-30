@@ -22,6 +22,9 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 // This class is a duplicate from the PathParser.java of frameworks/base, with slight
 // update on incompatible API like copyOfRange().
 @SuppressWarnings({"WeakerAccess", "SameParameterValue"})
@@ -40,8 +43,8 @@ class PathParser {
      * @param start    the start index, inclusive
      * @param end      the end index, exclusive
      * @return the new array
-//     * @throws ArrayIndexOutOfBoundsException if {@code start < 0 || start > original.length}
-//     * @throws IllegalArgumentException       if {@code start > end}
+     * //     * @throws ArrayIndexOutOfBoundsException if {@code start < 0 || start > original.length}
+     * //     * @throws IllegalArgumentException       if {@code start > end}
      */
     static float[] copyOfRange(@NonNull float[] original, int start, int end) {
 //        if (start > end) {

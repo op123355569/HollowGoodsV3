@@ -21,6 +21,9 @@ import android.view.MotionEvent;
 
 import com.hg.hollowgoods.Widget.PhotoView.Compat;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 @TargetApi(5)
 public class EclairGestureDetector extends CupcakeGestureDetector {
 

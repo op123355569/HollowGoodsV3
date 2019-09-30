@@ -17,10 +17,13 @@ import android.view.Gravity;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Widget.RatingBar.Internal.ThemeUtils;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class MaterialRatingDrawable extends LayerDrawable {
 
     public MaterialRatingDrawable(Context context, boolean fillBackgroundStars) {
-        super(new Drawable[] {
+        super(new Drawable[]{
                 createLayerDrawableWithTintAttrRes(fillBackgroundStars ?
                         R.drawable.mrb_star_icon_black_36dp
                         : R.drawable.mrb_star_border_icon_black_36dp, fillBackgroundStars ?

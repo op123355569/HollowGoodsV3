@@ -23,6 +23,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.DensityUtil;
 /**
  * CircleRefresh
  * from https://github.com/tuesda/CircleRefreshLayout
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class BezierCircleHeader extends InternalAbstract implements RefreshHeader {
 
@@ -193,7 +195,7 @@ public class BezierCircleHeader extends InternalAbstract implements RefreshHeade
             int beforeColor = mOuterPaint.getColor();
             if (mFinishRatio < 0.3) {
                 canvas.drawCircle(viewWidth / 2, mBollY, mBollRadius, mFrontPaint);
-                int outerR = (int) (mBollRadius + mOuterPaint.getStrokeWidth() * 2 * (1+mFinishRatio / 0.3f));
+                int outerR = (int) (mBollRadius + mOuterPaint.getStrokeWidth() * 2 * (1 + mFinishRatio / 0.3f));
                 int afterColor = ColorUtils.setAlphaComponent(beforeColor, (int) (0xff * (1 - mFinishRatio / 0.3f)));
                 mOuterPaint.setColor(afterColor);
                 canvas.drawArc(new RectF(viewWidth / 2 - outerR, mBollY - outerR, viewWidth / 2 + outerR, mBollY + outerR),
@@ -261,14 +263,15 @@ public class BezierCircleHeader extends InternalAbstract implements RefreshHeade
         final float reboundHeight = Math.min(mWaveHeight * 0.8f, mHeadHeight / 2);
         ValueAnimator waveAnimator = ValueAnimator.ofFloat(
                 mWaveHeight, 0,
-                -(reboundHeight*1.0f),0,
-                -(reboundHeight*0.4f),0
+                -(reboundHeight * 1.0f), 0,
+                -(reboundHeight * 0.4f), 0
         );
         waveAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             float speed = 0;
             float springBollY;
             float springRatio = 0;
             int status = 0;//0 还没开始弹起 1 向上弹起 2 在弹起的最高点停住
+
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float curValue = (float) animation.getAnimatedValue();
@@ -342,8 +345,9 @@ public class BezierCircleHeader extends InternalAbstract implements RefreshHeade
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             mBackPaint.setColor(colors[0]);
             if (colors.length > 1) {

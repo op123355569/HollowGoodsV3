@@ -8,8 +8,9 @@ import android.widget.AbsListView;
 
 /**
  * 滚动边界
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
-
 @SuppressWarnings("WeakerAccess")
 public class ScrollBoundaryUtil {
 
@@ -17,8 +18,9 @@ public class ScrollBoundaryUtil {
 
     /**
      * 判断内容是否可以刷新
+     *
      * @param targetView 内容视图
-     * @param touch 按压事件位置
+     * @param touch      按压事件位置
      * @return 是否可以刷新
      */
     public static boolean canRefresh(@NonNull View targetView, PointF touch) {
@@ -48,8 +50,9 @@ public class ScrollBoundaryUtil {
 
     /**
      * 判断内容视图是否可以加载更多
-     * @param targetView 内容视图
-     * @param touch 按压事件位置
+     *
+     * @param targetView  内容视图
+     * @param touch       按压事件位置
      * @param contentFull 内容是否填满页面 (未填满时，会通过canScrollUp自动判断)
      * @return 是否可以刷新
      */
@@ -135,7 +138,7 @@ public class ScrollBoundaryUtil {
 
     //<editor-fold desc="transform Point">
 
-    public static boolean isTransformedTouchPointInView(@NonNull View group,@NonNull View child, float x, float y,PointF outLocalPoint) {
+    public static boolean isTransformedTouchPointInView(@NonNull View group, @NonNull View child, float x, float y, PointF outLocalPoint) {
         if (child.getVisibility() != View.VISIBLE) {
             return false;
         }
@@ -150,7 +153,7 @@ public class ScrollBoundaryUtil {
                 && point[0] < (child.getWidth())
                 && point[1] < ((child.getHeight()));
         if (isInView && outLocalPoint != null) {
-            outLocalPoint.set(point[0]-x, point[1]-y);
+            outLocalPoint.set(point[0] - x, point[1] - y);
         }
         return isInView;
     }

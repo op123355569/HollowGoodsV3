@@ -4,6 +4,8 @@ import android.content.res.Resources;
 
 /**
  * 像素密度计算工具
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("unused")
 public class DensityUtil {

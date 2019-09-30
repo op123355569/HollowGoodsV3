@@ -57,6 +57,10 @@ import android.widget.ImageView;
 
 import com.hg.hollowgoods.R;
 
+/**
+ * 侧边菜单
+ * Created by Hollow Goods on unknown.
+ */
 @SuppressWarnings({"FieldCanBeLocal", "InflateParams", "RtlHardcoded", "unused", "WeakerAccess"})
 public class FloatingNavigationView extends FloatingActionButton {
 

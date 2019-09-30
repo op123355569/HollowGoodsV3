@@ -31,6 +31,8 @@ import static com.hg.hollowgoods.Widget.SmartRefreshLayout.util.SmartUtil.getCol
 
 /**
  * 贝塞尔曲线类雷达风格刷新组件
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 @SuppressWarnings({"UnusedReturnValue", "unused"})
@@ -60,17 +62,17 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
     protected float mRadarCircle = 0;
     protected float mRadarScale = 0;
     protected Animator mAnimatorSet;
-//    protected ValueAnimator mRadarAnimator;
-    protected RectF mRadarRect = new RectF(0,0,0,0);
+    //    protected ValueAnimator mRadarAnimator;
+    protected RectF mRadarRect = new RectF(0, 0, 0, 0);
     //</editor-fold>
 
     //<editor-fold desc="FrameLayout">
     public BezierRadarHeader(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public BezierRadarHeader(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public BezierRadarHeader(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -159,14 +161,14 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
             mPaint.setColor(mAccentColor);
             final int num = 7;
             float x = DensityUtil.px2dp(height);
-            float wide = (width / num) * mDotFraction -((mDotFraction >1)?((mDotFraction -1)*(width / num)/ mDotFraction):0);//y1 = t*(w/n)-(t>1)*((t-1)*(w/n)/t)
-            float high = height - ((mDotFraction >1)?((mDotFraction -1)*height/2/ mDotFraction):0);//y2 = x - (t>1)*((t-1)*x/t);
-            for (int i = 0 ; i < num; i++) {
+            float wide = (width / num) * mDotFraction - ((mDotFraction > 1) ? ((mDotFraction - 1) * (width / num) / mDotFraction) : 0);//y1 = t*(w/n)-(t>1)*((t-1)*(w/n)/t)
+            float high = height - ((mDotFraction > 1) ? ((mDotFraction - 1) * height / 2 / mDotFraction) : 0);//y2 = x - (t>1)*((t-1)*x/t);
+            for (int i = 0; i < num; i++) {
                 float index = 1f + i - (1f + num) / 2;//y3 = (x + 1) - (n + 1)/2; 居中 index 变量：0 1 2 3 4 结果： -2 -1 0 1 2
                 float alpha = 255 * (1 - (2 * (Math.abs(index) / num)));//y4 = m * ( 1 - 2 * abs(y3) / n); 横向 alpha 差
                 mPaint.setAlpha((int) (mDotAlpha * alpha * (1d - 1d / Math.pow((x / 800d + 1d), 15))));//y5 = y4 * (1-1/((x/800+1)^15));竖直 alpha 差
-                float radius = mDotRadius * (1-1/((x/10+1)));//y6 = mDotRadius*(1-1/(x/10+1));半径
-                canvas.drawCircle(width / 2- radius/2 + wide * index , high / 2, radius, mPaint);
+                float radius = mDotRadius * (1 - 1 / ((x / 10 + 1)));//y6 = mDotRadius*(1-1/(x/10+1));半径
+                canvas.drawCircle(width / 2 - radius / 2 + wide * index, high / 2, radius, mPaint);
             }
             mPaint.setAlpha(255);
         }
@@ -241,7 +243,7 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
         mWaveTop = height;
         mWavePulling = false;
 
-        ValueAnimator mRadarAnimator = ValueAnimator.ofInt(0,360);
+        ValueAnimator mRadarAnimator = ValueAnimator.ofInt(0, 360);
         mRadarAnimator.setDuration(720);
         mRadarAnimator.setRepeatCount(ValueAnimator.INFINITE);
         mRadarAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -263,8 +265,8 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
         //贝塞尔弹性动画
         ValueAnimator animatorWave = ValueAnimator.ofInt(
                 mWaveHeight, 0,
-                -(int)(mWaveHeight *0.8f),0,
-                -(int)(mWaveHeight *0.4f),0);
+                -(int) (mWaveHeight * 0.8f), 0,
+                -(int) (mWaveHeight * 0.4f), 0);
         animatorWave.addUpdateListener(new AnimatorUpdater(PROPERTY_WAVE_HEIGHT));
         animatorWave.setInterpolator(interpolatorDecelerate);
         animatorWave.setDuration(800);
@@ -309,8 +311,9 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
         }
     }
 
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0 && !mManualPrimaryColor) {
             setPrimaryColor(colors[0]);
             mManualPrimaryColor = false;
@@ -389,9 +392,11 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
     protected class AnimatorUpdater implements ValueAnimator.AnimatorUpdateListener {
 
         byte propertyName;
+
         AnimatorUpdater(byte name) {
             this.propertyName = name;
         }
+
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
             if (PROPERTY_RADAR_SCALE == propertyName) {

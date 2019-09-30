@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import java.util.Map;
 
 /**
+ * SVG动画控件
  * Represents a column of characters to be drawn on the screen. This class primarily handles
  * animating within the column from one character to the next and drawing all of the intermediate
  * states.
@@ -190,7 +191,7 @@ class TickerColumn {
      * @return whether the text was successfully drawn on the canvas
      */
     private boolean drawText(Canvas canvas, Paint textPaint, char[] characterList, int index,
-            float verticalOffset) {
+                             float verticalOffset) {
         if (index >= 0 && index < characterList.length) {
             canvas.drawText(characterList, index, 1, 0f, verticalOffset, textPaint);
             return true;

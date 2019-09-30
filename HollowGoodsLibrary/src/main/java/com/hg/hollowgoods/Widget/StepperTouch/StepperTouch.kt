@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.stepper_touch.view.*
 import kotlin.properties.Delegates
 
 /**
- * Created by dionsegijn on 3/19/17.
+ * 酷炫数字加减控件
+ * Created by Hollow Goods on 2017-03-19.
  */
 class StepperTouch : ConstraintLayout {
 

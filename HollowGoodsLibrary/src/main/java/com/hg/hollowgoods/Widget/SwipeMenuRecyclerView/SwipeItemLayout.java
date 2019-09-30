@@ -22,6 +22,8 @@ import java.util.List;
 /**
  * 1. 最多同时设置两个菜单
  * 2. 菜单必须设置layoutGravity属性. start left end right
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class SwipeItemLayout extends FrameLayout {
 

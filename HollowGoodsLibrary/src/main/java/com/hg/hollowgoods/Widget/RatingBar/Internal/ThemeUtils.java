@@ -8,12 +8,16 @@ package com.hg.hollowgoods.Widget.RatingBar.Internal;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class ThemeUtils {
 
-    private ThemeUtils() {}
+    private ThemeUtils() {
+    }
 
     public static int getColorFromAttrRes(int attrRes, Context context) {
-        TypedArray a = context.obtainStyledAttributes(new int[] { attrRes });
+        TypedArray a = context.obtainStyledAttributes(new int[]{attrRes});
         try {
             return a.getColor(0, 0);
         } finally {
@@ -22,7 +26,7 @@ public class ThemeUtils {
     }
 
     public static float getFloatFromAttrRes(int attrRes, Context context) {
-        TypedArray a = context.obtainStyledAttributes(new int[] { attrRes });
+        TypedArray a = context.obtainStyledAttributes(new int[]{attrRes});
         try {
             return a.getFloat(0, 0);
         } finally {

@@ -22,16 +22,18 @@ import android.util.Log;
 import android.view.Choreographer;
 import android.view.animation.DecelerateInterpolator;
 
+import org.jetbrains.annotations.NotNull;
+
 import static android.content.ContentValues.TAG;
 
 /**
  * 水波Drawable
+ * Created by Hollow Goods on unknown.
  */
-
 public class WaveDrawable extends Drawable implements Animatable, ValueAnimator.AnimatorUpdateListener {
 
-    private static final float WAVE_HEIGHT_FACTOR = 0.2f;
-    private static final float WAVE_SPEED_FACTOR = 0.02f;
+    private static final float WAVE_HEIGHT_FACTOR = 0.2F;
+    private static final float WAVE_SPEED_FACTOR = 0.02F;
     private static final int UNDEFINED_VALUE = Integer.MIN_VALUE;
     private Drawable mDrawable;
     private int mWidth, mHeight;
@@ -124,7 +126,7 @@ public class WaveDrawable extends Drawable implements Animatable, ValueAnimator.
     /**
      * Set wave amplitude (in pixels)
      *
-     * @param amplitude
+     * @param amplitude int
      */
     public void setWaveAmplitude(int amplitude) {
         amplitude = Math.max(1, Math.min(amplitude, mHeight / 2));
@@ -139,7 +141,7 @@ public class WaveDrawable extends Drawable implements Animatable, ValueAnimator.
     /**
      * Set wave length (in pixels)
      *
-     * @param length
+     * @param length int
      */
     public void setWaveLength(int length) {
         length = Math.max(8, Math.min(mWidth * 2, length));
@@ -153,7 +155,7 @@ public class WaveDrawable extends Drawable implements Animatable, ValueAnimator.
     /**
      * Set the wave loading in indeterminate mode or not
      *
-     * @param indeterminate
+     * @param indeterminate boolean
      */
     public void setIndeterminate(boolean indeterminate) {
         mIndeterminate = indeterminate;
@@ -174,7 +176,7 @@ public class WaveDrawable extends Drawable implements Animatable, ValueAnimator.
     /**
      * Set customised animator for wave loading animation
      *
-     * @param animator
+     * @param animator ValueAnimator
      */
     public void setIndeterminateAnimator(ValueAnimator animator) {
         if (mAnimator == animator) {
@@ -239,7 +241,7 @@ public class WaveDrawable extends Drawable implements Animatable, ValueAnimator.
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NotNull Canvas canvas) {
 
         mDrawable.setColorFilter(sGrayFilter);
         mDrawable.draw(canvas);

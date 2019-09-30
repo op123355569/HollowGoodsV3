@@ -33,6 +33,8 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  * https://github.com/Hitomis/FunGameRefresh
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("unused")
 public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
@@ -208,9 +210,10 @@ public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
 
     /**
      * 绘制分割线
+     *
      * @param canvas 默认画布
      */
-    private void drawBoundary(Canvas canvas,int width,int height) {
+    private void drawBoundary(Canvas canvas, int width, int height) {
         mPaint.setColor(mBackColor);
         canvas.drawRect(0, 0, width, height, mPaint);
         mPaint.setColor(mBoundaryColor);
@@ -221,6 +224,7 @@ public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
 
     /**
      * 绘制文字内容
+     *
      * @param canvas 默认画布
      */
     private void drawText(Canvas canvas, int width, int height) {
@@ -247,12 +251,13 @@ public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
 
     /**
      * 提示文字信息
+     *
      * @param canvas 默认画布
-     * @param text 相关文字字符串
+     * @param text   相关文字字符串
      */
     private void promptText(Canvas canvas, String text, int width, int height) {
         float textX = (width - mPaintText.measureText(text)) * .5f;
-        float textY = height  * .5f - (mPaintText.ascent() + mPaintText.descent()) * .5f;
+        float textY = height * .5f - (mPaintText.ascent() + mPaintText.descent()) * .5f;
         canvas.drawText(text, textX, textY, mPaintText);
     }
     //</editor-fold>
@@ -263,6 +268,7 @@ public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
 
     /**
      * 更新当前控件状态
+     *
      * @param status 状态码
      */
     public void postStatus(int status) {
@@ -282,7 +288,7 @@ public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
     protected void onManualOperationMove(float percent, int offset, int height, int maxDragHeight) {
         final View thisView = this;
         float distance = Math.max(offset, 0);
-        float maxDistance = (mHeaderHeight -  2 * DIVIDING_LINE_SIZE - controllerSize);
+        float maxDistance = (mHeaderHeight - 2 * DIVIDING_LINE_SIZE - controllerSize);
         if (distance > maxDistance) {
             distance = maxDistance;
         }
@@ -301,8 +307,8 @@ public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
             final View topView = mMaskViewTop;
             final View bottomView = mMaskViewBottom;
             mHalfHeaderHeight = (int) ((height/* - 2 * DIVIDING_LINE_SIZE*/) * .5f);
-            RelativeLayout.LayoutParams lpTop = (RelativeLayout.LayoutParams)topView.getLayoutParams();
-            RelativeLayout.LayoutParams lpBottom = (RelativeLayout.LayoutParams)bottomView.getLayoutParams();
+            RelativeLayout.LayoutParams lpTop = (RelativeLayout.LayoutParams) topView.getLayoutParams();
+            RelativeLayout.LayoutParams lpBottom = (RelativeLayout.LayoutParams) bottomView.getLayoutParams();
             lpTop.height = lpBottom.height = mHalfHeaderHeight;
             lpBottom.topMargin = height - mHalfHeaderHeight;
             topView.setLayoutParams(lpTop);
@@ -312,8 +318,9 @@ public abstract class FunGameView<T extends FunGameView> extends FunGameBase {
         postStatus(STATUS_GAME_PREPARE);
     }
 
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         super.setPrimaryColors(colors);
         if (colors.length > 0) {
             mMaskViewTop.setTextColor(colors[0]);

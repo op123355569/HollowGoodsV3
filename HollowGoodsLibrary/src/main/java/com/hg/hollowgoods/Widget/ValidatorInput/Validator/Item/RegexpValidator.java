@@ -7,6 +7,10 @@ import com.hg.hollowgoods.Widget.ValidatorInput.Validator.ValidatorType;
 
 import java.util.regex.Pattern;
 
+/**
+ * 正则验证
+ * Created by Hollow Goods on unknown.
+ */
 public class RegexpValidator extends Validator {
 
     private Pattern pattern;

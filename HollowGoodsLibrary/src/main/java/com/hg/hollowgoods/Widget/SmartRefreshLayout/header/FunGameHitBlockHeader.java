@@ -20,6 +20,8 @@ import java.util.List;
 
 /**
  * from https://github.com/Hitomis/FunGameRefresh
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class FunGameHitBlockHeader extends FunGameView {
 
@@ -145,6 +147,7 @@ public class FunGameHitBlockHeader extends FunGameView {
             pointList.clear();
         }
     }
+
     /**
      * 检查小球是否撞击到挡板
      *

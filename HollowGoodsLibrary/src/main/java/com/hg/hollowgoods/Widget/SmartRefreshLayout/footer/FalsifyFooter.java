@@ -24,6 +24,8 @@ import static android.view.View.MeasureSpec.makeMeasureSpec;
 /**
  * 虚假的 Footer
  * 用于 正真的 Footer 在 RefreshLayout 外部时，
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("unused")
 public class FalsifyFooter extends InternalAbstract implements RefreshFooter {

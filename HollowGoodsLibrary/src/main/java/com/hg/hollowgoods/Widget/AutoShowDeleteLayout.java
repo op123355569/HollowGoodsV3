@@ -23,7 +23,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 /**
  * 输入框自动显示删除按钮布局
- * Created by HG
+ * Created by HollowGoods
  */
 
 public class AutoShowDeleteLayout extends FrameLayout {

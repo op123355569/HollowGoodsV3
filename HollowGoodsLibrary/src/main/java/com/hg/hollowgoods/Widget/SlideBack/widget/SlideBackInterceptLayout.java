@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 
 /**
  * 处理事件拦截的Layout
+ * Created by Hollow Goods on unknown.
  */
 public class SlideBackInterceptLayout extends FrameLayout {
 

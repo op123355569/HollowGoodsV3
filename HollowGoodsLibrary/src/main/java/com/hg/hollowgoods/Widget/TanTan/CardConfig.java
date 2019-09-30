@@ -7,6 +7,7 @@ import android.util.TypedValue;
  * 配置
  * 界面最多显示几个View
  * 每一级View之间的Scale差异、translationY等等
+ * Created by Hollow Goods on unknown.
  */
 
 public class CardConfig {

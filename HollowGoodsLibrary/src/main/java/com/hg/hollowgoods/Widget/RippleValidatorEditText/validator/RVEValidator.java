@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 
 import com.hg.hollowgoods.Widget.RippleValidatorEditText.RVEValidatorType;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public abstract class RVEValidator {
     /**
      * Error message that the view will display if validation fails.

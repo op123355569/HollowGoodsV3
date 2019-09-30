@@ -9,7 +9,7 @@ import android.view.View;
 /**
  * 自定义ViewPager，用于嵌套ScrollView<br>
  * 但不能更新高度
- * Created by HG on 2017-05-03.
+ * Created by Hollow Goods on 2017-05-03.
  */
 
 public class ViewPagerForScrollView extends ViewPager {

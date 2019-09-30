@@ -10,15 +10,15 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.listener.CoordinatorLayoutLi
 
 /**
  * Design 兼容包缺省尝试
+ * Created by Hollow Goods on unknown.
  */
-
 public class DesignUtil {
 
     public static void checkCoordinatorLayout(View content, RefreshKernel kernel, CoordinatorLayoutListener listener) {
         try {//try 不能删除，不然会出现兼容性问题
             if (content instanceof CoordinatorLayout) {
                 kernel.getRefreshLayout().setEnableNestedScroll(false);
-                wrapperCoordinatorLayout(((ViewGroup) content)/*, kernel.getRefreshLayout()*/,listener);
+                wrapperCoordinatorLayout(((ViewGroup) content)/*, kernel.getRefreshLayout()*/, listener);
             }
         } catch (Throwable ignored) {
         }

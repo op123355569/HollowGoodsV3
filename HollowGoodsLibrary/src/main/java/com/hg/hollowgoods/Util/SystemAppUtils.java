@@ -22,7 +22,7 @@ import android.support.annotation.IntRange;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
@@ -814,7 +814,7 @@ public class SystemAppUtils {
      * @param context context
      * @param img     img
      */
-    public void imagePre(Context context, ArrayList<Media> img) {
+    public void imagePre(Context context, ArrayList<AppFile> img) {
         imagePre(context, img, null);
     }
 
@@ -825,7 +825,7 @@ public class SystemAppUtils {
      * @param img     img
      * @param title   title
      */
-    public void imagePre(Context context, ArrayList<Media> img, String title) {
+    public void imagePre(Context context, ArrayList<AppFile> img, String title) {
 
         Intent intent = new Intent(context, ImagePreActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

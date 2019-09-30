@@ -5,6 +5,9 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 class UIMode {
     final static int NORMAL = 1;
     final static int ERROR = 2;

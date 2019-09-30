@@ -82,6 +82,8 @@ import static java.lang.System.currentTimeMillis;
 /**
  * 智能刷新布局
  * Intelligent RefreshLayout
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("RestrictedApi")
 @SuppressWarnings({"unused"})

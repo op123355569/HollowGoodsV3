@@ -1,5 +1,8 @@
 package com.hg.hollowgoods.Widget.SmartRefreshLayout.util;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class DelayedRunnable implements Runnable {
     public long delayMillis;
     private Runnable runnable;

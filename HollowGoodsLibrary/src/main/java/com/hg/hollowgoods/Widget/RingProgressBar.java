@@ -17,6 +17,7 @@ import com.hg.hollowgoods.R;
  * 一个自定义的圆环进度条
  * 可适用于上传下载
  * V1.2.3
+ * Created by Hollow Goods on unknown.
  */
 public class RingProgressBar extends View {
 

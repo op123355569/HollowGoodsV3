@@ -34,6 +34,8 @@ import android.widget.ImageView;
  * Private class created to work around issues with AnimationListeners being
  * called before the animation is actually complete and support shadows on older
  * platforms.
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("ViewConstructor")
 public class CircleImageView extends ImageView {
@@ -46,7 +48,7 @@ public class CircleImageView extends ImageView {
     protected static final float SHADOW_RADIUS = 3.5f;
     protected static final int SHADOW_ELEVATION = 4;
 
-//    private Animation.AnimationListener mListener;
+    //    private Animation.AnimationListener mListener;
     int mShadowRadius;
 
     @SuppressWarnings("deprecation")
@@ -163,7 +165,7 @@ public class CircleImageView extends ImageView {
 
         private void updateRadialGradient(int diameter) {
             mRadialGradient = new RadialGradient(diameter / 2, diameter / 2,
-                    mShadowRadius, new int[] { FILL_SHADOW_COLOR, Color.TRANSPARENT },
+                    mShadowRadius, new int[]{FILL_SHADOW_COLOR, Color.TRANSPARENT},
                     null, Shader.TileMode.CLAMP);
             mShadowPaint.setShader(mRadialGradient);
         }

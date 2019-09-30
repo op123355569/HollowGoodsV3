@@ -17,6 +17,7 @@ package com.hg.hollowgoods.Widget.PhotoView.Log;
 
 /**
  * interface for a logger class to replace the static calls to {@link android.util.Log}
+ * Created by Hollow Goods on unknown.
  */
 public interface Logger {
 

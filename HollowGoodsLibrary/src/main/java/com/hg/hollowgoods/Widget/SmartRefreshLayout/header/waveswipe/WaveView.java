@@ -32,9 +32,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.BounceInterpolator;
 
 /**
- * @author amyu
- * <p>
  * 波と落ちる円を描画するView
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener {
 

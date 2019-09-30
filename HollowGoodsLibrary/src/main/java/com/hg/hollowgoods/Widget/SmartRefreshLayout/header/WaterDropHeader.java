@@ -38,6 +38,8 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 /**
  * WaterDropHeader
  * from https://github.com/THEONE10211024/WaterDropListView
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
 
@@ -80,7 +82,7 @@ public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
         mProgress = new MaterialProgressDrawable(mImageView);
         mProgress.setBackgroundColor(0xffffffff);
         mProgress.setAlpha(255);
-        mProgress.setColorSchemeColors(0xffffffff,0xff0099cc,0xffff4444,0xff669900,0xffaa66cc,0xffff8800);
+        mProgress.setColorSchemeColors(0xffffffff, 0xff0099cc, 0xffff4444, 0xff669900, 0xffaa66cc, 0xffff8800);
         mImageView.setImageDrawable(mProgress);
         thisGroup.addView(mImageView, density.dip2px(30), density.dip2px(30));
     }
@@ -138,10 +140,10 @@ public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
         if (mState == RefreshState.Refreshing) {
             canvas.save();
             canvas.translate(
-                    thisView.getWidth()/2-progressDrawable.getBounds().width()/2,
+                    thisView.getWidth() / 2 - progressDrawable.getBounds().width() / 2,
                     mWaterDropView.getMaxCircleRadius()
-                            +dropView.getPaddingTop()
-                            -progressDrawable.getBounds().height()/2
+                            + dropView.getPaddingTop()
+                            - progressDrawable.getBounds().height() / 2
             );
             progressDrawable.draw(canvas);
             canvas.restore();
@@ -275,8 +277,9 @@ public class WaterDropHeader extends InternalAbstract implements RefreshHeader {
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             mWaterDropView.setIndicatorColor(colors[0]);
         }

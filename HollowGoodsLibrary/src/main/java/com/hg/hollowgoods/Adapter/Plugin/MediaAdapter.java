@@ -7,7 +7,7 @@ import android.view.View;
 import com.bumptech.glide.request.RequestOptions;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.CommonAdapter;
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
@@ -23,19 +23,19 @@ import java.util.List;
  * 多媒体预览适配器
  * Created by HG on 2018-06-15.
  */
-public class MediaAdapter extends CommonAdapter<Media> {
+public class MediaAdapter extends CommonAdapter<AppFile> {
 
     private OnViewClickListener onViewClickListener;
     private FileSelectorUtils fileSelectorUtils;
 
-    public MediaAdapter(Context context, int layoutId, List<Media> data, OnViewClickListener onViewClickListener) {
+    public MediaAdapter(Context context, int layoutId, List<AppFile> data, OnViewClickListener onViewClickListener) {
         super(context, layoutId, data);
         this.onViewClickListener = onViewClickListener;
         fileSelectorUtils = new FileSelectorUtils();
     }
 
     @Override
-    protected void convert(ViewHolder viewHolder, Media item, final int position) {
+    protected void convert(ViewHolder viewHolder, AppFile item, final int position) {
 
 
         if (item.getFile() == null && TextUtils.isEmpty(item.getUrl())) {

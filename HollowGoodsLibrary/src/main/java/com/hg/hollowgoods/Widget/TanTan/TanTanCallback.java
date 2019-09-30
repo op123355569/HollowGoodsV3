@@ -16,6 +16,7 @@ import static com.hg.hollowgoods.Widget.TanTan.CardConfig.TRANS_Y_GAP;
 
 /**
  * 探探控件Callback
+ * Created by Hollow Goods on unknown.
  */
 
 public class TanTanCallback extends RenRenCallback {

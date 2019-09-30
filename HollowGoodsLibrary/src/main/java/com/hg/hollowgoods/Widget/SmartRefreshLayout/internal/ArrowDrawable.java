@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 
 /**
  * 箭头图像
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 public class ArrowDrawable extends PaintDrawable {
@@ -26,8 +28,8 @@ public class ArrowDrawable extends PaintDrawable {
             int lineWidth = width * 30 / 225;
             mPath.reset();
 
-            float vector1 = (float) (lineWidth * Math.sin(Math.PI/4));
-            float vector2 = (float) (lineWidth / Math.sin(Math.PI/4));
+            float vector1 = (float) (lineWidth * Math.sin(Math.PI / 4));
+            float vector2 = (float) (lineWidth / Math.sin(Math.PI / 4));
             mPath.moveTo(width / 2, height);
             mPath.lineTo(0, height / 2);
             mPath.lineTo(vector1, height / 2 - vector1);

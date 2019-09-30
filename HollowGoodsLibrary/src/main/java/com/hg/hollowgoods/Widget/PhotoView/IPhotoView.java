@@ -22,7 +22,9 @@ import android.view.GestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
-
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public interface IPhotoView {
 
     float DEFAULT_MAX_SCALE = 3.0f;

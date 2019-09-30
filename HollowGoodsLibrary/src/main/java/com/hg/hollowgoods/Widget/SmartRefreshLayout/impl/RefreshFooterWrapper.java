@@ -8,9 +8,11 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.internal.InternalAbstract;
 
 /**
  * 刷新底部包装
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("ViewConstructor")
-public class RefreshFooterWrapper extends InternalAbstract implements RefreshFooter/*, InvocationHandler */{
+public class RefreshFooterWrapper extends InternalAbstract implements RefreshFooter/*, InvocationHandler */ {
 
 //    private RefreshKernel mRefreshKernel;
 //    private Method mRequestDrawBackgroundForHeaderMethod;

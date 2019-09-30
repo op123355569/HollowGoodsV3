@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 /**
  * 跑马灯文字控件-垂直滚动
+ * Created by Hollow Goods on unknown.
  */
 public class RunTextViewVertical extends TextSwitcher implements ViewSwitcher.ViewFactory {
 

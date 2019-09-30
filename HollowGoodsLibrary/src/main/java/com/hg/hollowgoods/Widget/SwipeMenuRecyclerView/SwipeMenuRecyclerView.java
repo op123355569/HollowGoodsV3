@@ -13,6 +13,8 @@ import android.view.ViewGroup;
  * 仿IOS message列表，QQ好友列表的交互体验
  * 当有菜单打开的时候，只要不是点击在菜单上，关闭该菜单。
  * 只能同时打开一个菜单，防止多点触控打开菜单
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class SwipeMenuRecyclerView extends RecyclerView {
 

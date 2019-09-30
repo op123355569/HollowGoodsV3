@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.MultiItemTypeAdapter;
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Annotation.HGFastItemCustomize;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Annotation.HGFastItemDate;
 import com.hg.hollowgoods.Adapter.HGFastAdapter.Annotation.HGFastItemFile;
@@ -323,10 +323,10 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
             switch (requestCode) {
                 case HGFastFileSelectorUtils.REQUEST_CODE_OPEN_CAMERA:
                     if (itemHGFastItemFile.hgFastFileSelectorUtils.systemAppUtils.onActivityResultForTakePhoto(activity)) {
-                        Media media = new Media();
+                        AppFile media = new AppFile();
                         media.setFile(itemHGFastItemFile.hgFastFileSelectorUtils.systemAppUtils.getCameraPhotoFile());
 
-                        ArrayList<Media> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
+                        ArrayList<AppFile> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
                         if (medias == null) {
                             medias = new ArrayList<>();
                         }
@@ -340,7 +340,7 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
                     ArrayList<String> photos = itemHGFastItemFile.hgFastFileSelectorUtils.systemAppUtils.onActivityResultForCheckPhotos(backData);
 
                     if (photos != null) {
-                        ArrayList<Media> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
+                        ArrayList<AppFile> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
                         if (medias == null) {
                             medias = new ArrayList<>();
                         }
@@ -353,10 +353,10 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
                             }
                         }
 
-                        Media media;
+                        AppFile media;
 
                         for (String t : photos) {
-                            media = new Media();
+                            media = new AppFile();
                             media.setFile(new File(t));
 
                             medias.add(media);
@@ -382,19 +382,19 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
                 HashMap<String, File> files = (HashMap<String, File>) event.getData().getSerializable(HGParamKey.ListData.getValue());
 
                 if (file != null) {
-                    ArrayList<Media> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
+                    ArrayList<AppFile> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
                     if (medias == null) {
                         medias = new ArrayList<>();
                     }
 
-                    Media media = new Media();
+                    AppFile media = new AppFile();
                     media.setFile(file);
                     medias.add(media);
 
                     bean.getMedia().put(itemHGFastItemFile.clickItemId, medias);
                     refreshHGFastItem(itemHGFastItemFile.clickItemId);
                 } else if (files != null) {
-                    ArrayList<Media> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
+                    ArrayList<AppFile> medias = bean.getMedia().get(itemHGFastItemFile.clickItemId);
                     if (medias == null) {
                         medias = new ArrayList<>();
                     }
@@ -407,7 +407,7 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
                         }
                     }
 
-                    Media media;
+                    AppFile media;
                     Set<String> keySet = files.keySet();
                     Iterator<String> keys = keySet.iterator();
                     String key;
@@ -415,7 +415,7 @@ public class HGFastAdapter extends MultiItemTypeAdapter<CommonBean> {
                     while (keys.hasNext()) {
                         key = keys.next();
 
-                        media = new Media();
+                        media = new AppFile();
                         media.setFile(files.get(key));
 
                         medias.add(media);

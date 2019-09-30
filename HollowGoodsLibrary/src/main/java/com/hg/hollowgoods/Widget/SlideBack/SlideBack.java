@@ -11,6 +11,8 @@ import java.util.WeakHashMap;
 
 /**
  * SlideBack使用类
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class SlideBack {
     // 使用WeakHashMap防止内存泄漏

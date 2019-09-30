@@ -17,6 +17,9 @@ package com.hg.hollowgoods.Widget.PhotoView.Gestures;
 
 import android.view.MotionEvent;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public interface GestureDetector {
 
     boolean onTouchEvent(MotionEvent ev);

@@ -21,6 +21,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.DensityUtil;
 
 /**
  * 经典上拉底部组件
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 @SuppressWarnings({"unused", "UnusedReturnValue", "deprecation"})
@@ -110,51 +112,51 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
             super.setAccentColor(ta.getColor(R.styleable.ClassicsFooter_srlAccentColor, 0));
         }
 
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextPulling)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextPulling)) {
             mTextPulling = ta.getString(R.styleable.ClassicsFooter_srlTextPulling);
-        } else if(REFRESH_FOOTER_PULLING != null) {
+        } else if (REFRESH_FOOTER_PULLING != null) {
             mTextPulling = REFRESH_FOOTER_PULLING;
         } else {
             mTextPulling = context.getString(R.string.srl_footer_pulling);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextRelease)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextRelease)) {
             mTextRelease = ta.getString(R.styleable.ClassicsFooter_srlTextRelease);
-        } else if(REFRESH_FOOTER_RELEASE != null) {
+        } else if (REFRESH_FOOTER_RELEASE != null) {
             mTextRelease = REFRESH_FOOTER_RELEASE;
         } else {
             mTextRelease = context.getString(R.string.srl_footer_release);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextLoading)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextLoading)) {
             mTextLoading = ta.getString(R.styleable.ClassicsFooter_srlTextLoading);
-        } else if(REFRESH_FOOTER_LOADING != null) {
+        } else if (REFRESH_FOOTER_LOADING != null) {
             mTextLoading = REFRESH_FOOTER_LOADING;
         } else {
             mTextLoading = context.getString(R.string.srl_footer_loading);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextRefreshing)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextRefreshing)) {
             mTextRefreshing = ta.getString(R.styleable.ClassicsFooter_srlTextRefreshing);
-        } else if(REFRESH_FOOTER_REFRESHING != null) {
+        } else if (REFRESH_FOOTER_REFRESHING != null) {
             mTextRefreshing = REFRESH_FOOTER_REFRESHING;
         } else {
             mTextRefreshing = context.getString(R.string.srl_footer_refreshing);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextFinish)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextFinish)) {
             mTextFinish = ta.getString(R.styleable.ClassicsFooter_srlTextFinish);
-        } else if(REFRESH_FOOTER_FINISH != null) {
+        } else if (REFRESH_FOOTER_FINISH != null) {
             mTextFinish = REFRESH_FOOTER_FINISH;
         } else {
             mTextFinish = context.getString(R.string.srl_footer_finish);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextFailed)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextFailed)) {
             mTextFailed = ta.getString(R.styleable.ClassicsFooter_srlTextFailed);
-        } else if(REFRESH_FOOTER_FAILED != null) {
+        } else if (REFRESH_FOOTER_FAILED != null) {
             mTextFailed = REFRESH_FOOTER_FAILED;
         } else {
             mTextFailed = context.getString(R.string.srl_footer_failed);
         }
-        if(ta.hasValue(R.styleable.ClassicsFooter_srlTextNothing)){
+        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextNothing)) {
             mTextNothing = ta.getString(R.styleable.ClassicsFooter_srlTextNothing);
-        } else if(REFRESH_FOOTER_NOTHING != null) {
+        } else if (REFRESH_FOOTER_NOTHING != null) {
             mTextNothing = REFRESH_FOOTER_NOTHING;
         } else {
             mTextNothing = context.getString(R.string.srl_footer_nothing);
@@ -194,8 +196,9 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
     /**
      * ClassicsFooter 在(SpinnerStyle.FixedBehind)时才有主题色
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (mSpinnerStyle == SpinnerStyle.FixedBehind) {
             super.setPrimaryColors(colors);
         }

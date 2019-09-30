@@ -17,6 +17,8 @@ import static com.hg.hollowgoods.Widget.SlideBack.SlideBack.*;
 
 /**
  * SlideBack管理器
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class SlideBackManager {
     private SlideBackIconView slideBackIconViewLeft;

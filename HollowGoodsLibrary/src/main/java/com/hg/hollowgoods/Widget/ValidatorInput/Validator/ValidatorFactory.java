@@ -13,6 +13,10 @@ import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.Validator;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+/**
+ * 验证工厂
+ * Created by Hollow Goods on unknown.
+ */
 public class ValidatorFactory {
 
     public static Validator getValidator(@ValidatorType.VType int type, String error, @Nullable Object item) {

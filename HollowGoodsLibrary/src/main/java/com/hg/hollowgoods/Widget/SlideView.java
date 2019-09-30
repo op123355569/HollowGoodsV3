@@ -14,6 +14,7 @@ import android.view.ViewConfiguration;
 
 /**
  * 右侧字母索引控件
+ * Created by Hollow Goods on unknown.
  */
 
 public class SlideView extends View {

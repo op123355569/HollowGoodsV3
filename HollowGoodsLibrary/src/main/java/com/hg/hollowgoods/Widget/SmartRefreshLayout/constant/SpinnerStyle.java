@@ -2,6 +2,8 @@ package com.hg.hollowgoods.Widget.SmartRefreshLayout.constant;
 
 /**
  * 顶部和底部的组件在拖动时候的变换方式
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 public enum SpinnerStyle {

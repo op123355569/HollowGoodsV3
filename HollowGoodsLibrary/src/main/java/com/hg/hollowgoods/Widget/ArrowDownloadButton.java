@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * 动画效果下载按钮
+ * Created by Hollow Goods on unknown.
  */
 public class ArrowDownloadButton extends View {
 

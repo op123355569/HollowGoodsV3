@@ -31,6 +31,7 @@ import static com.hg.hollowgoods.Widget.SmartRefreshLayout.util.SmartUtil.getCol
 
 /**
  * 经典组件
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public abstract class InternalClassics<T extends InternalClassics> extends InternalAbstract implements RefreshInternal {

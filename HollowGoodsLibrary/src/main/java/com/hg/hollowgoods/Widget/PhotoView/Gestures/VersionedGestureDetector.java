@@ -19,6 +19,9 @@ package com.hg.hollowgoods.Widget.PhotoView.Gestures;
 import android.content.Context;
 import android.os.Build;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public final class VersionedGestureDetector {
 
     public static GestureDetector newInstance(Context context,

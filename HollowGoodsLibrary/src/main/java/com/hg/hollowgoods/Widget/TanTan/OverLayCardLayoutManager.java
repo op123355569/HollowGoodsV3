@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 /**
  * 重叠卡片布局 参考人人影视 最多排列四个
+ * Created by Hollow Goods on unknown.
  */
 
 public class OverLayCardLayoutManager extends RecyclerView.LayoutManager {

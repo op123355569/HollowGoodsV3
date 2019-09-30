@@ -10,6 +10,7 @@ import android.view.View;
 
 /**
  * 垂直分割线
+ * Created by Hollow Goods on unknown.
  */
 public class VerticalDividerItemDecoration extends FlexibleDividerDecoration {
 

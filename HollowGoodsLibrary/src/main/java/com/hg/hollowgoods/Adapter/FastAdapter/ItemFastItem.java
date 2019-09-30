@@ -13,7 +13,7 @@ import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemFileMaxCou
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemNumberPicker;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItemSwitch;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastItemData;
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnCustomizeViewRefreshListener;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
@@ -223,7 +223,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
 
                 // 文件数量标签
                 viewHolder.setVisible(R.id.fl_count, data.fastItemMode == FastItemMode.File);
-                ArrayList<Media> media = data.getMedia().get(data.sortNumber);
+                ArrayList<AppFile> media = data.getMedia().get(data.sortNumber);
                 if (data.fileMaxCount < 1) {
                     viewHolder.setText(R.id.tv_count, media == null ? "0" : media.size() + "");
                 } else {
@@ -234,7 +234,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                 if (media == null || media.size() == 0) {
                     viewHolder.setImageResource(R.id.iv_imgPre, R.color.transparent);
                 } else {
-                    Media m = media.get(media.size() - 1);
+                    AppFile m = media.get(media.size() - 1);
                     if (m.getFile() == null && TextUtils.isEmpty(m.getUrl())) {
                         viewHolder.setImageResource(R.id.iv_imgPre, R.color.transparent);
                     } else {
@@ -299,7 +299,7 @@ public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<Commo
                     @Override
                     public void onViewClick(View view, int id) {
 
-                        ArrayList<Media> media = data.getMedia().get(data.sortNumber);
+                        ArrayList<AppFile> media = data.getMedia().get(data.sortNumber);
 
                         if (media == null || data.fileMaxCount < 1 || media.size() < data.fileMaxCount) {
                             if (onFastClick != null) {

@@ -6,6 +6,7 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.api.RefreshLayout;
 
 /**
  * 刷新监听器
+ * Created by Hollow Goods on unknown.
  */
 
 public interface OnRefreshListener {

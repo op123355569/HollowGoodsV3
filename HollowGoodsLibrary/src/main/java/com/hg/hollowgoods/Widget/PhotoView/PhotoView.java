@@ -28,6 +28,9 @@ import com.hg.hollowgoods.Widget.PhotoView.PhotoViewAttacher.OnMatrixChangedList
 import com.hg.hollowgoods.Widget.PhotoView.PhotoViewAttacher.OnPhotoTapListener;
 import com.hg.hollowgoods.Widget.PhotoView.PhotoViewAttacher.OnViewTapListener;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class PhotoView extends android.support.v7.widget.AppCompatImageView implements IPhotoView {
 
     private PhotoViewAttacher mAttacher;

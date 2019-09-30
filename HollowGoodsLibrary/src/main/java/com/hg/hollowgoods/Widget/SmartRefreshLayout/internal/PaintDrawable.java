@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 
 /**
  * 画笔 Drawable
+ * Created by Hollow Goods on unknown.
  */
 public abstract class PaintDrawable extends Drawable {
 

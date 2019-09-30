@@ -35,6 +35,8 @@ import static com.hg.hollowgoods.Widget.SmartRefreshLayout.util.SmartUtil.scroll
 
 /**
  * 刷新内容包装
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("WeakerAccess")
 public class RefreshContentWrapper implements RefreshContent, CoordinatorLayoutListener, AnimatorUpdateListener {

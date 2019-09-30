@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * 横向滚动选择控件
+ * Created by Hollow Goods on unknown.
  */
 public class RulerWheelView extends View implements GestureDetector.OnGestureListener {
     public static final float DEFAULT_INTERVAL_FACTOR = 1.2f;
@@ -107,6 +108,9 @@ public class RulerWheelView extends View implements GestureDetector.OnGestureLis
             mCenterTextSize = ta.getDimension(R.styleable.lwvWheelView_lwvCenterMarkTextSize, mCenterTextSize);
             mNormalTextSize = ta.getDimension(R.styleable.lwvWheelView_lwvMarkTextSize, mNormalTextSize);
             mCursorSize = ta.getDimension(R.styleable.lwvWheelView_lwvCursorSize, mCursorSize);
+
+            // 2019.09.30 添加了代码，未经测试，如后续发现问题则删除此代码
+            ta.recycle();
         }
         mFadeMarkColor = mHighlightColor & 0xAAFFFFFF;
         mIntervalFactor = Math.max(1, mIntervalFactor);

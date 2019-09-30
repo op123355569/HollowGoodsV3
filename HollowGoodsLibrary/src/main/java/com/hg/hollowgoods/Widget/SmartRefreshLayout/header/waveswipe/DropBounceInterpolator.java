@@ -18,15 +18,16 @@ package com.hg.hollowgoods.Widget.SmartRefreshLayout.header.waveswipe;
 import android.view.animation.Interpolator;
 
 /**
- * @author amyu
- *
  * {@link WaveView#mDropBounceHorizontalAnimator} と {@link WaveView#mDropVertexAnimator} にセットするInterpolator
  * WavePullToRefresh/DropBounceInterpolator.gcxにグラフの詳細
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class DropBounceInterpolator implements Interpolator {
 
     /**
      * {@inheritDoc}
+     *
      * @param v 动画帧
      * @return 加速值
      */

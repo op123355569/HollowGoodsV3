@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * SVG动画控件
  * This wrapper class represents some core drawing metrics that {@link TickerView} and
  * {@link TickerColumnManager} require to calculate the positions and offsets for rendering
  * the text onto the canvas.

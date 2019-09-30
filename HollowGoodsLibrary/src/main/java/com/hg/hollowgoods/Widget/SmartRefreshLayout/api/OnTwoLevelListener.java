@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 /**
  * 二级刷新监听器
+ *
+ * Created by Hollow Goods on unknown.
  */
 public interface OnTwoLevelListener {
     /**

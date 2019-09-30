@@ -9,7 +9,7 @@ import android.view.animation.Transformation;
 import java.util.Random;
 
 /**
- *
+ * Created by Hollow Goods on unknown.
  */
 public class StoreHouseBarItem extends Animation {
 

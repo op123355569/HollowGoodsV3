@@ -2,6 +2,8 @@ package com.hg.hollowgoods.Widget.SmartRefreshLayout.header.waterdrop;
 
 /**
  * 实心圆
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class Circle {
     public float x;//圆x坐标

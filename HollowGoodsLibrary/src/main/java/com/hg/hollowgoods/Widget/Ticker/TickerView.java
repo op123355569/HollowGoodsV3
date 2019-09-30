@@ -24,6 +24,7 @@ import android.view.animation.Interpolator;
 import com.hg.hollowgoods.R;
 
 /**
+ * SVG动画控件
  * The primary view for showing a ticker text view that handles smoothly scrolling from the
  * current text to a given text. The scrolling behavior is defined by
  * {@link #setCharacterList(char[])} which dictates what characters come in between the starting

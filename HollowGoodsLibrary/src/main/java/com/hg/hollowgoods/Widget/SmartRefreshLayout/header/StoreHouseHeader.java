@@ -30,6 +30,8 @@ import java.util.List;
 /**
  * StoreHouseHeader
  * from https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue", "SameParameterValue"})
 public class StoreHouseHeader extends InternalAbstract implements RefreshHeader {
@@ -311,10 +313,12 @@ public class StoreHouseHeader extends InternalAbstract implements RefreshHeader 
         mAniController.stop();
         if (success && mEnableFadeAnimation) {
             final View thisView = this;
-            thisView.startAnimation(new Animation() {{
-                super.setDuration(250);
-                super.setInterpolator(new AccelerateInterpolator());
-            }
+            thisView.startAnimation(new Animation() {
+                {
+                    super.setDuration(250);
+                    super.setInterpolator(new AccelerateInterpolator());
+                }
+
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
                     final View thisView = StoreHouseHeader.this;
@@ -340,8 +344,9 @@ public class StoreHouseHeader extends InternalAbstract implements RefreshHeader 
      * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor
      * @deprecated 请使用 {@link RefreshLayout#setPrimaryColorsId(int...)}
      */
-    @Override@Deprecated
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    @Override
+    @Deprecated
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (colors.length > 0) {
             mBackgroundColor = colors[0];
             if (mRefreshKernel != null) {

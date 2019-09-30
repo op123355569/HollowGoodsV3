@@ -8,13 +8,15 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.DensityUtil;
 
 /**
  * 纸飞机视图
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class FlyView extends PathsView {
 
     public FlyView(Context context) {
         this(context, null);
     }
-    
+
     public FlyView(Context context, AttributeSet attrs) {
         super(context, attrs);
         super.parserColors(0xffffffff);

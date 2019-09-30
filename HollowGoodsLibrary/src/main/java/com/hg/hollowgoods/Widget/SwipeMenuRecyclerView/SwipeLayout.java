@@ -21,6 +21,8 @@ import com.hg.hollowgoods.R;
  * RightMenu : layout_gravity & Gravity.RIGHT != 0
  * <p>
  * 分别使用LeftDragger和RightDragger两个DragHelper来控制左右滑动
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("RtlHardcoded")
 public class SwipeLayout extends ViewGroup {

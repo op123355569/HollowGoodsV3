@@ -11,6 +11,7 @@ import com.hg.hollowgoods.Widget.TabLayout.Widget.MsgView;
  * 数字一位,圆
  * 数字两位,圆角矩形,圆角是高度的一半
  * 数字超过两位,显示99+
+ * Created by Hollow Goods on unknown.
  */
 public class UnreadMsgUtils {
     public static void show(MsgView msgView, int num) {

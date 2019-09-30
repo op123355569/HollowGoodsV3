@@ -26,6 +26,8 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 /**
  * Internal 初步实现
  * 实现 Header 和 Footer 时，继承 InternalAbstract 的话可以少写很多接口方法
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 public abstract class InternalAbstract extends RelativeLayout implements RefreshInternal {
@@ -58,7 +60,7 @@ public abstract class InternalAbstract extends RelativeLayout implements Refresh
         if (!super.equals(obj)) {
             if (obj instanceof RefreshInternal) {
                 final RefreshInternal thisView = this;
-                return thisView.getView() == ((RefreshInternal)obj).getView();
+                return thisView.getView() == ((RefreshInternal) obj).getView();
             }
             return false;
         }
@@ -79,7 +81,7 @@ public abstract class InternalAbstract extends RelativeLayout implements Refresh
     }
 
     @Override
-    public void setPrimaryColors(@ColorInt int ... colors) {
+    public void setPrimaryColors(@ColorInt int... colors) {
         if (mWrappedInternal != null && mWrappedInternal != this) {
             mWrappedInternal.setPrimaryColors(colors);
         }

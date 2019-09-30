@@ -5,6 +5,10 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * 验证类型
+ * Created by Hollow Goods on unknown.
+ */
 public class ValidatorType {
 
     /**** 最小长度 ****/

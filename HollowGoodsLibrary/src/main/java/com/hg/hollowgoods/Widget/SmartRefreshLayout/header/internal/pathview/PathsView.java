@@ -8,6 +8,8 @@ import android.view.View;
 
 /**
  * 路径视图
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public class PathsView extends View {
 
@@ -36,8 +38,8 @@ public class PathsView extends View {
         final View thisView = this;
         final Drawable drawable = mPathsDrawable;
         super.setMeasuredDimension(
-                View.resolveSize(drawable.getBounds().width()+thisView.getPaddingLeft()+thisView.getPaddingRight(), widthMeasureSpec),
-                View.resolveSize(drawable.getBounds().height()+thisView.getPaddingTop()+thisView.getPaddingBottom(), heightMeasureSpec));
+                View.resolveSize(drawable.getBounds().width() + thisView.getPaddingLeft() + thisView.getPaddingRight(), widthMeasureSpec),
+                View.resolveSize(drawable.getBounds().height() + thisView.getPaddingTop() + thisView.getPaddingBottom(), heightMeasureSpec));
     }
 
     @Override

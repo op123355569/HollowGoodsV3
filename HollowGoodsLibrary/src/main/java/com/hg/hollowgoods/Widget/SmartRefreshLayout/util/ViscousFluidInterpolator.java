@@ -2,8 +2,13 @@ package com.hg.hollowgoods.Widget.SmartRefreshLayout.util;
 
 import android.view.animation.Interpolator;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class ViscousFluidInterpolator implements Interpolator {
-    /** Controls the viscous fluid effect (how much of it). */
+    /**
+     * Controls the viscous fluid effect (how much of it).
+     */
     private static final float VISCOUS_FLUID_SCALE = 8.0f;
 
     private static final float VISCOUS_FLUID_NORMALIZE;
@@ -19,10 +24,10 @@ public class ViscousFluidInterpolator implements Interpolator {
     private static float viscousFluid(float x) {
         x *= VISCOUS_FLUID_SCALE;
         if (x < 1.0f) {
-            x -= (1.0f - (float)Math.exp(-x));
+            x -= (1.0f - (float) Math.exp(-x));
         } else {
             float start = 0.36787944117f;   // 1/e == exp(-1)
-            x = 1.0f - (float)Math.exp(1.0f - x);
+            x = 1.0f - (float) Math.exp(1.0f - x);
             x = start + x * (1.0f - start);
         }
         return x;

@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import com.hg.hollowgoods.Adapter.BaseRecyclerView.MultiItemTypeAdapter;
 import com.hg.hollowgoods.Adapter.FastAdapter.Annotation.Item.FastItem;
 import com.hg.hollowgoods.Adapter.FastAdapter.Bean.FastItemData;
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnCustomizeViewRefreshListener;
 import com.hg.hollowgoods.Adapter.FastAdapter.CallBack.OnFastClick;
 import com.hg.hollowgoods.Adapter.FastAdapter.Constant.FastItemMode;
@@ -352,12 +352,12 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
         this.clickPosition = clickPosition;
         this.clickSortNumber = clickSortNumber;
 
-        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+        ArrayList<AppFile> medias = bean.getMedia().get(clickSortNumber);
         ArrayList<String> photos = new ArrayList<>();
         int passCount = 0;
 
         if (medias != null) {
-            for (Media t : medias) {
+            for (AppFile t : medias) {
                 if (t.getFile() != null && FileUtils.isImageFile(t.getFile().getAbsolutePath())) {
                     photos.add(t.getFile().getAbsolutePath());
                 } else {
@@ -376,10 +376,10 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
                     systemAppUtils.onActivityResultForOpenAlbum(context, backData, new SystemAppUtils.OnCompressListener() {
                         @Override
                         public void onCompressSuccess() {
-                            Media media = new Media();
+                            AppFile media = new AppFile();
                             media.setFile(new File(systemAppUtils.getAlbumPhotoPath()));
 
-                            ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+                            ArrayList<AppFile> medias = bean.getMedia().get(clickSortNumber);
                             if (medias == null) {
                                 medias = new ArrayList<>();
                             }
@@ -404,7 +404,7 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
                     ArrayList<String> photos = systemAppUtils.onActivityResultForCheckPhotos(backData);
 
                     if (photos != null) {
-                        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+                        ArrayList<AppFile> medias = bean.getMedia().get(clickSortNumber);
                         if (medias == null) {
                             medias = new ArrayList<>();
                         }
@@ -417,10 +417,10 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
                             }
                         }
 
-                        Media media;
+                        AppFile media;
 
                         for (String t : photos) {
-                            media = new Media();
+                            media = new AppFile();
                             media.setFile(new File(t));
 
                             medias.add(media);
@@ -432,10 +432,10 @@ public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
                     break;
                 case REQUEST_CODE_TAKE_PHOTO:
                     if (systemAppUtils.onActivityResultForTakePhoto(activity)) {
-                        Media media = new Media();
+                        AppFile media = new AppFile();
                         media.setFile(systemAppUtils.getCameraPhotoFile());
 
-                        ArrayList<Media> medias = bean.getMedia().get(clickSortNumber);
+                        ArrayList<AppFile> medias = bean.getMedia().get(clickSortNumber);
                         if (medias == null) {
                             medias = new ArrayList<>();
                         }

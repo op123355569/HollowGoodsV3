@@ -3,6 +3,8 @@ package com.hg.hollowgoods.Widget.SmartRefreshLayout.constant;
 /**
  * 尺寸值的定义状态，用于在值覆盖的时候决定优先级
  * 越往下优先级越高
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 public enum DimensionStatus {
     DefaultUnNotify(false),//默认值，但是还没通知确认
@@ -25,6 +27,7 @@ public enum DimensionStatus {
 
     /**
      * 转换为未通知状态
+     *
      * @return 未通知状态
      */
     public DimensionStatus unNotify() {
@@ -40,6 +43,7 @@ public enum DimensionStatus {
 
     /**
      * 转换为通知状态
+     *
      * @return 通知状态
      */
     public DimensionStatus notified() {
@@ -51,6 +55,7 @@ public enum DimensionStatus {
 
     /**
      * 是否可以被新的状态替换
+     *
      * @param status 新转台
      * @return 小于等于
      */

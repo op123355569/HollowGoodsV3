@@ -22,8 +22,9 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * SmartUtil
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
-
 public abstract class SmartUtil {
 
     @SuppressWarnings("deprecation")
@@ -37,7 +38,7 @@ public abstract class SmartUtil {
     public static int measureViewHeight(View view) {
         ViewGroup.LayoutParams p = view.getLayoutParams();
         if (p == null) {
-            p = new ViewGroup.LayoutParams(MATCH_PARENT,WRAP_CONTENT);
+            p = new ViewGroup.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
         }
         int childHeightSpec;
         int childWidthSpec = ViewGroup.getChildMeasureSpec(0, 0, p.width);

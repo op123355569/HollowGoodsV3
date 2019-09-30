@@ -1,12 +1,13 @@
-package com.hg.hollowgoods.Adapter.FastAdapter.Bean;
+package com.hg.hollowgoods.Bean;
 
 import java.io.File;
 import java.io.Serializable;
 
 /**
+ * APP文件
  * Created by HG on 2018-04-08.
  */
-public class Media implements Serializable {
+public class AppFile implements Serializable {
 
     /**** 原始链接 ****/
     private String oldUrl;

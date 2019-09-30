@@ -37,6 +37,8 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * 经典下拉头部
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements RefreshHeader {

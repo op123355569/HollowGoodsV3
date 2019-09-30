@@ -15,6 +15,9 @@
  *******************************************************************************/
 package com.hg.hollowgoods.Widget.PhotoView.Gestures;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public interface OnGestureListener {
 
     void onDrag(float dx, float dy);

@@ -1,7 +1,7 @@
 package com.hg.hollowgoods.Bean.CommonBean;
 
 import com.google.gson.Gson;
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.UI.Base.Message.Dialog.ConfigInput;
 
 import java.io.Serializable;
@@ -31,9 +31,9 @@ public class CommonBean implements Serializable {
     private HashMap<Integer, Boolean> isItemOnlyReads = null;
 
     /**** 多媒体附件 ****/
-    private HashMap<Integer, ArrayList<Media>> media = new HashMap<>();
+    private HashMap<Integer, ArrayList<AppFile>> media = new HashMap<>();
     /**** 多媒体附件 HGFastAdapter用的 ****/
-    private ArrayList<Media> itemMedia = null;
+    private ArrayList<AppFile> itemMedia = null;
 
     /**** 输入配置 HGFastAdapter用的 ****/
     private HashMap<Integer, ConfigInput> configInputs = new HashMap<>();
@@ -95,19 +95,19 @@ public class CommonBean implements Serializable {
         isNeedRemove = needRemove;
     }
 
-    public HashMap<Integer, ArrayList<Media>> getMedia() {
+    public HashMap<Integer, ArrayList<AppFile>> getMedia() {
         return media;
     }
 
-    public void setMedia(HashMap<Integer, ArrayList<Media>> media) {
+    public void setMedia(HashMap<Integer, ArrayList<AppFile>> media) {
         this.media = media;
     }
 
-    public ArrayList<Media> getItemMedia() {
+    public ArrayList<AppFile> getItemMedia() {
         return itemMedia;
     }
 
-    public void setItemMedia(ArrayList<Media> itemMedia) {
+    public void setItemMedia(ArrayList<AppFile> itemMedia) {
         this.itemMedia = itemMedia;
     }
 

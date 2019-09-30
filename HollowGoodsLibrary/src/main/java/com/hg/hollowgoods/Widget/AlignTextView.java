@@ -12,7 +12,8 @@ import android.util.AttributeSet;
 import com.hg.hollowgoods.R;
 
 /**
- * 两端分散对齐的Textview
+ * 两端分散对齐的TextView
+ * Created by Hollow Goods on unknown.
  */
 public class AlignTextView extends AppCompatTextView {
 

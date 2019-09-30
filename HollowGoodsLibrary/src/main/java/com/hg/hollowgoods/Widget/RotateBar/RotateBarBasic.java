@@ -10,6 +10,7 @@ import android.text.TextPaint;
 import java.util.ArrayList;
 
 /**
+ * Created by Hollow Goods on unknown.
  */
 public class RotateBarBasic {
 

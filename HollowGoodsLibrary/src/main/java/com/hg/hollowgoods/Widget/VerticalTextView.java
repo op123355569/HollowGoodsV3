@@ -7,6 +7,10 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
+/**
+ * 垂直文字控件
+ * Created by Hollow Goods on unknown.
+ */
 public class VerticalTextView extends AppCompatTextView {
 
     final boolean topDown;

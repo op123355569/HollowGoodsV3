@@ -18,6 +18,7 @@ import android.view.View;
 
 /**
  * 分割线基类
+ * Created by Hollow Goods on unknown.
  */
 public abstract class FlexibleDividerDecoration extends RecyclerView.ItemDecoration {
 

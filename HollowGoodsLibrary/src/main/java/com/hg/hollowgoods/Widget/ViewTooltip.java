@@ -29,9 +29,9 @@ import android.widget.TextView;
 import java.util.Arrays;
 
 /**
- *
+ * 小气泡
+ * Created by Hollow Goods on unknown.
  */
-
 public class ViewTooltip {
 
     private View rootView;
@@ -149,7 +149,7 @@ public class ViewTooltip {
 
     public TooltipView show() {
         final Context activityContext = tooltip_view.getContext();
-        if (activityContext != null && activityContext instanceof Activity) {
+        if (activityContext instanceof Activity) {
             final ViewGroup decorView = rootView != null ?
                     (ViewGroup) rootView :
                     (ViewGroup) ((Activity) activityContext).getWindow().getDecorView();
@@ -595,23 +595,15 @@ public class ViewTooltip {
 
         protected void handleAutoRemove() {
             if (clickToHide) {
-                setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (clickToHide) {
-                            remove();
-                        }
+                setOnClickListener(v -> {
+                    if (clickToHide) {
+                        remove();
                     }
                 });
             }
 
             if (autoHide) {
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        remove();
-                    }
-                }, duration);
+                postDelayed(this::remove, duration);
             }
         }
 

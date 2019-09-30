@@ -2,6 +2,8 @@ package com.hg.hollowgoods.Widget.SmartRefreshLayout.constant;
 
 /**
  * 刷新状态
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("unused")
 public enum RefreshState {

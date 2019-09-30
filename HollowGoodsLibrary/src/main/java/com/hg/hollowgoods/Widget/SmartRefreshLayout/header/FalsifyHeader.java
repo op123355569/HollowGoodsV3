@@ -26,6 +26,8 @@ import static android.view.View.MeasureSpec.makeMeasureSpec;
  * 用于 正真的 Header 在 RefreshLayout 外部时，
  * 使用本虚假的 FalsifyHeader 填充在 RefreshLayout 内部
  * 具体使用方法 参考 纸飞机（FlyRefreshHeader）
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 public class FalsifyHeader extends InternalAbstract implements RefreshHeader {

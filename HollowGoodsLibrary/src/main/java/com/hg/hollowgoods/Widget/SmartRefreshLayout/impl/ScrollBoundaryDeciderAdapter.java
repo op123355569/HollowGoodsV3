@@ -8,6 +8,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.util.ScrollBoundaryUtil;
 
 /**
  * 滚动边界
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 @SuppressWarnings("WeakerAccess")

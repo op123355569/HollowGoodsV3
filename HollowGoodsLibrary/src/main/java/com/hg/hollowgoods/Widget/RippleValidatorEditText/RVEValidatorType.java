@@ -5,6 +5,9 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class RVEValidatorType {
 
     public final static int EMAIL = 1;

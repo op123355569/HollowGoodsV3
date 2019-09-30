@@ -20,6 +20,7 @@ import com.hg.hollowgoods.R;
 
 /**
  * 动画效果提交按钮
+ * Created by Hollow Goods on unknown.
  */
 
 public class SubmitButton extends View {
@@ -263,15 +264,12 @@ public class SubmitButton extends View {
     private void startSubmitAnim() {
         viewState = STATE_SUBMIT;
         submitAnim = new ValueAnimator().ofInt(MAX_WIDTH, MAX_HEIGHT);
-        submitAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                mWidth = (int) animation.getAnimatedValue();
-                if (mWidth == mHeight) {
-                    bgPaint.setColor(Color.parseColor("#DDDDDD"));
-                }
-                invalidate();
+        submitAnim.addUpdateListener(animation -> {
+            mWidth = (int) animation.getAnimatedValue();
+            if (mWidth == mHeight) {
+                bgPaint.setColor(Color.parseColor("#DDDDDD"));
             }
+            invalidate();
         });
         submitAnim.setDuration(300);
         submitAnim.setInterpolator(new AccelerateInterpolator());
@@ -312,12 +310,9 @@ public class SubmitButton extends View {
             return;
         }
         loadingAnim = new ValueAnimator().ofFloat(0.0f, 1.0f);
-        loadingAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                loadValue = (float) animation.getAnimatedValue();
-                invalidate();
-            }
+        loadingAnim.addUpdateListener(animation -> {
+            loadValue = (float) animation.getAnimatedValue();
+            invalidate();
         });
         loadingAnim.setDuration(2000);
         loadingAnim.setRepeatCount(ValueAnimator.INFINITE);
@@ -333,21 +328,18 @@ public class SubmitButton extends View {
             loadingAnim.cancel();
         }
         resultAnim = new ValueAnimator().ofInt(MAX_HEIGHT, MAX_WIDTH);
-        resultAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                mWidth = (int) animation.getAnimatedValue();
-                resultPaint.setAlpha(((mWidth - mHeight) * 255) / (MAX_WIDTH - MAX_HEIGHT));
-                if (mWidth == mHeight) {
-                    if (isSucceed) {
-                        bgPaint.setColor(succeedColor);
-                    } else {
-                        bgPaint.setColor(failedColor);
-                    }
-                    bgPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        resultAnim.addUpdateListener(animation -> {
+            mWidth = (int) animation.getAnimatedValue();
+            resultPaint.setAlpha(((mWidth - mHeight) * 255) / (MAX_WIDTH - MAX_HEIGHT));
+            if (mWidth == mHeight) {
+                if (isSucceed) {
+                    bgPaint.setColor(succeedColor);
+                } else {
+                    bgPaint.setColor(failedColor);
                 }
-                invalidate();
+                bgPaint.setStyle(Paint.Style.FILL_AND_STROKE);
             }
+            invalidate();
         });
         resultAnim.addListener(new Animator.AnimatorListener() {
             @Override
@@ -360,12 +352,7 @@ public class SubmitButton extends View {
                 if (listener == null) {
                     return;
                 }
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        listener.onResultEnd();
-                    }
-                }, 500);
+                postDelayed(() -> listener.onResultEnd(), 500);
             }
 
             @Override
@@ -469,7 +456,7 @@ public class SubmitButton extends View {
     /**
      * 设置动画结束回调接口
      *
-     * @param listener
+     * @param listener OnResultEndListener
      */
     public void setOnResultEndListener(OnResultEndListener listener) {
         this.listener = listener;
@@ -485,7 +472,7 @@ public class SubmitButton extends View {
     /**
      * sp to dp
      *
-     * @param sp
+     * @param sp float
      * @return dp
      */
     private int sp2px(float sp) {
@@ -496,7 +483,7 @@ public class SubmitButton extends View {
     /**
      * 计算水平居中的baseline
      *
-     * @return
+     * @return float
      */
     private float getTextBaseLineOffset() {
         Paint.FontMetrics fm = textPaint.getFontMetrics();
@@ -506,9 +493,9 @@ public class SubmitButton extends View {
     /**
      * 获取Text高度
      *
-     * @param paint
+     * @param paint Paint
      * @param str   文本内容
-     * @return
+     * @return int
      */
     private int getTextHeight(Paint paint, String str) {
         Rect rect = new Rect();
@@ -519,9 +506,9 @@ public class SubmitButton extends View {
     /**
      * 获取Text宽度
      *
-     * @param paint
+     * @param paint Paint
      * @param str   文本内容
-     * @return
+     * @return int
      */
     private int getTextWidth(Paint paint, String str) {
         int mRet = 0;

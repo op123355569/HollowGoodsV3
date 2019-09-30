@@ -9,8 +9,8 @@ import com.hg.hollowgoods.Widget.SmartRefreshLayout.constant.RefreshState;
 
 /**
  * 多功能监听器
+ * Created by Hollow Goods on unknown.
  */
-
 public class SimpleMultiPurposeListener implements OnMultiPurposeListener {
 
 //    @Override

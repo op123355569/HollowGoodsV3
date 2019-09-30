@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Adapter.Plugin.MediaAdapter;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
@@ -35,7 +35,7 @@ public class ImagePreActivity extends BaseActivity {
 
     private final int DIALOG_CODE_REMOVE_IMAGE = 3366;
 
-    private ArrayList<Media> data;
+    private ArrayList<AppFile> data;
     private MediaAdapter adapter;
     private SystemAppUtils systemAppUtils = new SystemAppUtils();
     private int clickPosition;
@@ -60,7 +60,7 @@ public class ImagePreActivity extends BaseActivity {
             title = getString(R.string.title_activity_image_pre);
         }
 
-        data = (ArrayList<Media>) getIntent().getSerializableExtra(HGParamKey.ListData.getValue());
+        data = (ArrayList<AppFile>) getIntent().getSerializableExtra(HGParamKey.ListData.getValue());
         if (data == null) {
             data = new ArrayList<>();
         }
@@ -119,7 +119,7 @@ public class ImagePreActivity extends BaseActivity {
                     int imageCount = 0;
                     int imagePosition = 0;
 
-                    for (Media t : data) {
+                    for (AppFile t : data) {
                         if (t.getFile() == null) {
                             url = t.getUrl();
                         } else {

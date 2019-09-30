@@ -6,12 +6,19 @@ import android.support.v4.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public class FragmentChangeManager {
     private FragmentManager mFragmentManager;
     private int mContainerViewId;
-    /** Fragment切换数组 */
+    /**
+     * Fragment切换数组
+     */
     private ArrayList<Fragment> mFragments;
-    /** 当前选中的Tab */
+    /**
+     * 当前选中的Tab
+     */
     private int mCurrentTab;
 
     public FragmentChangeManager(FragmentManager fm, int containerViewId, ArrayList<Fragment> fragments) {
@@ -21,7 +28,9 @@ public class FragmentChangeManager {
         initFragments();
     }
 
-    /** 初始化fragments */
+    /**
+     * 初始化fragments
+     */
     private void initFragments() {
         for (Fragment fragment : mFragments) {
             mFragmentManager.beginTransaction().add(mContainerViewId, fragment).hide(fragment).commit();
@@ -30,7 +39,9 @@ public class FragmentChangeManager {
         setFragments(0);
     }
 
-    /** 界面切换控制 */
+    /**
+     * 界面切换控制
+     */
     public void setFragments(int index) {
         for (int i = 0; i < mFragments.size(); i++) {
             FragmentTransaction ft = mFragmentManager.beginTransaction();

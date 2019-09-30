@@ -19,6 +19,7 @@ import com.hg.hollowgoods.Util.DensityUtils;
 import java.util.ArrayList;
 
 /**
+ * Created by Hollow Goods on unknown.
  */
 public class RotateBar extends FrameLayout {
 

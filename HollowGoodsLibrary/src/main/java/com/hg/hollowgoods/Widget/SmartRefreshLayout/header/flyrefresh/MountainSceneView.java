@@ -19,6 +19,8 @@ import com.hg.hollowgoods.R;
 /**
  * 山丘树木场景视图
  * from https://github.com/race604/FlyRefresh
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings("UnnecessaryLocalVariable")
 public class MountainSceneView extends View {
@@ -103,7 +105,7 @@ public class MountainSceneView extends View {
         updateTreePath(mMoveFactor, true);
     }
 
-    private void updateMountainPath(float factor,int height) {
+    private void updateMountainPath(float factor, int height) {
 
         mTransMatrix.reset();
         mTransMatrix.setScale(mScaleX, mScaleY);
@@ -277,15 +279,15 @@ public class MountainSceneView extends View {
 //        private int COLOR_TREE_3_BRANCH = 0xFF57B1AE;
 //        private int COLOR_TREE_3_BRINK = 0xFF62A4AD;
         COLOR_BACKGROUND = color;
-        COLOR_MOUNTAIN_1 = ColorUtils.compositeColors(0x99ffffff,color);
-        COLOR_MOUNTAIN_2 = ColorUtils.compositeColors(0x993C929C,color);
-        COLOR_MOUNTAIN_3 = ColorUtils.compositeColors(0xCC3E5F73,color);
-        COLOR_TREE_1_BRANCH = ColorUtils.compositeColors(0x551F7177,color);
-        COLOR_TREE_1_BRINK = ColorUtils.compositeColors(0xCC0C3E48,color);
-        COLOR_TREE_2_BRANCH = ColorUtils.compositeColors(0x5534888F,color);
-        COLOR_TREE_2_BRINK = ColorUtils.compositeColors(0xCC1B6169,color);
-        COLOR_TREE_3_BRANCH = ColorUtils.compositeColors(0x5557B1AE,color);
-        COLOR_TREE_3_BRINK = ColorUtils.compositeColors(0xCC62A4AD,color);
+        COLOR_MOUNTAIN_1 = ColorUtils.compositeColors(0x99ffffff, color);
+        COLOR_MOUNTAIN_2 = ColorUtils.compositeColors(0x993C929C, color);
+        COLOR_MOUNTAIN_3 = ColorUtils.compositeColors(0xCC3E5F73, color);
+        COLOR_TREE_1_BRANCH = ColorUtils.compositeColors(0x551F7177, color);
+        COLOR_TREE_1_BRINK = ColorUtils.compositeColors(0xCC0C3E48, color);
+        COLOR_TREE_2_BRANCH = ColorUtils.compositeColors(0x5534888F, color);
+        COLOR_TREE_2_BRINK = ColorUtils.compositeColors(0xCC1B6169, color);
+        COLOR_TREE_3_BRANCH = ColorUtils.compositeColors(0x5557B1AE, color);
+        COLOR_TREE_3_BRINK = ColorUtils.compositeColors(0xCC62A4AD, color);
     }
 
     public void updatePercent(float percent) {

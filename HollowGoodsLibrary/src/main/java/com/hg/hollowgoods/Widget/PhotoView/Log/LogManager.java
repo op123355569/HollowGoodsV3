@@ -19,6 +19,7 @@ import android.util.Log;
 
 /**
  * class that holds the {@link Logger} for this library, defaults to {@link LoggerDefault} to send logs to android {@link Log}
+ * Created by Hollow Goods on unknown.
  */
 public final class LogManager {
 

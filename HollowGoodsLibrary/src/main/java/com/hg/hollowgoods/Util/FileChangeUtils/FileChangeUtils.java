@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Util.FileChangeUtils;
 
 import android.text.TextUtils;
 
-import com.hg.hollowgoods.Adapter.FastAdapter.Bean.Media;
+import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Util.FileUtils;
 
 import java.util.ArrayList;
@@ -27,17 +27,17 @@ public class FileChangeUtils {
         DOWNLOAD_FILE_URL = downloadFileUrl;
     }
 
-    public static ArrayList<Media> webFiles2AppFiles(ArrayList<HGWebFile> webFiles) {
+    public static ArrayList<AppFile> webFiles2AppFiles(ArrayList<HGWebFile> webFiles) {
 
-        ArrayList<Media> result = new ArrayList<>();
+        ArrayList<AppFile> result = new ArrayList<>();
 
         if (webFiles != null) {
-            Media media;
+            AppFile appFile;
 
             for (HGWebFile t : webFiles) {
-                media = webFile2AppFile(t);
-                if (media != null) {
-                    result.add(media);
+                appFile = webFile2AppFile(t);
+                if (appFile != null) {
+                    result.add(appFile);
                 }
             }
         }
@@ -45,12 +45,12 @@ public class FileChangeUtils {
         return result;
     }
 
-    public static Media webFile2AppFile(HGWebFile webFile) {
+    public static AppFile webFile2AppFile(HGWebFile webFile) {
 
-        Media result = null;
+        AppFile result = null;
 
         if (webFile != null) {
-            result = new Media();
+            result = new AppFile();
             result.setOldName(webFile.getFileLocalName());
             result.setOldUrl(webFile.getFileUrlName());
 
@@ -64,14 +64,14 @@ public class FileChangeUtils {
         return result;
     }
 
-    public static ArrayList<HGWebFile> appFiles2WebFiles(ArrayList<Media> appFiles) {
+    public static ArrayList<HGWebFile> appFiles2WebFiles(ArrayList<AppFile> appFiles) {
 
         ArrayList<HGWebFile> result = new ArrayList<>();
 
         if (appFiles != null) {
             HGWebFile webFile;
 
-            for (Media t : appFiles) {
+            for (AppFile t : appFiles) {
                 webFile = appFile2WebFile(t);
 
                 if (webFile != null) {
@@ -83,7 +83,7 @@ public class FileChangeUtils {
         return result;
     }
 
-    public static HGWebFile appFile2WebFile(Media appFile) {
+    public static HGWebFile appFile2WebFile(AppFile appFile) {
 
         HGWebFile result = null;
 

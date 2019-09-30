@@ -18,6 +18,9 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 abstract class BaseDrawable extends Drawable implements TintableDrawable {
 
     protected int mAlpha = 0xFF;

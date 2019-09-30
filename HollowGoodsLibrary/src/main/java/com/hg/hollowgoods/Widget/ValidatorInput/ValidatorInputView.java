@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 /**
  * 验证输入控件
- * Created by HollowGoods on 2018-08-15.
+ * Created by Hollow Goods on 2018-08-15.
  */
 public class ValidatorInputView extends LinearLayout {
 

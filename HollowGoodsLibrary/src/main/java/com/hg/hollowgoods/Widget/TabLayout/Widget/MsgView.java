@@ -14,6 +14,7 @@ import com.hg.hollowgoods.R;
 
 /**
  * 用于需要圆角矩形框背景的TextView的情况,减少直接使用TextView时引入的shape资源文件
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("AppCompatCustomView")
 public class MsgView extends TextView {

@@ -10,6 +10,9 @@ import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 class TileDrawable extends BaseDrawable {
 
     private Drawable mDrawable;

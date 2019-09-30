@@ -1,5 +1,8 @@
 package com.hg.hollowgoods.Widget.SlideBack.callback;
 
+/**
+ * Created by Hollow Goods on unknown.
+ */
 public abstract class SlideCallBack implements SlideBackCallBack {
     private SlideBackCallBack callBack;
 

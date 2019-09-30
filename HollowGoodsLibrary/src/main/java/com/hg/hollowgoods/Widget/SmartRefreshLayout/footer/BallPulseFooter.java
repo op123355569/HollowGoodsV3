@@ -27,6 +27,8 @@ import java.util.Map;
 
 /**
  * 球脉冲底部加载组件
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class BallPulseFooter extends InternalAbstract implements RefreshFooter {
@@ -49,7 +51,8 @@ public class BallPulseFooter extends InternalAbstract implements RefreshFooter {
 
     protected boolean mIsStarted = false;
     protected ArrayList<ValueAnimator> mAnimators;
-    protected Map<ValueAnimator, ValueAnimator.AnimatorUpdateListener> mUpdateListeners = new HashMap<>();;
+    protected Map<ValueAnimator, ValueAnimator.AnimatorUpdateListener> mUpdateListeners = new HashMap<>();
+    ;
     //</editor-fold>
 
     //<editor-fold desc="构造方法">
@@ -184,7 +187,8 @@ public class BallPulseFooter extends InternalAbstract implements RefreshFooter {
         return false;
     }
 
-    @Override@Deprecated
+    @Override
+    @Deprecated
     public void setPrimaryColors(@ColorInt int... colors) {
         if (!mManualAnimationColor && colors.length > 1) {
             setAnimatingColor(colors[0]);
@@ -194,7 +198,7 @@ public class BallPulseFooter extends InternalAbstract implements RefreshFooter {
             if (colors.length > 1) {
                 setNormalColor(colors[1]);
             } else if (colors.length > 0) {
-                setNormalColor(ColorUtils.compositeColors(0x99ffffff,colors[0]));
+                setNormalColor(ColorUtils.compositeColors(0x99ffffff, colors[0]));
             }
             mManualNormalColor = false;
         }

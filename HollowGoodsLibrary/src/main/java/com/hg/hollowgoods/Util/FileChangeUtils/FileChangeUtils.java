@@ -4,17 +4,25 @@ import android.text.TextUtils;
 
 import com.hg.hollowgoods.Bean.AppFile;
 import com.hg.hollowgoods.Util.FileUtils;
+import com.hg.hollowgoods.Util.LogUtils;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 
 /**
  * 文件类型转换工具类
+ * <p>
+ * 实例化示例：FileChangeUtils<HGWebFile> fileChangeUtils = new FileChangeUtils<HGWebFile>() {};
+ * <p>
+ * {}千万不能少，否则编译会报错
+ * <p>
  * Created by Hollow Goods on 2019-04-03.
+ * Update by Hollow Goods on 2019-10-01.
  */
-public class FileChangeUtils {
+public class FileChangeUtils<T extends HGWebFile> {
 
-    private static String SHOW_FILE_URL = "";
-    private static String DOWNLOAD_FILE_URL = "";
+    private static String SHOW_FILE_URL = "http://localhost:8080/show/%1$s";
+    private static String DOWNLOAD_FILE_URL = "http://localhost:8080/download/%1$s";
 
     /**
      * 初始化
@@ -27,14 +35,14 @@ public class FileChangeUtils {
         DOWNLOAD_FILE_URL = downloadFileUrl;
     }
 
-    public static ArrayList<AppFile> webFiles2AppFiles(ArrayList<HGWebFile> webFiles) {
+    public ArrayList<AppFile> webFiles2AppFiles(ArrayList<T> webFiles) {
 
         ArrayList<AppFile> result = new ArrayList<>();
 
         if (webFiles != null) {
             AppFile appFile;
 
-            for (HGWebFile t : webFiles) {
+            for (T t : webFiles) {
                 appFile = webFile2AppFile(t);
                 if (appFile != null) {
                     result.add(appFile);
@@ -45,7 +53,7 @@ public class FileChangeUtils {
         return result;
     }
 
-    public static AppFile webFile2AppFile(HGWebFile webFile) {
+    public AppFile webFile2AppFile(T webFile) {
 
         AppFile result = null;
 
@@ -64,12 +72,12 @@ public class FileChangeUtils {
         return result;
     }
 
-    public static ArrayList<HGWebFile> appFiles2WebFiles(ArrayList<AppFile> appFiles) {
+    public ArrayList<T> appFiles2WebFiles(ArrayList<AppFile> appFiles) {
 
-        ArrayList<HGWebFile> result = new ArrayList<>();
+        ArrayList<T> result = new ArrayList<>();
 
         if (appFiles != null) {
-            HGWebFile webFile;
+            T webFile;
 
             for (AppFile t : appFiles) {
                 webFile = appFile2WebFile(t);
@@ -83,17 +91,27 @@ public class FileChangeUtils {
         return result;
     }
 
-    public static HGWebFile appFile2WebFile(AppFile appFile) {
+    public T appFile2WebFile(AppFile appFile) {
 
-        HGWebFile result = null;
+        T result = null;
 
         if (appFile != null && !TextUtils.isEmpty(appFile.getUrl())) {
-            result = new HGWebFile();
-            result.setFileLocalName(appFile.getOldName());
-            result.setFileUrlName(appFile.getOldUrl());
+            try {
+                result = getTypeClass().newInstance();
+                result.setFileLocalName(appFile.getOldName());
+                result.setFileUrlName(appFile.getOldUrl());
+            } catch (Exception e) {
+                LogUtils.Log(e.getMessage());
+            }
         }
 
         return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Class<T> getTypeClass() {
+        ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
+        return (Class<T>) parameterizedType.getActualTypeArguments()[0];
     }
 
 }

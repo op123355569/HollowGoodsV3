@@ -12,6 +12,7 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.Click.OnRecyclerViewItemClickListener;
 import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 import com.hg.hollowgoods.Util.FileChangeUtils.FileChangeUtils;
+import com.hg.hollowgoods.Util.FileChangeUtils.HGWebFile;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
 
@@ -25,9 +26,12 @@ public class BannerAdapter extends CommonAdapter<Banner> {
 
     private InfiniteScrollAdapter infiniteAdapter;
     private OnRecyclerViewItemClickListener onBannerClickListener;
+    private FileChangeUtils<HGWebFile> fileChangeUtils;
 
     public BannerAdapter(Context context, int layoutId, List<Banner> data) {
         super(context, layoutId, data);
+        fileChangeUtils = new FileChangeUtils<HGWebFile>() {
+        };
     }
 
     @Override
@@ -41,7 +45,7 @@ public class BannerAdapter extends CommonAdapter<Banner> {
         GlideOptions glideOptions;
 
         if (item.getFileList() != null && item.getFileList().size() > 0) {
-            glideOptions = new GlideOptions(FileChangeUtils.webFile2AppFile(item.getFileList().get(0)).getUrl(), null, GlideOptions.NO_FADE_IN, requestOptions);
+            glideOptions = new GlideOptions(fileChangeUtils.webFile2AppFile(item.getFileList().get(0)).getUrl(), null, GlideOptions.NO_FADE_IN, requestOptions);
         } else {
             if (item.getRes() != null) {
                 glideOptions = new GlideOptions(item.getRes(), null, GlideOptions.NO_FADE_IN, requestOptions);

@@ -257,7 +257,7 @@ if (buildWithTinker()) {
 /**** 拷贝S 5/5 ****/
 // 对应拷入根目录的Gradle文件中
 buildscript {
-    ext.kotlin_version = '1.3.21'
+    ext.kotlin_version = '1.3.50'
     ext.TINKERPATCH_VERSION = '1.9.13.2'
 
     repositories {

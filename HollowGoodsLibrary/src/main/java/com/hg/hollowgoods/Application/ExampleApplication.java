@@ -16,8 +16,6 @@ import com.hg.hollowgoods.Util.IP.InterfaceConfig;
  * 需要使用Tinker插件则继承{@link BaseTinkerApplication}
  * <p>
  * Created by Hollow Goods on 2018-03-22.
- * <p>
- * 测试
  */
 public class ExampleApplication extends BaseApplication {
 

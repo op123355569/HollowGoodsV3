@@ -1,7 +1,7 @@
 package com.hg.hollowgoods.Bean.Example;
 
 /**
- * Created by HG on 2018-06-06.
+ * Created by Hollow Goods 2018-06-06.
  */
 public class Example {
 

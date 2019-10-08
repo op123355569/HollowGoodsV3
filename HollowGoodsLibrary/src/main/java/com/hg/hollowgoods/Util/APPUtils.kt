@@ -8,7 +8,7 @@ import android.os.Looper
 
 /**
  * APP信息工具类
- * Created by HG on 2018-03-22.
+ * Created by Hollow Goods 2018-03-22.
  */
 object APPUtils {
 

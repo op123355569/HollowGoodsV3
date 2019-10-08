@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  * 搜索历史记录工具
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class SearchHistoryUtils {

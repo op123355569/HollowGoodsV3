@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 /**
  * RecyclerView示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex12Activity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, SoapUtils.RequestListener {

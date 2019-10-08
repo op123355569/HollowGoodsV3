@@ -15,7 +15,7 @@ import java.util.TimerTask;
 
 /**
  * 示例15界面
- * Created by HG on 2018-07-26.
+ * Created by Hollow Goods 2018-07-26.
  */
 public class Ex15Activity extends BaseActivity {
 

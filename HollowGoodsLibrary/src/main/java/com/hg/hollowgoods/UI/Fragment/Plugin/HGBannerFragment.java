@@ -27,7 +27,7 @@ import java.util.TimerTask;
 /**
  * 轮播图界面
  *
- * @author HG
+ * Created by Hollow Goods on unknown.
  */
 
 public abstract class HGBannerFragment extends BaseFragment implements BannerHelper {

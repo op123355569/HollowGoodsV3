@@ -11,7 +11,7 @@ import com.hg.hollowgoods.R;
 import java.util.List;
 
 /**
- * Created by HG on 2018-06-06.
+ * Created by Hollow Goods 2018-06-06.
  */
 public class ExampleAdapter extends CommonAdapter<Example> {
 

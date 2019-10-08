@@ -9,7 +9,7 @@ import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 
 /**
- * Created by HG on 2017-12-29.
+ * Created by Hollow Goods 2017-12-29.
  */
 
 public class BaseOnClickListener {

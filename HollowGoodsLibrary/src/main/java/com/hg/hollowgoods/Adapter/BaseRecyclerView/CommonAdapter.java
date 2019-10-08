@@ -8,7 +8,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Base.ViewHolder;
 import java.util.List;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T> {
 

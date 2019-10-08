@@ -18,7 +18,7 @@ import com.hg.hollowgoods.Util.SystemAppUtils;
 
 /**
  * 裁剪图片示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex18Activity extends BaseActivity {

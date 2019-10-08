@@ -4,7 +4,7 @@ import com.hg.hollowgoods.Bean.CommonBean.CommonBean
 
 /**
  * 示例12
- * Created by HG on 2018-03-22.
+ * Created by Hollow Goods 2018-03-22.
  */
 class Ex12(itemType: Int, res: Int, txt: String?) : CommonBean(itemType) {
 

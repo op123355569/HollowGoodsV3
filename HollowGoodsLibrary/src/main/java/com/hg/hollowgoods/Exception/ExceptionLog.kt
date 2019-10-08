@@ -4,7 +4,7 @@ import java.io.Serializable
 
 /**
  * 报错收集类
- * Created by HG on 2018-03-22.
+ * Created by Hollow Goods 2018-03-22.
  */
 class ExceptionLog : Serializable {
 

@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * 单选对话框适配器
- * Created by HG on 2018-07-04.
+ * Created by Hollow Goods 2018-07-04.
  */
 public class MultiChoiceDialogAdapter extends CommonAdapter<ChoiceItem> {
 

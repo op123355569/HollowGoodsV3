@@ -4,7 +4,7 @@ import android.view.View;
 
 /**
  * 点击范围实体类，用于点击标签时做点击判断
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class ClickBounds {
 

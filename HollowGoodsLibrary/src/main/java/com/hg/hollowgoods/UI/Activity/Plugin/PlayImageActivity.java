@@ -15,8 +15,8 @@ import com.hg.hollowgoods.Widget.PhotoView.PhotoView;
 
 /**
  * 图片播放界面
- *
- * @author HG
+ * <p>
+ * Created by Hollow Goods on unknown.
  */
 
 public class PlayImageActivity extends BaseActivity {

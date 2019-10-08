@@ -16,7 +16,7 @@ import java.io.IOException;
 
 /**
  * Glide加载监听(无控件或非ImageView)
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class GlideSimpleTarget extends CustomTarget {

@@ -3,7 +3,7 @@ package com.hg.hollowgoods.Adapter.BaseRecyclerView.Base;
 import android.support.v4.util.SparseArrayCompat;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class ItemViewDelegateManager<T> {
 

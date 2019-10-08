@@ -10,7 +10,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
 /**
- * Created by HG on 2017-12-22.
+ * Created by Hollow Goods 2017-12-22.
  */
 
 public class BlurBitmapUtils {

@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 /**
  * Bug捕捉界面
- * Created by HG on 2017-06-06.
+ * Created by Hollow Goods 2017-06-06.
  */
 
 public class BugCatchActivity extends BaseActivity {

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * 快速适配器列表编辑按钮
  * 适用于变量
  * 请标注于布尔类型的变量上
- * Created by HG on 2018-06-13.
+ * Created by Hollow Goods 2018-06-13.
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

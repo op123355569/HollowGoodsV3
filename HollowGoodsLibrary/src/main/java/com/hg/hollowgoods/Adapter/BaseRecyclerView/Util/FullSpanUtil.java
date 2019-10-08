@@ -6,7 +6,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.ViewGroup;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class FullSpanUtil {
 

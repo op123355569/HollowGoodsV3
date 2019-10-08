@@ -8,7 +8,7 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseFragment;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex5ChildFragment extends BaseFragment {

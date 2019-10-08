@@ -18,7 +18,7 @@ import org.greenrobot.eventbus.EventBus;
 
 /**
  * 网络连接状态改变监听
- * Created by HG on 2018-05-23.
+ * Created by Hollow Goods 2018-05-23.
  */
 @Deprecated
 public class NetworkReceiver extends BroadcastReceiver {

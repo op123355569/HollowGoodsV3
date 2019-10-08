@@ -1,7 +1,7 @@
 package com.hg.hollowgoods.Widget.BugView;
 
 /**
- * Created by HG on 2017-06-01.
+ * Created by Hollow Goods 2017-06-01.
  */
 
 public class BugData {

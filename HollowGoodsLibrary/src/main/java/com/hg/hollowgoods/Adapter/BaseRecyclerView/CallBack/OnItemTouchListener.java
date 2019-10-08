@@ -12,7 +12,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Bean.ClickBounds;
 
 /**
  * 用来处理标签的点击事件，现在仅仅支持单击，将来也许会实现长按和双击事件
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class OnItemTouchListener implements RecyclerView.OnItemTouchListener {
 

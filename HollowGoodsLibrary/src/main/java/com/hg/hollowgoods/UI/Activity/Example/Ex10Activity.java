@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  * 加载数据ListView示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex10Activity extends BaseActivity implements AbsListView.OnScrollListener {

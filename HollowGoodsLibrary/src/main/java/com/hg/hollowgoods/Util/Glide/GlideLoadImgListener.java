@@ -5,7 +5,7 @@ import android.view.View;
 
 /**
  * Glide加载图片回调接口
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public interface GlideLoadImgListener {

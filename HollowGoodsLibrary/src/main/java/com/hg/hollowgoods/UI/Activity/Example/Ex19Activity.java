@@ -12,7 +12,7 @@ import com.hg.hollowgoods.Widget.FloatingNavigationView;
 
 /**
  * 侧边菜单示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex19Activity extends BaseActivity {

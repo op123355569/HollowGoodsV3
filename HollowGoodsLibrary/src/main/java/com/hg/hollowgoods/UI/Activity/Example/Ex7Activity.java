@@ -12,7 +12,7 @@ import com.hg.hollowgoods.Widget.AutoShowDeleteLayout;
 
 /**
  * 示例7界面
- * Created by HG on 2018-07-26.
+ * Created by Hollow Goods 2018-07-26.
  */
 public class Ex7Activity extends BaseActivity {
 

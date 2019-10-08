@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 /**
  * XUtils3.0示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class Ex2Activity extends BaseActivity {
 

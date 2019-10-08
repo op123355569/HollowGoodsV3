@@ -4,7 +4,7 @@ import android.view.View;
 
 /**
  * 顶部标签点击监听
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public interface OnHeaderClickListener {
 

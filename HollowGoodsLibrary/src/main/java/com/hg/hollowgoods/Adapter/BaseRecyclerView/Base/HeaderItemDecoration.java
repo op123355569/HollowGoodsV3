@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * </p>
  * 注意：标签所在最外层布局不能设置marginTop，因为往上滚动遮不住真正的标签;marginBottom还有问题待解决
  * <p>
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class HeaderItemDecoration extends RecyclerView.ItemDecoration {
 

@@ -20,7 +20,7 @@ import com.hg.hollowgoods.Widget.ValidatorInput.ValidatorInputView;
 
 /**
  * 输入对话框
- * Created by HG on 2018-01-17.
+ * Created by Hollow Goods 2018-01-17.
  */
 
 class HGInputNewDialog extends HGDialog {

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 /**
  * 示例索引界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class ExampleActivity extends BaseActivity {
 

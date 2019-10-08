@@ -13,7 +13,7 @@ import com.hg.hollowgoods.Widget.RippleValidatorEditText.RippleValidatorEditText
 
 /**
  * 波纹验证输入框示例
- * Created by HG on 2018-08-10.
+ * Created by Hollow Goods 2018-08-10.
  */
 
 public class Ex34Activity extends BaseActivity {

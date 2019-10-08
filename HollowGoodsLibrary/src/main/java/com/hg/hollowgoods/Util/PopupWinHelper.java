@@ -29,7 +29,7 @@ import java.util.HashMap;
 
 /**
  * 弹窗工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class PopupWinHelper {
 

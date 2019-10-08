@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * Glide加载监听(ImageView专用)
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class GlideDrawableTarget extends DrawableImageViewTarget {

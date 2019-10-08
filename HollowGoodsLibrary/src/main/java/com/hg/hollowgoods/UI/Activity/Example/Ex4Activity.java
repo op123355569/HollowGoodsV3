@@ -12,7 +12,7 @@ import com.hg.hollowgoods.UI.Base.BaseActivity;
 
 /**
  * Activity使用ToolBar示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class Ex4Activity extends BaseActivity {
 

@@ -5,7 +5,7 @@ import com.hg.hollowgoods.Widget.ValidatorInput.Validator.Item.Validator;
 
 /**
  * 输入配置
- * Created by HG on 2018-08-10.
+ * Created by Hollow Goods 2018-08-10.
  */
 public class ConfigInput {
 

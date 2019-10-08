@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * WebService网络请求工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class SoapUtils {

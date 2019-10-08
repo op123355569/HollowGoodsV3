@@ -7,7 +7,7 @@ import org.xutils.x;
 
 /**
  * XUtils数据库工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class XDBUtils {
 
@@ -37,7 +37,7 @@ public class XDBUtils {
     /**
      * 数据库版本更新监听
      *
-     * @author HG
+     * Created by Hollow Goods on unknown.
      */
     private static class MyDbUpgradeListener implements DbManager.DbUpgradeListener {
 

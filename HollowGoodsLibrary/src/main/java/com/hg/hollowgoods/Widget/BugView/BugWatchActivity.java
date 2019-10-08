@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 /**
  * Bug查看界面
- * Created by HG on 2017-06-06.
+ * Created by Hollow Goods 2017-06-06.
  */
 
 public class BugWatchActivity extends BaseActivity implements OnDialogClickListener {

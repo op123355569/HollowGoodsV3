@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * 快速适配器列表自动编号
  * 适用于类
- * Created by HG on 2018-06-13.
+ * Created by Hollow Goods 2018-06-13.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

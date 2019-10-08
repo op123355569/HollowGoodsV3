@@ -36,7 +36,7 @@ import java.util.Hashtable;
 
 /**
  * 格式转换工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class FormatUtils {
 

@@ -14,7 +14,7 @@ import com.hg.hollowgoods.Util.IP.InterfaceConfig;
 
 /**
  * 主界面
- * Created by HG on 2018-06-07.
+ * Created by Hollow Goods 2018-06-07.
  */
 public class HollowGoodsActivity extends BaseActivity {
 

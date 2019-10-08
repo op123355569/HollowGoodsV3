@@ -19,7 +19,7 @@ import com.hg.hollowgoods.Widget.WaveDrawable;
 
 /**
  * Snackbar和PopupWindow示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class Ex1Activity extends BaseActivity implements PopupWinHelper.PopupWinOnClickListener {
 

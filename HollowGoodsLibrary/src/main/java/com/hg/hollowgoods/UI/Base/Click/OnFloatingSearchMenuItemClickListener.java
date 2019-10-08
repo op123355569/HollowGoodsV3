@@ -7,7 +7,7 @@ import com.hg.hollowgoods.Widget.FloatingSearchView.FloatingSearchView;
 
 /**
  * FloatingSearchView菜单项目点击事件
- * Created by HG on 2017-12-29.
+ * Created by Hollow Goods 2017-12-29.
  */
 
 public class OnFloatingSearchMenuItemClickListener extends BaseOnClickListener implements FloatingSearchView.OnMenuItemClickListener {

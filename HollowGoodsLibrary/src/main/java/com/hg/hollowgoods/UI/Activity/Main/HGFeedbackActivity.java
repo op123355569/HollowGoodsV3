@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 /**
  * 反馈中心界面
- * Created by HG on 2018-06-07.
+ * Created by Hollow Goods 2018-06-07.
  */
 public class HGFeedbackActivity extends BaseActivity {
 

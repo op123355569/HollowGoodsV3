@@ -8,7 +8,7 @@ import com.hg.hollowgoods.R
 
 /**
  * 示例13适配器
- * Created by HG on 2018-03-22.
+ * Created by Hollow Goods 2018-03-22.
  */
 class Ex13Adapter(context: Context, layoutId: Int, data: List<Ex13_1>) : CommonAdapter<Ex13_1>(context, layoutId, data) {
 

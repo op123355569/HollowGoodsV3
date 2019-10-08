@@ -16,7 +16,7 @@ import com.hg.hollowgoods.Widget.SubmitButton;
 
 /**
  * 动画按钮示例
- * Created by HG on 2019-02-25.
+ * Created by Hollow Goods 2019-02-25.
  */
 public class Ex39Activity extends BaseActivity {
 

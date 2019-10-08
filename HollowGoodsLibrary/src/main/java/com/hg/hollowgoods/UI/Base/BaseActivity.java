@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
  * 2.手动调用setActionBar<p>
  * 特殊接口：IDialogClickListener
  * <p>
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity, OnCommonTitleClickListener, OnSearchViewClickListener {
 

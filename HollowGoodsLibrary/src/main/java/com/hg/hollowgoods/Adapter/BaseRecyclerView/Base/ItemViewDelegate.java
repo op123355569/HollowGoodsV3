@@ -1,7 +1,7 @@
 package com.hg.hollowgoods.Adapter.BaseRecyclerView.Base;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public interface ItemViewDelegate<T> {
 

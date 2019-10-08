@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * 基Application接口
- * Created by HG on 2018-03-22.
+ * Created by Hollow Goods on 2018-03-22.
  */
 public interface IBaseApplication {
 

@@ -5,7 +5,7 @@ import android.widget.AdapterView;
 
 /**
  * 普通列表项目点击事件
- * Created by HG on 2017-12-29.
+ * Created by Hollow Goods 2017-12-29.
  */
 
 public class OnAdapterViewItemClickListener extends BaseOnClickListener implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {

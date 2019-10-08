@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * 年月日时分对话框
- * Created by HG on 2018-01-18.
+ * Created by Hollow Goods 2018-01-18.
  */
 
 public class HGDateTimeDialog extends HGDialog {

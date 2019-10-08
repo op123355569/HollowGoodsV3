@@ -13,7 +13,7 @@ import java.security.MessageDigest;
 
 /**
  * Glide圆形图片处理
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class GlideCircleTransform extends BitmapTransformation {

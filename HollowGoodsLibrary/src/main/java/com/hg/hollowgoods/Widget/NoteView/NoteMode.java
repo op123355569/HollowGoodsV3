@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Widget.NoteView;
 
 /**
  * 提醒模式
- * Created by HG on 2018-01-24.
+ * Created by Hollow Goods 2018-01-24.
  */
 
 public enum NoteMode {

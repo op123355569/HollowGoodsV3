@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 引导页示例界面3
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class Ex21_3Activity extends AhoyOnboarderActivity {
 

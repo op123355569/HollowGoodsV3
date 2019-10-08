@@ -8,7 +8,7 @@ import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class ItemEx12_2 implements ItemViewDelegate<CommonBean> {

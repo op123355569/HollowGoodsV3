@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Util.Soap;
 
 /**
  * 网络请求参数
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class SoapParam {

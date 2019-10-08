@@ -13,7 +13,7 @@ import com.hg.hollowgoods.Widget.SlideView;
 
 /**
  * 字母索引界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex11Activity extends BaseActivity {

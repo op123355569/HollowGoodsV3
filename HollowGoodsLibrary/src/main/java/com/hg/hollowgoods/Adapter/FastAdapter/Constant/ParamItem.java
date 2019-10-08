@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * 变量翻译集合项
  * 支持String[]、Map、List
- * Created by HG on 2018-06-13.
+ * Created by Hollow Goods 2018-06-13.
  */
 public class ParamItem {
 

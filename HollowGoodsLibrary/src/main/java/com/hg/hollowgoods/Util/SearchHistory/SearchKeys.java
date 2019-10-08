@@ -6,7 +6,7 @@ import com.hg.hollowgoods.Widget.FloatingSearchView.suggestions.model.SearchSugg
 
 /**
  * 搜索历史记录
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class SearchKeys implements SearchSuggestion {

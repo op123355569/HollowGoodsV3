@@ -4,7 +4,7 @@ import com.hg.hollowgoods.R;
 
 /**
  * 吐司类型 主要用于区分吐司的图标
- * Created by HG on 2018-06-07.
+ * Created by Hollow Goods 2018-06-07.
  */
 public enum ToastType {
 

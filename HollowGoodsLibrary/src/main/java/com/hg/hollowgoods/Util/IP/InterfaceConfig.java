@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * 接口配置
- * Created by HG on 2016-11-21.
+ * Created by Hollow Goods 2016-11-21.
  */
 
 public class InterfaceConfig {

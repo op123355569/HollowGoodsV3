@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 /**
  * 波纹界面跳转工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class CircularAnimUtils {
 

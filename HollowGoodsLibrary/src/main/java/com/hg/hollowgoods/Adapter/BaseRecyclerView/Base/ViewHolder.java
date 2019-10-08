@@ -44,7 +44,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class ViewHolder extends RecyclerView.ViewHolder {
 

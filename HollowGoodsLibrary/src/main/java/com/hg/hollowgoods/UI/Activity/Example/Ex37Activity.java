@@ -12,7 +12,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 
 /**
  * 自动动画示例
- * Created by HG on 2018-12-10.
+ * Created by Hollow Goods 2018-12-10.
  */
 public class Ex37Activity extends BaseActivity {
 

@@ -12,7 +12,7 @@ import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Widget.SwipeMenuRecyclerView.SwipeItemLayout;
 
 /**
- * Created by HG on 2018-08-02.
+ * Created by Hollow Goods 2018-08-02.
  */
 public class ItemEx32Left implements ItemViewDelegate<CommonBean> {
 

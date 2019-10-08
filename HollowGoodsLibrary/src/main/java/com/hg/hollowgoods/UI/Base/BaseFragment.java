@@ -26,7 +26,7 @@ import java.util.Map;
  * 基Fragment<br>
  * 特殊接口：DialogClickListener
  * <p>
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public abstract class BaseFragment extends Fragment implements IBaseFragment, OnCommonTitleClickListener, OnSearchViewClickListener {
 

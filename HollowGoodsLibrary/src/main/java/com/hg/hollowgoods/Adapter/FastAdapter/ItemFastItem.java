@@ -35,7 +35,7 @@ import java.util.HashMap;
 
 /**
  * 快速适配器布局——详细项布局
- * Created by HG on 2018-06-14.
+ * Created by Hollow Goods 2018-06-14.
  */
 public class ItemFastItem extends BaseFastItem implements ItemViewDelegate<CommonBean> {
 

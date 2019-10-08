@@ -25,7 +25,7 @@ import java.util.TimerTask;
 
 /**
  * 搜索框界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex14Activity extends BaseActivity {

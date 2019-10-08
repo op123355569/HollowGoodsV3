@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 示例32适配器
- * Created by HG on 2018-08-02.
+ * Created by Hollow Goods 2018-08-02.
  */
 public class Ex32Adapter extends MultiItemTypeAdapter<CommonBean> {
 

@@ -14,7 +14,7 @@ import com.hg.hollowgoods.UI.Base.BaseFragment;
 
 /**
  * Fragment使用ToolBar碎片
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex3ChildFragment extends BaseFragment {

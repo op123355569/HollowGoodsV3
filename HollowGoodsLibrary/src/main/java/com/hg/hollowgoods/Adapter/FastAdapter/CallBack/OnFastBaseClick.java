@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by HG on 2018-06-14.
+ * Created by Hollow Goods 2018-06-14.
  */
 public interface OnFastBaseClick {
 

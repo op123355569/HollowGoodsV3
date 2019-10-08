@@ -24,7 +24,7 @@ import com.hg.hollowgoods.R;
 
 /**
  * 吐司提示工具类
- * Created by HG on 2018-06-06.
+ * Created by Hollow Goods 2018-06-06.
  */
 public class t {
 

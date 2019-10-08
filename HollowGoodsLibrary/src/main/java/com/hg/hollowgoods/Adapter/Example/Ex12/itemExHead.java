@@ -7,7 +7,7 @@ import com.hg.hollowgoods.Constant.HGConstants;
 import com.hg.hollowgoods.R;
 
 /**
- * Created by HG on 2016-12-30.
+ * Created by Hollow Goods 2016-12-30.
  */
 
 public class itemExHead implements ItemViewDelegate<CommonBean> {

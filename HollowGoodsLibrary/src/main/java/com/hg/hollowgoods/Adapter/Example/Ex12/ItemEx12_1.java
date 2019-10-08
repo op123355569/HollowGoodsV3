@@ -9,7 +9,7 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Widget.AlignTextView;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class ItemEx12_1 implements ItemViewDelegate<CommonBean> {

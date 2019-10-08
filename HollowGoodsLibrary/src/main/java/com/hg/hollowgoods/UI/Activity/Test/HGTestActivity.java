@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 /**
  * 测试界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class HGTestActivity extends BaseActivity {
 

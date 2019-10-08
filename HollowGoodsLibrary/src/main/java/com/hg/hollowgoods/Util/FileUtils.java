@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * 文件工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("DefaultLocale")
 public class FileUtils {

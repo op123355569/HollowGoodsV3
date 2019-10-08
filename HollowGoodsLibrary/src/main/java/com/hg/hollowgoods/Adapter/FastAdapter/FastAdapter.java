@@ -40,7 +40,7 @@ import java.util.List;
 
 /**
  * 快速适配器
- * Created by HG on 2018-06-13.
+ * Created by Hollow Goods 2018-06-13.
  */
 public class FastAdapter extends MultiItemTypeAdapter<CommonBean> {
 

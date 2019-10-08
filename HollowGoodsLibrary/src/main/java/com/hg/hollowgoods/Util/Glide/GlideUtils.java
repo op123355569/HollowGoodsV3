@@ -17,7 +17,7 @@ import java.io.File;
 /**
  * Glide库工具类<br>
  * 加载圆角图片时不要对ImageView设置ScaleType
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class GlideUtils {

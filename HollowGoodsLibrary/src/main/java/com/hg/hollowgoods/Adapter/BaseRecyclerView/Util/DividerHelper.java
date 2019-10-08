@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 /**
  * 绘制分割线工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class DividerHelper {
 

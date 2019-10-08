@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  * ViewPager示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex17Activity extends BaseActivity {

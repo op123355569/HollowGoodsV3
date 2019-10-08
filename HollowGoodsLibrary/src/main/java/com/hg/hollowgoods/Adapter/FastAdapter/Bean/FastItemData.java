@@ -6,7 +6,7 @@ import com.hg.hollowgoods.Bean.CommonBean.CommonBean;
 import com.hg.hollowgoods.Util.StringUtils;
 
 /**
- * Created by HG on 2018-06-14.
+ * Created by Hollow Goods 2018-06-14.
  */
 public class FastItemData extends CommonBean {
 

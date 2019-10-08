@@ -14,7 +14,7 @@ import com.hg.hollowgoods.UI.Base.MVP.IBaseView;
  * 2.手动调用setActionBar<p>
  * 特殊接口：IDialogClickListener
  * <p>
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("NewApi")
 public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActivity implements IBaseMVPUI<P>, IBaseView {

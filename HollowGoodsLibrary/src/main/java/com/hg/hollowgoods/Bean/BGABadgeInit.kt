@@ -11,7 +11,7 @@ import cn.bingoogolapple.badgeview.annotation.BGABadge
  * 2.需要哪些类具有徽章功能，就把那些类的 class 作为 BGABadge 注解的参数
  * 3.再 AS 中执行 Build => Rebuild Project
  * 4.经过前面三个步骤后就可以通过「cn.bingoogolapple.badgeview.BGABadge原始类名」来使用徽章控件了
- * Created by HG on 2018-03-22.
+ * Created by Hollow Goods 2018-03-22.
  */
 @BGABadge(
         View::class, // 对应 cn.bingoogolapple.badgeview.BGABadgeView，不想用这个类的话就删了这一行

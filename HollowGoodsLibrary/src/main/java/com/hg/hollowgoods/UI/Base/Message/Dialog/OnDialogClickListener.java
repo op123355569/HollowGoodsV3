@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 /**
  * 对话框点击监听
- * Created by HG on 2017/6/4.
+ * Created by Hollow Goods 2017/6/4.
  */
 
 public interface OnDialogClickListener {

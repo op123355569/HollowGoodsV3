@@ -11,7 +11,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 
 /**
  * 共同元素界面跳转示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex8Activity extends BaseActivity {

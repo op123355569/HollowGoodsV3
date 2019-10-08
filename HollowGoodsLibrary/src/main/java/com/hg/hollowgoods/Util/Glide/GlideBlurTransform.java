@@ -11,7 +11,7 @@ import java.security.MessageDigest;
 
 /**
  * 高斯模糊效果
- * Created by HG on 2017-12-22.
+ * Created by Hollow Goods 2017-12-22.
  */
 
 public class GlideBlurTransform extends BitmapTransformation {

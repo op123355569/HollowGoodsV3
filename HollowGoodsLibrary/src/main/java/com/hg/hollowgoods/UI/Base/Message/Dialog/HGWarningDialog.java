@@ -8,7 +8,7 @@ import com.hg.hollowgoods.R;
 
 /**
  * 警告对话框
- * Created by HG on 2018-01-17.
+ * Created by Hollow Goods 2018-01-17.
  */
 
 class HGWarningDialog extends HGDialog {

@@ -10,7 +10,7 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 
 /**
- * Created by HG on 2018-07-25.
+ * Created by Hollow Goods 2018-07-25.
  */
 public class PlayVideoActivity extends BaseActivity {
 

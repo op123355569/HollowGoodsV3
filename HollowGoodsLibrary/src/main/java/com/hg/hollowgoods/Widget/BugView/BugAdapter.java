@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * Created by HG on 2017-06-01.
+ * Created by Hollow Goods 2017-06-01.
  */
 
 public class BugAdapter extends BaseAdapter {

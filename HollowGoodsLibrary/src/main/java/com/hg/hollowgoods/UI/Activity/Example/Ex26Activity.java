@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  * 跑马灯文字控件示例
- * Created by HG on 2018-03-21.
+ * Created by Hollow Goods 2018-03-21.
  */
 
 public class Ex26Activity extends BaseActivity {

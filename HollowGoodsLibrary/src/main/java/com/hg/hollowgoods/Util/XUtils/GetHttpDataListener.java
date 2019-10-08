@@ -4,7 +4,7 @@ import org.xutils.common.Callback;
 
 /**
  * 获取网络数据监听
- * Created by HG on 2018-01-17.
+ * Created by Hollow Goods 2018-01-17.
  */
 
 public interface GetHttpDataListener {

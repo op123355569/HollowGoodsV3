@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 /**
  * RecyclerView拖动示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex16Activity extends BaseActivity {

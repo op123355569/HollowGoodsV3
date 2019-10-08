@@ -15,7 +15,7 @@ import java.io.File;
  * .priority(Priority.HIGH)<br>
  * .transform(new GlideRoundTransform())<br>
  * .override(20, 20);<p>
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class GlideOptions {
 

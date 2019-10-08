@@ -36,7 +36,7 @@ import java.util.List;
 
 /**
  * 快速适配器示例
- * Created by HG on 2018-03-21.
+ * Created by Hollow Goods 2018-03-21.
  */
 
 public class Ex28_2Activity extends BaseActivity {

@@ -8,7 +8,7 @@ import org.xutils.db.annotation.Table;
 import java.io.Serializable;
 
 /**
- * Created by HG on 2017-07-11.
+ * Created by Hollow Goods 2017-07-11.
  */
 @Table(name = "IPConfig")
 public class IPConfig implements Serializable {

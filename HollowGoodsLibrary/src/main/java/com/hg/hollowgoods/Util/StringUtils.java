@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * 字符串判断工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("SimpleDateFormat")
 public class StringUtils {

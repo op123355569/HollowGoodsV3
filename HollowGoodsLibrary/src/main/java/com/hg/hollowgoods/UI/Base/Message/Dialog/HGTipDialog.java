@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 /**
  * 提示对话框
- * Created by HG on 2018-01-17.
+ * Created by Hollow Goods 2018-01-17.
  */
 
 class HGTipDialog extends HGDialog {

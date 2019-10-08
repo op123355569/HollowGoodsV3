@@ -10,7 +10,7 @@ import android.widget.EditText
 
 /**
  * 界面操作工具类
- * Created by HG on 2018-03-21.
+ * Created by Hollow Goods 2018-03-21.
  */
 object ViewUtils {
 

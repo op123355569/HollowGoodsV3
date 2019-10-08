@@ -30,7 +30,7 @@ import java.util.List;
 
 /**
  * 基Application
- * Created by HG on 2018-03-22.
+ * Created by Hollow Goods on 2018-03-22.
  */
 public abstract class BaseApplication extends Application implements IBaseApplication {
 

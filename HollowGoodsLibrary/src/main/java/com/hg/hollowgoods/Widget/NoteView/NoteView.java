@@ -18,7 +18,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 
 /**
  * 右上角消息提醒控件
- * Created by HG on 2018-01-24.
+ * Created by Hollow Goods 2018-01-24.
  */
 
 public class NoteView extends FrameLayout {

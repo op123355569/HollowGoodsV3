@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by HG on 2017-06-02.
+ * Created by Hollow Goods 2017-06-02.
  */
 
 public class BugOtherHtml {

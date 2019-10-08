@@ -32,7 +32,7 @@ import java.io.IOException;
  * NFC扫描基界面(被继承使用)<br>
  * 在onCreate方法中，必须调用initNfc()方法
  *
- * @author HG
+ * Created by Hollow Goods on unknown.
  */
 
 public abstract class NFCScanActivity extends BaseActivity {

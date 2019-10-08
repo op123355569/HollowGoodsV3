@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * 快速适配器详情项
  * 适用于变量
  * Debug模式自动显示排序号，Release模式自动隐藏排序号
- * Created by HG on 2018-06-13.
+ * Created by Hollow Goods 2018-06-13.
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

@@ -11,7 +11,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 
 /**
  * 万能阴影控件示例
- * Created by HG on 2018-03-21.
+ * Created by Hollow Goods 2018-03-21.
  */
 
 public class Ex22Activity extends BaseActivity {

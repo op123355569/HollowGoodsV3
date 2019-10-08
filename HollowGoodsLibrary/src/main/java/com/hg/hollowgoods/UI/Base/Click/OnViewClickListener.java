@@ -4,7 +4,7 @@ import android.view.View;
 
 /**
  * 普通控件点击事件
- * Created by HG on 2017-12-29.
+ * Created by Hollow Goods 2017-12-29.
  */
 
 public class OnViewClickListener extends BaseOnClickListener implements View.OnClickListener, View.OnLongClickListener {

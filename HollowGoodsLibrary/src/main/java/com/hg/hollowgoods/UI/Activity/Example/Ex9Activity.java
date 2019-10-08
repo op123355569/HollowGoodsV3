@@ -15,7 +15,7 @@ import com.hg.hollowgoods.UI.Base.Click.OnViewClickListener;
 
 /**
  * 对话框示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex9Activity extends BaseActivity {

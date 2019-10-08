@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * 多媒体预览适配器
- * Created by HG on 2018-06-15.
+ * Created by Hollow Goods 2018-06-15.
  */
 public class MediaAdapter extends CommonAdapter<AppFile> {
 

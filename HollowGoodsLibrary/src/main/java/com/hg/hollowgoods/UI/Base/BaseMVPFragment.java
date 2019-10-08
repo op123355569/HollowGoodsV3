@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * 2.手动调用setActionBar<p>
  * 特殊接口：IDialogClickListener
  * <p>
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("NewApi")
 public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFragment implements IBaseMVPUI<P>, IBaseView {

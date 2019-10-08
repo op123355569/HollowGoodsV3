@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * APP文件
- * Created by HG on 2018-04-08.
+ * Created by Hollow Goods 2018-04-08.
  */
 public class AppFile implements Serializable {
 

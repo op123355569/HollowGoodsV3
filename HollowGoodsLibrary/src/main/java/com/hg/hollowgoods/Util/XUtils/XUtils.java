@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 /**
  * XUtils工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class XUtils {
 
@@ -330,8 +330,8 @@ public class XUtils {
 
     /**
      * 获取网络数据返回结果
-     *
-     * @author HG
+     * <p>
+     * Created by Hollow Goods on unknown.
      */
     private class GetHttpCallBack implements Callback.ProgressCallback<String> {
 
@@ -403,7 +403,7 @@ public class XUtils {
     /**
      * 获取图片返回结果
      *
-     * @author HG
+     * Created by Hollow Goods on unknown.
      */
     private class LoadImageCallBack implements Callback.ProgressCallback<Drawable> {
 
@@ -494,7 +494,7 @@ public class XUtils {
     /**
      * 下载文件返回结果
      *
-     * @author HG
+     * Created by Hollow Goods on unknown.
      */
     private class DownloadCallBack implements Callback.ProgressCallback<File> {
 
@@ -569,7 +569,7 @@ public class XUtils {
     /**
      * 上传文件返回结果
      *
-     * @author HG
+     * Created by Hollow Goods on unknown.
      */
     private class UploadCallBack implements Callback.ProgressCallback<String> {
 

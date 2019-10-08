@@ -4,7 +4,7 @@ import android.view.inputmethod.EditorInfo
 
 /**
  * 常量
- * Created by HG on 2018-03-21.
+ * Created by Hollow Goods 2018-03-21.
  */
 object HGConstants {
 

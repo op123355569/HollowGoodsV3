@@ -35,7 +35,7 @@ import java.util.List;
 
 /**
  * 万能适配器ViewHolder
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class ViewHolder {
 

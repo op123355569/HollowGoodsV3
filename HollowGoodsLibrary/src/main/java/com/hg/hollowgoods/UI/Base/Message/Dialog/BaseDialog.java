@@ -9,7 +9,7 @@ import java.util.Calendar;
 
 /**
  * 基本对话框
- * Created by HG on 2017/6/4.
+ * Created by Hollow Goods 2017/6/4.
  */
 
 public class BaseDialog {

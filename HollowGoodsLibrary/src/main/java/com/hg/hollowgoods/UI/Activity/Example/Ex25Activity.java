@@ -12,7 +12,7 @@ import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 
 /**
  * 新吐司示例
- * Created by HG on 2018-03-21.
+ * Created by Hollow Goods 2018-03-21.
  */
 
 public class Ex25Activity extends BaseActivity {

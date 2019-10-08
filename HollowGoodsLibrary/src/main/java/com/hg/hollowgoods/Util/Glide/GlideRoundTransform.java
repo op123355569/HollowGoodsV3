@@ -15,7 +15,7 @@ import java.security.MessageDigest;
 
 /**
  * Glide加载圆角图片
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class GlideRoundTransform extends BitmapTransformation {

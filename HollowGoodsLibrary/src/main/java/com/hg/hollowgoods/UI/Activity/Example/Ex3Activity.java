@@ -13,7 +13,7 @@ import com.hg.hollowgoods.UI.Fragment.Example.Ex3ChildFragment;
 
 /**
  * Fragment使用ToolBar示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class Ex3Activity extends BaseActivity {
 

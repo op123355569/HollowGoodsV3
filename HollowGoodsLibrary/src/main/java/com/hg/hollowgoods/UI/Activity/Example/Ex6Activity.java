@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 /**
  * Glide库加载图片示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex6Activity extends BaseActivity {

@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> implements ItemTouchHelperAdapter {
 

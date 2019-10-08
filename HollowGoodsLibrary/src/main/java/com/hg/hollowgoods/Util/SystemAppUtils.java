@@ -49,7 +49,7 @@ import cn.bingoogolapple.baseadapter.BGABaseAdapterUtil;
 
 /**
  * Android系统界面调用工具类
- * Created by HG on 2018-01-23.
+ * Created by Hollow Goods 2018-01-23.
  */
 
 public class SystemAppUtils {

@@ -11,7 +11,7 @@ import com.hg.hollowgoods.R;
 
 /**
  * TabBar1示例
- * Created by HG on 2018-08-21.
+ * Created by Hollow Goods 2018-08-21.
  */
 public class Ex35Activity extends Activity implements View.OnClickListener {
 

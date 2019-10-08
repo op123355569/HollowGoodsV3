@@ -19,7 +19,7 @@ import java.util.TimerTask;
 
 /**
  * SVG动画控件示例
- * Created by HG on 2018-03-21.
+ * Created by Hollow Goods 2018-03-21.
  */
 
 public class Ex24Activity extends BaseActivity {

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  * 示例2适配器
- * Created by HG on 2018-06-07.
+ * Created by Hollow Goods 2018-06-07.
  */
 public class Ex2Adapter extends BaseAdapter {
 

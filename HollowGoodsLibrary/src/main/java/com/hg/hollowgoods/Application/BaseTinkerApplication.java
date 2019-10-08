@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * 基 Tinker Application
  * 使用Tinker时继承
- * Created by HG on 2019-09-20.
+ * Created by Hollow Goods 2019-09-20.
  */
 public abstract class BaseTinkerApplication extends TinkerApplication implements IBaseApplication {
 

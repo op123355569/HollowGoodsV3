@@ -15,7 +15,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 
 /**
  * 进度对话框
- * Created by HG on 2018-01-17.
+ * Created by Hollow Goods 2018-01-17.
  */
 
 public class HGProgressDialog extends HGDialog {

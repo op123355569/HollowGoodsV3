@@ -17,7 +17,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * 加密工具类
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint({"DefaultLocale"})
 public class EncryptUtils {

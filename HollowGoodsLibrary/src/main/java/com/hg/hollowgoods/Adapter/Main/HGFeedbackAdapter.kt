@@ -11,7 +11,7 @@ import com.hg.hollowgoods.Util.StringUtils
 
 /**
  * 反馈中心适配器
- * Created by HG on 2018-04-26.
+ * Created by Hollow Goods 2018-04-26.
  */
 class HGFeedbackAdapter(context: HGFeedbackActivity?, layoutId: Int, data: List<ExceptionLog>?) : CommonAdapter<ExceptionLog>(context, layoutId, data) {
 

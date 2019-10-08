@@ -9,7 +9,7 @@ import com.hg.hollowgoods.Constant.HGConstants;
 import java.util.List;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex12Adapter extends MultiItemTypeAdapter<CommonBean> {

@@ -27,7 +27,7 @@ import java.io.File;
 
 /**
  * HG APP版本更新工具类
- * Created by HG on 2016-11-28.
+ * Created by Hollow Goods 2016-11-28.
  */
 
 public abstract class HGUpdateAPPUtils implements UpdateAPPController {

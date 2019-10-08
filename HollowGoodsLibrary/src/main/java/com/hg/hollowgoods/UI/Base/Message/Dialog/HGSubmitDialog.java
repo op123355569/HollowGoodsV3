@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 /**
  * 提交对话框
- * Created by HG on 2019-04-10.
+ * Created by Hollow Goods 2019-04-10.
  */
 
 class HGSubmitDialog extends HGDialog {

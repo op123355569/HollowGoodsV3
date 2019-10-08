@@ -31,7 +31,7 @@ import java.math.BigDecimal;
 
 /**
  * 快速适配器布局——列表布局
- * Created by HG on 2018-06-13.
+ * Created by Hollow Goods 2018-06-13.
  */
 public class ItemFastList extends BaseFastItem implements ItemViewDelegate<CommonBean> {
 

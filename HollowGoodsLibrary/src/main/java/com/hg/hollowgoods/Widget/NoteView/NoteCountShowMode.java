@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Widget.NoteView;
 
 /**
  * 提醒数字显示模式
- * Created by HG on 2018-01-24.
+ * Created by Hollow Goods 2018-01-24.
  */
 
 public enum NoteCountShowMode {

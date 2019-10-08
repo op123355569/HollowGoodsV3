@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 /**
  * BottomNavigationBar示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex5Activity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {

@@ -15,7 +15,7 @@ import com.jaredrummler.android.widget.AnimatedSvgView;
 
 /**
  * 启动界面
- * Created by HG on 2018-06-07.
+ * Created by Hollow Goods 2018-06-07.
  */
 public class HGIndexActivity extends BaseActivity {
 

@@ -2,7 +2,7 @@ package com.hg.hollowgoods.Adapter.FastAdapter.Constant;
 
 /**
  * 模式
- * Created by HG on 2018-06-14.
+ * Created by Hollow Goods 2018-06-14.
  */
 public enum FastItemMode {
 

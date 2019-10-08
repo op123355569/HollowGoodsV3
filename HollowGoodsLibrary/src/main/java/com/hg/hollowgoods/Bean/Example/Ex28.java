@@ -19,7 +19,7 @@ import com.hg.hollowgoods.Util.StringUtils;
 
 /**
  * 示例28
- * Created by HG on 2018-06-13.
+ * Created by Hollow Goods 2018-06-13.
  */
 @FastListAutoNumber()
 public class Ex28 extends CommonBean {

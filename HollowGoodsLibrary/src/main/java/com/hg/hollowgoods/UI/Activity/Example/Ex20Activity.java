@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  * 数据缓存清理示例界面
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 
 public class Ex20Activity extends BaseActivity {

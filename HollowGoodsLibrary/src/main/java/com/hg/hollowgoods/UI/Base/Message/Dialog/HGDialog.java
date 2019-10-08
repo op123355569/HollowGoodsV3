@@ -11,7 +11,7 @@ import com.hg.hollowgoods.Util.PopupWinHelper;
 import com.hg.hollowgoods.Util.StringUtils;
 
 /**
- * Created by HG on 2018-01-17.
+ * Created by Hollow Goods 2018-01-17.
  */
 
 public class HGDialog {

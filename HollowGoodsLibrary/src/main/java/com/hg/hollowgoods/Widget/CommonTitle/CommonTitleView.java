@@ -22,7 +22,7 @@ import com.hg.hollowgoods.Util.DensityUtils;
 
 /**
  * 公共标题控件
- * Created by HG on 2017-10-12.
+ * Created by Hollow Goods 2017-10-12.
  */
 public class CommonTitleView extends BaseCommonTitle {
 

@@ -3,7 +3,7 @@ package com.hg.hollowgoods.Bean.CommonBean;
 import java.io.Serializable;
 
 /**
- * Created by HG on 2018-07-18.
+ * Created by Hollow Goods 2018-07-18.
  */
 public class KeyValue implements Serializable {
 

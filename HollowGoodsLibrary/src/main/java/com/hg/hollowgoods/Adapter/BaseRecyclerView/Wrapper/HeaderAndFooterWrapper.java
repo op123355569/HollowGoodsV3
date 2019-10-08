@@ -11,7 +11,7 @@ import com.hg.hollowgoods.Adapter.BaseRecyclerView.Util.WrapperUtils;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Created by HG
+ * Created by Hollow Goods on unknown.
  */
 public class HeaderAndFooterWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

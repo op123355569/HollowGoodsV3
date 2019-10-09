@@ -102,6 +102,7 @@ object NetWorkUtils {
      * @param context context
      * @return boolean
      */
+    @JvmStatic
     fun isNetworkStateOver2G(context: Context): Boolean {
 
         // 获取网络服务

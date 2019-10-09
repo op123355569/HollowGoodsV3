@@ -752,8 +752,9 @@ public class SystemAppUtils {
      *
      * @param context context
      * @param url     url
+     * @return boolean
      */
-    public void openExplorer(Context context, String url) {
+    public boolean openExplorer(Context context, String url) {
 
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -761,9 +762,11 @@ public class SystemAppUtils {
 
         if (explorerList != null && explorerList.size() > 0) {
             context.startActivity(intent);
-        } else {
-            t.error(R.string.please_setup_explorer_first);
+            return true;
         }
+
+        // 未安装浏览器或网址有误
+        return false;
     }
 
     /**

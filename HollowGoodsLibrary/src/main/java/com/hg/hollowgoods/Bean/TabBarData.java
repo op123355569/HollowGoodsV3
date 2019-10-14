@@ -3,6 +3,7 @@ package com.hg.hollowgoods.Bean;
 import android.support.v4.app.Fragment;
 
 /**
+ * TabBar数据
  * Created by Hollow Goods on 2019-07-04.
  */
 public class TabBarData {

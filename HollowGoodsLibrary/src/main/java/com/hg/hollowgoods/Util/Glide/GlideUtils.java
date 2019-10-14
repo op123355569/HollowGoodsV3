@@ -57,7 +57,7 @@ public class GlideUtils {
                 String saveName = getSaveName(glideOptions);
                 String loadPath = "";
 
-                if (!glideOptions.isNeverCache() && !glideOptions.isGif() && (FileUtils.checkFileExist2(loadPath = glideOptions.getLoadByUrl()) || FileUtils.checkFileExist2(loadPath = (savePath + saveName)))) {
+                if (!glideOptions.isNeverCache() && !glideOptions.isGif() && (FileUtils.checkFileExistOnly(loadPath = glideOptions.getLoadByUrl()) || FileUtils.checkFileExistOnly(loadPath = (savePath + saveName)))) {
                     glideOptions.setLoadByFile(new File(loadPath));
                     requestBuilder.load(glideOptions.getLoadByFile());
                     isNeedCache = false;

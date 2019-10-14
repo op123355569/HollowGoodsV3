@@ -3,10 +3,8 @@ package com.hg.hollowgoods.Util;
 import android.support.annotation.Nullable;
 
 /**
- * @ClassName:
- * @Description:
- * @author: HollowGoods
- * @date: 2019年01月16日
+ * 空指针工具类
+ * Created by Hollow Goods 2019-01-16.
  */
 public class NullUtils {
 

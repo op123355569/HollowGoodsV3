@@ -36,7 +36,7 @@ public class CacheUtils {
     public void save(String path, String name, Object data) {
         try {
             String str = new Gson().toJson(data);
-            FileUtils.checkFileExist(path);
+            FileUtils.checkFileExistAndCreate(path);
             FileUtils.saveToSD(path + name, str);
         } catch (Exception e) {
 
@@ -49,7 +49,7 @@ public class CacheUtils {
 
     public <T> T load(String path, String name, Type type) {
         try {
-            if (FileUtils.checkFileExist2(path + name)) {
+            if (FileUtils.checkFileExistOnly(path + name)) {
                 String str = FileUtils.loadFromSDCard(path + name);
                 return new Gson().fromJson(str, type);
             }

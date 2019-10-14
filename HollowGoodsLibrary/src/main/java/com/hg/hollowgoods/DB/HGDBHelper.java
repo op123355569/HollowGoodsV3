@@ -7,6 +7,11 @@ import org.xutils.ex.DbException;
 
 import java.util.List;
 
+/**
+ * 基础本地数据库帮助类
+ * <p>
+ * 继承该类即可获得基本操作能力
+ */
 public class HGDBHelper {
 
     public <T> T findFirst(Class<T> clazz) {

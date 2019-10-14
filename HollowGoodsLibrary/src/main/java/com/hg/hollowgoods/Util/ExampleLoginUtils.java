@@ -5,6 +5,7 @@ import com.hg.hollowgoods.Bean.HGUser;
 import com.hg.hollowgoods.DB.ExampleUserDBHelper;
 
 /**
+ * 登录工具类示例
  * Created by Hollow Goods on 2019-07-11.
  */
 public class ExampleLoginUtils {

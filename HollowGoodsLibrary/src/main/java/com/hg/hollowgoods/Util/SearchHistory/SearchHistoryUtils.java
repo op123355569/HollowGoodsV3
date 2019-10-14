@@ -22,14 +22,14 @@ public class SearchHistoryUtils {
     public static ArrayList<SearchKeys> getKeys(Class clazz, int... historyCode) {
 
         ArrayList<SearchKeys> result = null;
-        FileUtils.checkFileExist(HGSystemConfig.getSearchHistoryPath());
+        FileUtils.checkFileExistAndCreate(HGSystemConfig.getSearchHistoryPath());
         String name = HGSystemConfig.getSearchHistoryPath() + EncryptUtils.md5Encrypt(clazz.getName());
 
         if (historyCode != null && historyCode.length > 0) {
             name = name + historyCode[0];
         }
 
-        if (FileUtils.checkFileExist2(name)) {
+        if (FileUtils.checkFileExistOnly(name)) {
             String str = FileUtils.loadFromSDCard(name);
 
             result = new Gson().fromJson(str, new TypeToken<ArrayList<SearchKeys>>() {
@@ -71,7 +71,7 @@ public class SearchHistoryUtils {
                 }
             }
 
-            FileUtils.checkFileExist(HGSystemConfig.getSearchHistoryPath());
+            FileUtils.checkFileExistAndCreate(HGSystemConfig.getSearchHistoryPath());
             String str = new Gson().toJson(keys);
             String name = HGSystemConfig.getSearchHistoryPath() + EncryptUtils.md5Encrypt(clazz.getName());
 

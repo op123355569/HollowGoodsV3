@@ -57,8 +57,7 @@ public class FileUtils {
      */
     public static void getFilePathAndName(String path, List<String> filePath, List<String> fileName) {
 
-        File file = new File(path);
-        File[] listFile = file.listFiles();
+        File[] listFile = getPathFile(path);
 
         for (File f : listFile) {
             fileName.add(f.getName());
@@ -115,7 +114,7 @@ public class FileUtils {
             return "dir";
         }
 
-        String fileName = file.getName();
+        String fileName = file.getName().toLowerCase();
         int index = fileName.lastIndexOf(".");
 
         if (index == -1) {
@@ -349,8 +348,8 @@ public class FileUtils {
     /**
      * 格式化文件大小
      *
-     * @param value
-     * @return
+     * @param value long
+     * @return String
      */
     public static String renderSize(long value) {
 
@@ -374,7 +373,7 @@ public class FileUtils {
      *
      * @param path String
      */
-    public static void checkFileExist(String path) {
+    public static void checkFileExistAndCreate(String path) {
 
         File file = new File(path);
 
@@ -384,12 +383,12 @@ public class FileUtils {
     }
 
     /**
-     * 检查文件是否存在
+     * 检查文件是否存在，仅检查，不创建
      *
      * @param path String
      * @return 返回是否存在
      */
-    public static boolean checkFileExist2(String path) {
+    public static boolean checkFileExistOnly(String path) {
         return new File(path).exists();
     }
 

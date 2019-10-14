@@ -7,10 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * @ClassName:
- * @Description:
- * @author: HollowGoods
- * @date: 2018年09月28日
+ * 文件选择工具类
+ * Created by Hollow Goods 2018-09-28.
  */
 public class FileSelectorUtils {
 

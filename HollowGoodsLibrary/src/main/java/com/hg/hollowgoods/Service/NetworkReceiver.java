@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.hg.hollowgoods.Application.ApplicationBuilder;
+import com.hg.hollowgoods.Application.BaseApplication;
 import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Bean.EventBus.Event;
 import com.hg.hollowgoods.Bean.EventBus.HGEventActionCode;
@@ -18,6 +19,9 @@ import org.greenrobot.eventbus.EventBus;
 
 /**
  * 网络连接状态改变监听
+ * <p>
+ * 由于兼容性问题，在Android7.0以上会失效，所以该类已经废弃，代替类：{@link BaseApplication}
+ * <p>
  * Created by Hollow Goods 2018-05-23.
  */
 @Deprecated

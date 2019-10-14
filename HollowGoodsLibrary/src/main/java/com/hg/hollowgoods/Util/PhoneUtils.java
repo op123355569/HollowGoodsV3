@@ -5,8 +5,18 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 手机号工具类
+ * Created by Hollow Goods on unknown.
+ */
 public class PhoneUtils {
 
+    /**
+     * 是否为手机号
+     *
+     * @param phoneNumber String
+     * @return boolean
+     */
     public static boolean isPhoneNumber(String phoneNumber) {
 
         StringBuffer regexMobile = new StringBuffer();
@@ -26,9 +36,9 @@ public class PhoneUtils {
     /**
      * 是否为匹配规则字符串
      *
-     * @param regex
-     * @param orginal
-     * @return
+     * @param regex   String
+     * @param orginal String
+     * @return boolean
      */
     private static boolean isMatch(String regex, String orginal) {
 

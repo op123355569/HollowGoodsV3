@@ -109,7 +109,6 @@ dependencies {
     annotationProcessor libs.BadgeViewCompiler
 
     // 图片选择与预览
-
     //    api libs.PhotoPicker
     api libs.BaseAdapter
 

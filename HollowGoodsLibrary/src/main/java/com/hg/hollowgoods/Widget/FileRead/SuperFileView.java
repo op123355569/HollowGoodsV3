@@ -55,7 +55,7 @@ public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCa
         if (mFile != null && !TextUtils.isEmpty(mFile.toString())) {
             // 增加下面一句解决没有TbsReaderTemp文件夹存在导致加载文件失败
             String bsReaderTemp = HGSystemConfig.APP_BASE_PATH + "/Temp/";
-            FileUtils.checkFileExist(bsReaderTemp);
+            FileUtils.checkFileExistAndCreate(bsReaderTemp);
 
             // 加载文件
             Bundle localBundle = new Bundle();

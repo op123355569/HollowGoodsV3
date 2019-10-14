@@ -105,16 +105,16 @@ public class BugWatchActivity extends BaseActivity implements OnDialogClickListe
         if (baseApplication.getAllActivity() != null && baseApplication.getAllActivity().size() > 0) {
             hasActivity = true;
 
-            FileUtils.checkFileExist(IMG_PATH);
-            FileUtils.checkFileExist(DATA_PATH);
-            FileUtils.checkFileExist(OUTPUT_PATH);
+            FileUtils.checkFileExistAndCreate(IMG_PATH);
+            FileUtils.checkFileExistAndCreate(DATA_PATH);
+            FileUtils.checkFileExistAndCreate(OUTPUT_PATH);
 
             Activity activity = baseApplication.getAllActivity().get(baseApplication.getAllActivity().size() - 1);
 
             mOutputName = activity.getClass().getName();
             mFileName = EncryptUtils.md5Encrypt(mOutputName);
 
-            if (FileUtils.checkFileExist2(DATA_PATH + mFileName)) {
+            if (FileUtils.checkFileExistOnly(DATA_PATH + mFileName)) {
                 String temp = FileUtils.loadFromSDCard(DATA_PATH + mFileName);
                 mBugData = new Gson().fromJson(temp, new TypeToken<ArrayList<BugData>>() {
                 }.getType());

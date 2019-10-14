@@ -74,7 +74,7 @@ abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<Common
                 viewHolder.setVisible(viewId, true);
                 viewHolder.setImageResource(viewId, iconRes);
             } else {
-                Integer res = ResUtils.getImageResources(viewHolder.getContext(), iconName, iconType);
+                Integer res = ResUtils.getResourcesIdByName(viewHolder.getContext(), iconName, iconType);
                 if (res == null) {
                     viewHolder.setVisible(viewId, false);
                 } else {
@@ -125,7 +125,7 @@ abstract class BaseItemHGFastItem<CommonBean> implements ItemViewDelegate<Common
                     viewHolder.setVisible(contentMarginViewId, false);
                     viewHolder.setImageResource(rightIconViewId, iconRes);
                 } else {
-                    Integer res = ResUtils.getImageResources(viewHolder.getContext(), iconName, iconType);
+                    Integer res = ResUtils.getResourcesIdByName(viewHolder.getContext(), iconName, iconType);
                     if (res == null) {
                         viewHolder.setVisible(rightIconViewId, false);
                         viewHolder.setVisible(contentMarginViewId, true);

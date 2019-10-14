@@ -93,7 +93,7 @@ public class FileReadActivity extends BaseActivity {
 
     private void downloadFile() {
 
-        if (FileUtils.checkFileExist2(CACHE_PATH + getFileName())) {
+        if (FileUtils.checkFileExistOnly(CACHE_PATH + getFileName())) {
             filepath = CACHE_PATH + getFileName();
             readFile();
         } else {

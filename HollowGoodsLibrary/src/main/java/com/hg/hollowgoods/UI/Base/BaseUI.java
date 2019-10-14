@@ -469,6 +469,9 @@ public class BaseUI {
 
     public void setMenuRes(int menuRes) {
         this.menuRes = commonTitle != null ? menuRes : -1;
+        if (!isActivity) {
+            ((BaseFragment) initUI).setHasOptionsMenu(menuRes != -1);
+        }
     }
 
     public void addCommonTitleOtherView(View view) {

@@ -508,14 +508,14 @@ public class BugOtherHtml {
     }
 
     public static void checkFile(final Context context, String path, String name) {
-        if (!FileUtils.checkFileExist2(path + name)) {
+        if (!FileUtils.checkFileExistOnly(path + name)) {
             saveFile(path, name, AssetsUtils.getInputStream("Bug/" + name, context));
         }
     }
 
     private static void saveFile(String path, String name, InputStream in) {
 
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
         copyFile(in, path, name);
     }
 

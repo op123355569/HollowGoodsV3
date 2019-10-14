@@ -64,7 +64,7 @@ public class HGSystemConfig {
     public static String getPhotoCachePath() {
 
         String path = APP_BASE_PATH + "/ImageCache/";
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
 
         return path;
     }
@@ -75,7 +75,7 @@ public class HGSystemConfig {
     public static String getVideoCachePath() {
 
         String path = APP_BASE_PATH + "/VideoCache/";
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
 
         return path;
     }
@@ -86,7 +86,7 @@ public class HGSystemConfig {
     public static String getAudioCachePath() {
 
         String path = APP_BASE_PATH + "/AudioCache/";
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
 
         return path;
     }
@@ -97,7 +97,7 @@ public class HGSystemConfig {
     public static String getDataCachePath() {
 
         String path = APP_BASE_PATH + "/DataCache/";
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
 
         return path;
     }
@@ -108,7 +108,7 @@ public class HGSystemConfig {
     public static String getDownloadFilePath() {
 
         String path = APP_BASE_PATH + "/Download/";
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
 
         return path;
     }
@@ -119,7 +119,7 @@ public class HGSystemConfig {
     public static String getBugPath() {
 
         String path = APP_BASE_PATH + "/BUG/";
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
 
         return path;
     }
@@ -130,7 +130,7 @@ public class HGSystemConfig {
     public static String getSearchHistoryPath() {
 
         String path = APP_BASE_PATH + "/SearchHistory/";
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
 
         return path;
     }

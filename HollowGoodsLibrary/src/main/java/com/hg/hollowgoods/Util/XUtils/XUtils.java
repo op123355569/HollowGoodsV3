@@ -653,7 +653,7 @@ public class XUtils {
 
         FileOutputStream b = null;
 
-        FileUtils.checkFileExist(path);
+        FileUtils.checkFileExistAndCreate(path);
         String fileName = path + name;
 
         try {

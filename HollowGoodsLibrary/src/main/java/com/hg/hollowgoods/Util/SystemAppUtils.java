@@ -193,7 +193,7 @@ public class SystemAppUtils {
         cameraPhotoName = System.currentTimeMillis() + ".jpg";
         cameraPhotoFile = new File(photoSavePath + cameraPhotoName);
 
-        FileUtils.checkFileExist(photoSavePath);
+        FileUtils.checkFileExistAndCreate(photoSavePath);
 
         // 启动拍照,并保存到临时文件
         Intent takePhotoIntent = new Intent();
@@ -344,7 +344,7 @@ public class SystemAppUtils {
      */
     public void openAlbum(Activity activity, int requestCode, @IntRange(from = 0, to = 100) int quality, OnProxyActivityResult onProxyActivityResult) {
 
-        FileUtils.checkFileExist(photoSavePath);
+        FileUtils.checkFileExistAndCreate(photoSavePath);
 
         albumQuality = quality;
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -490,7 +490,7 @@ public class SystemAppUtils {
         Uri sourceImageUri = Uri.fromFile(new File(sourceImagePath));
         boolean isPng = sourceImagePath.toLowerCase(Locale.getDefault()).endsWith(".png");
 
-        FileUtils.checkFileExist(photoSavePath);
+        FileUtils.checkFileExistAndCreate(photoSavePath);
 
         cropImagePath = photoSavePath + System.currentTimeMillis() + (isPng ? ".png" : ".jpg");
         cropImageUri = Uri.fromFile(new File(cropImagePath));
@@ -600,7 +600,7 @@ public class SystemAppUtils {
         String videoName = System.currentTimeMillis() + ".mp4";
         videoFile = new File(videoSavePath + videoName);
 
-        FileUtils.checkFileExist(videoSavePath);
+        FileUtils.checkFileExistAndCreate(videoSavePath);
 
         // 启动视频,并保存到临时文件
         Intent mIntent = new Intent();

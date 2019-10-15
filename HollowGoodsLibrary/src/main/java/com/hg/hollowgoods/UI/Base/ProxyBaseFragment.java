@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 
 /**
  * 代理基础碎片
+ *
+ * Created by Hollow Goods on unknown.
  */
 @SuppressLint("NewApi")
 public abstract class ProxyBaseFragment extends Fragment {

@@ -10,6 +10,9 @@
         <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle.White</item>
     </style>
 
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="HGBaseAppTheme" />
+
     <!-- 水平进度条 -->
     <style name="mProgress_horizontal">
         <item name="android:indeterminateOnly">false</item>

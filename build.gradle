@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // TinkerPatch 插件
         classpath("com.tencent.tinker:tinker-patch-gradle-plugin:${TINKERPATCH_VERSION}")
     }
@@ -24,7 +24,6 @@ allprojects {
 //        mavenCentral(url: "https://dl.bintray.com/ycjiang/ycjiang")
         maven {
             url "https://jitpack.io"
-            credentials { username authToken }
         }
     }
 }

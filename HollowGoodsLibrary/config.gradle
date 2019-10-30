@@ -1,11 +1,13 @@
+// 发布命令：./gradlew -p HollowGoodsLibrary clean build uploadArchives --info
+
 ext {
     configs = [
             compileSdkVersion: 27,
             buildToolsVersion: '29.0.2',
             minSdkVersion    : 21,
             targetSdkVersion : 27,
-            versionCode      : 393,
-            versionName      : '3.9.3',
+            versionCode      : 400,
+            versionName      : '4.0.0',
     ]
 
     // 基础Android Support控件

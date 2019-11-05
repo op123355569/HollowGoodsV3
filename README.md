@@ -4,15 +4,31 @@
 [![](https://jitpack.io/v/op123355569/HollowGoodsV3.svg)](https://jitpack.io/#op123355569/HollowGoodsV3)
 
 ```
+// 工程Gradle
 allprojects {
 	repositories {
 		...
+		maven {
+            		url LAN_URL
+            		credentials {
+                		username 'admin'
+                		password 'hollowgoods'
+            		}
+        	}
 		maven { url 'https://jitpack.io' }
 	}
 }
 ```
+
+```
+// gradle.properties
+WAN_URL=http://hollowgoods.51vip.biz:43889/repository/maven-public/
+LAN_URL=http://192.168.0.105:9958/repository/maven-public/
+```
+
   
 ```
+// 项目Gradle
 dependencies {
 	implementation 'com.github.op123355569:HollowGoodsV3:LastVersion'
 }

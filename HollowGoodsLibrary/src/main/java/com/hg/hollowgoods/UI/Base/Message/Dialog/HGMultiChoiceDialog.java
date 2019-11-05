@@ -20,7 +20,13 @@ import java.util.ArrayList;
 
 /**
  * 单选对话框
+ * <p>
  * Created by Hollow Goods 2018-01-17.
+ * <p>
+ * <p>
+ * 修改UI
+ * <p>
+ * Updated by Hollow Goods 2019-11-05.
  */
 
 class HGMultiChoiceDialog extends HGDialog {
@@ -49,28 +55,21 @@ class HGMultiChoiceDialog extends HGDialog {
         this.dialog = new AlertDialog
                 .Builder(context)
                 .setView(R.layout.dialog_multi_choice)
-                .setNegativeButton(R.string.cancel, (dialog, which) -> {
-                    if (onDialogClickListener != null) {
-                        onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, false, null);
-                    }
-                }).setPositiveButton(R.string.sure, (dialog, which) -> {
-                    if (onDialogClickListener != null) {
-                        Bundle data = new Bundle();
-                        data.putSerializable(HGParamKey.Positions.getValue(), HGMultiChoiceDialog.this.checkedPositions);
-                        onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, true, data);
-                    }
-                })
                 .create();
         this.dialog.setOnDismissListener(dialog -> HGMultiChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGMultiChoiceDialog.this));
-
-        if (!TextUtils.isEmpty(title1)) {
-            this.dialog.setTitle(title1);
-        }
         this.dialog.setCancelable(true);
         this.dialog.show();
 
         RecyclerView result = this.dialog.findViewById(R.id.rv_result);
+        TextView mTitle = this.dialog.findViewById(R.id.tv_title);
+        TextView cancelView = this.dialog.findViewById(R.id.tv_cancel);
+        TextView sureView = this.dialog.findViewById(R.id.tv_sure);
         count = this.dialog.findViewById(R.id.tv_count);
+
+        if (!TextUtils.isEmpty(title1) && mTitle != null) {
+            mTitle.setVisibility(View.VISIBLE);
+            mTitle.setText(title1);
+        }
 
         if (result != null) {
             result.setHasFixedSize(true);
@@ -124,6 +123,26 @@ class HGMultiChoiceDialog extends HGDialog {
             });
 
             setCount();
+        }
+
+        if (cancelView != null) {
+            cancelView.setOnClickListener(v -> {
+                if (onDialogClickListener != null) {
+                    onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, false, null);
+                }
+                dialog.dismiss();
+            });
+        }
+
+        if (sureView != null) {
+            sureView.setOnClickListener(v -> {
+                if (onDialogClickListener != null) {
+                    Bundle data = new Bundle();
+                    data.putSerializable(HGParamKey.Positions.getValue(), HGMultiChoiceDialog.this.checkedPositions);
+                    onDialogClickListener.onDialogClick(HGMultiChoiceDialog.this.code, true, data);
+                }
+                dialog.dismiss();
+            });
         }
     }
 

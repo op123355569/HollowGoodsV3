@@ -13,17 +13,16 @@
         android:layout_marginEnd="16dp"
         android:visibility="gone" />
 
-    <com.hg.hollowgoods.Widget.ValidatorInput.ValidatorInputView
-        android:id="@+id/et_input"
+    <TextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
-
-    <include
-        layout="@layout/item_dialog_common_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:textColor="@color/txt_color_normal"
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hg.hollowgoods.Application.ApplicationBuilder;
 import com.hg.hollowgoods.Application.IBaseApplication;
@@ -19,7 +20,13 @@ import java.util.List;
 
 /**
  * 年月日时分对话框
+ * <p>
  * Created by Hollow Goods 2018-01-18.
+ * <p>
+ * <p>
+ * 修改UI
+ * <p>
+ * Updated by Hollow Goods 2019-11-05.
  */
 
 public class HGDateTimeDialog extends HGDialog {
@@ -81,31 +88,8 @@ public class HGDateTimeDialog extends HGDialog {
         this.hour = c.get(Calendar.HOUR_OF_DAY);
         this.minute = c.get(Calendar.MINUTE);
 
-        this.dialog = new AlertDialog.Builder(context).setView(R.layout.dialog_date_time).setNegativeButton(R.string.cancel, (dialog, which) -> {
-            if (onDialogClickListener != null) {
-                onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, false, null);
-            }
-        }).setPositiveButton(R.string.sure, (dialog, which) -> {
-            if (onDialogClickListener != null) {
-                Calendar c1 = Calendar.getInstance();
-                c1.set(
-                        HGDateTimeDialog.this.year,
-                        HGDateTimeDialog.this.month,
-                        HGDateTimeDialog.this.date,
-                        HGDateTimeDialog.this.hour,
-                        HGDateTimeDialog.this.minute
-                );
-
-                Bundle data = new Bundle();
-                data.putInt(HGParamKey.DateYear.getValue(), HGDateTimeDialog.this.year);
-                data.putInt(HGParamKey.DateMonth.getValue(), HGDateTimeDialog.this.month + 1);
-                data.putInt(HGParamKey.DateDay.getValue(), HGDateTimeDialog.this.date);
-                data.putInt(HGParamKey.DateHour.getValue(), HGDateTimeDialog.this.hour);
-                data.putInt(HGParamKey.DateMinute.getValue(), HGDateTimeDialog.this.minute);
-                data.putLong(HGParamKey.DateTimeInMillis.getValue(), c1.getTimeInMillis());
-                onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, true, data);
-            }
-        }).create();
+        this.dialog = new AlertDialog.Builder(context).setView(R.layout.dialog_date_time)
+                .create();
 
         this.dialog.setOnDismissListener(dialog -> HGDateTimeDialog.this.onDialogDismissListener.onDialogDismiss(HGDateTimeDialog.this));
 
@@ -116,6 +100,8 @@ public class HGDateTimeDialog extends HGDialog {
         dateView = this.dialog.findViewById(R.id.date);
         hourView = this.dialog.findViewById(R.id.hour);
         minuteView = this.dialog.findViewById(R.id.minute);
+        TextView cancelView = this.dialog.findViewById(R.id.tv_cancel);
+        TextView sureView = this.dialog.findViewById(R.id.tv_sure);
 
         switch (dateTimeDialogType) {
             case YMD:
@@ -138,6 +124,40 @@ public class HGDateTimeDialog extends HGDialog {
                 hourView.setVisibility(View.GONE);
                 minuteView.setVisibility(View.GONE);
                 break;
+        }
+
+        if (cancelView != null) {
+            cancelView.setOnClickListener(v -> {
+                if (onDialogClickListener != null) {
+                    onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, false, null);
+                }
+                dialog.dismiss();
+            });
+        }
+
+        if (sureView != null) {
+            sureView.setOnClickListener(v -> {
+                if (onDialogClickListener != null) {
+                    Calendar c1 = Calendar.getInstance();
+                    c1.set(
+                            HGDateTimeDialog.this.year,
+                            HGDateTimeDialog.this.month,
+                            HGDateTimeDialog.this.date,
+                            HGDateTimeDialog.this.hour,
+                            HGDateTimeDialog.this.minute
+                    );
+
+                    Bundle data = new Bundle();
+                    data.putInt(HGParamKey.DateYear.getValue(), HGDateTimeDialog.this.year);
+                    data.putInt(HGParamKey.DateMonth.getValue(), HGDateTimeDialog.this.month + 1);
+                    data.putInt(HGParamKey.DateDay.getValue(), HGDateTimeDialog.this.date);
+                    data.putInt(HGParamKey.DateHour.getValue(), HGDateTimeDialog.this.hour);
+                    data.putInt(HGParamKey.DateMinute.getValue(), HGDateTimeDialog.this.minute);
+                    data.putLong(HGParamKey.DateTimeInMillis.getValue(), c1.getTimeInMillis());
+                    onDialogClickListener.onDialogClick(HGDateTimeDialog.this.code, true, data);
+                }
+                dialog.dismiss();
+            });
         }
 
         initYear();

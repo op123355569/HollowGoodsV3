@@ -103,9 +103,7 @@ public class ReflectUtils {
 
         try {
             return method.invoke(obj, param);
-        } catch (IllegalAccessException ignored) {
-
-        } catch (InvocationTargetException ignored) {
+        } catch (IllegalAccessException | InvocationTargetException ignored) {
 
         }
 
@@ -116,9 +114,7 @@ public class ReflectUtils {
 
         try {
             return method.invoke(null, param);
-        } catch (IllegalAccessException ignored) {
-
-        } catch (InvocationTargetException ignored) {
+        } catch (IllegalAccessException | InvocationTargetException ignored) {
 
         }
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hg.hollowgoods.Adapter.Dialog.SingleChoiceDialogAdapter;
 import com.hg.hollowgoods.Constant.HGParamKey;
@@ -18,7 +19,13 @@ import java.util.ArrayList;
 
 /**
  * 单选对话框
+ * <p>
  * Created by Hollow Goods 2018-01-17.
+ * <p>
+ * <p>
+ * 修改UI
+ * <p>
+ * Updated by Hollow Goods 2019-11-05.
  */
 
 class HGSingleChoiceDialog extends HGDialog {
@@ -40,27 +47,20 @@ class HGSingleChoiceDialog extends HGDialog {
         this.dialog = new AlertDialog
                 .Builder(context)
                 .setView(R.layout.dialog_single_choice)
-                .setNegativeButton(R.string.cancel, (dialog, which) -> {
-                    if (onDialogClickListener != null) {
-                        onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, false, null);
-                    }
-                }).setPositiveButton(R.string.sure, (dialog, which) -> {
-                    if (onDialogClickListener != null) {
-                        Bundle data = new Bundle();
-                        data.putInt(HGParamKey.Position.getValue(), HGSingleChoiceDialog.this.checkedPosition);
-                        onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, true, data);
-                    }
-                })
                 .create();
         this.dialog.setOnDismissListener(dialog -> HGSingleChoiceDialog.this.onDialogDismissListener.onDialogDismiss(HGSingleChoiceDialog.this));
-
-        if (!TextUtils.isEmpty(title1)) {
-            this.dialog.setTitle(title1);
-        }
         this.dialog.setCancelable(true);
         this.dialog.show();
 
         RecyclerView result = this.dialog.findViewById(R.id.rv_result);
+        TextView mTitle = this.dialog.findViewById(R.id.tv_title);
+        TextView cancelView = this.dialog.findViewById(R.id.tv_cancel);
+        TextView sureView = this.dialog.findViewById(R.id.tv_sure);
+
+        if (!TextUtils.isEmpty(title1) && mTitle != null) {
+            mTitle.setVisibility(View.VISIBLE);
+            mTitle.setText(title1);
+        }
 
         if (result != null) {
             result.setHasFixedSize(true);
@@ -88,6 +88,26 @@ class HGSingleChoiceDialog extends HGDialog {
                 public void onRecyclerViewItemClick(View view, RecyclerView.ViewHolder viewHolder, int position) {
                     showDescribe(view, data.get(position).getItem().toString(), data.get(position).getDescribe());
                 }
+            });
+        }
+
+        if (cancelView != null) {
+            cancelView.setOnClickListener(v -> {
+                if (onDialogClickListener != null) {
+                    onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, false, null);
+                }
+                dialog.dismiss();
+            });
+        }
+
+        if (sureView != null) {
+            sureView.setOnClickListener(v -> {
+                if (onDialogClickListener != null) {
+                    Bundle data = new Bundle();
+                    data.putInt(HGParamKey.Position.getValue(), HGSingleChoiceDialog.this.checkedPosition);
+                    onDialogClickListener.onDialogClick(HGSingleChoiceDialog.this.code, true, data);
+                }
+                dialog.dismiss();
             });
         }
     }

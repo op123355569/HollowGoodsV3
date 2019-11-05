@@ -1695,7 +1695,12 @@ public class BaseUI {
         if (key.length == value.length) {
             Map<String, Object> params = new HashMap<>();
             for (int i = 0; i < key.length; i++) {
-                params.put(key[i], value[i]);
+                if (value[i] instanceof Class<?>) {
+                    // 单独处理Class类型的参数
+                    intent.putExtra(key[i], (Class<?>) value[i]);
+                } else {
+                    params.put(key[i], value[i]);
+                }
             }
             intent.putExtra(HGParamKey.MapData.getValue(), new Gson().toJson(params));
         } else {

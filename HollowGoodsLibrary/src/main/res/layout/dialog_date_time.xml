@@ -3,58 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorAccent"
-    android:orientation="vertical"
-    android:padding="4dp">
+    android:orientation="vertical">
 
-    <com.hg.hollowgoods.Widget.RulerWheelView
-        android:id="@+id/year"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@android:color/white"
-        app:lwvHighlightColor="@color/colorAccent"
-        app:lwvIntervalFactor="1.3"
-        app:lwvMarkTextSize="12sp" />
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:padding="4dp">
 
-    <com.hg.hollowgoods.Widget.RulerWheelView
-        android:id="@+id/month"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@android:color/white"
-        app:lwvHighlightColor="@color/colorAccent"
-        app:lwvIntervalFactor="1.3"
-        app:lwvMarkTextSize="12sp" />
+        <com.hg.hollowgoods.Widget.RulerWheelView
+            android:id="@+id/year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@android:color/white"
+            app:lwvHighlightColor="@color/colorAccent"
+            app:lwvIntervalFactor="1.3"
+            app:lwvMarkTextSize="12sp" />
 
-    <com.hg.hollowgoods.Widget.RulerWheelView
-        android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@android:color/white"
-        app:lwvHighlightColor="@color/colorAccent"
-        app:lwvIntervalFactor="1.3"
-        app:lwvMarkTextSize="12sp" />
+        <com.hg.hollowgoods.Widget.RulerWheelView
+            android:id="@+id/month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@android:color/white"
+            app:lwvHighlightColor="@color/colorAccent"
+            app:lwvIntervalFactor="1.3"
+            app:lwvMarkTextSize="12sp" />
 
-    <com.hg.hollowgoods.Widget.RulerWheelView
-        android:id="@+id/hour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@android:color/white"
-        app:lwvHighlightColor="@color/colorAccent"
-        app:lwvIntervalFactor="1.3"
-        app:lwvMarkTextSize="12sp" />
+        <com.hg.hollowgoods.Widget.RulerWheelView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@android:color/white"
+            app:lwvHighlightColor="@color/colorAccent"
+            app:lwvIntervalFactor="1.3"
+            app:lwvMarkTextSize="12sp" />
 
-    <com.hg.hollowgoods.Widget.RulerWheelView
-        android:id="@+id/minute"
+        <com.hg.hollowgoods.Widget.RulerWheelView
+            android:id="@+id/hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@android:color/white"
+            app:lwvHighlightColor="@color/colorAccent"
+            app:lwvIntervalFactor="1.3"
+            app:lwvMarkTextSize="12sp" />
+
+        <com.hg.hollowgoods.Widget.RulerWheelView
+            android:id="@+id/minute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@android:color/white"
+            app:lwvHighlightColor="@color/colorAccent"
+            app:lwvIntervalFactor="1.3"
+            app:lwvMarkTextSize="12sp" />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/item_dialog_common_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@android:color/white"
-        app:lwvHighlightColor="@color/colorAccent"
-        app:lwvIntervalFactor="1.3"
-        app:lwvMarkTextSize="12sp" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

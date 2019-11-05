@@ -3,6 +3,7 @@ package com.hg.hollowgoods.UI.Base.Message.Dialog;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,13 @@ import com.nineoldandroids.animation.ObjectAnimator;
 
 /**
  * 进度对话框
+ * <p>
  * Created by Hollow Goods 2018-01-17.
+ * <p>
+ * <p>
+ * 修改UI
+ * <p>
+ * Updated by Hollow Goods 2019-11-05.
  */
 
 public class HGProgressDialog extends HGDialog {
@@ -25,7 +32,6 @@ public class HGProgressDialog extends HGDialog {
     private TextView progressContentView;
 
     private CharSequence content;
-    private CharSequence title;
     private boolean isIndefinite;
 
     HGProgressDialog(Context context, Object title, Object content, boolean cancelable, boolean isIndefinite, int code, OnDialogDismissListener onDialogDismissListener) {
@@ -35,7 +41,7 @@ public class HGProgressDialog extends HGDialog {
         this.isIndefinite = isIndefinite;
         this.code = code;
 
-        this.title = getValue(title, "");
+        CharSequence title1 = getValue(title, "");
         this.content = getValue(content, "");
 
         this.dialog = new AlertDialog.Builder(context)
@@ -44,10 +50,6 @@ public class HGProgressDialog extends HGDialog {
         this.dialog.setOnDismissListener(dialog -> HGProgressDialog.this.onDialogDismissListener.onDialogDismiss(HGProgressDialog.this));
 
         if (isIndefinite) {
-            if (!TextUtils.isEmpty(this.title)) {
-                this.dialog.setTitle(this.title);
-            }
-
             this.dialog.setCancelable(cancelable);
             this.dialog.show();
 
@@ -67,6 +69,12 @@ public class HGProgressDialog extends HGDialog {
             if (!TextUtils.isEmpty(this.content)) {
                 this.progressContentView.setText(this.content);
             }
+        }
+
+        TextView progressTitle = this.dialog.findViewById(R.id.tv_title);
+        if (!TextUtils.isEmpty(title1) && progressTitle != null) {
+            progressTitle.setVisibility(View.VISIBLE);
+            progressTitle.setText(title1);
         }
     }
 

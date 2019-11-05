@@ -17,7 +17,7 @@ public class BaseOnClickListener {
     /**
      * 上次点击时间
      */
-    private long clickTime = 0l;
+    private long clickTime = 0L;
     /**
      * 是否需要检查双击间隔
      */

@@ -32,27 +32,14 @@ afterEvaluate { project ->
             }
         }
     }
-//    task androidJavadocs(type: Javadoc) {
-//        source = android.sourceSets.main.java.srcDirs
-//        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//    }
-//    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-//        classifier = 'javadoc'
-//        from androidJavadocs.destinationDir
-//    }
-//    task androidSourcesJar(type: Jar) {
-//        classifier = 'sources'
-//        from android.sourceSets.main.java.sourceFiles
-//    }
-//
-//    //解决 JavaDoc 中文注释生成失败的问题
-//    tasks.withType(Javadoc) {
-//        options.addStringOption('Xdoclint:none', '-quiet')
-//        options.addStringOption('encoding', 'UTF-8')
-//        options.addStringOption('charSet', 'UTF-8')
-//    }
-//    artifacts {
-//        archives androidSourcesJar
-//        archives androidJavadocsJar
-//    }
+
+    // 打包源码:Start
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+    artifacts {
+        archives androidSourcesJar
+    }
+    // 打包源码:End
 }

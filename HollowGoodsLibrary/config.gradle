@@ -1,4 +1,4 @@
-// 发布命令：./gradlew -p HollowGoodsLibrary clean build uploadArchives --info
+// 本地Maven库发布命令：./gradlew -p HollowGoodsLibrary clean build uploadArchives --info
 
 ext {
     configs = [

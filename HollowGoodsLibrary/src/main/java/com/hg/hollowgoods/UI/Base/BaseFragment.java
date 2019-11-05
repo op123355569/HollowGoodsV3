@@ -72,7 +72,12 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, On
 
         Map<String, Object> params = new HashMap<>();
         for (int i = 0; i < key.length; i++) {
-            params.put(key[i], value[i]);
+            if (value[i] instanceof Class<?>) {
+                // 单独处理Class类型的参数
+                b.putSerializable(key[i], (Class<?>) value[i]);
+            } else {
+                params.put(key[i], value[i]);
+            }
         }
         b.putString(HGParamKey.MapData.getValue(), new Gson().toJson(params));
 

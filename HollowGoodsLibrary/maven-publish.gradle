@@ -33,13 +33,17 @@ afterEvaluate { project ->
         }
     }
 
-    // 打包源码:Start
-    task androidSourcesJar(type: Jar) {
-        classifier = 'sources'
-        from android.sourceSets.main.java.srcDirs
+    // Release不打入源码，Debug打入源码
+    if (!isReleaseBuild()) {
+        // 打包源码:Start
+        task androidSourcesJar(type: Jar) {
+            classifier = 'sources'
+            from android.sourceSets.main.java.srcDirs
+        }
+        artifacts {
+            archives androidSourcesJar
+        }
+        // 打包源码:End
     }
-    artifacts {
-        archives androidSourcesJar
-    }
-    // 打包源码:End
+
 }

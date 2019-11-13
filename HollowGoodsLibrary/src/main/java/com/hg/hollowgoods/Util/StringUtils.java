@@ -1,6 +1,7 @@
 package com.hg.hollowgoods.Util;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.IntRange;
 import android.text.TextUtils;
 
 import java.text.ParseException;
@@ -224,12 +225,41 @@ public class StringUtils {
         return result;
     }
 
-    public static String getTen(int num) {
+    /**
+     * 补零
+     * <p>
+     * 位数默认2
+     *
+     * @param num long 原数字
+     * @return String
+     */
+    public static String getTen(long num) {
+        return getTen(num, 2);
+    }
 
-        if (num > 9) {
+    /**
+     * 补零
+     * <p>
+     * 例如传(1,2) return 01
+     *
+     * @param num long 原数字
+     * @param pow int 位数
+     * @return String
+     */
+    public static String getTen(long num, @IntRange(from = 1) int pow) {
+
+        int count = String.valueOf(num).length();
+
+        if (count >= pow) {
             return "" + num;
         } else {
-            return "0" + num;
+            int dif = pow - count;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < dif; i++) {
+                sb.append("0");
+            }
+
+            return sb.toString() + num;
         }
     }
 

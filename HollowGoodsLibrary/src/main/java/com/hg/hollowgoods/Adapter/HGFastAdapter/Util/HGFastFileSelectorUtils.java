@@ -37,6 +37,17 @@ public class HGFastFileSelectorUtils {
     private String fileFilter;
 
     /**
+     * 设置Activity
+     * <p>
+     * 当不调用{@link #showFileSelectorWindow(Activity, View, FileMode, ArrayList, int, int, String)}时，单独调用其他方法需要先调用该方法
+     *
+     * @param activity Activity {@link BaseActivity}
+     */
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    /**
      * 显示文件选择的选项的弹窗
      * Activity是{@link BaseActivity}的话相机权限自动代理
      * 否则请自行获取相机权限

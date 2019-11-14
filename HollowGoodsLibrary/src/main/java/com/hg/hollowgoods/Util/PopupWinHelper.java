@@ -265,8 +265,8 @@ public class PopupWinHelper {
     /**
      * 设置CheckBox是否选中
      *
-     * @param id
-     * @param isChecked
+     * @param id        int
+     * @param isChecked boolean
      */
     public void setCheckBoxChecked(int id, boolean isChecked) {
 
@@ -277,13 +277,13 @@ public class PopupWinHelper {
     /**
      * 设置列表的适配器
      *
-     * @param id
-     * @param adapter
+     * @param id      int
+     * @param adapter BaseAdapter
      */
     public void setAbsListViewAdapter(int id, BaseAdapter adapter) {
 
         if (adapterTags == null) {
-            adapterTags = new HashMap<Integer, BaseAdapter>();
+            adapterTags = new HashMap<>();
         }
 
         AbsListView lv = (AbsListView) tags.get(id);
@@ -294,8 +294,8 @@ public class PopupWinHelper {
     /**
      * 刷新AbsListView数据
      *
-     * @param id
-     * @param data
+     * @param id   int
+     * @param data ArrayList
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public void refreshAbsListViewData(int id, ArrayList<?> data) {
@@ -311,7 +311,7 @@ public class PopupWinHelper {
     /**
      * 清空AbsListView数据
      *
-     * @param id
+     * @param id int
      */
     @SuppressWarnings("rawtypes")
     public void clearAbsListViewData(int id) {
@@ -326,10 +326,11 @@ public class PopupWinHelper {
     /**
      * 获取AbsListView适配器
      *
-     * @param id
-     * @param <T>
-     * @return
+     * @param id  int
+     * @param <T> T
+     * @return T
      */
+    @SuppressWarnings("unchecked")
     public <T extends BaseAdapter> T getAdapter(int id) {
         return (T) adapterTags.get(id);
     }
@@ -337,9 +338,9 @@ public class PopupWinHelper {
     /**
      * 获取控件
      *
-     * @param id
-     * @param <T>
-     * @return
+     * @param id  int
+     * @param <T> T
+     * @return T
      */
     @SuppressWarnings("unchecked")
     public <T extends View> T getView(int id) {
@@ -349,27 +350,27 @@ public class PopupWinHelper {
     /**
      * 获取控件上的文字
      *
-     * @param id
-     * @return
+     * @param id int
+     * @return String
      */
     public String getText(int id) {
 
         String str = "";
-        View v = null;
+        View v;
 
         try {
             v = getView(id);
 
             if (v instanceof EditText) {
                 str = ((EditText) v).getText().toString();
-            } else if (v instanceof TextView) {
-                str = ((TextView) v).getText().toString();
-            } else if (v instanceof Button) {
-                str = ((Button) v).getText().toString();
             } else if (v instanceof CheckBox) {
                 str = ((CheckBox) v).getText().toString();
             } else if (v instanceof RadioButton) {
                 str = ((RadioButton) v).getText().toString();
+            } else if (v instanceof Button) {
+                str = ((Button) v).getText().toString();
+            } else if (v instanceof TextView) {
+                str = ((TextView) v).getText().toString();
             }
         } catch (Exception e) {
             str = "";

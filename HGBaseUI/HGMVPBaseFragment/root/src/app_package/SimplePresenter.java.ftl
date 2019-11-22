@@ -1,4 +1,4 @@
-package ${packageName};
+package ${packageName}.Presenter;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package ${packageName};
+package ${packageName}.Contract;
 
 import com.hg.hollowgoods.UI.Base.MVP.IBaseModel;
 import com.hg.hollowgoods.UI.Base.MVP.IBaseView;

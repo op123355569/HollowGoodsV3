@@ -1,4 +1,4 @@
-package ${packageName};
+package ${packageName}.Model;
 
 import android.content.Context;
 import android.os.Handler;

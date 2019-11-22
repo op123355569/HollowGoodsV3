@@ -5,7 +5,7 @@ import com.hg.hollowgoods.UI.Base.MVP.IBaseView;
 
 /**
  * ${activityTitle}协议层
- *
+ * <p>
  * Created by Hollow Goods on ${.now?string["yyyy-MM-dd"]}
  */
 

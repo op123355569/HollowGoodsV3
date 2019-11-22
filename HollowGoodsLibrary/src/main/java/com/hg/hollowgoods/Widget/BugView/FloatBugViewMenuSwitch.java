@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.hg.hollowgoods.R;
+import com.hg.hollowgoods.Util.StatusBarUtils;
 
 /**
  * BugView菜单开关
@@ -84,13 +85,13 @@ public class FloatBugViewMenuSwitch extends FrameLayout {
                 mXInView = event.getX();
                 mYInView = event.getY();
                 mXDownInScreen = event.getRawX();
-                mYDownInScreen = event.getRawY() - Bug.getStatusBarHeight(mContext);
+                mYDownInScreen = event.getRawY() - StatusBarUtils.getStatusBarHeight(mContext);
                 mXInScreen = event.getRawX();
-                mYInScreen = event.getRawY() - Bug.getStatusBarHeight(mContext);
+                mYInScreen = event.getRawY() - StatusBarUtils.getStatusBarHeight(mContext);
                 break;
             case MotionEvent.ACTION_MOVE:
                 mXInScreen = event.getRawX();
-                mYInScreen = event.getRawY() - Bug.getStatusBarHeight(mContext);
+                mYInScreen = event.getRawY() - StatusBarUtils.getStatusBarHeight(mContext);
                 // 手指移动的时候更新菜单开关的位置
                 updateViewPosition(false);
                 break;

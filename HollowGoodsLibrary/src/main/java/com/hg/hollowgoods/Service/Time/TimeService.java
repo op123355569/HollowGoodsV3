@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.hg.hollowgoods.Application.ApplicationBuilder;
 import com.hg.hollowgoods.Application.IBaseApplication;
 import com.hg.hollowgoods.Util.XUtils.GetHttpDataListener;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 
 import org.xutils.common.Callback;
 import org.xutils.http.HttpMethod;
@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 /**
  * 时间服务
+ * <p>
  * Created by Hollow Goods on 2018-11-07.
  */
 public class TimeService extends Service {
@@ -59,8 +60,7 @@ public class TimeService extends Service {
             RequestParams params = new RequestParams("http://api.m.taobao.com/rest/api3.do");
             params.addParameter("api", "mtop.common.getTimestamp");
 
-            XUtils xUtils = new XUtils();
-            xUtils.setGetHttpDataListener(new GetHttpDataListener() {
+            new XUtils2.BuilderGetHttpData().setGetHttpDataListener(new GetHttpDataListener() {
                 @Override
                 public void onGetSuccess(String result) {
 
@@ -99,8 +99,7 @@ public class TimeService extends Service {
                 public void onGetCancel(Callback.CancelledException cex) {
 
                 }
-            });
-            xUtils.getHttpData(HttpMethod.GET, params);
+            }).getHttpData(HttpMethod.GET, params);
         }
     }
 

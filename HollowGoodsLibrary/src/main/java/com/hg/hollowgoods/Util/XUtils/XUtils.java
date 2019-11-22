@@ -1,7 +1,6 @@
 package com.hg.hollowgoods.Util.XUtils;
 
 import android.app.Application;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,12 +8,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.hg.hollowgoods.Application.ApplicationBuilder;
 import com.hg.hollowgoods.Bean.CommonBean.KeyValue;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.APPUtils;
 import com.hg.hollowgoods.Util.EncryptUtils;
-import com.hg.hollowgoods.Util.FileUtils;
+import com.hg.hollowgoods.Util.FormatUtils;
 import com.hg.hollowgoods.Util.LogUtils;
 
 import org.xutils.common.Callback;
@@ -25,13 +25,11 @@ import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * XUtils工具类
+ * <p>
  * Created by Hollow Goods on unknown.
  */
 public class XUtils {
@@ -52,11 +50,6 @@ public class XUtils {
      * 上传文件监听
      **/
     private UploadListener uploadListener = null;
-    /**
-     * 文件上传默认的key
-     */
-    private final String DEFAULT_UPLOAD_FILE_KEY = "file";
-    private static Context context;
 
     private Callback.Cancelable getHttpCancelable = null;
     private Callback.Cancelable downloadCancelable = null;
@@ -71,7 +64,6 @@ public class XUtils {
      */
     public static void init(Application application) {
 
-        context = application.getApplicationContext();
         // 初始化
         x.Ext.init(application);
         // 是否输出debug日志, 开启debug会影响性能.
@@ -149,7 +141,8 @@ public class XUtils {
 
         if (TextUtils.isEmpty(url)) {
             if (getHttpDataListener != null) {
-                getHttpDataListener.onGetError(new Throwable(context.getString(R.string.no_set_url)));
+                Application application = ApplicationBuilder.create();
+                getHttpDataListener.onGetError(new Throwable(application.getString(R.string.no_set_url)));
             }
         } else {
             cancelGetHttpData();
@@ -183,7 +176,8 @@ public class XUtils {
 
         if (TextUtils.isEmpty(url)) {
             if (downloadListener != null) {
-                downloadListener.onDownloadError(new Throwable(context.getString(R.string.no_set_url)));
+                Application application = ApplicationBuilder.create();
+                downloadListener.onDownloadError(new Throwable(application.getString(R.string.no_set_url)));
             }
         } else {
             cancelDownloadFile();
@@ -239,7 +233,8 @@ public class XUtils {
 
         if (TextUtils.isEmpty(url)) {
             if (uploadListener != null) {
-                uploadListener.onUploadError(new Throwable(context.getString(R.string.no_set_url)));
+                Application application = ApplicationBuilder.create();
+                uploadListener.onUploadError(new Throwable(application.getString(R.string.no_set_url)));
             }
         } else {
             cancelUploadFile();
@@ -270,6 +265,8 @@ public class XUtils {
     public void uploadFileDefault(RequestParams params, ArrayList<Object> filePaths) {
 
         ArrayList<KeyValue> paths = new ArrayList<>();
+        // 文件上传默认的key
+        String DEFAULT_UPLOAD_FILE_KEY = "file";
 
         if (filePaths != null) {
             for (Object t : filePaths) {
@@ -402,7 +399,7 @@ public class XUtils {
 
     /**
      * 获取图片返回结果
-     *
+     * <p>
      * Created by Hollow Goods on unknown.
      */
     private class LoadImageCallBack implements Callback.ProgressCallback<Drawable> {
@@ -462,7 +459,7 @@ public class XUtils {
                     loadImageListener.onLoadSuccess(view, bitmap);
                 }
 
-                savePhotoToSDCard(bitmap, cachePath, cacheName, isPng);
+                new Thread(() -> FormatUtils.savePhoto(bitmap, cachePath, cacheName, 100, isPng)).start();
             } else {// 从本地获取图片
                 if (loadImageListener != null) {
                     BitmapDrawable bd = (BitmapDrawable) drawable;
@@ -493,7 +490,7 @@ public class XUtils {
 
     /**
      * 下载文件返回结果
-     *
+     * <p>
      * Created by Hollow Goods on unknown.
      */
     private class DownloadCallBack implements Callback.ProgressCallback<File> {
@@ -568,7 +565,7 @@ public class XUtils {
 
     /**
      * 上传文件返回结果
-     *
+     * <p>
      * Created by Hollow Goods on unknown.
      */
     private class UploadCallBack implements Callback.ProgressCallback<String> {
@@ -640,40 +637,6 @@ public class XUtils {
 
         }
 
-    }
-
-    /**
-     * 保存图片到本地
-     *
-     * @param bitmap bitmap
-     * @param path   path
-     * @param name   name
-     */
-    private void savePhotoToSDCard(Bitmap bitmap, String path, String name, boolean isPng) {
-
-        FileOutputStream b = null;
-
-        FileUtils.checkFileExistAndCreate(path);
-        String fileName = path + name;
-
-        try {
-            b = new FileOutputStream(fileName);
-
-            if (isPng) {
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, b);// 把数据写入文件
-            } else {
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                b.flush();
-                b.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 }

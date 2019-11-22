@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  * ${activityTitle}界面
- *
+ * <p>
  * Created by Hollow Goods on ${.now?string["yyyy-MM-dd"]}
  */
 

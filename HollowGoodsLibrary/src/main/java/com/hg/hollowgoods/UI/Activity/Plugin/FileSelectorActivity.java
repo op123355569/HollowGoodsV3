@@ -35,10 +35,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * @ClassName:文件选择器
- * @Description:
- * @author: HollowGoods
- * @date: 2018年09月28日
+ * 文件选择器
+ * <p>
+ * Created by Hollow Goods on 2018-09-28.
  */
 public class FileSelectorActivity extends BaseActivity {
 

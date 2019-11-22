@@ -2,12 +2,14 @@
 
 ext {
     configs = [
-            compileSdkVersion: 27,
-            buildToolsVersion: '29.0.2',
-            minSdkVersion    : 21,
-            targetSdkVersion : 27,
-            versionCode      : 400,
-            versionName      : '4.0.0',
+            compileSdkVersion     : 27,
+            buildToolsVersion     : '29.0.2',
+            minSdkVersion         : 21,
+            targetSdkVersion      : 27,
+            versionCode           : 400,
+            versionName           : '4.0.0',
+            multiDexEnabled       : true,
+            vectorDrawablesSupport: true
     ]
 
     // 基础Android Support控件
@@ -27,8 +29,9 @@ ext {
     MaterialEditText = "2.1.4"
     // EventBus
     EventBus = "3.1.1"
-//    // 悬浮搜索框
-//    FloatingSearchView = "2.1.1"
+    // 悬浮搜索框
+    FloatingSearchView = "2.1.1"
+    CustomizeFloatingSearchView_Lib = "1.2.0"
     // Glide图片加载库
     Glide = "4.9.0"
     // 角标
@@ -58,72 +61,79 @@ ext {
     VideoPlayModule = "2.1.85"
     // 照片墙
     DiscreteScrollview = "1.4.9"
+    // Shimmer骨架
+    Shimmer_Skeleton = "1.1.2"
+    Shimmer_ShimmerLayout = "2.1.0"
 
     libs = [
             // Appcompat
-            AppcompatV7              : "com.android.support:appcompat-v7:$SupportLibraryVersion",
+            AppcompatV7                    : "com.android.support:appcompat-v7:$SupportLibraryVersion",
             // RecyclerView
-            RecyclerView             : "com.android.support:recyclerview-v7:$SupportLibraryVersion",
+            RecyclerView                   : "com.android.support:recyclerview-v7:$SupportLibraryVersion",
             // CardView
-            CardView                 : "com.android.support:cardview-v7:$SupportLibraryVersion",
+            CardView                       : "com.android.support:cardview-v7:$SupportLibraryVersion",
             // Design
-            Design                   : "com.android.support:design:$SupportLibraryVersion",
+            Design                         : "com.android.support:design:$SupportLibraryVersion",
             // Percent
-            Percent                  : "com.android.support:percent:$SupportLibraryVersion",
+            Percent                        : "com.android.support:percent:$SupportLibraryVersion",
             // Palette图片色调提取库
-            Palette                  : "com.android.support:palette-v7:$SupportLibraryVersion",
+            Palette                        : "com.android.support:palette-v7:$SupportLibraryVersion",
             // Animation
-            Animation                : "com.android.support:support-dynamic-animation:$SupportLibraryVersion",
+            Animation                      : "com.android.support:support-dynamic-animation:$SupportLibraryVersion",
             // 拉性布局，新布局
-            ConstraintLayout         : "com.android.support.constraint:constraint-layout:$ConstraintVersion",
+            ConstraintLayout               : "com.android.support.constraint:constraint-layout:$ConstraintVersion",
             // GooglePlay
-            GooglePlay               : "com.google.firebase:firebase-appindexing:$GooglePlay",
+            GooglePlay                     : "com.google.firebase:firebase-appindexing:$GooglePlay",
             // 防6K方法爆炸
-            MultiDex                 : "com.android.support:multidex:$MultiDex",
+            MultiDex                       : "com.android.support:multidex:$MultiDex",
             // 底部导航
-            BottomNavigation         : "com.ashokvarma.android:bottom-navigation-bar:$BottomNavigation",
+            BottomNavigation               : "com.ashokvarma.android:bottom-navigation-bar:$BottomNavigation",
             // 不确定水平进度
-            SmoothProgressBar        : "com.github.castorflex.smoothprogressbar:library:$SmoothProgressBar",
+            SmoothProgressBar              : "com.github.castorflex.smoothprogressbar:library:$SmoothProgressBar",
             // 不确定圆形进度
-            SmoothProgressBarCircular: "com.github.castorflex.smoothprogressbar:library-circular:$CircularProgressBar",
+            SmoothProgressBarCircular      : "com.github.castorflex.smoothprogressbar:library-circular:$CircularProgressBar",
             // 自定义MaterialEditText
-            MaterialEditText         : "com.rengwuxian.materialedittext:library:$MaterialEditText",
+            MaterialEditText               : "com.rengwuxian.materialedittext:library:$MaterialEditText",
             // EventBus
-            EventBus                 : "org.greenrobot:eventbus:$EventBus",
-//            // 悬浮搜索框
-//            FloatingSearchView       : "com.github.arimorty:floatingsearchview:$FloatingSearchView",
+            EventBus                       : "org.greenrobot:eventbus:$EventBus",
+            // 悬浮搜索框
+            FloatingSearchView             : "com.github.arimorty:floatingsearchview:$FloatingSearchView",
+            CustomizeFloatingSearchView_Lib: "com.bartoszlipinski:viewpropertyobjectanimator:$CustomizeFloatingSearchView_Lib",
             // Glide图片加载库
-            Glide                    : "com.github.bumptech.glide:glide:$Glide",
-            GlideCompiler            : "com.github.bumptech.glide:compiler:$Glide",
+            Glide                          : "com.github.bumptech.glide:glide:$Glide",
+            GlideCompiler                  : "com.github.bumptech.glide:compiler:$Glide",
             // 角标
-            SlantedTextView          : "com.haozhang.libary:android-slanted-textview:$SlantedTextView",
+            SlantedTextView                : "com.haozhang.libary:android-slanted-textview:$SlantedTextView",
             // 裁剪图片
-            UCrop                    : "com.github.yalantis:ucrop:$UCrop",
+            UCrop                          : "com.github.yalantis:ucrop:$UCrop",
             // 徽标控件
-            BadgeView                : "cn.bingoogolapple:bga-badgeview-api:$BadgeView",
-            BadgeViewCompiler        : "cn.bingoogolapple:bga-badgeview-compiler:$BadgeView",
+            BadgeView                      : "cn.bingoogolapple:bga-badgeview-api:$BadgeView",
+            BadgeViewCompiler              : "cn.bingoogolapple:bga-badgeview-compiler:$BadgeView",
             // 图片选择与预览
-            PhotoPicker              : "cn.bingoogolapple:bga-photopicker:$PhotoPicker",
-            BaseAdapter              : "cn.bingoogolapple:bga-baseadapter:$BaseAdapter",
+            PhotoPicker                    : "cn.bingoogolapple:bga-photopicker:$PhotoPicker",
+            BaseAdapter                    : "cn.bingoogolapple:bga-baseadapter:$BaseAdapter",
             // 好看的Spinner
-            NiceSpinner              : "com.github.arcadefire:nice-spinner:$NiceSpinner",
+            NiceSpinner                    : "com.github.arcadefire:nice-spinner:$NiceSpinner",
             // 引导页制作
-            Onboarder                : "com.codemybrainsout.onboarding:onboarder:$Onboarder",
+            Onboarder                      : "com.codemybrainsout.onboarding:onboarder:$Onboarder",
             // 阴影布局
-            Shadow                   : "com.loopeer.lib:shadow:$Shadow",
+            Shadow                         : "com.loopeer.lib:shadow:$Shadow",
             // Kotlin语言
-            Kotlin                   : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            Kotlin                         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             // Gson
-            Gson                     : "com.google.code.gson:gson:$Gson",
+            Gson                           : "com.google.code.gson:gson:$Gson",
             // XUtils
-            XUtils                   : "org.xutils:xutils:$XUtils",
+            XUtils                         : "org.xutils:xutils:$XUtils",
             // 二维码/条形码识别
-            QRCodeZXing              : "com.google.zxing:core:$QRCode",
+            QRCodeZXing                    : "com.google.zxing:core:$QRCode",
             // SVG动画控件
-            AnimSVG                  : "com.jaredrummler:animated-svg-view:$AnimSVG",
+            AnimSVG                        : "com.jaredrummler:animated-svg-view:$AnimSVG",
             // 视频播放-完整版
-            VideoPlayModule          : "com.ycjiang:VideoPlayModule:$VideoPlayModule",
+            VideoPlayModule                : "com.ycjiang:VideoPlayModule:$VideoPlayModule",
             // 照片墙
-            DiscreteScrollview       : "com.yarolegovich:discrete-scrollview:$DiscreteScrollview",
+            DiscreteScrollview             : "com.yarolegovich:discrete-scrollview:$DiscreteScrollview",
+            // Shimmer骨架
+            Shimmer_Skeleton               : "com.ethanhua:skeleton:$Shimmer_Skeleton",
+            Shimmer_ShimmerLayout          : "io.supercharge:shimmerlayout:$Shimmer_ShimmerLayout",
     ]
 }

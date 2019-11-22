@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 /**
  * 多媒体预览界面
+ * <p>
  * Created by Hollow Goods 2018-06-15.
  */
 public class ImagePreActivity extends BaseActivity {

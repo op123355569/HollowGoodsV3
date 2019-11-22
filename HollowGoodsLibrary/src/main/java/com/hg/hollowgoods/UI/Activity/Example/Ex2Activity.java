@@ -20,7 +20,8 @@ import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.SystemAppUtils;
 import com.hg.hollowgoods.Util.XUtils.DownloadListener;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.RequestParamsHelper;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 
 import org.xutils.common.Callback;
 import org.xutils.http.HttpMethod;
@@ -107,11 +108,10 @@ public class Ex2Activity extends BaseActivity {
 
     private void loadHeadImg() {
 
-        XUtils xUtils = new XUtils();
         String headUrl = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507874689650&di=e70be488a0c65b36090d7a9d6c51a052&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201509%2F02%2F20150902104405_PRM4E.jpeg";
         LoadImageOptions options = new LoadImageOptions(head, headUrl, HGCommonResource.NO_IMAGE_HEAD,
                 HGCommonResource.NO_IMAGE_HEAD, 80, 80, 0, true, ScaleType.CENTER_CROP);
-        xUtils.loadImageByUrl(options);
+        new XUtils2.BuilderLoadImage().loadImageByUrl(options);
     }
 
     private void initUrl() {
@@ -154,8 +154,9 @@ public class Ex2Activity extends BaseActivity {
     private void downloadAPP() {
 
         String url = "http://p.gdown.baidu.com/666fbdc01cbd4c539fa0e1f84defdb38d267ab5901ffca31f5bb683ac15c750d788b35349aa35d3b37c2a9d36ed7e4143324ce74b92e4f39c90c336f6d4499d5686b332fc710d6e6b3cfb168d46fa54b4355c6c6a5e50fd1503061470aedd53de6b8c93a34ae13fca356dec57e1700b77e4df5b356111296b36456e3e92e24f223ccfe7902473a5920c8f057382287d018224c0795104c43e1dcff87eb09615f2565b68e59c80ff15ad1d0c2af7daeec20fa0b2e0b22854b13809f8c37646b6bc1a8e7ae5cc41534da8c53450b556ad68bc028dd3eb6994189490957fbc72ad7d314e8e235cc2fa712681e5d7349b9712e4913c71d38289ff2bd4901ceec100f4eb6e337c84f2861b69fe628fc93c929";
-        XUtils xUtils = new XUtils();
-        xUtils.setDownloadListener(new DownloadListener() {
+        RequestParams params = RequestParamsHelper.builderKeyValueRequestParam(url, null, null);
+
+        new XUtils2.BuilderDownloadFile().setDownloadListener(new DownloadListener() {
             @Override
             public void onDownloadSuccess(File file) {
                 pro.setText("100%");
@@ -187,9 +188,7 @@ public class Ex2Activity extends BaseActivity {
             public void onDownloadCancel(Callback.CancelledException cex) {
 
             }
-        });
-        RequestParams params = new RequestParams(url);
-        xUtils.downloadFile(HttpMethod.GET, params);
+        }).downloadFile(HttpMethod.GET, params);
     }
 
     private String filepath;

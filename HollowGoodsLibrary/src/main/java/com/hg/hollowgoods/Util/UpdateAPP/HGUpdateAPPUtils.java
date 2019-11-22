@@ -17,7 +17,8 @@ import com.hg.hollowgoods.UI.Fragment.Proxy.OnProxyActivityResult;
 import com.hg.hollowgoods.Util.StringUtils;
 import com.hg.hollowgoods.Util.SystemAppUtils;
 import com.hg.hollowgoods.Util.XUtils.DownloadListener;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.RequestParamsHelper;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 
 import org.xutils.common.Callback;
 import org.xutils.http.HttpMethod;
@@ -69,11 +70,14 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
 
     private void doCheck() {
         checkServerData();
-
-//        RequestParams params = new RequestParams(InterfaceConfig.getNowIPConfig().getRequestUrl(InterfaceApi.UpdateApp.getUrl()));
 //
-//        XUtils xUtils = new XUtils();
-//        xUtils.setGetHttpDataListener(new GetHttpDataListener() {
+//        RequestParams params = RequestParamsHelper.builderKeyValueRequestParam(
+//                InterfaceConfig.getNowIPConfig().getRequestUrl(InterfaceApi.UpdateApp.getUrl()),
+//                null,
+//                null
+//        );
+//
+//        new XUtils2.BuilderGetHttpData().setGetHttpDataListener(new GetHttpDataListener() {
 //            @Override
 //            public void onGetSuccess(String result) {
 //
@@ -118,8 +122,7 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
 //                    closeCheckProgressDialog();
 //                }
 //            }
-//        });
-//        xUtils.getHttpData(HttpMethod.POST, params);
+//        }).getHttpData(HttpMethod.POST, params);
     }
 
     public void closeCheckProgressDialog() {
@@ -168,10 +171,10 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
         String path = HGSystemConfig.getDownloadFilePath();
         String name = System.currentTimeMillis() + ".apk";
 
-        RequestParams params = new RequestParams(URL);
+        RequestParams params = RequestParamsHelper.builderKeyValueRequestParam(URL, null, null);
 
-        XUtils xUtils = new XUtils();
-        xUtils.setDownloadListener(new DownloadListener() {
+        new XUtils2.BuilderDownloadFile().setDownloadListener(new DownloadListener() {
+
             @Override
             public void onDownloadSuccess(File file) {
                 baseActivity.baseUI.baseDialog.setProgress(100, HGConstants.UPDATE_APP_UTILS_DOWNLOAD_PROGRESS_DIALOG_CODE);
@@ -207,8 +210,7 @@ public abstract class HGUpdateAPPUtils implements UpdateAPPController {
             public void onDownloadCancel(Callback.CancelledException cex) {
 
             }
-        });
-        xUtils.downloadFile(HttpMethod.POST, params, path + name);
+        }).downloadFile(HttpMethod.POST, params, path + name);
     }
 
     private void onInstallRequestActivityResult(int requestCode, int resultCode) {

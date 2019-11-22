@@ -9,7 +9,7 @@ import com.hg.hollowgoods.UI.Base.BaseFragment;
 
 /**
  * ${activityTitle}碎片
- *
+ * <p>
  * Created by Hollow Goods on ${.now?string["yyyy-MM-dd"]}
  */
 

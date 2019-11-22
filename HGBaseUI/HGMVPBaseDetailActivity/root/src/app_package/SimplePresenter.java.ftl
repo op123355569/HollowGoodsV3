@@ -6,7 +6,7 @@ import com.hg.hollowgoods.UI.Base.MVP.BasePresenter;
 
 /**
  * ${activityTitle}管理层
- *
+ * <p>
  * Created by Hollow Goods on ${.now?string["yyyy-MM-dd"]}
  */
 

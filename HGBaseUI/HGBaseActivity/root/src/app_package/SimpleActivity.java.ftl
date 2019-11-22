@@ -10,7 +10,7 @@ import com.hg.hollowgoods.UI.Base.BaseActivity;
 
 /**
  * ${activityTitle}界面
- *
+ * <p>
  * Created by Hollow Goods on ${.now?string["yyyy-MM-dd"]}
  */
 

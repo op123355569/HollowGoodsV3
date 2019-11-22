@@ -14,7 +14,8 @@ import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Util.EncryptUtils;
 import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.XUtils.DownloadListener;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.RequestParamsHelper;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 import com.hg.hollowgoods.Widget.FileRead.SuperFileView;
 
 import org.xutils.common.Callback;
@@ -24,10 +25,9 @@ import org.xutils.http.RequestParams;
 import java.io.File;
 
 /**
- * @ClassName:文件查看界面
- * @Description:
- * @author: HollowGoods
- * @date: 2018年10月09日
+ * 文件查看界面
+ * <p>
+ * Created by Hollow Goods on 2018-10-09.
  */
 public class FileReadActivity extends BaseActivity {
 
@@ -97,10 +97,9 @@ public class FileReadActivity extends BaseActivity {
             filepath = CACHE_PATH + getFileName();
             readFile();
         } else {
-            RequestParams params = new RequestParams(url);
+            RequestParams params = RequestParamsHelper.builderJsonBodyRequestParam(url, null, null);
 
-            XUtils xUtils = new XUtils();
-            xUtils.setDownloadListener(new DownloadListener() {
+            new XUtils2.BuilderDownloadFile().setDownloadListener(new DownloadListener() {
                 @Override
                 public void onDownloadSuccess(File file) {
                     filepath = file.getAbsolutePath();
@@ -126,15 +125,14 @@ public class FileReadActivity extends BaseActivity {
                 public void onDownloadCancel(Callback.CancelledException cex) {
 
                 }
-            });
-            xUtils.downloadFile(HttpMethod.GET, params, CACHE_PATH + getFileName());
+            }).downloadFile(HttpMethod.GET, params, CACHE_PATH + getFileName());
         }
     }
 
     /***
      * 根据链接获取文件名（带类型的），具有唯一性
      *
-     * @return
+     * @return String
      */
     private String getFileName() {
         return EncryptUtils.md5Encrypt(url) + "." + getFileType();
@@ -143,7 +141,7 @@ public class FileReadActivity extends BaseActivity {
     /***
      * 获取文件类型
      *
-     * @return
+     * @return String
      */
     private String getFileType() {
 

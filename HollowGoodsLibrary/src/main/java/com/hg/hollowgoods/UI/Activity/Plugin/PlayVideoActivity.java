@@ -10,8 +10,10 @@ import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 
 /**
+ * 视频播放界面
  * Created by Hollow Goods 2018-07-25.
  */
+@Deprecated
 public class PlayVideoActivity extends BaseActivity {
 
 //    private VideoPlayerView playerView;

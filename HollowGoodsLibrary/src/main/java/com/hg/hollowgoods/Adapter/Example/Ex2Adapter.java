@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.hg.hollowgoods.Constant.HGCommonResource;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 
 import java.util.ArrayList;
 
@@ -74,7 +74,7 @@ public class Ex2Adapter extends BaseAdapter {
                 false,
                 ImageView.ScaleType.CENTER_CROP
         );
-        new XUtils().loadImageByUrl(options);
+        new XUtils2.BuilderLoadImage().loadImageByUrl(options);
 
         return convertView;
     }

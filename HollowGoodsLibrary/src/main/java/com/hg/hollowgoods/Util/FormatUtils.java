@@ -324,7 +324,7 @@ public class FormatUtils {
             if (filePath.startsWith("http://")
                     || filePath.startsWith("https://")
                     || filePath.startsWith("widevine://")) {
-                retriever.setDataSource(filePath, new Hashtable<String, String>());
+                retriever.setDataSource(filePath, new Hashtable<>());
             } else {
                 retriever.setDataSource(filePath);
             }

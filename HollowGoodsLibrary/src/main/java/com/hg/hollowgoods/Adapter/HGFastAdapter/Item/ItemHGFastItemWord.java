@@ -20,7 +20,7 @@ import com.hg.hollowgoods.UI.Base.Message.Dialog.ConfigInput;
 import com.hg.hollowgoods.UI.Base.Message.Toast.t;
 import com.hg.hollowgoods.Util.ReflectUtils;
 import com.hg.hollowgoods.Util.XUtils.GetHttpDataListener;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -241,8 +241,7 @@ public class ItemHGFastItemWord extends BaseItemHGFastItem<CommonBean> {
 
         RequestParams params = (RequestParams) data.getSingleChoiceNetRequestParam();
 
-        XUtils xUtils = new XUtils();
-        xUtils.setGetHttpDataListener(new GetHttpDataListener() {
+        new XUtils2.BuilderGetHttpData().setGetHttpDataListener(new GetHttpDataListener() {
             @Override
             public void onGetSuccess(String result) {
 
@@ -302,8 +301,7 @@ public class ItemHGFastItemWord extends BaseItemHGFastItem<CommonBean> {
             public void onGetCancel(Callback.CancelledException cex) {
 
             }
-        });
-        xUtils.getHttpData(data.getHttpMethod(), params);
+        }).getHttpData(data.getHttpMethod(), params);
     }
 
     public void setBaseUI(BaseUI baseUI) {

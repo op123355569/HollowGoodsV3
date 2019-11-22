@@ -16,8 +16,8 @@ android {
         versionName configs.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         // Enabling MultiDex Support.
-        multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled configs.multiDexEnabled
+        vectorDrawables.useSupportLibrary = configs.vectorDrawablesSupport
     }
     buildTypes {
         release {
@@ -96,7 +96,7 @@ dependencies {
 
 //    // 悬浮搜索框
 //    api libs.FloatingSearchView
-    api 'com.bartoszlipinski:viewpropertyobjectanimator:1.2.0'
+    api libs.CustomizeFloatingSearchView_Lib
 
     // Glide图片加载库
     api libs.Glide
@@ -157,8 +157,8 @@ dependencies {
     }
 
     // Shimmer加载动画工具
-    api 'com.ethanhua:skeleton:1.1.2'
-    api 'io.supercharge:shimmerlayout:2.1.0'
+    api libs.Shimmer_Skeleton
+    api libs.Shimmer_ShimmerLayout
 
     ////////////////////////////////////Jar包/////////////////////////////////////////
 

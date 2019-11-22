@@ -26,6 +26,7 @@ import com.hg.hollowgoods.Util.APPUtils;
 import com.hg.hollowgoods.Util.CircularAnimUtils;
 import com.hg.hollowgoods.Util.FormatUtils;
 import com.hg.hollowgoods.Util.LogUtils;
+import com.hg.hollowgoods.Util.StatusBarUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -240,7 +241,7 @@ public class FloatBugViewMenuItem extends FrameLayout {
                     viewWidth = views.get(i).getWidth();
                     viewHeight = views.get(i).getHeight();
                     if (viewHeight != phoneHeight) {
-                        viewHeight = viewHeight - Bug.getStatusBarHeight(mContext);
+                        viewHeight = viewHeight - StatusBarUtils.getStatusBarHeight(mContext);
                     }
                     views.get(i).setDrawingCacheEnabled(true);
                     views.get(i).buildDrawingCache();

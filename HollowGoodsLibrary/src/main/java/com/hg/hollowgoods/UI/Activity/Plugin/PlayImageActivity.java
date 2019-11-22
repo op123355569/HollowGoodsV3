@@ -10,7 +10,7 @@ import com.hg.hollowgoods.Constant.HGParamKey;
 import com.hg.hollowgoods.R;
 import com.hg.hollowgoods.UI.Base.BaseActivity;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 import com.hg.hollowgoods.Widget.PhotoView.PhotoView;
 
 /**
@@ -18,7 +18,6 @@ import com.hg.hollowgoods.Widget.PhotoView.PhotoView;
  * <p>
  * Created by Hollow Goods on unknown.
  */
-
 public class PlayImageActivity extends BaseActivity {
 
     private PhotoView img;
@@ -51,9 +50,8 @@ public class PlayImageActivity extends BaseActivity {
 //        glideOptions.setThumbnail(0.1f);
 //        GlideUtils.loadImg(this, glideOptions);
 
-        XUtils xUtils = new XUtils();
         LoadImageOptions loadImageOptions = new LoadImageOptions(img, url, HGCommonResource.IMAGE_LOADING, HGCommonResource.IMAGE_LOAD_ERROR, 0, 0, 0, false, ImageView.ScaleType.FIT_CENTER);
-        xUtils.loadImageByUrl(loadImageOptions);
+        new XUtils2.BuilderLoadImage().loadImageByUrl(loadImageOptions);
 
         return null;
     }

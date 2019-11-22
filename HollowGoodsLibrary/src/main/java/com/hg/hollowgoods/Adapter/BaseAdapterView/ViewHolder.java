@@ -25,7 +25,7 @@ import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 import com.hg.hollowgoods.Util.Glide.GlideUtils;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -269,8 +269,7 @@ public class ViewHolder {
             iv.setImageResource(options.failIconRes);
         } else {
             options.view = iv;
-            XUtils xUtils = new XUtils();
-            xUtils.loadImageByUrl(options);
+            new XUtils2.BuilderLoadImage().loadImageByUrl(options);
         }
 
         return this;
@@ -320,10 +319,9 @@ public class ViewHolder {
         if (TextUtils.isEmpty(url)) {
             view.setImageResource(HGCommonResource.NO_IMAGE_HEAD);
         } else {
-            XUtils xUtils = new XUtils();
             LoadImageOptions options = new LoadImageOptions(view, url, HGCommonResource.NO_IMAGE_HEAD,
                     HGCommonResource.NO_IMAGE_HEAD, 50, 50, 0, false, ScaleType.CENTER_CROP);
-            xUtils.loadImageByUrl(options);
+            new XUtils2.BuilderLoadImage().loadImageByUrl(options);
         }
 
         return this;
@@ -343,10 +341,9 @@ public class ViewHolder {
         if (TextUtils.isEmpty(url)) {
             view.setImageResource(HGCommonResource.NO_IMAGE_HEAD);
         } else {
-            XUtils xUtils = new XUtils();
             LoadImageOptions options = new LoadImageOptions(view, url, HGCommonResource.NO_IMAGE_HEAD,
                     HGCommonResource.NO_IMAGE_HEAD, 50, 50, 0, true, ScaleType.CENTER_CROP);
-            xUtils.loadImageByUrl(options);
+            new XUtils2.BuilderLoadImage().loadImageByUrl(options);
         }
 
         return this;

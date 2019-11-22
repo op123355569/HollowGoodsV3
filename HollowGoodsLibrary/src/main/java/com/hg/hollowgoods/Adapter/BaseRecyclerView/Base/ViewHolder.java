@@ -35,7 +35,7 @@ import com.hg.hollowgoods.Util.FileUtils;
 import com.hg.hollowgoods.Util.Glide.GlideOptions;
 import com.hg.hollowgoods.Util.Glide.GlideUtils;
 import com.hg.hollowgoods.Util.XUtils.LoadImageOptions;
-import com.hg.hollowgoods.Util.XUtils.XUtils;
+import com.hg.hollowgoods.Util.XUtils.XUtils2;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -260,8 +260,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             view.setImageResource(options.failIconRes);
         } else {
             options.view = view;
-            XUtils xUtils = new XUtils();
-            xUtils.loadImageByUrl(options);
+            new XUtils2.BuilderLoadImage().loadImageByUrl(options);
         }
 
         return this;

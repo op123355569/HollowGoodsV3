@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * ${activityTitle}数据层
- *
+ * <p>
  * Created by Hollow Goods on ${.now?string["yyyy-MM-dd"]}
  */
 
@@ -43,10 +43,13 @@ public class ${modelName} implements ${contractName}.Model {
 	@Override
     public void getData(Map<String, Object> request) {
 
-        RequestParams params = new RequestParams(InterfaceConfig.getNowIPConfig().getRequestUrl("URL"));
+        RequestParams params = RequestParamsHelper.builderJsonBodyRequestParam(
+                InterfaceConfig.getNowIPConfig().getRequestUrl("URL"),
+                null,
+                null
+        );
 
-        XUtils xUtils = new XUtils();
-        xUtils.setGetHttpDataListener(new GetHttpDataListener() {
+        new XUtils2.BuilderGetHttpData().setGetHttpDataListener(new GetHttpDataListener() {
             @Override
             public void onGetSuccess(String result) {
                 if (isViewAttached()) {
@@ -74,7 +77,6 @@ public class ${modelName} implements ${contractName}.Model {
             public void onGetFinish() {
 
             }
-        });
-        xUtils.getHttpData(HttpMethod.GET, params);
+        }).getHttpData(HttpMethod.GET, params);
     }
 }

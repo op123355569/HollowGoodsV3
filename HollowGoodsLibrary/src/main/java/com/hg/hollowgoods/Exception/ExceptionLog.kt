@@ -19,11 +19,11 @@ class ExceptionLog : Serializable {
     /**
      * app版本名
      */
-    var appVersionName = "";
+    var appVersionName = ""
     /**
      * app版本号
      */
-    var appVersionCode = 0;
+    var appVersionCode = 0
     /**
      * 报错界面名称
      */
@@ -47,14 +47,14 @@ class ExceptionLog : Serializable {
     /**
      * 出现错误
      */
-    var errorMessage = "";
+    var errorMessage = ""
     /**
      * 出错原因
      */
-    var errorReason = "";
+    var errorReason = ""
     /**
      * 捕获异常
      */
-    var errorAll = "";
+    var errorAll = ""
 
 }

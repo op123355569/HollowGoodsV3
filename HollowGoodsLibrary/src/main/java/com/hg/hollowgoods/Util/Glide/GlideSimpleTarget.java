@@ -8,6 +8,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Util.FormatUtils;
+import com.hg.hollowgoods.Util.ThreadPoolUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,8 +40,7 @@ public class GlideSimpleTarget extends CustomTarget {
     @Override
     public void onResourceReady(final Object resource, Transition transition) {
 
-        new Thread(() -> {
-
+        ThreadPoolUtils.getService().execute(() -> {
             Drawable drawable;
             Bitmap bitmap;
 
@@ -49,7 +49,7 @@ public class GlideSimpleTarget extends CustomTarget {
                 bitmap = FormatUtils.drawable2Bitmap(drawable);
 
                 if (isNeedCache) {
-                    new Thread(new CacheImgThread(bitmap)).start();
+                    ThreadPoolUtils.getService().execute(() -> new CacheImgThread(bitmap));
                 }
             }
 
@@ -59,7 +59,7 @@ public class GlideSimpleTarget extends CustomTarget {
                         ((Drawable) resource).getCurrent().getConstantState().newDrawable()
                 );
             }
-        }).start();
+        });
     }
 
     @Override

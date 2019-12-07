@@ -16,6 +16,7 @@ import com.hg.hollowgoods.Util.APPUtils;
 import com.hg.hollowgoods.Util.EncryptUtils;
 import com.hg.hollowgoods.Util.FormatUtils;
 import com.hg.hollowgoods.Util.LogUtils;
+import com.hg.hollowgoods.Util.ThreadPoolUtils;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.DensityUtil;
@@ -459,7 +460,7 @@ public class XUtils {
                     loadImageListener.onLoadSuccess(view, bitmap);
                 }
 
-                new Thread(() -> FormatUtils.savePhoto(bitmap, cachePath, cacheName, 100, isPng)).start();
+                ThreadPoolUtils.getService().execute(() -> FormatUtils.savePhoto(bitmap, cachePath, cacheName, 100, isPng));
             } else {// 从本地获取图片
                 if (loadImageListener != null) {
                     BitmapDrawable bd = (BitmapDrawable) drawable;

@@ -9,6 +9,7 @@ import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hg.hollowgoods.Constant.HGSystemConfig;
 import com.hg.hollowgoods.Util.FormatUtils;
+import com.hg.hollowgoods.Util.ThreadPoolUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -52,7 +53,7 @@ public class GlideDrawableTarget extends DrawableImageViewTarget {
             bitmap = FormatUtils.drawable2Bitmap(drawable);
 
             if (isNeedCache) {
-                new Thread(new CacheImgThread(bitmap)).start();
+                ThreadPoolUtils.getService().execute(new CacheImgThread(bitmap));
             }
         }
 

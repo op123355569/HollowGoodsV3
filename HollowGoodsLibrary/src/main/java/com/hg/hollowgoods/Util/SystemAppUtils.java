@@ -401,7 +401,7 @@ public class SystemAppUtils {
                     onCompressListener.onCompressFinish();
                 }
             } else {
-                new Thread(() -> {
+                ThreadPoolUtils.getService().execute(() -> {
                     String newName = System.currentTimeMillis() + FileUtils.getFileFormat(albumPhotoPath);
                     compressPhoto(
                             BitmapFactory.decodeFile(albumPhotoPath),
@@ -421,7 +421,7 @@ public class SystemAppUtils {
                             onCompressListener.onCompressFinish();
                         });
                     }
-                }).start();
+                });
             }
         }
     }

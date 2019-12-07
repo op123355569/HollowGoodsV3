@@ -14,7 +14,7 @@ import java.util.List;
 
 public class IPDBHelper {
 
-    public List<IPConfig> findAll() {
+    List<IPConfig> findAll() {
 
         try {
             List<IPConfig> result = XDBUtils.getDbManager().findAll(IPConfig.class);
@@ -36,7 +36,7 @@ public class IPDBHelper {
         }
     }
 
-    public void delete() {
+    private void delete() {
 
         try {
             XDBUtils.getDbManager().delete(IPConfig.class);

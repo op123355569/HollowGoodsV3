@@ -53,7 +53,7 @@ public class ${modelName} implements ${contractName}.Model {
             @Override
             public void onGetSuccess(String result) {
                 if (isViewAttached()) {
-                    new Thread(() -> {
+                    ThreadPoolUtils.getService().execute(() -> {
                         // TODO 数据处理的逻辑
                         ArrayList<Object> tempData = new ArrayList<>();
 
@@ -61,7 +61,7 @@ public class ${modelName} implements ${contractName}.Model {
                             mView.getDataSuccess(tempData);
                             mView.getDataFinish();
                         });
-                    }).start();
+                    });
                 }
             }
 
